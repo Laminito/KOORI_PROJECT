@@ -1,0 +1,58 @@
+version: '3.9'
+
+services:
+
+  koori_admin:
+    build:
+      context: ./koori_front
+    volumes:
+      - ./koori_front:/usr/src/koori_front
+    ports:
+      - "4200:4200"
+
+
+  # application node_app
+  koori_app_backend:
+    build:
+      context: ./koori_backend
+    volumes:
+      - ./koori_backend:/usr/src/koori_backend
+    ports:
+      - "8001:3000"
+
+  postgres_db:
+      image: "postgres:15"
+      environment:
+        POSTGRES_USER: root
+        POSTGRES_PASSWORD: root
+        POSTGRES_DB: root
+      ports:
+        - "5432:5432"
+      networks:
+        - postgres
+      volumes:
+      - database-data:/var/lib/postgresql/data/
+  pgadmin:
+      container_name: pgadmin_container
+      image: dpage/pgadmin4:6
+      environment:
+        PGADMIN_DEFAULT_EMAIL: root@pgadmin.com
+        PGADMIN_DEFAULT_PASSWORD: root
+        PGADMIN_CONFIG_SERVER_MODE: 'False'
+      volumes:
+        - pgadmin:/var/lib/pgadmin
+
+      ports:
+        - "9090:80"
+      networks:
+        - postgres
+      restart: unless-stopped
+
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+  database-data:
+  pgadmin:
+  koori_backend:

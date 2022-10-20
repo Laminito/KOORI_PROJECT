@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+
+@import "../node_modules/font-awesome/css/font-awesome.css";
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+/* @import "../node_modules/@fortawesome/fontawesome-free/css/all.css"; */
+
+:root {
+  --fond: #E5E5E5;
+  --vert: #338F8E;
+  --white: rgba(255, 255, 255, 0.6);
+  --orange: #FF7713;
+  --border-size: 1px solid;
+}
+body{
+  background-color: var(--fond);
+  overflow-x: hidden;
+}
+*{
+  margin: 0;
+  padding: 0;
+}
+.bar-title{
+  background-color: var(--vert);
+  color: var(--orange);
+}
+.text-color{
+  color: var(--vert);
+}
