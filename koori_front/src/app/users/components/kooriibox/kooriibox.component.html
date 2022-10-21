@@ -1,0 +1,231 @@
+<div class="container mt-0">
+  <app-kooriibox-menu></app-kooriibox-menu>
+  <div class="row row-haut mt-4 shadow-haut">
+    <div class="col-6">
+      <div class="card text-center">
+        <div class="card-header text-center">
+          Koori
+        </div>
+        <div class="card-body-tete card-body">
+          <p *ngIf="koori && !loading.isLoading()">
+            {{koori.description}}
+          </p>
+          <app-nodata *ngIf="!koori.description && !loading.isLoading()"></app-nodata>
+          <app-loading *ngIf="loading.isLoading()"></app-loading>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="card text-center">
+        <div class="card-header text-center">
+          Ibox
+        </div>
+        <div class="card-body-tete card-body">
+          <p>
+            {{ibox.description}}
+          </p>
+          <app-nodata *ngIf="!ibox.description && !loading.isLoading()"></app-nodata>
+          <app-loading *ngIf="loading.isLoading()"></app-loading>
+        </div>
+      </div>
+    </div>
+    <div class="col text-center mt-3 mb-3">
+      <button class="btn-upload btn btn-default button-2 text-white" id="button" style="font-size: large" (click)="downloadPdf()">
+        <i class="fas fa-download mr-1"></i>
+        Telecharger le livret
+        <i class="fas fa-book-open ml-1" id="call"></i>
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <h3 class="text-center mt-3">
+      <span>Ko</span>
+      <span class="petaaw">o</span>
+      <span class="suite">ri ou une co-construction centreée utilisateur</span>
+    </h3>
+  </div>
+  <div class="row row-haut shadow-bas">
+    <div class="container">
+      <div class="row justify-content-around custom-line mt-5 mb-5">
+        <div class="col-4 btn" [routerLink]="['/kooriibox/koori']">
+          <div class="grid">
+            <div class="card card__three">
+              <figure class="card__img card-body div-vert-livret">
+                <img src="../../assets/img/koori.png"/>
+              </figure>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 btn" [routerLink]="['/kooriibox/ibox']">
+          <div class="grid">
+            <div class="card card__three">
+              <figure class="card__img card-body div-vert-livret">
+                <img src="../../assets/img/ibox.png"/>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row contributeur mt-4 mb-4">
+    <div class="col-md-7 col-sm-12 col-lg-7 col-xl-7 mt-3 mb-3">
+      <h3 class="text-center font-italic">Les contributeurs</h3>
+      <div class="container text-center my-3">
+        <div class=" partner row mx-auto my-auto justify-content-center">
+          <div id="carouselImages" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+              <div class="carousel-item active">
+                <div class="col-md-4">
+                  <div class="">
+                    <div class="card-img text-center">
+                      <img src="./assets/img/aissatou.jpeg" class="img-thumbnail rounded-circle w-50 h-50">
+                    </div>
+                    <div class="">
+                      <p class="text-light mt-2 font-weight-bold text-wrap">Mame Aissatou Diagne</p>
+                      <span class="text-wrap">Contrôleur de gestion Senior, Consultante en coaching professionnel et personnel</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="col-md-4">
+                  <div class="">
+                    <div class="card-img text-center">
+                      <img src="./assets/img/psm.jpg" class="img-thumbnail rounded-circle w-50 h-50">
+                    </div>
+                    <div class="">
+                      <p class="text-light mt-2 font-weight-bold text-wrap">Papa Saliou MBODJ</p>
+                      <span class="text-wrap">Coach innovation</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="col-md-4">
+                  <div class="">
+                    <div class="card-img text-center">
+                      <img src="./assets/img/fode.jpeg" class="img-thumbnail rounded-circle w-50 h-50">
+                    </div>
+                    <div class="">
+                      <p class="text-light mt-2 font-weight-bold text-wrap">Fode Niakhale TRAORE</p>
+                      <span class="text-wrap">Responsable Acquisitions Jeux, Musique, Culture et Infotainment chez Orange</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="col-md-4">
+                  <div class="">
+                    <div class="card-img text-center">
+                      <img src="./assets/img/sire.jpeg" class="img-thumbnail rounded-circle w-50 h-50">
+                    </div>
+                    <div class="">
+                      <p class="text-light mt-2 font-weight-bold text-wrap">Sire DIAGNE</p>
+                      <span class="text-wrap">Ingenieur Systeme Réseau & Cloud</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="col-md-4">
+                  <div class="">
+                    <div class="card-img text-center">
+                      <img src="./assets/img/samba.jpeg" class="img-thumbnail rounded-circle w-50 h-50">
+                    </div>
+                    <div class="">
+                      <p class="text-light mt-2 font-weight-bold text-wrap">Samba DIOP</p>
+                      <span class="text-wrap">Ingénieur de production chez GROUPE SONATEL</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="col-md-4">
+                  <div class="">
+                    <div class="card-img text-center">
+                      <img src="./assets/img/birahim.jpeg" class="img-thumbnail rounded-circle w-50 h-50">
+                    </div>
+                    <div class="">
+                      <p class="text-light mt-2 font-weight-bold text-wrap">El H. Birahim GUEYE</p>
+                      <span class="text-wrap">Responsable de l'innovation IT</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="col-md-4">
+                  <div class="">
+                    <div class="card-img text-center">
+                      <img src="./assets/img/racky.png" class="img-thumbnail rounded-circle w-50 h-50">
+                    </div>
+                    <div class="">
+                      <p class="text-light mt-2 font-weight-bold text-wrap">Racky S. WANE</p>
+                      <span class="text-wrap">Directrice des Systemes d'Information</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="col-md-4">
+                  <div class="">
+                    <div class="card-img text-center">
+                      <img src="./assets/img/kalidou.jpeg" class="img-thumbnail rounded-circle w-50 h-50">
+                    </div>
+                    <div class="">
+                      <p class="text-light mt-2 font-weight-bold text-wrap">Kalidou SY</p>
+                      <span class="text-wrap">Coach innovation</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="col-md-4">
+                  <div class="">
+                    <div class="card-img text-center">
+                      <img src="./assets/img/talla.jpeg" class="img-thumbnail rounded-circle w-50 h-50">
+                    </div>
+                    <div class="">
+                      <p class="text-light mt-2 font-weight-bold text-wrap">Talla NDIAYE</p>
+                      <span class="text-wrap">Responsable de l'entrepreneuriat numérique et de l'employabilité des jeunes chez @MCTPEN</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="col-md-4">
+                  <div class="">
+                    <div class="card-img text-center">
+                      <img src="./assets/img/ndongo.jpeg" class="img-thumbnail rounded-circle w-50 h-50">
+                    </div>
+                    <div class="">
+                      <p class="text-light mt-2 font-weight-bold text-wrap">Ndongo SAMB</p>
+                      <span class="text-wrap">Passionné du développement, consultant IT</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a style="margin-left: -10%;" class="carousel-control-prev bg-transparent rounded-circle" href="#carouselImages" role="button" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </a>
+            <a style="margin-right: -10%;" class="carousel-control-next bg-transparent rounded-circle" href="#carouselImages" role="button" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5 col-sm-12 col-lg-5 col-sl-5 m-auto">
+      <div class="card">
+        <div class="card-body">
+          <span>
+            Sonatel œuvre continuellement dans le renforcement de l’entreprenariat dans le domaine des TIC et réaffirme son engagement à œuvrer pour le développement de l’économie numérique au Sénégal...
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-top></app-top>

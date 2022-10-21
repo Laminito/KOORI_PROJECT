@@ -11,14 +11,17 @@ export class HeaderComponent implements OnInit {
   defaultRoute: string = ""
   constructor(private  route: Router, private  actRoute: ActivatedRoute) {
   }
+
   ngOnInit(): void {}
-open(){
-    // @ts-ignore
-  this.defaultRoute = this.actRoute.snapshot['_routerState'].url
-  if (this.defaultRoute === "/kooriibox"){
-      this.menu = true;
+
+  open(){
+      // @ts-ignore
+    this.defaultRoute = this.actRoute.snapshot['_routerState'].url
+    if (this.defaultRoute === "/kooriibox"){
+        this.menu = true;
+    }
+    $(document.getElementsByClassName('w-75')).hide()
   }
-  $(document.getElementsByClassName('w-75')).hide()
-}
+  
 }
 

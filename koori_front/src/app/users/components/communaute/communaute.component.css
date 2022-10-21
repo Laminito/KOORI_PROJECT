@@ -1,0 +1,27 @@
+.input-subject{
+  border:3px solid var(--fond);
+  background-color: #ECECEC;
+  width: 100%;
+  height: 25%;
+  margin-left: 100px;
+}
+.row-comment{
+  background-color: var(--fond);
+}
+.icon-color{
+  color: var(--vert);
+}
+.color-btn{
+  background-color: var(--vert);
+}
+.top-sujet{
+  border: var(--border-size) var(--fond);
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  border-radius: 3%;
+  display: inline-block;
+}
+.taille-name{
+  font-size: 12px;
+  /* color:var(--vert) */
+  text-align: center;
+}

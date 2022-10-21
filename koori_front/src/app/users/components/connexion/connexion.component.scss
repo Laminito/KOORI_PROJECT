@@ -1,0 +1,83 @@
+.fa-times{
+  color: red;
+}
+.modal-content{
+  border-radius: 2%;
+}
+label{
+  color: rgba(68, 68, 68, 0.6);
+  font-size: x-large;
+}
+
+input:hover {
+  color: gray;
+  border-color: var(--vert);
+  border: solid 1px var(--orange);
+  outline: none;
+}
+input:focus {
+  color: gray;
+  border-color: var(--vert);
+  border: solid 1px var(--vert);
+  box-shadow: 0 0 0 0.1rem var(--orange);
+  outline: none;
+}
+.btn-default:focus{
+  box-shadow: 0 0 0 0.1rem var(--orange);
+}
+.container {
+  height: 400px;
+  text-align: center;
+  margin : auto;
+  background-color: var(--vert);
+  margin-top: 4%;
+  border-radius: 5px;
+}
+img {
+  width: 150px;
+  height:150px;
+  border-radius:50%;
+  margin-top:-70px;
+  margin-bottom: 30px;
+}
+input {
+  height: 40px;
+  width: 300px;
+  font-size: 18px;
+  margin-bottom: 5%;
+  padding-left: 35px;
+  background: #ECECEC;
+  box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.17);
+  border-radius: 5px;
+  border: none;
+}
+.form-input {
+  position:relative;
+}
+.fa-lock, .fa-user {
+  position:absolute;
+  top: 12px;
+  left: 85px;
+  color: var(--orange);
+}
+.btn-evaluer{
+  box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.17);
+  border-radius: 5px;
+  font-size: large;
+}
+#submit {
+  width: 80px;
+  height: 40px;
+  padding: 5px;
+  background-color: #D6D6D6;
+  margin-top: 30px;
+  margin-bottom: 30px
+}
+#submit:hover {
+  cursor: pointer;
+  background-color: #575C56;
+  color: white;
+}
+a {
+  color: white;
+}

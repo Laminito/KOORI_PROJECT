@@ -1,0 +1,79 @@
+<!-- bouton demande -->
+<div class="">
+<button type="button" class="button btn btn-lg btn-block p-3 font-weight-bold" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Faire une demande de service</button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title title-demande text-center font-weight-bold" id="staticBackdropLabel">Demander un service</h5>
+        <a type="button" class="btn-close text-danger font-weight-bold" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </a>
+      </div>
+      <div class="modal-body">
+        <!-- formulaire de demande -->
+
+        <form (ngSubmit)="onsubmit()" [formGroup]="demandeForm" novalidate>
+          <!-- {{ demandeForm.value | json}} -->
+          <h1>{{message}}</h1>
+          <h4>{{tab}}</h4>
+        <div class="row">
+          <div class="col-6 col-sm-6 col-md-6">
+            <label for="nomComplet" class="form-label">Nom et Prenom</label>
+            <input type="text" value="{{user.nomComplet}}" class="form-control input" readonly>
+          </div>
+
+          <div class="col-6 col-sm-6 col-md-6">
+            <label for="inputEmail4" class="form-label">Email</label>
+            <input type="email" value="{{user.email}}" class="form-control input" name="email" readonly>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <label class="form-label">Challenge ou objet</label>
+          <input type="text" placeholder="saississez votre challenge" class="form-control input"
+          name="titre" id="titre"
+          [formControlName]="'titre'"
+          required>
+        </div>
+
+        <div class="col-12">
+          <label for="" class="form-label">Description</label>
+            <textarea class="form-control input" name="description" placeholder="ajoutez une description"
+            id="description" [formControlName]="'description'" required >
+          </textarea>
+        </div>
+
+      <div class="col">
+        <div class="form-group">
+          <label for="">service</label>
+          <select class="form-control input" name="ServiceId" id="ServiceId " [formControlName]="'ServiceId'">
+            <option *ngFor="let s of services" value="{{s.id}}"> {{s.libelle}}</option>
+          </select>
+        </div>
+      </div>
+
+          <!-- calendar -->
+          <div class="col-12">
+            <label for="" class="form-label">Periode souhaité</label>
+            <input type="date"
+            class="form-control input"
+            id="date_realisation"
+            [formControlName]="'date_realisation'"
+            name="date_realisation"
+            required>
+          </div>
+
+
+        <div class="col-12 mt-3">
+          <button [disabled]=!demandeForm.valid type="submit" data-bs-dismiss="modal" class="btn color-btn btn-lg btn-block">Sauvegarder</button>
+        </div>
+      </form>
+
+      </div>
+    </div>
+  </div>
+</div>

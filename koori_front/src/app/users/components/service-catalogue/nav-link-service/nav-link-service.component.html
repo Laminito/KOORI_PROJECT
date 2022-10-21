@@ -1,0 +1,11 @@
+<div class="container" >
+  <div class="row">
+    <div class="col">
+      <ul class="nav justify-content-center bg-light fw-bolder menu-service">
+        <li class="nav-item" *ngFor="let service of services">
+            <a class="nav-link" [routerLinkActive]="['active-link']" [routerLink]="['/service/'+service.id]">{{service.libelle}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

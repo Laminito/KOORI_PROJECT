@@ -1,0 +1,9 @@
+/* sdfghjklm */
+.recherch{
+  width: 1009px;
+}
+.color-btn{
+  color: var(--orange);
+  border: var(--border-size) var(--orange);
+  border-radius:  55px ;
+}

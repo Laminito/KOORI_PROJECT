@@ -1,0 +1,127 @@
+
+/* les session  */
+.card-block .btn-outline-primary {
+  width: 100%;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+}
+
+.card {
+  margin: 20px 0;
+}
+.modal-header{
+background: var(--fond);
+}
+.text {
+  text-transform: uppercase;
+  background:var(--vert) ;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: large;
+}
+/* Flip Cards CSS */
+.card-container {
+  perspective: 700px;
+}
+.card-flip {
+  position: relative;
+  width: 100%;
+  transform-style: preserve-3d;
+  height: auto;
+  transition: all 0.5s ease-out;
+  background: white;
+  border: none;
+}
+
+.card-flip div {
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  height: 100%;
+  width: 100%;
+  border: none;
+}
+
+.card-flip .front {
+  position: relative;
+  z-index: 1;
+}
+
+.card-flip .back {
+  position: absolute;
+  /* z-index: 0; */
+  background: var(--white);
+  /* bottom: 20%; */
+  top: 0%;
+  transform: rotateY(-180deg);
+}
+
+.card-container:hover .card-flip {
+  transform: rotateY(180deg);
+}
+
+
+
+ /* evaluation etoile
+ ––––––––––––––––––––––––––––––––– */
+ h1[alt="Simple"] {color: white;}
+ a[href], a[href]:hover {color: grey;  text-decoration: none}
+
+
+ .starrating > input {display: none;}  /* Remove radio buttons */
+
+ .starrating > label:before {
+   content: "\f005"; /* Star */
+   margin: 2px;
+   font-size: 4em;
+   font-family: FontAwesome;
+   display: inline-block;
+ }
+
+ .starrating > label
+ {
+   color: var(--fond); /* Start color when not clicked */
+ }
+
+ .starrating > input:checked ~ label
+ { color: #ffca08 ; } /* Set yellow color when star checked */
+
+ .starrating > input:hover ~ label
+ { color: #ffca08 ;  } /* Set yellow color when star hover */
+
+textarea {
+  background: #ECECEC;
+  box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.17);
+  border-radius: 5px;
+  border: none;
+}
+textarea:hover {
+  color: gray;
+  border-color: var(--vert);
+  border: solid 1px var(--vert);
+  outline: none;
+}
+textarea:focus{
+  color: gray;
+  border-color: var(--vert);
+  border: solid 1px var(--vert);
+  box-shadow: 0 0 0 0.1rem var(--vert);
+  outline: none;
+}
+
+.btn-color{
+  color: var(--vert);
+  border: 1px solid var(--vert);
+  border-radius: 4px ;
+  font-weight: bolder;
+}
+.btn-color:hover{
+  background-color: var(--orange);
+  color: #FFFFFF;
+  border: 1px solid var(--orange);
+  border-radius: 4px ;
+  box-shadow: 0 10px 10px #4646463f, 0 10px 10px #46464611;
+  font-weight: bolder;
+}

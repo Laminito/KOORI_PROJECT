@@ -1,0 +1,56 @@
+<app-nav-link-service></app-nav-link-service>
+<div class="container">
+  <div class="row text-center">
+    <div class="col-md-4 card-container" *ngFor="let service of services">
+      <div class="card card-flip">
+        <div class="front card-block">
+          <span><img *ngIf="service.avatar;else other" class="card-img-top" src="data:image/jpeg;base64,{{service.avatar}}" alt="pp"></span>
+          <ng-template #other>
+            <img class="w-100 h-100" src="../assets/img/bootcamp.jpg" alt="pp">
+          </ng-template>
+          <h4 class="card-title mt-4"> {{service.libelle}} </h4>
+          <p class="card-text mb-4">{{ service.description | summarize: 130 }}.</p>
+        </div>
+        <div class="back card-block">
+          <ul class="text-light">
+            <li class="text-light"> Délais de réalisation : {{service.engagement_niveaux_service}}</li>
+            <li class="text-light">plage_horaire => {{service.plage_horaire}}</li>
+            <li class="text-light"> livrables : {{service.livrables}}</li>
+          </ul>
+          <a routerLink="/service/service.id" class="btn btn-outline-light mt-5">Voir plus</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // NO JS VERSION: https://codepen.io/nicolaskadis/full/brQEOd/
+
+$(document).ready(function() {
+  var front = document.getElementsByClassName("front");
+  var back = document.getElementsByClassName("back");
+
+  var highest = 0;
+  var absoluteSide = "";
+
+  for (var i = 0; i < front.length; i++) {
+    if (front[i].offsetHeight > back[i].offsetHeight) {
+      if (front[i].offsetHeight > highest) {
+        highest = front[i].offsetHeight;
+        absoluteSide = ".front";
+      }
+    } else if (back[i].offsetHeight > highest) {
+      highest = back[i].offsetHeight;
+      absoluteSide = ".back";
+    }
+  }
+  $(".front").css("height", highest);
+  $(".back").css("height", highest);
+  $(absoluteSide).css("position", "absolute");
+});
+
+</script>
+
+
+
