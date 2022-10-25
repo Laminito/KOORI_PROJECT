@@ -1,0 +1,23 @@
+{
+    "development": {
+        "username": "root",
+        "password": "root",
+        "database": "petaaw",
+        "host": "petaaw_postgres_db_1",
+        "dialect": "postgres"
+    },
+    "test": {
+        "username": "root",
+        "password": "root",
+        "database": "petaaw",
+        "host": "petaaw_postgres_db_1",
+        "dialect": "postgres"
+    },
+    "production": {
+        "username": "root",
+        "password": "root",
+        "database": "petaaw",
+        "host": "petaaw_postgres_db_1",
+        "dialect": "postgres"
+    }
+}

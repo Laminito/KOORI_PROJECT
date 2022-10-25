@@ -1,0 +1,4 @@
+touch CommentaireValidation.js contactValidation.js demandeValidation.js etapesValidation.js evaluation_ficheValidation.js evaluation_iboxValidation.js evaluation_kooriValidation.js evaluation_noteValidation.js
+
+
+touch ficheValidation.js kooriValidation.js profilValidation.js rapport_phaseValidation.js serviceValidation.js sessionValidation.js sujetValidation.js temoignageValidation.js userValidation.js validationFilesRequire.js
