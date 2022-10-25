@@ -11,25 +11,25 @@
           <i class="fas fa-close"></i>
         </button>
       </div>
-      <!--
+      
       <div class="modal-body">
         <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
           <label class="form-label">Prenom et Nom</label>
           <input type="text" value="Papa Saliou MBODJ" class="form-control mb-2">
           <label class="form-label">Email <label style="color: red">*</label></label>
-          <input value="mainashou@gmail.com" [ngClass]="{ 'is-invalid': submitted && f.to.errors }" type="email" [formControlName]="'to'" class="form-control mb-2">
-          <div *ngIf="submitted && f.to.errors" class="input_alert">
-            <div *ngIf="f.to.errors.required || f.to.errors.pattern" class="alert-danger">Format email(Ex: rty21&@dfgh.dfg)</div>
+          <input value="mainashou@gmail.com" [ngClass]="{ 'is-invalid': submitted && f['to'].errors }" type="email" [formControlName]="'to'" class="form-control mb-2">
+          <div *ngIf="submitted && f['to'].errors" class="input_alert">
+            <div *ngIf="f['to'].errors['required'] || f['to'].errors['pattern']" class="alert-danger">Format email(Ex: rty21&@dfgh.dfg)</div>
           </div>
           <label class="form-label">Commentaire <label style="color: red">*</label></label>
-          <textarea [ngClass]="{ 'is-invalid': submitted && f.text.errors }" [formControlName]="'text'" class="form-control mb-2"></textarea>
-          <div *ngIf="submitted && f.text.errors" class="input_alert">
-            <div *ngIf="f.text.errors.required || f.text.errors.pattern" class="alert-danger">Ecrivez un commentaire</div>
+          <textarea [ngClass]="{ 'is-invalid': submitted && f['text'].errors }" [formControlName]="'text'" class="form-control mb-2"></textarea>
+          <div *ngIf="submitted && f['text'].errors" class="input_alert">
+            <div *ngIf="f['text'].errors['required'] || f['text'].errors['pattern']" class="alert-danger">Ecrivez un commentaire</div>
           </div>
           <button type="submit" class="btn btn-evaluer mt-1">Soumettre</button>
         </form>
       </div>
-      -->
+      
     </div>
   </div>
 </div>

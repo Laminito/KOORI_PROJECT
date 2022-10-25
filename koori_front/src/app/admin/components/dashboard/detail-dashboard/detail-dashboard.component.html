@@ -1,0 +1,152 @@
+
+<div class="container-fluid p-3">
+  <div class="row pt-3 pb-3">
+    <div class="col-8 my-auto">
+      <div class="mt-2 text-center" style="border: 1px solid #000000;box-sizing: border-box;border-radius: 5px;">
+        <p class="mt-2" style="color: var(--orange); font-weight: 500;font-size: large;">Courbe representative du nombre de demandes annuel</p>
+        <div style="display: block;">
+
+          <!--
+         <canvas baseChart width="500" height="250"
+                  [datasets]="lineChartDatas"
+                  [labels]="lineChartLabels"
+                  [options]="lineChartOptions"
+                  [legend]="lineChartLegend"
+                  [type]="'line'"
+                  [plugins]="lineChartPlugins">
+          </canvas>
+          -->
+
+        </div>
+      </div>
+    </div>
+    <div class="col-4 my-auto" style="background: var(--fond)">
+      <div class="row">
+        <div class="col-12 text-center mb-3" style="background: #FFFFFF;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+          <p class="mt-2" style="color: var(--orange); font-weight: 500;font-size: large;">Nos Visiteurs</p>
+          <div class="chart-wrapper">
+            <canvas baseChart
+                    [datasets]="pieChartDataSetsVisit"
+                    [labels]="pieChartLabels"
+                    [options]="pieChartOptions"
+                    [legend]="true"
+                    [type]="'pie'"
+                    [plugins]="pieChartPlugins">
+            </canvas>
+          </div>
+        </div>
+        <div class="col-12 text-center" style="background: #FFFFFF;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+          <p class="mt-2" style="color: var(--orange); font-weight: 500;font-size: large;">Nos Clients</p>
+          <div class="chart-wrapper">
+            <canvas baseChart
+                    [datasets]="pieChartDatas"
+                    [labels]="pieChartLabels"
+                    [type]="'pie'"
+                    [options]="pieChartOptions"
+                    [plugins]="pieChartPlugins"
+                    [legend]="pieChartLegend">
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-3 pt-3 pb-3">
+    <div class="col-6 text-center my-auto">
+      <p style="color: var(--orange); font-weight: 500;font-size: large;">Nos realisations annuelles suivant le statut des demandes</p>
+      <div style="display: block;">
+
+            <!--
+              <canvas baseChart width="500" height="350"
+                      [datasets]="lineChartData"
+                      [labels]="lineChartLabels"
+                      [type]="'line'"
+                      [options]="lineChartOptions"
+                      [legend]="lineChartLegend"
+                      [plugins]="lineChartPlugins">
+              </canvas> 
+            -->
+
+      </div>
+    </div>
+    <div class="col-6 p-3" style="background: #FFFFFF;padding: 2%;border: 1px solid black;
+    box-sizing: border-box;border-radius: 5px;">
+      <div class="row">
+        <select name="select0" id="select0" class="form-control form-select" [ngModel]="selectedDevice1" (ngModelChange)="onChange1($event)">
+          <option [ngValue]="0">Jour</option>
+          <option *ngFor="let i of Jour" [value]="i">{{i}}</option>
+        </select>
+        <select name="select1" id="select1" style="margin-left: 2%; margin-right: 2%" class="form-control form-select" [ngModel]="selectedDevice2" (ngModelChange)="onChange2($event)">
+          <option [ngValue]="0">Mois</option>
+          <option *ngFor="let i of Mois" [value]="i.c">{{i.l}}</option>
+        </select>
+        <select name="select2" id="select2" class="form-control form-select" [ngModel]="selectedDevice3" (ngModelChange)="onChange3($event)">
+          <option [ngValue]="0">Annee</option>
+          <option *ngFor="let i of Annee" [value]="i">{{i}}</option>
+        </select>
+      </div>
+      <p *ngIf="!select0 && !select1 && !select2" class="fw-bold text-center mt-2" style="color: var(--orange); font-weight: 500;font-size: large;">
+        Tableau journalier récaputilatif en chiffre et pourcentage des demandes
+      </p>
+      <p *ngIf="select0 && select0 > 0 && select1 == '0' && select2 == '0'" class="mt-2 fw-bold text-center" style="color: var(--orange); font-weight: 500;font-size: large;">
+        Tableau récaputilatif journalier en chiffre et pourcentage des demandes
+      </p>
+      <p *ngIf="select0 == '0' && select1 && select1 >0 && select2 == '0';" class="mt-2 fw-bold text-center" style="color: var(--orange); font-weight: 500;font-size: large;">
+        Tableau mensuel récaputilatif en chiffre et pourcentage des demandes
+      </p>
+      <p *ngIf="select0 == '0' && select1 == '0' && select2 && select2> 0" class="mt-2 fw-bold text-center" style="color: var(--orange); font-weight: 500;font-size: large;">
+        Tableau annuel récaputilatif en chiffre et pourcentage des demandes
+      </p>
+      <p *ngIf="select0 !== '0' && select1 && select1 >0 && select2 == '0'" class="mt-2 fw-bold text-center" style="color: var(--orange); font-weight: 500;font-size: large;">
+        Tableau récaputilatif du <span style="color: var(--orange)">{{select0}} - {{select1}}</span> en chiffre et pourcentage des demandes
+      </p>
+      <p *ngIf="select0 == '0' && select1 !== '0' && select2 !== '0'" class="mt-2 fw-bold text-center" style="color: var(--orange); font-weight: 500;font-size: large;">
+        Tableau récaputilatif de <span style="color: var(--orange)">{{select1}} - {{select2}}</span> en chiffre et pourcentage des demandes
+      </p>
+      <p *ngIf="select0 && select0 > 0 && select1 && select1>0 && select2 && select2>0" class="mt-2 fw-bold text-center" style="color: var(--orange); font-weight: 500;font-size: large;">
+        Tableau récaputilatif du <span style="color: var(--orange)">{{select0}} - {{select1}} - {{select2}}</span> en chiffre et pourcentage des demandes
+      </p>
+      <table class="table">
+        <thead style="border-bottom: solid 2px var(--orange);">
+        <tr>
+          <th scope="col" class="text-center">Statut</th>
+          <th scope="col" class="text-center">Chiffre</th>
+          <th scope="col" class="text-center">Pourcentage
+            <p style="font-size: x-small; margin-bottom: 0; font-weight: 300;">(Sur un total de <span style="color: var(--orange); font-size: 10px">{{service.Demandes?.length}}</span> demandes)</p>
+          </th>
+        </tr>
+        </thead>
+        <tbody *ngIf="tabDem.length <= 6 && tabDem.length > 0; else noval">
+          <tr *ngFor="let d of tabDem; let i=index;">
+            <td class="text-center fw-bold" style="font-size: larger;" [style.color]="color[i]">{{d.cle}}</td>
+            <td class="text-center fw-bold" style="color: var(--vert)">{{d.valeur}}</td>
+            <td class="text-center fw-bold" style="color: var(--orange)">{{d.pourc}} %</td>
+          </tr>
+        </tbody>
+        <ng-template #noval>
+          <tbody>
+          <tr>
+            <td>
+              <div class="row text-center text-danger mt-3 mb-3">
+                <h6>non disponible</h6>
+              </div>
+            </td>
+            <td>
+              <div class="row text-center text-danger mt-3 mb-3">
+                <h6>non disponible</h6>
+              </div>
+            </td>
+            <td>
+              <div class="row text-center text-danger mt-3 mb-3">
+                <h6>non disponible</h6>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </ng-template>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,133 @@
+// @import 'bootstrap/bootstrap';
+// @import 'bootstrap/variables';
+// @import 'bootstrap/mixins';
+
+$font-primary: 'Poppins',Arial, sans-serif;
+$primary: #1089ff;
+
+body{
+	font-family: $font-primary;
+	font-size: 16px;
+	line-height: 1.8;
+	font-weight: normal;
+	background: #f8f9fd;
+	 color: lighten(#000000,50%);
+}
+a {
+	transition: .3s all ease;
+	color: $primary;
+	&:hover, &:focus {
+		text-decoration: none !important;
+		outline: none !important;
+		box-shadow: none;
+	}
+}
+h1, h2, h3, h4, h5,
+.h1, .h2, .h3, .h4, .h5 {
+	line-height: 1.5;
+	font-weight: 400;
+	font-family: $font-primary;
+	color: #000000;
+}
+
+.bg-primary{
+	background: $primary !important;
+}
+
+.ftco-section{
+	padding: 7em 0;
+}
+
+.ftco-no-pt{
+	padding-top: 0;
+}
+.ftco-no-pb{
+	padding-bottom: 0;
+}
+//HEADING SECTION
+.heading-section{
+	font-size: 28px;
+	color: #000000;
+}
+
+//COVER BG
+.img{
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+// .table-wrap{
+// 	@include media-breakpoint-down(xl){
+// 		overflow-x: scroll;
+// 	}
+// }
+.table{
+	min-width: 1000px !important;
+	width: 100%;
+	@include transition(.3s);
+ -webkit-box-shadow: 0px 5px 12px -12px rgba(0,0,0,0.29);
+	-moz-box-shadow: 0px 5px 12px -12px rgba(0,0,0,0.29);
+	box-shadow: 0px 5px 12px -12px rgba(0,0,0,0.29);
+	thead{
+		th{
+			border: none;
+			padding: 30px;
+			font-size: 14px;
+			color: #000000;
+			border-bottom: 2px solid #ececec;
+			background: $white;
+		}
+		tr{
+		}
+	}
+	tbody{
+		tr{
+			margin-bottom: 10px;
+			cursor: pointer;
+			background: $white;
+			border-bottom: 2px solid #ececec;
+			@include transition(.3s);
+		}
+		th,td{
+			border: none;
+			padding:30px;
+			font-size: 14px;
+		}
+		td{
+			&.acc{
+				background: #f3f3f3;
+				border: none;
+			}
+			.fa{
+				font-size: 12px;
+				color: $success;
+			}
+		}
+	}
+}
+
+[data-toggle="collapse"] .fa:before {  
+  content: "\f062";
+  font-family:"FontAwesome";
+  font-style: normal;
+  @include transition(.3s);
+}
+
+[data-toggle="collapse"].collapsed .fa:before {
+  content: "\f063";
+  font-family:"FontAwesome";
+  font-style: normal;
+  @include transition(.3s);
+}
+
+[data-toggle="collapse"]{
+	background: #ececec !important;
+}
+
+[data-toggle="collapse"].collapsed{
+	background: #fff !important;
+	&:hover{
+		background: #ececec !important;
+		border-bottom: 2px solid #ececec;
+	}
+}

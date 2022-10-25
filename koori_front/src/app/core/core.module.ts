@@ -5,6 +5,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from "@angular/common/http";
 import { SharedModule } from '../shared/shared.module';
+import { NgChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -16,12 +17,14 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     HttpClientModule,
     RouterModule,
-    SharedModule
+    SharedModule,
+    NgChartsModule
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
-    RouterModule
+    RouterModule,
+    HttpClientModule
   ]
 })
 export class CoreModule { }

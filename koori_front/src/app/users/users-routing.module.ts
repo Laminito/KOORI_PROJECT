@@ -21,15 +21,16 @@ import { FicheResolverService } from './_resolvers/FicheResolverService';
 import { ServiceResolverService } from './_resolvers/ServiceResolverService';
 
 const routes: Routes = [
+
   {path: '', component: HomeComponent},
   {path: 'kooriibox/ibox', component: IboxComponent, data: {title: 'Ibox', suite: ' ,les activités à faire'}},
   {path: 'kooriibox/koori', component: KooriComponent, data: {title: 'Koori', suite: ' ,les processus à dérouler'}},
   {path: 'service', component: ServiceCatalogueComponent},
   {path: 'rapport', component: RapportComponent},
   {path: 'contact', component: ContactComponent},
+  {path: 'kooriibox', component: KooriiboxComponent},
   {path: 'evaluation-note', component: EvaluationNoteComponent},
   {path: 'fiche/:id', component: FicheComponent, resolve: {fiche: FicheResolverService}},
-  {path: 'kooriibox', component: KooriiboxComponent},
   {path: 'inscription', component: InscriptionComponent},
   {path: 'authentification', component: ConnexionComponent},
   {path: 'apropos', component: AproposComponent},
@@ -39,11 +40,13 @@ const routes: Routes = [
   {path: 'service/:id', component: DetailServiceComponent, resolve: {service: ServiceResolverService}},
   { path: 'not-found', component: NotFoundComponent },
   {path: '**', redirectTo: '/not-found'}
+
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
+
 export class UsersRoutingModule { }
 

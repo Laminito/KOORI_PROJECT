@@ -1,0 +1,52 @@
+.dropzoneUpload {
+  width: 100%;
+  height: 48%;
+  border: 1px dashed var(--orange);
+  border-radius: 3px;
+  text-align: center;
+}
+
+select {
+  overflow: auto;
+  background-image: none!important;
+}
+
+.panel-body {
+  padding: 0;
+}
+
+.form-control {
+  border: none;
+}
+
+.rightall, .leftall, .right, .left{
+  padding: 5px;
+  width: 80%;
+  margin: 15px 0 3px 0;
+  color: white;
+  font-weight: 800;
+  background-color: var(--vert);
+}
+#available-select option, #selected-select option{
+  margin-bottom: 4px;
+}
+
+.participant{
+  padding: 5px;
+  border-radius: 2%;
+  border-style: dotted;
+  color: var(--vert);
+  background: radial-gradient(transparent, rgba(238, 180, 66, 0.55));
+}
+.notified{
+  border: 1px solid black;
+}
+fieldset h6{
+  color: black !important;
+}
+
+.fa{
+  font-family: "Font Awesome 5 Free", Open Sans, serif;
+  font-weight:501;
+  color: var(--vert);
+}

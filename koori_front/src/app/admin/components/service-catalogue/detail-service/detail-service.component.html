@@ -1,0 +1,111 @@
+<div class="bg-bar p-4">
+  <div class="row">
+    <div class="col"><h3>Services</h3></div>
+    <div class="col d-flex justify-content-end">
+      <i class="fas fa-cogs fa-3x"></i>
+    </div>
+  </div>
+ <p>service > <span class="font-weight-bold" style="color: #FF7713;">{{service.libelle}}</span></p>
+</div>
+
+<div class="container mt-3">
+  <div class="row">
+    <div class="col">
+      <button (click)="sendLibelleService()" type="button" [routerLink]="['sessions']" class="draw meet"> <i class="fas fa-tv"></i> Voir les sessions</button>
+    </div>
+    <div class="col">
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <app-add-service></app-add-service>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row p-5 mb-3">
+    <div class="col-xl-8 col-sm-12 col-md-12 parti-caracteristiques-img">
+      <div class="card ">
+        <div class="card-body">
+          <!-- <img src="https://source.unsplash.com/1080x585/?computer" class="img-fluid rounded-start" alt="..."> -->
+          <img *ngIf="service.avatar;else other" class="card-img" src="data:image/jpeg;base64,{{service.avatar}}" alt="Card image">
+          <ng-template #other>
+            <img src="https://source.unsplash.com/1080x585/?computer" class="img-fluid rounded-start" alt="...">
+          </ng-template>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-sm-12 col-md-12 parti-caracteristiques">
+      <div class="card card-5">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <app-edit-service></app-edit-service>
+          <!-- <button class="btn me-md-2 btn-color" data-bs-dismiss="modal" type="submit" routerLink="edit/{{service.id }}"><i class="fas fa-pencil-alt text-warning"></i>  </button> -->
+        </div>
+        <div class="card-body ">
+          <h3 class="card-title text-center">{{service.libelle | uppercase }}</h3>
+          <h5 class="card-title text-center">{{service.nom_des_clients }}</h5>
+          <h6 class="card-title text-center">{{service.type_de_service }}</h6>
+
+          <div class="scroller">
+            <p class="card-text">{{service.description }}  </p>
+          </div>
+                <!-- btn lister les demande par service -->
+          <!-- <app-demande (click)="libelleService()"></app-demande> -->
+          <!-- <div class="col"> -->
+            <button  [routerLink]="['/ListeDemande']" class="btn draw meet"><i class="fas fa-sliders-h"></i>  Voir la liste des demandes {{service.libelle}}</button>
+           <!-- </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="text-color text-center mb-4">PROPRIETE DU SERVICE</h3>
+  <div class="container gallery mb-3 ">
+    <div class="row">
+      <div class=" col-sm-5">
+        <div class="row">
+          <div class="col-xl-12 col-md-12 col-sm-12  p-text ">
+            <h4 class="text-center title-proprety">Bénéfices client</h4>
+            <p class="p">{{service.benefices_client}}</p>
+
+          </div>
+          <div class="col-xl-12 col-md-12 col-sm-12  p-text">
+            <h4 class="text-center title-proprety">Liste des applications métiers supportées :</h4>
+            <p class="p"> {{service.liste_des_applications_metiers_supporte}} </p>
+           </div>
+          <div class="col-xl-12 col-md-12 col-sm-12 p-text">
+            <h4 class="text-center title-proprety">Description des éléments du service</h4>
+            <p class="p">{{service.description_elements_service}}</p>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-sm-7 mb-3">
+        <div class="row">
+          <div class="col-xl-12 col-md-12 col-sm-12  p-text">
+           <h4 class="text-center title-proprety">Engagement/ Niveaux de service:</h4>
+           <p class="p">{{service.engagement_niveaux_service}}</p>
+          </div>
+          <div class="col-xl-12 col-md-12 col-sm-12  p-text">
+            <h4 class="text-center title-proprety">Plages d’horaires</h4>
+            <p class="p">{{service.plage_horaire}}</p>
+          </div>
+          <div class="col-xl-12 col-md-12 col-sm-12 p-text">
+            <h4 class="text-center title-proprety">Indicateurs de mesure & qualité</h4>
+            <p class="p" > {{service.indicateur_mesure_qualite}}</p>
+          </div>
+          <div class="col-xl-12 col-md-12 col-sm-12  p-text">
+           <h4 class="text-center title-proprety"> Livrables</h4>
+            <p class="p">{{service.livrables}}</p>
+          </div>
+          <div class="col-xl-12 col-md-12 col-sm-12  p-text">
+            <h4 class="text-center title-proprety">Suivi & gestion de la relation client</h4>
+            <p class="p">{{service.suivi_gestion_relation_client}}</p>
+          </div>
+          <div class="col-xl-12 col-md-12 col-sm-12  p-text">
+            <h4 class="text-center title-proprety">Tarifs & Facturation</h4>
+            <p class="p">{{service.tarifs_et_Facturation}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

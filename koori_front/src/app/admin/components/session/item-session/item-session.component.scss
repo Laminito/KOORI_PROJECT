@@ -1,0 +1,23 @@
+.add_rapport:hover{
+
+  border-bottom-color: var(--orange);
+  border-left-color: var(--orange);
+  transition: height 0.25s ease-out, width 0.25s ease-out 0.25s;
+  background-color: var(--orange);
+  color: var(--white);
+
+}
+button.add_rapport{
+  border: 1px solid var(--vert);
+  color: var(--vert);
+  background-color: white;
+  padding: 5px;
+}
+.modify_rapport{
+  color: var(--orange)!important;
+}
+
+.modify_rapport:hover {
+  color: var(--white) !important;
+}
+

@@ -1,0 +1,52 @@
+<nav class="d-flex p-4 topbar align-items-center">
+  <div>
+    <h3 class="text-white">
+      <span>Gestion des Rapports</span>
+    </h3>
+  </div>
+  <div class="ms-auto"></div>
+  <i class="far fa-folder-open fa-3x text-white"></i>
+</nav>
+
+<div class="container-fluid g-5">
+<h1 class="text-center mb-4 mt-4">{{title}}</h1>
+<table class="table table-striped bg-white text-center shadow shadow-lg">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Avatar</th>
+    <th scope="col">Participants</th>
+    <th scope="col">Email</th>
+    <th scope="col">Evaluation</th>
+    <th scope="col">Notes</th>
+  </tr>
+  </thead>
+  <tbody id="table">
+  <tr *ngFor="let detail of detailRapport; let i = index">
+    <th scope="row">{{i+1}}</th>
+    <td><img src="{{'data:image/jpg;base64,'+ detail.User.avatar}}" class="avatar" alt=""></td>
+    <td>{{detail.User.nomComplet}}</td>
+    <td>{{detail.User.email}}</td>
+    <td *ngIf="detail.User?.UserEvaluation[0]; else defaultValue">
+      {{detail.User.UserEvaluation[0]?.Evaluation_note?.evaluation}}
+    </td>
+    <ng-template #defaultValue><td class="text-danger">Pas encore évalué</td></ng-template>
+
+    <td>
+      <fieldset class="rating">
+        <label class="full rate"></label>
+        <label class="half rate"></label>
+        <label class="full rate"></label>
+        <label class="half rate"></label>
+        <label class="full rate"></label>
+        <label class="half rate"></label>
+        <label class="full rate"></label>
+        <label class="half rate"></label>
+        <label class="full rate"></label>
+        <label class="half rate"></label>
+      </fieldset>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</div>

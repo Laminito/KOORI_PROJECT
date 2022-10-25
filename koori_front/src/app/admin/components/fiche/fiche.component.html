@@ -1,0 +1,330 @@
+<nav class="d-flex p-4 topbar align-items-center">
+  <div>
+    <h3 class="text-white">
+      <span>Details d'une carte Ib</span>
+      <span style="color: var(--orange)">o</span>
+      <span>x</span>
+    </h3>
+    <ol class="breadcrumb mt-3">
+      <li class="breadcrumb-item"><a [routerLink]="['/ibox']" class="text-white text-decoration-none">Ibox</a></li>
+    </ol>
+  </div>
+  <div class="ms-auto"></div>
+  <img src="../../assets/img/{{title.toLowerCase()}}-icone.png" alt="">
+</nav>
+<div class="container mt-3" style="padding-left: 3%; padding-right: 3%;">
+  <div id="container">
+    <section id="accordion">
+      <div>
+        <input type="checkbox" id="check-1" />
+        <label for="check-1" class="fiches fw-bold text-center">Avis des utilisateurs</label>
+        <article style="margin-top: 2%">
+          <div class="row le-hide">
+            <div class="col-lg-12" style="border-bottom: solid 1px var(--orange)">
+              <div class="m-0 row p-3">
+                <div class="col-sm-4 col-lg-4 p-0 pl-lg-5 text-center">
+                  <strong>Nom Complet</strong>
+                </div>
+                <div class="col-sm-6 col-lg-6 p-0 pl-lg-5 text-center">
+                  <strong>Avis</strong>
+                </div>
+                <div class="col-sm-2 col-lg-2 p-0 pl-lg-5 text-center">
+                  <strong>Date</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngIf="tab.length !== 0; else nodata">
+            <div class="col-sm-4 col-lg-12 mt-2 mb-2" *ngFor="let e of tab | paginate: { itemsPerPage: 3, currentPage: p1 };let i=index;">
+              <div class="m-0 row row-container p-3" style="background: var(--fond)">
+                <div class="col-sm-4 col-lg-4 m-auto text-center">
+                  {{Users[i].nomComplet}}
+                </div>
+                <div class="col-sm-6 col-lg-6 m-auto text-center">
+                  {{e?.evaluation}}
+                </div>
+                <div class="col-sm-2 col-lg-2 m-auto text-center">
+                  {{e?.createdAt | date: 'medium'}}
+                </div>
+              </div>
+              <pagination-controls (pageChange)="p1 = $event" class="text-center float-right mt-3"></pagination-controls>
+            </div>
+          </div>
+          <ng-template #nodata>
+            <h5 class="text-danger text-center mt-3 mb-3">Aucune evaluation n'a ete faite sur cette fiche</h5>
+          </ng-template>
+        </article>
+      </div>
+    </section>
+  </div>
+
+
+  <div id="lafiche">
+    <div class="row shadow row-1 mt-4 mb-4" style="height: 20%">
+      <div class="mt-2 mb-2">
+        <button #closebutton type="button" class="border-0" style="float: right" data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop"><i class="fas fa-pencil-alt fa-2x"></i></button>
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+             data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+             aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg" >
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="text modal-title" id="staticBackdropLabel" style="margin: auto">Modification {{fiche?.titre}}</h1>
+                <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+                  <div class="row row-1 mt-4 mb-4" style="height: 20%">
+                    <div class="col-6 mb-3 entete text-center">
+                      <label class="form-label">Titre <label style="color: red">*</label></label>
+                      <input [ngClass]="{'is-invalid': submitted && f['titre'].errors }" [formControlName]="'titre'" type="text" class="input mb-2">
+                      <div *ngIf="submitted && f['titre'].errors">
+                        <div *ngIf="f['titre'].errors['required'] || f['titre'].errors['pattern']" class="alert-danger">Le titre est incorrect</div>
+                      </div>
+                    </div>
+                    <div class="col-6 mb-3 entete text-center">
+                      <label class="form-label">Sous-Titre <label style="color: red">*</label></label>
+                      <input [ngClass]="{ 'is-invalid': submitted && f['sous_titre'].errors }" [formControlName]="'sous_titre'" type="text" class="input mb-2">
+                      <div *ngIf="submitted && f['sous_titre'].errors">
+                        <div *ngIf="f['sous_titre'].errors['required'] || f['sous_titre'].errors['pattern']" class="alert-danger">Le sous-titre est incorrect</div>
+                      </div>
+                    </div>
+                    <div class="col-12 mb-3">
+                      <div class="dropzone mt-3 mb-3">
+                        <div class="row">
+                          <div class="col-6">
+                            <div class="small-12 large-4 columns">
+                              <div class="containers">
+                                <div class="imageWrapper">
+                                  <img *ngIf="!url; else file" class="image" src="data:image/jpeg;base64,{{fiche.avatar}}">
+                                  <ng-template #file>
+                                    <img src="{{url}}" alt="">
+                                  </ng-template>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-6 my-auto">
+                            <img src="https://100dayscss.com/codepen/upload.svg" class="upload-icon"  alt=""/>
+                            <input type="file" [formControlName]="'file'" class="upload-input file-input" (change)="onSelectFile($event)">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-text mb-3">
+                      <div class="row teteheader mx-auto">
+                        <div class="col-5 text-center my-auto mr-3">
+                          <div class="row row-2">
+                            <div class="col-12">
+                              <h6 style="font-size: x-large" class="resume">Resume <label style="color: red">*</label></h6>
+                              <textarea [ngClass]="{ 'is-invalid': submitted && f['description'].errors }" [formControlName]="'description'" class="input mb-2"></textarea>
+                              <div *ngIf="submitted && f['description'].errors">
+                                <div *ngIf="f['description'].errors['required'] || f['description'].errors['pattern']" class="alert-danger">Le sous-titre est incorrect</div>
+                              </div>
+                            </div>
+                            <div class="col-6">
+                              <i class="fas fa-paperclip" style="margin-right: 2%; font-size: large"></i>
+                              <span class="fw-bold spanprerequis" style="font-size: large;">Pré-réquis <label style="color: red">*</label></span>
+                              <input [ngClass]="{ 'is-invalid': submitted && f['prerequis'].errors }" [formControlName]="'prerequis'" type="text" class="input mb-2">
+                              <div *ngIf="submitted && f['prerequis'].errors">
+                                <div *ngIf="f['prerequis'].errors['required'] || f['prerequis'].errors['pattern']" class="alert-danger">Le sous-titre est incorrect</div>
+                              </div>
+                            </div>
+                            <div class="col-6 dureetitle">
+                              <i class="fas fa-clock" style="margin-right: 2%; font-size: large"></i>
+                              <span class="fw-bold spanduree" style="font-size: large;">Durée</span>
+                              <div class="row">
+                                <div class="col-6">
+                                  <label class="form-label">De <label style="color: red">*</label></label>
+                                  <input [ngClass]="{ 'is-invalid': submitted && f['dureeMin'].errors }" [formControlName]="'dureeMin'" type="number" min="1" class="input mb-2">
+                                  <div *ngIf="submitted && f['dureeMin'].errors">
+                                    <div *ngIf="f['dureeMin'].errors['required'] || f['dureeMin'].errors['pattern']" class="alert-danger">Le sous-titre est incorrect</div>
+                                  </div>
+                                </div>
+                                <div class="col-6">
+                                  <label class="form-label">a <label style="color: red">*</label></label>
+                                  <input [ngClass]="{ 'is-invalid': submitted && f['dureeMax'].errors }" [formControlName]="'dureeMax'" type="number" min="0" class="input mb-2">
+                                  <div *ngIf="submitted && f['dureeMax'].errors">
+                                    <div *ngIf="f['dureeMax'].errors['required'] || f['dureeMax'].errors['pattern']" class="alert-danger">Le sous-titre est incorrect</div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-6 equipetitle">
+                              <i class="fas fa-user-friends" style="margin-right: 2%; font-size: large"></i>
+                              <span class="fw-bold spanequipe" style="font-size: large;">Equipe</span>
+                              <div class="row">
+                                <div class="col-6">
+                                  <label class="form-label">De <label style="color: red">*</label></label>
+                                  <input [ngClass]="{ 'is-invalid': submitted && f['equipeMin'].errors }" [formControlName]="'equipeMin'" type="number" min="1" class="input mb-2">
+                                  <div *ngIf="submitted && f['equipeMin'].errors">
+                                    <div *ngIf="f['equipeMin'].errors['required'] || f['equipeMin'].errors['pattern']" class="alert-danger">Le sous-titre est incorrect</div>
+                                  </div>
+                                </div>
+                                <div class="col-6">
+                                  <label class="form-label">a <label style="color: red">*</label></label>
+                                  <input [ngClass]="{ 'is-invalid': submitted && f['equipeMax'].errors }" [formControlName]="'equipeMax'" type="number" min="0" class="input mb-2">
+                                  <div *ngIf="submitted && f['equipeMax'].errors">
+                                    <div *ngIf="f['equipeMax'].errors['required'] || f['equipeMax'].errors['pattern']" class="alert-danger">Le sous-titre est incorrect</div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col">
+                              <i class="fas fa-tools" style="margin-right: 2%; font-size: large"></i>
+                              <span class="fw-bold spanoutil" style="font-size: large;">Outils <label style="color: red">*</label></span>
+                              <input [ngClass]="{ 'is-invalid': submitted && f['outils'].errors }" [formControlName]="'outils'" type="text" class="input mb-2">
+                              <div *ngIf="submitted && f['outils'].errors">
+                                <div *ngIf="f['outils'].errors['required'] || f['outils'].errors['pattern']" class="alert-danger">Le sous-titre est incorrect</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="row ml-4 my-auto">
+                            <div formArrayName="Etapes" [ngClass]="{ 'is-invalid': submitted && f['Etapes'].errors }"
+                                 *ngFor="let e of etapes.controls; let i = index">
+                              <div class="row etape" [formGroupName]="i">
+                                <div class="col-12">
+                                  <h6>Etape {{i + 1}}</h6>
+                                </div>
+                                <div class="col-5">
+                                  <input formControlName='titre' type="text" class="form-control mb-4"/>
+                                  <div *ngIf="submitted && e?.get('titre')?.hasError('required')">
+                                    <div class="alert-danger">Le titre est incorrect</div>
+                                  </div>
+                                </div>
+                                <div class="col-5">
+                                  <textarea formControlName='description' class="form-control mb-4"></textarea>
+                                  <div *ngIf="submitted && e?.get('description')?.hasError('required')">
+                                    <div class="alert-danger">La description est incorrecte</div>
+                                  </div>
+                                </div>
+                                <div class="col-2 my-auto">
+                                  <div class="row">
+                                    <div class="col-6" *ngIf="!e?.get('description')?.hasError('required')
+                                    || e?.get('titre')?.hasError('required')" title="Effacer leur contenu">
+                                      <i class="fa fa-broom" style="color: green" (click)="resetEtapesValues(i)"></i>
+                                    </div>
+                                    <div class="col-6" title="Supprimer cette enregistrement">
+                                      <i class="fas fa-times" style="color: red" (click)="delInput(i)"></i>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <button class="btn btnAdd btn-danger fw-bold" type="button" (click)='addEtape()'>
+                              Ajouter etape
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-evaluer mt-1">Enregistrer</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 mb-3 shadow entete" style="background: var(--fond);">
+        <h2 class="text-center titrehaut">{{fiche?.titre}}</h2>
+        <h6 style="font-size: large;" class="text-center sous-titrehaut">{{fiche?.sous_titre}}</h6>
+      </div>
+      <div class="col col-text mb-3">
+        <div class="row teteheader mx-auto">
+          <div class="col-5 text-center my-auto mr-3">
+            <div class="row">
+              <div class="col-12 mb-2">
+                <img *ngIf="fiche.avatar; else noimg"
+                     src="data:image/jpeg;base64,{{fiche?.avatar}}" class="img-fluid"
+                     alt="avatar">
+                <ng-template #noimg>
+                  <img src="./assets/img/about_us_aim_lab.jpg" class="img-fluid" alt="img">
+                </ng-template>
+              </div>
+            </div>
+            <div class="row row-2">
+              <div class="col-12">
+                <h6 style="font-size: x-large" class="resume">Resume</h6>
+                <p class="descriptionhaut">{{fiche?.description}}</p>
+              </div>
+              <div class="col-6">
+                <i class="fas fa-paperclip" style="margin-right: 2%; font-size: large"></i>
+                <span class="fw-bold spanprerequis" style="font-size: large;">Pré-réquis</span>
+                <p class="prerequis">{{fiche?.prerequis}}</p>
+              </div>
+              <div class="col-6 dureetitle">
+                <i class="fas fa-clock" style="margin-right: 2%; font-size: large"></i>
+                <span class="fw-bold spanduree" style="font-size: large;">Durée</span>
+                <p class="duree" *ngIf="fiche.dureeMin !== fiche.dureeMax; else other">{{fiche?.dureeMin}} - {{fiche?.dureeMax}} min</p>
+                <ng-template #other>
+                  <p class="duree">{{fiche?.dureeMin}} min</p>
+                </ng-template>
+              </div>
+              <div class="col-6 equipetitle">
+                <i class="fas fa-user-friends" style="margin-right: 2%; font-size: large"></i>
+                <span class="fw-bold spanequipe" style="font-size: large;">Equipe</span>
+                <p class="equipe" *ngIf="fiche.equipeMin !== fiche.equipeMax; else other1">{{fiche?.equipeMin}} - {{fiche?.equipeMax}} +</p>
+                <ng-template #other1>
+                  <p class="equipe">{{fiche?.equipeMin}}</p>
+                </ng-template>
+              </div>
+              <div class="col">
+                <i class="fas fa-tools" style="margin-right: 2%; font-size: large"></i>
+                <span class="fw-bold spanoutil" style="font-size: large;">Outils</span>
+                <p class="outil" *ngIf="fiche.outils">{{fiche?.outils}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col colEtape">
+            <div class="row ml-4 mt-4 mb-4 rowEtape" *ngIf="fiche?.Etapes.length !== 0; else otherEtape">
+              <div class="col-6" *ngFor="let etape of fiche?.Etapes | paginate: { itemsPerPage: 4, currentPage: p } ; let i = index">
+                <div class="row">
+                  <div class="col-1 col-etape-num mr-4">
+                    <span class="text-center" style="font-size: large;">{{i + 1}}</span>
+                  </div>
+                  <div class="col col-etape-text p-2">
+                    <h6 class="fw-bold titrebas pl-3 titreetape_{{etape?.id}}" style="padding-left: 3%; font-size: large">
+                      {{etape?.titre}}
+                    </h6>
+                    <span class="descriptionetape_{{etape?.id}}">{{etape?.description}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <pagination-controls (pageChange)="p = $event" class="text-center float-right mt-3"></pagination-controls>
+            <ng-template #otherEtape>
+              <div class="row ml-4 mt-4 mb-4 text-danger text-center">
+                <h6>Aucune etape n'est liee a cette fiche</h6>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+-->
+  <div class="row mb-4 text-center">
+    <div class="col-6">
+      <button class="btn btn-default button-1 text-white" id="button" style="font-size: large" (click)="exportHtmlToPDF(fiche)">
+        <i class="fas fa-toilet-paper mr-1"></i>
+        Telecharger la fiche
+      </button>
+    </div>
+    <div class="col-6">
+      <button class="btn btn-default button-2 text-white" id="button1"
+              style="font-size: large" (click)="downloadPdf()">
+        <i class="fas fa-download mr-1"></i>
+        Telecharger le livret
+      </button>
+    </div>
+  </div>
+</div>
+

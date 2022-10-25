@@ -1,0 +1,189 @@
+<!--
+<button type="button" class="draw meet" data-bs-toggle="modal"
+        data-bs-target="#staticBackdrop">Ajouter une fiche</button>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="text modal-title" id="staticBackdropLabel" style="margin: auto">Ajouter une nouvelle fiche</h1>
+        <button #closebutton type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!--<img src="../../assets/img/koori.png" alt="tof koori" width="75" height="75" style="margin-left: 45%">-->
+        <!--
+		<form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+          <div class="row row-1 mt-4 mb-4" style="height: 20%">
+            <div class="col-12 mb-2">
+              <label class="form-label">Selectionner la phase <label style="color: red">*</label></label>
+              <select name="select" id="select"
+                      class="form-control" [ngModel]="selectedDevice"
+                      [ngModelOptions]="{standalone: true}" (ngModelChange)="onChange($event)">
+                <option [ngValue]="0" disabled>Toutes les phases de Koori</option>
+                <option *ngFor="let phase of koori.Phases" [value]="phase?.id">{{phase?.titre}}</option>
+              </select>
+              <div class="mt-2 text-center" *ngIf="submitted && selectedDevice === 0">
+                <div class="alert-danger">Mettre dans une phase</div>
+              </div>
+            </div>
+            <div class="col-6 mb-3 entete text-center">
+              <!--<h2 class="text-center titrehaut">oki</h2>-->
+
+			  <!--
+              <label class="form-label">Titre <label style="color: red">*</label></label>
+              <input [ngClass]="{'is-invalid': submitted && f.titre.errors }" [formControlName]="'titre'" type="text" class="input mb-2">
+              <div *ngIf="submitted && f.titre.errors">
+                <div *ngIf="f.titre.errors.required" class="alert-danger">Le titre est incorrect</div>
+              </div>
+            </div>
+            <div class="col-6 mb-3 entete text-center">
+              <!--<h6 style="font-size: large;" class="text-center sous-titrehaut">oki</h6>-->
+
+			  <!--
+              <label class="form-label">Sous-Titre <label style="color: red">*</label></label>
+              <input [ngClass]="{ 'is-invalid': submitted && f.sous_titre.errors }" [formControlName]="'sous_titre'" type="text" class="input mb-2">
+              <div *ngIf="submitted && f.sous_titre.errors">
+                <div *ngIf="f.sous_titre.errors.required" class="alert-danger">Le sous-titre est incorrect</div>
+              </div>
+            </div>
+            <div class="col-12 mb-3">
+              <div class="dropzone mt-3 mb-3">
+                <div class="row">
+                  <div class="col-6">
+                    <div class="small-12 large-4 columns">
+                      <div class="containers">
+                        <div class="imageWrapper">
+                          <img *ngIf="!url; else file" class="image" src="../../assets/img/img.jpg">
+                          <ng-template #file>
+                            <img src="{{url}}" alt="">
+                          </ng-template>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 my-auto">
+                    <img src="https://100dayscss.com/codepen/upload.svg" class="upload-icon"  alt=""/>
+                    <input type="file" [formControlName]="'file'" class="upload-input file-input" (change)="onSelectFile($event)">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-text mb-3">
+              <div class="row teteheader mx-auto">
+                <div class="col-5 text-center my-auto mr-3">
+                  <div class="row row-2">
+                    <div class="col-12">
+                      <h6 style="font-size: x-large" class="resume">Resume <label style="color: red">*</label></h6>
+                      <textarea [ngClass]="{ 'is-invalid': submitted && f.description.errors }" [formControlName]="'description'" class="input mb-2"></textarea>
+                      <div *ngIf="submitted && f.description.errors">
+                        <div *ngIf="f.description.errors.required || f.description.errors.pattern" class="alert-danger">Le sous-titre est incorrect</div>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <i class="fas fa-paperclip" style="margin-right: 2%; font-size: large"></i>
+                      <span class="fw-bold spanprerequis" style="font-size: large;">Pré-réquis <label style="color: red">*</label></span>
+                      <!--<p class="prerequis">oki</p>-->
+
+					  <!--
+                      <input [ngClass]="{ 'is-invalid': submitted && f.prerequis.errors }" [formControlName]="'prerequis'" type="text" class="input mb-2">
+                      <div *ngIf="submitted && f.prerequis.errors">
+                        <div *ngIf="f.prerequis.errors.required || f.prerequis.errors.pattern" class="alert-danger">Le sous-titre est incorrect</div>
+                      </div>
+                    </div>
+                    <div class="col-6 dureetitle">
+                      <i class="fas fa-clock" style="margin-right: 2%; font-size: large"></i>
+                      <span class="fw-bold spanduree" style="font-size: large;">Durée</span>
+                      <div class="row">
+                        <div class="col-6">
+                          <label class="form-label">De <label style="color: red">*</label></label>
+                          <input [ngClass]="{ 'is-invalid': submitted && f.dureeMin.errors }" [formControlName]="'dureeMin'" type="number" min="1" class="input mb-2">
+                          <div *ngIf="submitted && f.dureeMin.errors">
+                            <div *ngIf="f.dureeMin.errors.required || f.dureeMin.errors.pattern" class="alert-danger">Le sous-titre est incorrect</div>
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <label class="form-label">a <label style="color: red">*</label></label>
+                          <input [ngClass]="{ 'is-invalid': submitted && f.dureeMax.errors }" [formControlName]="'dureeMax'" type="number" min="0" class="input mb-2">
+                          <div *ngIf="submitted && f.dureeMax.errors">
+                            <div *ngIf="f.dureeMax.errors.required || f.dureeMax.errors.pattern" class="alert-danger">Le sous-titre est incorrect</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6 equipetitle">
+                      <i class="fas fa-user-friends" style="margin-right: 2%; font-size: large"></i>
+                      <span class="fw-bold spanequipe" style="font-size: large;">Equipe</span>
+                      <div class="row">
+                        <div class="col-6">
+                          <label class="form-label">De <label style="color: red">*</label></label>
+                          <input [ngClass]="{ 'is-invalid': submitted && f.equipeMin.errors }" [formControlName]="'equipeMin'" type="number" min="1" class="input mb-2">
+                          <div *ngIf="submitted && f.equipeMin.errors">
+                            <div *ngIf="f.equipeMin.errors.required || f.equipeMin.errors.pattern" class="alert-danger">Le sous-titre est incorrect</div>
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <label class="form-label">a <label style="color: red">*</label></label>
+                          <input [ngClass]="{ 'is-invalid': submitted && f.equipeMax.errors }" [formControlName]="'equipeMax'" type="number" min="0" class="input mb-2">
+                          <div *ngIf="submitted && f.equipeMax.errors">
+                            <div *ngIf="f.equipeMax.errors.required || f.equipeMax.errors.pattern" class="alert-danger">Le sous-titre est incorrect</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <i class="fas fa-tools" style="margin-right: 2%; font-size: large"></i>
+                      <span class="fw-bold spanoutil" style="font-size: large;">Outils <label style="color: red">*</label></span>
+                      <input [ngClass]="{ 'is-invalid': submitted && f.outils.errors }" [formControlName]="'outils'" type="text" class="input mb-2">
+                      <div *ngIf="submitted && f.outils.errors">
+                        <div *ngIf="f.outils.errors.required || f.outils.errors.pattern" class="alert-danger">Le sous-titre est incorrect</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="row ml-4 my-auto">
+                    <div *ngIf="submitted && etapes.value.length === 0">
+                        <div class="alert-danger text-center">Remplisser les etapes</div>
+                    </div>
+                    <div formArrayName="Etapes" [ngClass]="{ 'is-invalid': submitted && f.Etapes.errors }"
+                         *ngFor="let e of etapes.controls; let i = index">
+                      <div class="row etape" [formGroupName]="i">
+                        <div class="col-12">
+                          <h6>Etape {{i + 1}}</h6>
+                        </div>
+                        <div class="col-5">
+                          <input formControlName='titre' type="text" class="form-control mb-4"/>
+                          <div *ngIf="submitted && e?.get('titre')?.hasError('required')">
+                            <div class="alert-danger">Le titre est incorrect</div>
+                          </div>
+                        </div>
+                        <div class="col-5">
+                          <textarea formControlName='description' class="form-control mb-4"></textarea>
+                          <div *ngIf="submitted && e?.get('description')?.hasError('required')">
+                            <div class="alert-danger">La description est incorrecte</div>
+                          </div>
+                        </div>
+                        <div class="col-2 my-auto">
+                          <button type="button" class="btn-danger btnDel" style="color: red" title="Supprimer cette enregistrement" (click)="delInput(i)">
+                            <i class="fas fa-times"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <button class="btn btnAdd btn-danger fw-bold" type="button" (click)='addEtape()'>Ajouter etape</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-evaluer mt-1">Enregistrer</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+-->

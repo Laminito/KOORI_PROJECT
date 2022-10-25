@@ -17,10 +17,11 @@ import { SenddataService } from '../../_services/senddata.service';
 export class FeedbackComponent implements OnInit {
   @ViewChild('closebutton') closebutton:any;
   submitted = false;
-  addForm: FormGroup | undefined;
-  comment: FormGroup | undefined;
-  commentIbox: FormGroup | undefined;
-  commentFiche: FormGroup | undefined;
+  addForm!: FormGroup;
+  comment!: FormGroup;
+  commentIbox!: FormGroup;
+  commentFiche!: FormGroup;
+  
   laroute:string=""
   imgfeedback:string=""
   fiche: Fiche = new Fiche();

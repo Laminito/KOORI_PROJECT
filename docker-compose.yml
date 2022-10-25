@@ -10,7 +10,6 @@ services:
     ports:
       - "4200:4200"
 
-
   # application node_app
   koori_app_backend:
     build:
