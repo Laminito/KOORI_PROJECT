@@ -24,8 +24,10 @@ services:
 
   postgres_db:
       # container_name: petaaw_postgres_db
-      hostname: postgres_db
-      image: "postgres:15"
+      # hostname: postgres_db
+      extra_hosts:
+        - "host.docker.internal:host-gateway"
+      image: postgres:15
       environment:
         POSTGRES_USER: root
         POSTGRES_PASSWORD: root
@@ -36,7 +38,7 @@ services:
       restart: always
       volumes:
       # - database-data:/var/lib/postgresql/data/
-      - ./data/database-data:/var/lib/postgresql/data
+      - ./Data/postgresDB:/var/lib/postgresql/data
       networks:
         koori_net:
           ipv4_address: 192.168.0.2
@@ -47,11 +49,12 @@ services:
       environment:
         PGADMIN_DEFAULT_EMAIL: root@pgadmin.com
         PGADMIN_DEFAULT_PASSWORD: root
-        PGADMIN_CONFIG_SERVER_MODE: 'False'
+        # PGADMIN_CONFIG_SERVER_MODE: 'True'
 
       restart: always
       volumes:
-        - ./data/pgadmin-data:/var/lib/pgadmin
+        - ./Data/pgadmin:/var/lib/pgadmin4/storage
+
 
       ports:
         - "9090:80"

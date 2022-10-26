@@ -5,7 +5,7 @@ const models = require('../models')
 let asyncLib = require('async');
 // module.exports = {
 
-exports.getApropos = (req, res, next) => {
+exports.getApropos = (req, res) => {
     var limit = parseInt(req.query.limit);
     var offset = parseInt(req.query.offset);
     models.Apropos.findAll({
@@ -20,7 +20,7 @@ exports.getApropos = (req, res, next) => {
                 //res.send("Bienvenu dans le controller aproposCtrl.js!!!!");
         })
         // res.send("Bienvenu dans le controller aproposCtrl.js!!!!");
-    next();
+
 };
 
 
