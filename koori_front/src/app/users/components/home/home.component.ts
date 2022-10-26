@@ -55,25 +55,25 @@ export class HomeComponent implements OnInit {
   }
 
   getDescriptionKoori(){
-    this.allRequest.getAll("get/koori/last","description").subscribe((data:any)=>{
+    this.allRequest.getAll("koori/last","description").subscribe((data:any)=>{
       this.koori = new Koori().deserialize(data)
     })
   }
   getDescriptionIbox(){
-    this.allRequest.getAll("get/ibox/last",).subscribe((data:any)=>{
+    this.allRequest.getAll("ibox/last",).subscribe((data:any)=>{
       this.ibox = new Ibox().deserialize(data)
     })
   }
 
   getServices(){
-    this.allRequest.getAll("get/services",).subscribe((data:any)=>{
+    this.allRequest.getAll("service",).subscribe((data:any)=>{
       // this.services = data.map((service:Service)=> new Service().deserialize(service))
       this.services= data
     })
   }
 
   getTemoignages() {
-    this.allRequest.getAll("get/temoignages").subscribe((data: any) => {
+    this.allRequest.getAll("temoignage").subscribe((data: any) => {
       this.temoignages = data.map((temoignage: Temoignage) => new Temoignage().deserialize(temoignage))
     })
   }

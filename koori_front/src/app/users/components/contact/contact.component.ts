@@ -36,7 +36,7 @@ export class ContactComponent implements OnInit {
   //   });
   // }
   getContact(){
-    this.allRequest.getAll("get/contact/").subscribe((data:any)=>{
+    this.allRequest.getAll("contact/").subscribe((data:any)=>{
        this.contacts=data.map((contact:Contact)=>new Contact().deserialize(contact));
     })
   }

@@ -88,7 +88,7 @@ onSubmit(){
           this.comment?.get('UserId')?.setValue(2)
           const formValue= this.comment?.value
           this.feedback.postMailKoori(this.addForm?.value).subscribe(
-            this.allRequest.postData(`add/evaluation_koori/user/${formValue.UserId}/koori/${formValue.KooriId}`,formValue)
+            this.allRequest.postData(`evaluation_koori/user/${formValue.UserId}/koori/${formValue.KooriId}`,formValue)
               .subscribe(response=>{
                   this.comment?.reset();
                   this.submitted = false;
@@ -120,7 +120,7 @@ onSubmit(){
               this.commentIbox?.get('UserId')?.setValue(2)
               const formValue= this.commentIbox?.value
               this.feedback.postMailIbox(this.addForm?.value).subscribe(
-                this.allRequest.postData(`add/evaluation_ibox/user/${formValue.UserId}/ibox/${formValue.IboxId}`,formValue)
+                this.allRequest.postData(`evaluation_ibox/user/${formValue.UserId}/ibox/${formValue.IboxId}`,formValue)
                   .subscribe(response=>{
                       this.commentIbox?.reset();
                       this.submitted = false;
@@ -151,7 +151,7 @@ onSubmit(){
             this.commentFiche?.get('UserId')?.setValue(2)
             const formValue= this.commentFiche?.value
             this.feedback.postMailFiche(parseInt(res[1].path.trim()), this.addForm?.value).subscribe(
-              this.allRequest.postData(`add/evaluation_fiche/user/${formValue.UserId}/fiche/${formValue.FicheId}`,formValue)
+              this.allRequest.postData(`evaluation_fiche/user/${formValue.UserId}/fiche/${formValue.FicheId}`,formValue)
                 .subscribe(response=>{
                     this.commentFiche?.reset();
                     this.submitted = false;

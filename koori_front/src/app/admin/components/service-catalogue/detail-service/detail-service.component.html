@@ -11,7 +11,7 @@
 <div class="container mt-3">
   <div class="row">
     <div class="col">
-      <button (click)="sendLibelleService()" type="button" [routerLink]="['sessions']" class="draw meet"> <i class="fas fa-tv"></i> Voir les sessions</button>
+      <button (click)="sendLibelleService()" type="button" [routerLink]="['admin/sessions']" class="draw meet"> <i class="fas fa-tv"></i> Voir les sessions</button>
     </div>
     <div class="col">
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -50,7 +50,7 @@
                 <!-- btn lister les demande par service -->
           <!-- <app-demande (click)="libelleService()"></app-demande> -->
           <!-- <div class="col"> -->
-            <button  [routerLink]="['/ListeDemande']" class="btn draw meet"><i class="fas fa-sliders-h"></i>  Voir la liste des demandes {{service.libelle}}</button>
+            <button  [routerLink]="['/admin/ListeDemande']" class="btn draw meet"><i class="fas fa-sliders-h"></i>  Voir la liste des demandes {{service.libelle}}</button>
            <!-- </div> -->
         </div>
       </div>

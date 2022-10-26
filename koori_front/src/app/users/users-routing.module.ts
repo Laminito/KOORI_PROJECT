@@ -38,15 +38,17 @@ const routes: Routes = [
   {path: 'menu-vertical', component: MenuVerticalComponent},
   {path: 'demande', component: DemandeComponent},
   {path: 'service/:id', component: DetailServiceComponent, resolve: {service: ServiceResolverService}},
-  { path: 'not-found', component: NotFoundComponent },
+  {path: 'not-found', component: NotFoundComponent },
   {path: '**', redirectTo: '/not-found'}
 
 ];
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
+
 
 export class UsersRoutingModule { }
 

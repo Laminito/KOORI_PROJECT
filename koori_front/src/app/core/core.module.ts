@@ -5,7 +5,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from "@angular/common/http";
 import { SharedModule } from '../shared/shared.module';
-import { NgChartsModule } from 'ng2-charts';
+
 
 
 @NgModule({
@@ -18,7 +18,6 @@ import { NgChartsModule } from 'ng2-charts';
     HttpClientModule,
     RouterModule,
     SharedModule,
-    NgChartsModule
   ],
   exports: [
     HeaderComponent,

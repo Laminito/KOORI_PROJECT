@@ -47,8 +47,8 @@ export class EvaluationNoteComponent implements OnInit {
   onSubmitForm() {
     const formValue= this.evaluationForm.value
     console.log(formValue)
-      this.allRequest.postData(`/add/evaluation_note/user/${formValue.UserId}/rapport/${formValue.RapportId}`,formValue)
-        .subscribe(response=>{
+      this.allRequest.postData(`evaluation_note/user/${formValue.UserId}/rapport/${formValue.RapportId}`,formValue)
+        .subscribe((response)=>{
             this.allRequest.sendNotification(response);
             this.evaluationForm.reset();
         },

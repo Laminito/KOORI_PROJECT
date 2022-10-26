@@ -10,12 +10,16 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "chart.js": "^2.9.4",
         "express": "^4.18.2",
+        "ng2-charts": "^2.4.3",
         "pg": "^8.8.0",
         "sequelize": "^6.25.3",
-        "sequelize-cli": "^6.5.1"
+        "sequelize-cli": "^6.5.1",
+        "u": "^0.1.0"
     },
     "devDependencies": {
+        "@types/chart.js": "^2.9.37",
         "nodemon": "^2.0.20"
     }
 }

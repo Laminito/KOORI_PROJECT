@@ -15,7 +15,6 @@
       </div>
       <div class="modal-body">
         <form [formGroup]="addServiceform" (ngSubmit)="addService()">
-          {{addServiceform.value | json}}
           <div class="row">
             <div class="col-6">
               <label class="form-label">Nom Du service <label class="text-danger">*</label></label>

@@ -1,22 +1,17 @@
-
 <div class="container-fluid p-3">
   <div class="row pt-3 pb-3">
     <div class="col-8 my-auto">
       <div class="mt-2 text-center" style="border: 1px solid #000000;box-sizing: border-box;border-radius: 5px;">
         <p class="mt-2" style="color: var(--orange); font-weight: 500;font-size: large;">Courbe representative du nombre de demandes annuel</p>
         <div style="display: block;">
-
-          <!--
-         <canvas baseChart width="500" height="250"
+          <canvas baseChart width="500" height="250"
                   [datasets]="lineChartDatas"
                   [labels]="lineChartLabels"
                   [options]="lineChartOptions"
                   [legend]="lineChartLegend"
-                  [type]="'line'"
+                  [chartType]="'line'"
                   [plugins]="lineChartPlugins">
           </canvas>
-          -->
-
         </div>
       </div>
     </div>
@@ -27,11 +22,11 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
           <p class="mt-2" style="color: var(--orange); font-weight: 500;font-size: large;">Nos Visiteurs</p>
           <div class="chart-wrapper">
             <canvas baseChart
-                    [datasets]="pieChartDataSetsVisit"
+                    [data]="pieChartDatas"
                     [labels]="pieChartLabels"
                     [options]="pieChartOptions"
                     [legend]="true"
-                    [type]="'pie'"
+                    [chartType]="'pie'"
                     [plugins]="pieChartPlugins">
             </canvas>
           </div>
@@ -41,9 +36,9 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
           <p class="mt-2" style="color: var(--orange); font-weight: 500;font-size: large;">Nos Clients</p>
           <div class="chart-wrapper">
             <canvas baseChart
-                    [datasets]="pieChartDatas"
+                    [data]="pieChartDatas"
                     [labels]="pieChartLabels"
-                    [type]="'pie'"
+                    [chartType]="'pie'"
                     [options]="pieChartOptions"
                     [plugins]="pieChartPlugins"
                     [legend]="pieChartLegend">
@@ -57,18 +52,14 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
     <div class="col-6 text-center my-auto">
       <p style="color: var(--orange); font-weight: 500;font-size: large;">Nos realisations annuelles suivant le statut des demandes</p>
       <div style="display: block;">
-
-            <!--
-              <canvas baseChart width="500" height="350"
-                      [datasets]="lineChartData"
-                      [labels]="lineChartLabels"
-                      [type]="'line'"
-                      [options]="lineChartOptions"
-                      [legend]="lineChartLegend"
-                      [plugins]="lineChartPlugins">
-              </canvas> 
-            -->
-
+        <canvas baseChart width="500" height="350"
+                [datasets]="lineChartData"
+                [labels]="lineChartLabels"
+                [options]="lineChartOptions"
+                [legend]="lineChartLegend"
+                [chartType]="'line'"
+                [plugins]="lineChartPlugins">
+        </canvas>
       </div>
     </div>
     <div class="col-6 p-3" style="background: #FFFFFF;padding: 2%;border: 1px solid black;
