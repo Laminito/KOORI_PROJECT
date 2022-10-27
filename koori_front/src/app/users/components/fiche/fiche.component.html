@@ -1,0 +1,176 @@
+<div class="container mt-0">
+  <div id="container">
+    <section id="accordion">
+      <div>
+        <input type="checkbox" id="check-1" />
+        <label for="check-1" class="fiches font-weight-bold text-center" style="font-weight: 600">Voir les fiches</label>
+        <article style="margin-top: 2%">
+          <div class="mt-4 row text-center ml-3 mr-3 mb-3 pt-2" *ngIf="fiches.length !== 0 && !loading.isLoading();">
+            <div class="mb-4 mt-3 col-3" *ngFor="let fiche of fiches" (click)="navigate(fiche.id, fiches)">
+              <aside class="profile-card cards p-2 h-100">
+                <header>
+                  <img *ngIf="fiche.avatar; else noimg"
+                       src="data:image/jpeg;base64,{{fiche?.avatar}}" class="img-fluid"
+                       alt="avatar">
+                  <ng-template #noimg>
+                    <img src="./assets/img/about_us_aim_lab.jpg" class="img-fluid" alt="img">
+                  </ng-template>
+                  <h3 class="mt-2" style="color: var(--vert)">{{fiche?.titre}}</h3>
+                  <div class="card-text row text-center">
+                    <div class="col-4 fw-normal">
+                      <i class="fas fa-user-friends row-21" style="margin-right: 2%"></i>
+                      <span style="cursor:default;" *ngIf="fiche?.equipeMin !== fiche?.equipeMax; else other1">{{fiche?.equipeMin}} - {{fiche?.equipeMax}} +</span>
+                      <ng-template #other1>
+                        <span>{{fiche?.equipeMin}}</span>
+                      </ng-template>
+                    </div>
+                    <div class="col-4 fw-normal">
+                      <i class="fas fa-clock row-21" style="margin-right: 2%"></i>
+                      <span style="cursor:default;" *ngIf="fiche?.dureeMin !== fiche?.dureeMax; else other2">{{fiche?.dureeMin}} - {{fiche?.dureeMax}} min</span>
+                      <ng-template #other2>
+                        <span>{{fiche?.dureeMin}} min</span>
+                      </ng-template>
+                    </div>
+                    <div class="col-4 fw-normal">
+                      <i class="fas fa-tools row-21" style="margin-right: 2%"></i>{{fiche?.outils}}
+                    </div>
+                  </div>
+                </header>
+                <div class="profile-bio mt-2">
+                  <span class="font-weight-bold" style="color: var(--orange)">Resume</span>
+                  <p class="font-italic">{{fiche.description | summarize: 50}}</p>
+                  <ul *ngIf="fiche?.Etapes?.length === 0; else etapeok">
+                    <h6 class="text-danger">Aucune etape n'est liee a cette fiche</h6>
+                  </ul>
+                  <ng-template #etapeok>
+                    <ul class="list-group float-left" *ngFor="let e of fiche.Etapes">
+                      <li class="list-group-item bg-transparent border-0">
+                        <i class="fa fa-arrow-right mr-2" style="color: #FFA000"></i>
+                        <span class="font-weight-bold fst-italic">Etape {{e.id}}: </span>{{e.titre}}
+                      </li>
+                    </ul>
+                  </ng-template>
+                </div>
+              </aside>
+            </div>
+          </div>
+          <app-nodata *ngIf="fiches.length === 0"></app-nodata>
+        </article>
+      </div>
+    </section>
+  </div>
+  <!--<a (click)="goTo(fiches)">Go</a>-->
+  <div id="lafiche">
+    <div class="row shadow row-1 mt-4 mb-4" style="height: 20%">
+      <div class="col-12 mt-3 mb-3 shadow entete" style="background: var(--fond);">
+        <h2 class="text-center titrehaut">{{fiche?.titre}}</h2>
+        <h6 style="font-size: large;" class="text-center sous-titrehaut">{{fiche?.sous_titre}}</h6>
+      </div>
+      <!--<div class="col-3 col-img shadow my-auto mr-2" style="width: 20%; height: 20%">
+        <img src="../../assets/img/fiche.png" class="img_fiche text-center" alt="">
+      </div>-->
+      <div class="col col-text mb-3">
+        <div class="row teteheader mx-auto">
+          <div class="col-5 text-center my-auto mr-3">
+            <div class="row">
+              <div class="col-12 mb-2">
+                <img *ngIf="fiche.avatar; else noimg"
+                     src="data:image/jpeg;base64,{{fiche?.avatar}}" class="img-fluid"
+                     alt="avatar">
+                <ng-template #noimg>
+                  <img src="./assets/img/about_us_aim_lab.jpg" class="img-fluid" alt="img">
+                </ng-template>
+              </div>
+            </div>
+            <div class="row row-2">
+              <div class="col-12">
+                <h6 style="font-size: x-large" class="resume">Resume</h6>
+                <p class="descriptionhaut">{{fiche?.description}}</p>
+              </div>
+              <div class="col-6">
+                <i class="fas fa-paperclip" style="margin-right: 2%; font-size: large"></i>
+                <span class="fw-bold spanprerequis" style="font-size: large;">Pré-réquis</span>
+                <p class="prerequis">{{fiche?.prerequis}}</p>
+              </div>
+              <div class="col-6 dureetitle">
+                <i class="fas fa-clock" style="margin-right: 2%; font-size: large"></i>
+                <span class="fw-bold spanduree" style="font-size: large;">Durée</span>
+                <p class="duree" *ngIf="fiche.dureeMin !== fiche.dureeMax; else other">{{fiche?.dureeMin}} - {{fiche?.dureeMax}} min</p>
+                <ng-template #other>
+                  <p class="duree">{{fiche?.dureeMin}} min</p>
+                </ng-template>
+              </div>
+              <div class="col-6 equipetitle">
+                <i class="fas fa-user-friends" style="margin-right: 2%; font-size: large"></i>
+                <span class="fw-bold spanequipe" style="font-size: large;">Equipe</span>
+                <p class="equipe" *ngIf="fiche.equipeMin !== fiche.equipeMax; else other1">{{fiche?.equipeMin}} - {{fiche?.equipeMax}} +</p>
+                <ng-template #other1>
+                  <p class="equipe">{{fiche?.equipeMin}}</p>
+                </ng-template>
+              </div>
+              <div class="col">
+                <i class="fas fa-tools" style="margin-right: 2%; font-size: large"></i>
+                <span class="fw-bold spanoutil" style="font-size: large;">Outils</span>
+                <p class="outil" *ngIf="fiche.outils">{{fiche?.outils}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row ms-4 mt-4 mb-4" *ngIf="fiche?.Etapes.length !== 0; else otherEtape">
+              <div class="col-6" *ngFor="let etape of fiche.Etapes | paginate: { itemsPerPage: 4, currentPage: p }; let i = index">
+                <div class="row">
+                  <div class="col-1 col-etape-num mr-4">
+                    <span class="text-center" style="font-size: large;">{{i + 1}}</span>
+                  </div>
+                  <div class="col col-etape-text p-2">
+                    <!--<img src="../../assets/img/fiche.png" alt="" class="w-25 h-50 float-right" style="float: right">-->
+                    <h6 class="fw-bold titrebas pl-3 titreetape_{{etape?.id}}" style="padding-left: 3%; font-size: large">
+                      {{etape?.titre}}
+                    </h6>
+                    <span class="descriptionetape_{{etape?.id}}">{{etape?.description}}</span>
+                  </div>
+                </div>
+              </div>
+              <pagination-controls (pageChange)="p = $event" class="text-center float-right mt-3"></pagination-controls>
+            </div>
+            <ng-template #otherEtape>
+              <div class="row ml-4 mt-4 mb-4 text-danger text-center">
+                <h6>Aucune etape n'est liee a cette fiche</h6>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-4 text-center">
+    <div class="col-6">
+      <button class="btn btn-default button-1 text-white"
+              style="font-size: large; padding: 3%;" id="button" (click)="exportHtmlToPDF(fiche)">
+        <i class="fas fa-toilet-paper mr-1"></i>
+        Telecharger la fiche
+      </button>
+    </div>
+    <div class="col-6">
+      <button class="btn btn-default button-2 text-white"
+              style="font-size: large; padding: 3%;" id="button1" (click)="downloadPdf()">
+        <i class="fas fa-download mr-1"></i>
+        Telecharger le livret
+      </button>
+    </div>
+  </div>
+  <div class="row" id="filtre" style="font-size: large">
+    <p class="titre-evaluation mt-3 text-center">
+      Comment evalueriez-vous ce cours en ligne?
+    </p>
+    <p class="text-center">
+      Nous essayons continuellement d’ameliorer nos services , pourriez-vous nous aider en nous faisant savoir si vous etes satisfait de cette boite à outils
+    </p>
+    <div class="col text-center mt-3 mb-5">
+      <app-feedback></app-feedback>
+      <!--<button class="btn btn-default button-2 text-white" id="button2"><i class="fas fa-location-arrow mr-3"></i>Soumettre votre evaluation</button>-->
+    </div>
+  </div>
+</div>
+
+<app-top></app-top>

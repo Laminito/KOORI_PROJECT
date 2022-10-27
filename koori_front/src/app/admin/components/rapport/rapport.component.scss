@@ -1,0 +1,14 @@
+.form-control{
+  padding: 0 10px 0 20px;
+  font-size: 15px;
+  font-weight: 500;
+  border: 2px solid var(--vert);
+  box-shadow: none;
+  min-height: 40px;
+  height: auto;
+  border-radius: 5px !important;
+  width: 40%;
+}
+.form-select{
+  color: var(--vert);
+}

@@ -1,0 +1,11 @@
+<form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+  Nom complet<input type="text" [formControlName]="'nomComplet'">
+  service<input type="text" [formControlName]="'service'">
+  <!--Password<input type="password" [formControlName]="'password'">-->
+  Email<input type="email" [formControlName]="'email'">
+  Departement<input type="text" [formControlName]="'departement'">
+  Profession<input type="text" [formControlName]="'profession'">
+  Direction<input type="text" [formControlName]="'direction'">
+  Avatar<input type="file" [formControlName]="'file'">
+  <button type="submit">submit</button>
+</form>

@@ -1,0 +1,7 @@
+<div class="card text-center border-top-0 border-light rounded shadow-lg">
+  <div class="card-body">
+    <h5 class="card-title">{{rapportItem.titre}}</h5>
+    <p class="card-text">{{rapportItem.description}}</p>
+    <app-evaluation-note [isEvaluated]="rapportItem.isEvaluated" [currentRapport]="rapportItem"></app-evaluation-note>
+  </div>
+</div>

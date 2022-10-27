@@ -1,0 +1,24 @@
+<nav class="d-flex p-4 topbar align-items-center">
+  <div>
+    <h3 class="text-white">
+      <span>Gestion des Rapports</span>
+    </h3>
+  </div>
+  <div class="ms-auto"></div>
+  <i class="far fa-folder-open fa-3x text-white"></i>
+</nav>
+<div class="row mt-4">
+  <div class="d-flex justify-content-between">
+    <div></div>
+    <select name="select" id="select" class="form-control form-select" (change)="selectedValue($event)">
+      <option selected value="">TOUS LES SERVICES</option>
+      <option *ngFor="let s of services" value="{{s.libelle}}">{{s.libelle}}</option>    </select>
+    <div></div>
+  </div>
+</div>
+<div class="row">
+  <div class=" text-center mt-5" *ngIf="!rapports.length">
+    <span class="text-danger bg-warning text-center p-2">Pas de données disponible</span>
+  </div>
+  <app-item-rapport *ngFor="let r of rapports | filter: searchByService" [rapportItem]="r" [rapports]="rapports" class="col-sm-12 col-md-6 col-lg-4  gy-5 "></app-item-rapport>
+</div>

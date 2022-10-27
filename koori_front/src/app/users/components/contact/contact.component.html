@@ -1,0 +1,59 @@
+<div class=" text-center mt-3 ">
+  <div class="row bar-title p-5">
+    <div class="col">
+      <h1>Contact</h1>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row mt-5 p-5 border-infoo rounded bg-light">
+    <!-- partie formulaire -->
+    <div class="col-sm-6">
+      <div class="card shadow">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Nom" aria-label="nom">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="email" aria-label="e-mail">
+            </div>
+          </div>
+          <div class="form-group mt-4">
+            <input type="text" name=""  class="form-control" placeholder="objet" aria-describedby="helpId">
+          </div>
+          <div class="form-group">
+            <label for=""></label>
+            <textarea class="form-control" name=""  rows="4" placeholder="ecrire votre message"></textarea>
+          </div>
+          <button name="" id="" class="btn btn-color p-2 mt-3" href="#" role="button"> <i class="fa fa-location-arrow"></i>  envoyer</button>
+        </div>
+      </div>
+    </div>
+    <!-- partie information -->
+    <div class="col-sm-6 ">
+      <div class="card shadow">
+        <div class="card-body" *ngFor="let contact of contacts">
+          <h5 class="card-title font-weight-bold titleinfo text-center">INFORMATION CONTACT</h5>
+          <p class="card-text">{{contact.description}} </p>
+          <p> <i class="fa fa-address-book text-success" aria-hidden="true"></i> {{contact.adresse}} </p>
+          <p> <i class="fa fa-phone text-success" aria-hidden="true"></i> {{contact.telephone}} </p>
+          <p> <i class="fas fa-envelope text-success"></i>  {{contact.email}}</p>
+          <span> <i class="fas fa-clock text-success"></i> {{contact.disponibilite}} </span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+ <!-- geolocalisation -->
+
+  <div class="row mt-3">
+    <div class="col">
+      <h1 class="titleinfo text-center">Localisation</h1>
+
+  </div>
+</div>
+
+</div>

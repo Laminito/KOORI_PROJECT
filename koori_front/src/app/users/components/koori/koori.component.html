@@ -1,0 +1,170 @@
+<app-kooriibox-menu></app-kooriibox-menu>
+<div class=" text-center mt-3 mb-3">
+  <div class="row bar-title p-3">
+    <div class="col-10 text-center">
+      <h1 class="text-center mt-3 head">
+        <span class="font-weight-bold" style="margin-left: 13%;">{{title}}</span>
+        <span>{{suite}}</span>
+      </h1>
+    </div>
+    <div class="col-2">
+      <img src="../../assets/img/koori-icone.png" alt="" style="margin-top: 3%;width: 30%">
+    </div>
+  </div>
+</div>
+<div class="row">
+  <h3 class="text-center mt-3">
+    <span>Ko</span>
+    <!--<img class="Koori" src="../../assets/img/petaaw.png" alt="petaaw"/>-->
+    <span class="petaaw">o</span>
+    <span class="suite">ri ou une co-construction centrée utilisateur</span>
+  </h3>
+</div>
+<div class="container">
+  <div class="row row-description text-center mt-3 pl-5 pr-5">
+    <p style="margin-bottom: 0; font-size: large" *ngIf="koori && !loading.isLoading()">{{koori.description}}</p>
+    <app-nodata *ngIf="!koori.description && !loading.isLoading()"></app-nodata>
+    <app-loading *ngIf="loading.isLoading()"></app-loading>
+  </div>
+  <div class="row mt-3 mb-4 shadow">
+    <div class="worko-tabs">
+      <input class="state" type="radio" title="tab-one" name="tabs-state" id="tab-one" checked />
+      <input class="state" type="radio" title="tab-two" name="tabs-state" id="tab-two" />
+      <input class="state" type="radio" title="tab-three" name="tabs-state" id="tab-three" />
+      <input class="state" type="radio" title="tab-four" name="tabs-state" id="tab-four" />
+      <input class="state" type="radio" title="tab-five" name="tabs-state" id="tab-five" />
+
+      <div class="tabs flex-tabs">
+        <label for="tab-one" id="tab-one-label" class="tab text-center">
+          <img src="../../assets/img/petaaw1.png" class="petaaw1 mr-2" alt="">
+          C’est quoi ?
+        </label>
+        <label for="tab-two" id="tab-two-label" class="tab text-center">
+          <img src="../../assets/img/petaaw1.png" class="petaaw1 mr-2" alt="">
+          et quand ?
+        </label>
+        <label for="tab-three" id="tab-three-label" class="tab text-center">
+          <img src="../../assets/img/petaaw1.png" class="petaaw1 mr-2" alt="">
+          et comment ?
+        </label>
+
+        <div id="tab-one-panel" class="panel active">
+          <p class="quoi">{{koori.quoi}}</p>
+          <div class="row">
+            <div class="col-4 text-center">
+              <div class="mx-auto">
+                <img src="../../assets/img/kooriquoi1.png" alt="koori1">
+              </div>
+              <p class="font-weight-bold mt-2">Equipe multi-disciplinaire</p>
+              <span>
+                  Collaborer entre métiers pour avancer plus rapidement et plus intelligemment
+                </span>
+            </div>
+            <div class="col-4 text-center">
+              <div class="mx-auto">
+                <img src="../../assets/img/kooriquoi3.png" alt="koori3">
+              </div>
+              <p class="font-weight-bold mt-2">Focus sur l’utilisateur</p>
+              <span>Mettre  les besoins utilisateur  au centre</span>
+            </div>
+            <div class="col-4 text-center">
+              <div class="mx-auto">
+                <img src="../../assets/img/kooriquoi2.png" alt="koori2">
+              </div>
+              <p class="font-weight-bold mt-2">Se réinventer sans cesse</p>
+              <span>Tout n’est que prototype (hypothèse), écoute et  apprentissage</span>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-7 my-auto">
+              <p>Nous preconisons donc de se mettre dans la peau des usagers en utilisant des techniques iteratives de co-construction.
+                Ko<span style="color: var(--orange)">o</span>ri assure le respect pragmatique des principaux concepts du design thinking.
+                La methode offre ainsi cinq cauris a utiliser a des etapes cles de la demarche: <span class="font-weight-bold">Empathie</span>, <span class="font-weight-bold">Definition</span>, <span class="font-weight-bold">Ideation</span>, <span class="font-weight-bold">Prototypage</span> et <span class="font-weight-bold">Test</span></p>
+            </div>
+            <div class="col-5">
+              <img src="../../assets/img/kooriquoi4.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div id="tab-two-panel" class="panel">
+          <p class="quand">{{koori.quand}}</p>
+          <p class="font-weight-bold">Quand utiliser Ko<span style="color: var(--orange)">o</span>ri ?</p>
+          <span style="color: var(--orange); font-size: small">L’usage de Koori est conseillé pour la recherche de valeurs nouvelles devant faire appel à l’imagination d’un groupe multidisciplinaire  et ouvert à l’expérimentation et à la remise en cause…</span>
+          <p class="mt-2">Koori, au même titre que la majeure partie des processus de design thinking, se différencie des techniques d’analyse traditionnelles sur 06 axes majeures: les hypothèses de base; le processus suivi, les méthodes utilisées, le focus sur l’abstrait, les décisions à prendre, la valeur à créer…</p>
+          <div class="text-center">
+            <img src="../../assets/img/kooriquand1.png" alt="">
+          </div>
+          <p class="font-weight-bold mt-2">Ko<span style="color: var(--orange)">o</span>ri : contexte d'utilisation</p>
+          <span style="color: var(--orange); font-size: small">Koori est adapté à l’environnement business actuel qui se veut imprévisible et fortement mouvant.</span>
+          <p>L’environnement actuel, qu’il soit pris sous l’angle du digital ou pas, impose une remise en cause perpétuelle des modèles business de nos entreprise. Ainsi, dans ce contexte, 4 éléments clés militent pour un usage plus fréquent de Koori:</p>
+          <div class="text-center">
+            <img src="../../assets/img/kooriquand2.png" alt="">
+          </div>
+        </div>
+        <div id="tab-three-panel" class="panel">
+          <p class="comment">{{koori.comment}}</p>
+          <p class="font-weight-bold mt-2">Comment utiliser Ko<span style="color: var(--orange)">o</span>ri ?</p>
+          <span style="color: var(--orange); font-size: small">Koori propose un processus complet de design thinking , il peut également etre ré-adapté pour un exercice court d’exploration de pistes d’innovation</span>
+          <p>Koori est un processus complet de design thinking, combinant de façon pratique les 05 cauris de la méthode et  permettant de partir d’un challenge pour arriver à une proposition de valeur pressentie et testée.
+            Koori consiste en une succession d’exercices de divergence et convergence en équipe afin d’aboutir à un concensus créant une valeur un partagée. Le schéma ci-après décrit le processus Koori*</p>
+          <div class="text-center">
+            <img src="../../assets/img/kooricomment1.png" alt="">
+          </div>
+          <p class="text-center mt-2" style="font-size: smaller">*Il est souvent necessaire  de faire de nombreuses iterations de chaque étape ou de l’ensemble  de la démarche afin d’arriver à un résultat satisfaisant</p>
+          <p class="font-weight-bold mt-2">Comment utiliser Ko<span style="color: var(--orange)">o</span>ri ? – What is</p>
+          <div class="row">
+            <div class="col-6">
+              <img src="../../assets/img/kooricomment2.png" alt="" style="width: 100%; height: 100%;">
+            </div>
+            <div class="col-6">
+              <img src="../../assets/img/kooricomment3.png" alt="" style="width: 100%; height: 100%;">
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-6">
+              <img src="../../assets/img/kooricomment4.png" alt="" style="width: 100%; height: 100%;">
+            </div>
+            <div class="col-6">
+              <img src="../../assets/img/kooricomment5.png" alt="" style="width: 100%; height: 100%;">
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-6">
+              <img src="../../assets/img/kooricomment6.png" alt="" style="width: 100%; height: 100%;">
+            </div>
+            <div class="col-6">
+              <img src="../../assets/img/kooricomment7.png" alt="" style="width: 100%; height: 100%;">
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-6">
+              <img src="../../assets/img/kooricomment8.png" alt="" style="width: 100%; height: 100%;">
+            </div>
+            <div class="col-6">
+              <img src="../../assets/img/kooricomment9.png" alt="" style="width: 100%; height: 100%;">
+            </div>
+          </div>
+          <div class="row mt-2">
+            <img src="../../assets/img/kooricomment10.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="font-size: large">
+    <p class="titre mt-4 text-center">
+      Comment evalueriez-vous ce cours en ligne?
+    </p>
+    <p class="text-center">
+      Nous essayons continuellement d’ameliorer nos services , pourriez-vous nous aider en nous faisant savoir si vous etes satisfait de cette boite à outils
+    </p>
+    <div class="col text-center mt-4 mb-5">
+      <app-feedback></app-feedback>
+
+    </div>
+  </div>
+</div>
+
+<app-top></app-top>
+
+

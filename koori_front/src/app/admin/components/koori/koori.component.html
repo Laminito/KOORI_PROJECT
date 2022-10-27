@@ -1,0 +1,197 @@
+<nav class="d-flex p-4 topbar align-items-center">
+  <div>
+    <h3 class="text-white">
+      <span>Ko</span>
+      <span style="color: var(--orange)">o</span>
+      <span>ri</span>
+    </h3>
+  </div>
+  <div class="ms-auto"></div>
+  <img src="../../assets/img/{{title.toLowerCase()}}-icone.png" alt="">
+</nav>
+<div class="container mt-3" style="padding-left: 3%; padding-right: 3%;">
+  <div id="container">
+    <section id="accordion">
+      <div>
+        <input type="checkbox" id="check-1" />
+        <label for="check-1" class="fiches fw-bold text-center">Avis des utilisateurs</label>
+        <article style="margin-top: 2%">
+          <div class="row le-hide">
+          <div class="col-lg-12" style="border-bottom: solid 1px var(--orange)">
+            <div class="m-0 row p-3">
+              <div class="col-sm-4 col-lg-4 p-0 pl-lg-5 text-center">
+                <strong>Nom Complet</strong>
+              </div>
+              <div class="col-sm-6 col-lg-6 p-0 pl-lg-5 text-center">
+                <strong>Avis</strong>
+              </div>
+              <div class="col-sm-2 col-lg-2 p-0 pl-lg-5 text-center">
+                <strong>Date</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+          <div class="row" *ngIf="tab.length !== 0; else nodata">
+            <div class="col-sm-12 col-lg-12 mt-2 mb-2" *ngFor="let e of tab | paginate: { itemsPerPage: 3, currentPage: p };let i=index;">
+              <div class="m-0 row row-container p-3" style="background: var(--fond)">
+                <div class="col-sm-4 col-lg-4 m-auto text-center">
+                  {{Users[i].nomComplet}}
+                </div>
+                <div class="col-sm-6 col-lg-6 m-auto text-center">
+                  {{e?.evaluation}}
+                </div>
+                <div class="col-sm-2 col-lg-2 m-auto text-center">
+                  {{e?.createdAt | date: 'medium'}}
+                </div>
+              </div>
+            </div>
+            <pagination-controls (pageChange)="p = $event" class="text-center float-right mt-3"></pagination-controls>
+          </div>
+          <ng-template #nodata>
+            <h5 class="text-danger text-center mt-3 mb-3">Aucune evaluation n'a ete faite sur le livret</h5>
+          </ng-template>
+        </article>
+      </div>
+    </section>
+  </div>
+  <div class="row mt-2">
+    <div class="d-flex justify-content-between">
+      <div></div>
+      <select name="select" id="select" class="form-control form-select" [ngModel]="selectedDevice" (ngModelChange)="onChange($event)">
+        <option *ngFor="let v of versions" [value]="v.version">Version {{v.version}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="container change">
+    <div class="row row-description text-center mt-3 pl-5 pr-5">
+      <i class="fas fa-pencil-alt fa-2x"></i>
+      <p class="description" style="margin-bottom: 0">{{koori.description}}</p>
+    </div>
+    <div class="row mt-3 mb-4 shadow">
+      <div class="worko-tabs">
+        <input class="state" type="radio" title="tab-one" name="tabs-state" id="tab-one" checked />
+        <input class="state" type="radio" title="tab-two" name="tabs-state" id="tab-two" />
+        <input class="state" type="radio" title="tab-three" name="tabs-state" id="tab-three" />
+        <input class="state" type="radio" title="tab-four" name="tabs-state" id="tab-four" />
+        <input class="state" type="radio" title="tab-five" name="tabs-state" id="tab-five" />
+
+        <div class="tabs flex-tabs">
+          <label for="tab-one" id="tab-one-label" class="tab text-center">
+            <img src="../../assets/img/petaaw1.png" class="petaaw1 mr-2" alt="">
+            C’est quoi ?
+          </label>
+          <label for="tab-two" id="tab-two-label" class="tab text-center">
+            <img src="../../assets/img/petaaw1.png" class="petaaw1 mr-2" alt="">
+            et quand ?
+          </label>
+          <label for="tab-three" id="tab-three-label" class="tab text-center">
+            <img src="../../assets/img/petaaw1.png" class="petaaw1 mr-2" alt="">
+            et comment ?
+          </label>
+          <div id="tab-one-panel" class="panel active">
+            <p class="quoi">{{koori.quoi}}</p>
+            <div class="row">
+              <div class="col-4 text-center">
+                <div class="mx-auto">
+                  <img src="../../assets/img/kooriquoi1.png" alt="koori1">
+                </div>
+                <p class="fw-bold mt-2">Equipe multi-disciplinaire</p>
+                <span>
+                  Collaborer entre métiers pour avancer plus rapidement et plus intelligemment
+                </span>
+              </div>
+              <div class="col-4 text-center">
+                <div class="mx-auto">
+                  <img src="../../assets/img/kooriquoi3.png" alt="koori3">
+                </div>
+                <p class="fw-bold mt-2">Focus sur l’utilisateur</p>
+                <span>Mettre  les besoins utilisateur  au centre</span>
+              </div>
+              <div class="col-4 text-center">
+                <div class="mx-auto">
+                  <img src="../../assets/img/kooriquoi2.png" alt="koori2">
+                </div>
+                <p class="fw-bold mt-2">Se réinventer sans cesse</p>
+                <span>Tout n’est que prototype (hypothèse), écoute et  apprentissage</span>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-7 my-auto">
+                <p>Nous preconisons donc de se mettre dans la peau des usagers en utilisant des techniques iteratives de co-construction.
+                Ko<span style="color: var(--orange)">o</span>ri assure le respect pragmatique des principaux concepts du design thinking.
+                La methode offre ainsi cinq cauris a utiliser a des etapes cles de la demarche: <span class="fw-bold">Empathie</span>, <span class="fw-bold">Definition</span>, <span class="fw-bold">Ideation</span>, <span class="fw-bold">Prototypage</span> et <span class="fw-bold">Test</span></p>
+              </div>
+              <div class="col-5">
+                <img src="../../assets/img/kooriquoi4.png" alt="">
+              </div>
+            </div>
+          </div>
+          <div id="tab-two-panel" class="panel">
+            <p class="quand">{{koori.quand}}</p>
+            <p class="fw-bold">Quand utiliser Ko<span style="color: var(--orange)">o</span>ri ?</p>
+            <span style="color: var(--orange); font-size: small">L’usage de Koori est conseillé pour la recherche de valeurs nouvelles devant faire appel à l’imagination d’un groupe multidisciplinaire  et ouvert à l’expérimentation et à la remise en cause…</span>
+            <p class="mt-2">Koori, au même titre que la majeure partie des processus de design thinking, se différencie des techniques d’analyse traditionnelles sur 06 axes majeures: les hypothèses de base; le processus suivi, les méthodes utilisées, le focus sur l’abstrait, les décisions à prendre, la valeur à créer…</p>
+            <div class="text-center">
+              <img src="../../assets/img/kooriquand1.png" alt="">
+            </div>
+            <p class="fw-bold mt-2">Ko<span style="color: var(--orange)">o</span>ri : contexte d'utilisation</p>
+            <span style="color: var(--orange); font-size: small">Koori est adapté à l’environnement business actuel qui se veut imprévisible et fortement mouvant.</span>
+            <p>L’environnement actuel, qu’il soit pris sous l’angle du digital ou pas, impose une remise en cause perpétuelle des modèles business de nos entreprise. Ainsi, dans ce contexte, 4 éléments clés militent pour un usage plus fréquent de Koori:</p>
+            <div class="text-center">
+              <img src="../../assets/img/kooriquand2.png" alt="">
+            </div>
+          </div>
+          <div id="tab-three-panel" class="panel">
+            <p class="comment">{{koori.comment}}</p>
+            <p class="fw-bold mt-2">Comment utiliser Ko<span style="color: var(--orange)">o</span>ri ?</p>
+            <span style="color: var(--orange); font-size: small">Koori propose un processus complet de design thinking , il peut également etre ré-adapté pour un exercice court d’exploration de pistes d’innovation</span>
+            <p>Koori est un processus complet de design thinking, combinant de façon pratique les 05 cauris de la méthode et  permettant de partir d’un challenge pour arriver à une proposition de valeur pressentie et testée.
+              Koori consiste en une succession d’exercices de divergence et convergence en équipe afin d’aboutir à un concensus créant une valeur un partagée. Le schéma ci-après décrit le processus Koori*</p>
+            <div class="text-center">
+              <img src="../../assets/img/kooricomment1.png" alt="">
+            </div>
+            <p class="text-center mt-2" style="font-size: smaller">*Il est souvent necessaire  de faire de nombreuses iterations de chaque étape ou de l’ensemble  de la démarche afin d’arriver à un résultat satisfaisant</p>
+            <p class="fw-bold mt-2">Comment utiliser Ko<span style="color: var(--orange)">o</span>ri ? – What is</p>
+            <div class="row">
+              <div class="col-6">
+                <img src="../../assets/img/kooricomment2.png" alt="" style="width: 100%; height: 100%;">
+              </div>
+              <div class="col-6">
+                <img src="../../assets/img/kooricomment3.png" alt="" style="width: 100%; height: 100%;">
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-6">
+                <img src="../../assets/img/kooricomment4.png" alt="" style="width: 100%; height: 100%;">
+              </div>
+              <div class="col-6">
+                <img src="../../assets/img/kooricomment5.png" alt="" style="width: 100%; height: 100%;">
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-6">
+                <img src="../../assets/img/kooricomment6.png" alt="" style="width: 100%; height: 100%;">
+              </div>
+              <div class="col-6">
+                <img src="../../assets/img/kooricomment7.png" alt="" style="width: 100%; height: 100%;">
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-6">
+                <img src="../../assets/img/kooricomment8.png" alt="" style="width: 100%; height: 100%;">
+              </div>
+              <div class="col-6">
+                <img src="../../assets/img/kooricomment9.png" alt="" style="width: 100%; height: 100%;">
+              </div>
+            </div>
+            <div class="row mt-2">
+              <img src="../../assets/img/kooricomment10.png" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

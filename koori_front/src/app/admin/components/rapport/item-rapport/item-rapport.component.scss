@@ -1,0 +1,63 @@
+i.modify{
+  color: var(--orange);
+  cursor: pointer;
+  font-size: 1.5em;
+}
+
+.card{
+  text-align: center;
+}
+.card .card-img-top{
+  object-fit: contain;
+  width: 100px;
+  height: 100px;
+}
+.btn-lg{
+  border: 1px solid var(--vert);
+  width: 30%;
+}
+.btn-lg:hover{
+
+    border-bottom-color: var(--orange);
+    border-left-color: var(--orange);
+    transition: height 0.25s ease-out, width 0.25s ease-out 0.25s;
+  background-color: var(--orange);
+  color: var(--white);
+
+}
+.moyenne_title{
+  color: orange;
+}
+a{
+  cursor: pointer;
+}
+
+
+
+
+.rating {
+  border: none;
+}
+
+.rating>[id^="star"] {
+  display: none
+}
+
+.rating>label:before {
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome, serif;
+  display: inline-block;
+  content: "\f005"
+}
+
+.rating>.half:before {
+  content: "\f089";
+  position: absolute
+}
+
+.rating>label {
+  color: #ddd;
+  float: right
+}
+

@@ -1,0 +1,160 @@
+<div class="container">
+  <app-nav-link-service></app-nav-link-service>
+
+  <div class="row p-5 mb-3">
+    <div class="col-xl-8 col-sm-12 col-md-12">
+        <div class="card">
+          <img *ngIf="service.avatar;else other" class="card-img" src="data:image/jpeg;base64,{{service.avatar}}" alt="Card image">
+          <ng-template #other>
+            <img class="img-thumbnail w-100 h-100" src="../assets/img/bootcamp.png" alt="pp">
+          </ng-template>
+      </div>
+    </div>
+    <div class="col-xl-4 col-sm-12 col-md-12 parti-caracteristiques">
+      <div class="card card-5">
+        <div class="card-body ">
+          <h3 class="card-title text-center">{{ service.libelle | uppercase }}</h3>
+          <h5 class="card-title text-center">{{service.nom_des_clients }}</h5>
+          <h6 class="card-title text-center">{{service.type_de_service }}</h6>
+
+          <div class="scroller">
+            <p class="card-text">{{service.description }}  </p>
+          </div>            
+                <!-- btn faire une demande -->
+          <button type="button" #closebutton class="draw meet" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Faire une demande {{service.libelle | uppercase }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- les propriete d'un service -->
+  <h3 class="text-color text-center mb-5">PROPRIETE D'UN SERVICE</h3>
+  <div class="container gallery mb-3 ">
+    <div class="row">
+      <div class=" col-sm-5">
+        <div class="row">
+          <div class="col-xl-12 col-md-12 col-sm-12  p-text ">
+            <h4 class="text-center title-proprety">Bénéfices client</h4>
+            <p class="p">{{service.benefices_client}}</p>
+
+          </div>
+          <div class="col-xl-12 col-md-12 col-sm-12  p-text">
+            <h4 class="text-center title-proprety">Liste des applications métiers supportées :</h4>
+            <p class="p"> {{service.liste_des_applications_metiers_supporte}} </p>
+           </div>
+          <div class="col-xl-12 col-md-12 col-sm-12 p-text">
+            <h4 class="text-center title-proprety">Description des éléments du service</h4>
+            <p class="p">{{service.description_elements_service}}</p>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-sm-7 mb-3">
+        <div class="row">
+          <div class="col-xl-12 col-md-12 col-sm-12  p-text">
+           <h4 class="text-center title-proprety">Engagement/ Niveaux de service:</h4>
+           <p class="p"> Délais de réalisation : {{service.engagement_niveaux_service}}</p>
+          </div>
+          <div class="col-xl-12 col-md-12 col-sm-12  p-text">
+            <h4 class="text-center title-proprety">Plages d’horaires</h4>
+            <p class="p">{{service.plage_horaire}}</p>
+          </div>
+          <div class="col-xl-12 col-md-12 col-sm-12 p-text">
+            <h4 class="text-center title-proprety">Indicateurs de mesure & qualité</h4>
+            <p class="p" > {{service.indicateur_mesure_qualite}}</p>
+          </div>
+          <div class="col-xl-12 col-md-12 col-sm-12  p-text">
+           <h4 class="text-center title-proprety"> Livrables</h4>
+            <p class="p">{{service.livrables}}</p>
+          </div>
+          <div class="col-xl-12 col-md-12 col-sm-12  p-text">
+            <h4 class="text-center title-proprety">Suivi & gestion de la relation client</h4>
+            <p class="p">Comite de pilotage du raid : {{service.suivi_gestion_relation_client}}</p>
+          </div>
+          <div class="col-xl-12 col-md-12 col-sm-12  p-text">
+            <h4 class="text-center title-proprety">Tarifs & Facturation</h4>
+            <p class="p">{{service.tarifs_et_Facturation}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- affichage des session -->
+  <div class="row d-flex justify-content-md-center mt-4">
+      <!--title-->
+      <div class=" row mb-4">
+        <div class="col-8 mt-4">
+          <h2 class="font-weight-bold text-color">SESSION {{ service.libelle | uppercase}} RECENTS</h2>
+        </div>
+        <!-- bouton vers le lien rapport -->
+        <div class="col parti-rapport">
+          <button class="draw meet">
+            <a href="http://localhost:4201/rapport" style="text-decoration: none; color: var(--orange);"> Voir mes realisation</a></button>
+        </div>
+      </div>
+  </div>
+  <app-session></app-session>
+
+</div>
+<!-- partie demande -->
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="staticBackdropLabel" style="margin: auto"> Demander un service {{service.libelle}}</h5>
+      <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="demandeForm" >
+        <!-- {{demandeForm.value | json}} -->
+        <div class="row">
+          <div class="col-12">
+            <label class="form-label">Challenge ou objet <label class="text-danger">*</label></label>
+            <input type="text" [ngClass]="{ 'is-invalid': submitted }" [formControlName]="'titre'" class="input mb-2">
+          <!--
+            <div *ngIf="submitted && f.titre?.errors">
+              <div *ngIf="f.titre.errors.required " class="alert-danger">{{titre=='titre'?message:""}}</div>
+            </div>
+          -->
+          </div>
+        </div>
+        <label class="form-label">Description de la demande <label class="text-danger">*</label></label>
+        <textarea [ngClass]="{ 'is-invalid': submitted }" [formControlName]="'description'" class="form-control input mb-2" ></textarea>
+        <!--
+        
+          <div *ngIf="submitted && f.description.errors">
+          <div *ngIf="f.description.errors.required" class="alert-danger">{{titre=='description'?message:""}}</div>
+          </div>
+        
+        -->
+        
+            <!-- calendar -->
+        <div class="col-12">
+          <label class="form-label">Periode souhaité <label class="text-danger">*</label></label>
+            <input type="date" [ngClass]="{ 'is-invalid': submitted }" class="form-control input mb-2"
+              [formControlName]="'date_realisation'" name="date_realisation">
+            <!-- 
+              <div *ngIf="submitted && f.date_realisation.errors">
+                <div *ngIf="f.date_realisation.errors.required" class="alert-danger">{{titre=='date_realisation'?message:""}}</div>
+              </div>
+            -->
+        </div>
+        <!-- //////////////////////////////////////////// -->
+
+        
+        <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+        <div class="row text-center">
+        </div>
+        <div class="text-center">
+          <button type="submit" (click)="onsubmit()" class="btn btn-evaluer mt-1">Enregistrer votre demande</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+</div>

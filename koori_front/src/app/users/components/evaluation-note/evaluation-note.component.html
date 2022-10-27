@@ -1,0 +1,53 @@
+<button (click)="initId()" [ngStyle]="{'border-color':isEvaluated?'orange':'#338f8e','color':isEvaluated?'orange':'#338f8e'}" type="button" class="btn  mt-3 mb-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  <i  [ngClass]="{'fa-pencil-alt':isEvaluated, 'fa-file-alt':!isEvaluated}" class="fas mr-2"></i>
+  {{!isEvaluated? 'Faire une evaluation':'Modifier votre evaluation'}}
+</button>
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">{{!isEvaluated?'Notez et evaluez':'Modifier votre evaluation'}}</h5>
+        <button (click)="evaluationForm.reset()" type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-close"></i></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="evaluationForm" (ngSubmit)="onSubmitForm()">
+          <div class="d-flex justify-content-center align-items-center">
+          <fieldset class="rating">
+            <input type="radio" id="star5"  value="20" formControlName="note" />
+            <label class="full border-dark" for="star5"></label>
+            <input type="radio" id="star4"  value="16" formControlName="note" />
+            <label class = "full" for="star4"></label>
+            <!--<input type="radio" id="star3half" name="rating" value="3 and a half" />
+            <label class="half" for="star3half" title="Meh - 3.5 stars"></label>-->
+            <input type="radio" id="star3"  value="12" formControlName="note" />
+            <label class = "full" for="star3"></label>
+            <!--<input type="radio" id="star2half" name="rating" value="2 and a half" />
+            <label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>-->
+            <input type="radio" id="star2"  value="8" formControlName="note" />
+            <label class = "full" for="star2"></label>
+            <!--<input type="radio" id="star1half" name="rating" value="1 and a half" />
+            <label class="half" for="star1half" title="Meh - 1.5 stars"></label>-->
+            <input type="radio" id="star1"  value="4" formControlName="note" />
+            <label class = "full" for="star1"></label>
+            <!--<input type="radio" id="starhalf" name="rating" value="half" />
+            <label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>-->
+          </fieldset>
+          </div>
+          <textarea class="w-100 h-100" formControlName="evaluation"></textarea>
+          <div class="wrap mt-5 d-flex justify-content-between ">
+            <div class="col-xl-3 col-lg-3 col-sm-2 col-md-3">
+              <input type="checkbox" id="s5" class="ml-5 mt-2"  formControlName="statut"/>
+              <label class="slider-v3" for="s5"></label>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-sm-5 col-md-6 my-auto">
+              <span class="visible font-weight-bold">Visible par toute l’équipe</span>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-sm-2 col-md-3 my-auto">
+              <button [disabled]="!evaluationForm.valid" data-bs-dismiss="modal"  class="btn btn-evaluer">{{!isEvaluated?'Evaluer':'Modifier'}}</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
