@@ -91,9 +91,10 @@
      //  apiRouter.get('/koori/last', kooriCtrl.getLastKoori);
      apiRouter.get('/koori/version/:id', kooriCtrl.getKooriByVersion);
      apiRouter.get('/version', kooriCtrl.getVersions);
+
      //  apiRouter.post('/koori/', validator.koori.validate('createKoori'), kooriCtrl.createKoori);
      apiRouter.put('/koori/:id/', validator.koori.validate('updateKoori'), kooriCtrl.updateKoori);
-     /*apiRouter.route('/koori/').get(kooriCtrl.getKoori);*/
+     apiRouter.get('/koori/', kooriCtrl.getLastKoori);
 
      //Mailling
      //  apiRouter.post('/mail/koori', kooriCtrl.postMail);

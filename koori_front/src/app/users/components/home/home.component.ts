@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { IboxService } from 'src/app/admin/_services/ibox.service';
 import { Ibox } from '../../_models/ibox';
 import { Koori } from '../../_models/koori';
 import { Service } from '../../_models/Service';
@@ -17,9 +18,11 @@ export class HomeComponent implements OnInit {
   ibox: Ibox = new Ibox;
   services: Service[] = [];
 
-  constructor( private allRequest: AllRequestService) { }
+  constructor( private allRequest: AllRequestService, private iboxService: IboxService) { }
 
   ngOnInit(): void {
+
+    this.iboxService.getExemples();
 
     $(function($) {
       // js for carousel
@@ -82,5 +85,5 @@ export class HomeComponent implements OnInit {
     let target = $(ref).attr('data-target');
     $('.'+target).slideToggle('slow');
   }
-  
+
 }

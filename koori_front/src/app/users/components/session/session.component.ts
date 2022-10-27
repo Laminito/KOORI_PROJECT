@@ -33,7 +33,7 @@ export class SessionComponent implements OnInit {
     });
   }
   getSession(){
-    this.AllRequest.getAll("get/sessions/user/1").subscribe((data:any)=>{
+    this.AllRequest.getAll("sessions/user/1").subscribe((data:any)=>{
       console.log(data);
       this.sessions=data
     })
@@ -43,7 +43,7 @@ export class SessionComponent implements OnInit {
     this.sessionService.addEvaluation(this.evaluationForm.value).subscribe(
       (data: any)=>{
          if(data){
-          Swal.fire({ 
+          Swal.fire({
             icon: 'success',
             title: 'MERCI BEAUCOUP !',
             text: 'Votre évaluation a été enregistré avec succès.',

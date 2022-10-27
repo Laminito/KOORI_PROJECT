@@ -14,14 +14,14 @@ export class FeedbackService {
 
   postMailKoori(data: {}): any{
     // @ts-ignore
-    return this.http.post(`${environment.API}post/mail/koori`, data)
+    return this.http.post(`${environment.API}mail/koori`, data)
   }
   postMailIbox(data: {}): any{
     // @ts-ignore
-    return this.http.post(`${environment.API}post/mail/ibox`, data)
+    return this.http.post(`${environment.API}mail/ibox`, data)
   }
   postMailFiche(id: number, data: {}): any{
     // @ts-ignore
-    return this.http.post(`${environment.API}post/mail/fiche/${id}`, data)
+    return this.http.post(`${environment.API}mail/fiche/${id}`, data)
   }
 }

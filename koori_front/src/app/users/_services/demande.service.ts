@@ -13,7 +13,7 @@ export class DemandeService {
   constructor(private http: HttpClient) { }
 
   create(body: {}): any{
-    return this.http.post(this.envApi+'add/demande/', body)
+    return this.http.post(this.envApi+'demande/', body)
   }
 
 

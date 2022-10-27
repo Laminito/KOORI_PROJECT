@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const express = require('express');
 // const multer = require('./multer-config')
 
@@ -43,7 +42,6 @@ const bodyParser = require('body-parser');
 // const swaggerSpec = swaggerJSDoc(options);
 
 // server.use('/docs/api', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-server.use('/api', apiRouter);
 
 
 
@@ -69,8 +67,21 @@ server.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Headers', 'X - PINGOTHER', 'Content - Type ');
+    res.setHeader('Access-Control-Max-Age', 86400);
+
     next();
 });
+
+
+
+
+
+
+
+server.use('/api', apiRouter);
+
+
 
 
 
@@ -87,13 +98,4 @@ server.get('/', function(req, res) {
 
 server.listen(3001, '0.0.0.0', function() {
     console.log('server en ecoute');
-});
-=======
-const express = require('express')
-const app = express()
-const port = 3000
-
-app.get('/', (req, res) => res.send('Hello World!'))
-app.listen(port, '0.0.0.0', () => console.log(`Example app listening on port ${port}!`));
-
->>>>>>> e83f12046cab025fe45318f87acd97704f3a3c6d
+})

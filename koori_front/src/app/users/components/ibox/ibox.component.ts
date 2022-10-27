@@ -21,7 +21,7 @@ declare var _:any;
   styleUrls: ['./ibox.component.css']
 })
 export class IboxComponent implements OnInit {
-  
+
   ibox: Ibox = new Ibox()
   phases: Phase[] = []
   fiches: Fiche[] = []
@@ -84,9 +84,9 @@ export class IboxComponent implements OnInit {
     })
     return this.Data
   }
-  
+
   getIbox(){
-    this.allRequest.getAll("get/ibox/last").subscribe((data:any)=>{
+    this.allRequest.getAll("ibox/last").subscribe((data:any)=>{
       this.ibox = new Ibox().deserialize(data)
       // @ts-ignore
       for (let f of this.ibox.Fiches){
@@ -115,7 +115,7 @@ export class IboxComponent implements OnInit {
     })
   }
   getPhases(){
-    this.allRequest.getAll("get/koori/last").subscribe((data:any)=>{
+    this.allRequest.getAll("koori/last").subscribe((data:any)=>{
       this.phases = _.orderBy(new Koori().deserialize(data).Phases, ['id'], ['asc'])
     })
   }

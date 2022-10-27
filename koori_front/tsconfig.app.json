@@ -3,13 +3,9 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-<<<<<<< HEAD
-    "types": []
-=======
     "types": [
       "jquery"
     ]
->>>>>>> e83f12046cab025fe45318f87acd97704f3a3c6d
   },
   "files": [
     "src/main.ts",

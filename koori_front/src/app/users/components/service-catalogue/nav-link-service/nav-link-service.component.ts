@@ -19,6 +19,6 @@ export class NavLinkServiceComponent implements OnInit {
   ngOnInit(): void {
     this.getAllService();
   }
-  getAllService(){this.AllRequest.getAll("get/services").subscribe((data:any)=>{this.services=data})}
+  getAllService(){this.AllRequest.getAll("service").subscribe((data:any)=>{this.services=data})}
 
 }

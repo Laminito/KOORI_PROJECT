@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-import { Component, OnInit } from '@angular/core';
-=======
 import { Component, OnInit  } from '@angular/core';
 import {ActivatedRoute, Router } from '@angular/router';
->>>>>>> e83f12046cab025fe45318f87acd97704f3a3c6d
 
 @Component({
   selector: 'app-header',
@@ -11,15 +7,6 @@ import {ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-<<<<<<< HEAD
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
-=======
   menu = false
   defaultRoute: string = ""
   constructor(private  route: Router, private  actRoute: ActivatedRoute) {
@@ -35,7 +22,6 @@ export class HeaderComponent implements OnInit {
     }
     $(document.getElementsByClassName('w-75')).hide()
   }
-  
+
 }
 
->>>>>>> e83f12046cab025fe45318f87acd97704f3a3c6d

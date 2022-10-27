@@ -13,12 +13,12 @@ export class CatalogueServiceService {
   constructor(private http:HttpClient) { }
 
   getAllServices(): Observable<Service>{
-    return this.http.get<Service>(`${environment.API}get/services`)
+    return this.http.get<Service>(`${environment.API}service`)
   }
   getByLibelleService(libelle: any): Observable<Service>{
-    return this.http.get<Service>(`${environment.API}get/service/${libelle}`)
+    return this.http.get<Service>(`${environment.API}service/${libelle}`)
   }
   getByIdService(id: any): Observable<Service>{
-    return this.http.get<Service>(`${environment.API}get/service/${id}`)
+    return this.http.get<Service>(`${environment.API}service/${id}`)
   }
 }

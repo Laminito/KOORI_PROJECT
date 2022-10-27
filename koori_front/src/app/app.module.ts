@@ -1,21 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-<<<<<<< HEAD
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-=======
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -40,6 +24,5 @@ import { NgxPaginationModule } from 'ngx-pagination';
   bootstrap: [AppComponent],
   exports: [
   ]
->>>>>>> e83f12046cab025fe45318f87acd97704f3a3c6d
 })
 export class AppModule { }

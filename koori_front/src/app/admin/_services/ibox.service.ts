@@ -8,7 +8,22 @@ import { environment } from 'src/environments/environment';
 })
 export class IboxService {
 
-  constructor(private http: HttpClient) { }
+
+  urlIbox= "http://localhost:8001/api/ibox/";
+
+
+
+  constructor(private http: HttpClient) {
+
+  }
+
+  getExemples(): any{
+   return  this.http.get<any>(this.urlIbox).subscribe(
+      data => console.log
+    )
+  }
+
+
 
   getFiches(id: any): any{
     return this.http.get(`${environment.API}phase-fiche/${id}`)

@@ -42,12 +42,12 @@ export class KooriiboxComponent implements OnInit {
     this.getDescriptionIbox()
   }
   getDescriptionKoori(){
-    this.allRequest.getAll("get/koori/last","description").subscribe((data:any)=>{
+    this.allRequest.getAll("koori/last","description").subscribe((data:any)=>{
       this.koori = new Koori().deserialize(data)
     })
   }
   getDescriptionIbox(){
-    this.allRequest.getAll("get/ibox/last","description").subscribe((data:any)=>{
+    this.allRequest.getAll("ibox/last","description").subscribe((data:any)=>{
       this.ibox = new Ibox().deserialize(data)
       //console.log(this.ibox)
     })
