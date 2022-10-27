@@ -12,15 +12,15 @@ export class KooriService {
   constructor(private http: HttpClient) { }
 
   getKooriByVersion(idversion: number){
-    return this.http.get<Koori>(`${environment.API}get/koori/version/${idversion}`)
+    return this.http.get<Koori>(`${environment.API}koori/version/${idversion}`)
   }
   getVersions(): any{
-    return this.http.get(`${environment.API}get/versions`)
+    return this.http.get(`${environment.API}versions`)
   }
   updateKoori(id: any, data: object): any{
-    return this.http.put(`${environment.API}update/koori/${id}`, data)
+    return this.http.put(`${environment.API}koori/${id}`, data)
   }
   getEvaluations(id: any): any{
-    return this.http.get(`${environment.API}get/evaluation_koori/version/${id}`)
+    return this.http.get(`${environment.API}evaluation_koori/version/${id}`)
   }
 }

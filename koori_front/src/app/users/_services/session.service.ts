@@ -11,7 +11,7 @@ export class SessionService {
   constructor(private http: HttpClient) { }
 
   addEvaluation(body:any): any{
-    return this.http.post(`${environment.API}add/evaluationSession`, body)
+    return this.http.post(`${environment.API}evaluationSession`, body)
   }
 
 

@@ -12,15 +12,15 @@ export class FicheService {
 
   postFiche(data: FormData): any{
     // @ts-ignore
-    return this.http.post(`${environment.API}add/fiche`, data)
+    return this.http.post(`${environment.API}fiche`, data)
   }
   getFicheById(id: any): any{
-    return this.http.get(`${environment.API}get/fiche/${id}`)
+    return this.http.get(`${environment.API}fiche/${id}`)
   }
   updateFiche(id: any, data: FormData): any{
-    return this.http.put(`${environment.API}update/fiche/${id}`, data)
+    return this.http.put(`${environment.API}fiche/${id}`, data)
   }
   getEvaluations(id: any): any{
-    return this.http.get(`${environment.API}get/evaluation_fiche/fiche/${id}`)
+    return this.http.get(`${environment.API}evaluation_fiche/fiche/${id}`)
   }
 }

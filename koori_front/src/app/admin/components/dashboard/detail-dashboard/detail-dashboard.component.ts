@@ -92,7 +92,7 @@ export class DetailDashboardComponent implements OnInit {
     for(let i=0;i< parseInt(this.newyear) - init +1;i++){
       this.Annee.push(parseInt(this.newyear) -i)
     }
-    this.route.data.subscribe((data) => {
+    this.route.data.subscribe((data: Data) => {
       monkeyPatchChartJsTooltip();
       monkeyPatchChartJsLegend();
       this.service = data['detailService'];
@@ -595,6 +595,7 @@ export class DetailDashboardComponent implements OnInit {
       }
     }
   }
+
   getAllDemOfYear(){
     if(this.lineChartDatas[0].data && this.lineChartDatas[0].data.length !=0){
       while(this.lineChartDatas[0].data.length > 0) {
@@ -721,6 +722,7 @@ export class DetailDashboardComponent implements OnInit {
     }
     // Nos realisations annuelles suivant le statut des demandes
     let tout:[{data: number[]; label?: string;}] =[{data: [], label: ''}]
+    
     while(tout.length > 0) {
       tout.pop();
     }
@@ -759,8 +761,10 @@ export class DetailDashboardComponent implements OnInit {
     }
     setX()
   }
+
+
   getClients(){
-    this.allRequest.getAll("get/client/").subscribe((data:any)=>{
+    this.allRequest.getAll("client/").subscribe((data:any)=>{
       this.users = data
       let tabMois =[]
       for(let u of this.users){

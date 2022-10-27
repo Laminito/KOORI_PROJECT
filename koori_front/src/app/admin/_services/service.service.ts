@@ -12,15 +12,21 @@ export class ServiceService {
   private headerFormData = new HttpHeaders({Accept: '*/*'});
 
   constructor(private http: HttpClient) { }
+
   addService(body: FormData): any{
-    return this.http.post(`${environment.API}add/service/`,
+    return this.http.post(`${environment.API}service/`,
      body, { headers : this.headerFormData} );
   }
+  
   getServiceById(id: any): Observable<Service>{
-    return this.http.get<Service>(`${environment.API}get/service/${id}`)
+    return this.http.get<Service>(`${environment.API}service/${id}`)
   }
+
   updateService(id: any, body:string){
-    return this.http.put<Service>(`${environment.API}update/service/${id}`,
+    return this.http.put<Service>(`${environment.API}service/${id}`,
      body, { headers : this.headerFormData} );
   }
+
 }
+
+

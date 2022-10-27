@@ -17,10 +17,10 @@ export class DetailServiceComponent implements OnInit {
     // this.sendDemandeServices();
     // this.sendTitle(serviceLibelle)
   }
+
   getservicebyId(){
     this.route.data.subscribe((data: Data) => {
       this.service = data['detailService'];});
-    console.log(this.service)
   }
 
 

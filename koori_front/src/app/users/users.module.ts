@@ -31,6 +31,7 @@ import { TopComponent } from './components/top/top.component';
 import { FilterPipe } from './_pipes/filter.pipe';
 import { SummarizePipe } from './_pipes/summarize.pipe';
 import { SharedModule } from '../shared/shared.module';
+import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -68,6 +69,7 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule,
     CommonModule,
     UsersRoutingModule,
+    ChartsModule
   ],
   exports:[
     HomeComponent,

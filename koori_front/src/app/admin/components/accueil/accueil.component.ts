@@ -55,7 +55,7 @@ export class AccueilComponent implements OnInit {
 
   }
   getService(){
-    this.allRequest.getAll('get/services/').subscribe((data:any)=>{
+    this.allRequest.getAll('service/').subscribe((data:any)=>{
       this.services=data;
     })
   }

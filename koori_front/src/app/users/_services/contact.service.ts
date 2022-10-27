@@ -11,6 +11,6 @@ export class ContactService {
   constructor(private http: HttpClient) { }
 
   getByIdContact(id: any): any{
-    return this.http.get(`${environment.API}get/contact/${id}`)
+    return this.http.get(`${environment.API}contact/${id}`)
   }
 }

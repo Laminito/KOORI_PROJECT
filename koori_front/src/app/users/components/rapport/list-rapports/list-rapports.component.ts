@@ -44,17 +44,17 @@ export class ListRapportsComponent implements OnInit {
     this.getServices();
   }
   getServices(){
-    this.allRequest.getAll("get/services",).subscribe((data:any)=>{
+    this.allRequest.getAll("service",).subscribe((data:any)=>{
       this.services = data.map((service:Service)=> new Service().deserialize(service))
     })
   }
 
   getRapportByUser(){
-    this.allRequest.getAll("get/user/4/rapports",).subscribe( (data:any)=>{
+    this.allRequest.getAll("user/4/rapport",).subscribe( (data:any)=>{
       this.rapportByUser = data.map((rapport:Rapport)=> new Rapport().deserialize(rapport))
       this.rapportByUser.forEach(r => {
         console.log(r)
-        this.allRequest.getById('get/evaluation_note/user/4/', r.id).subscribe((data: any) => {
+        this.allRequest.getById('evaluation_note/user/4/', r.id).subscribe((data: any) => {
           if (data) {
             r.isEvaluated = true;
           }

@@ -48,6 +48,10 @@ export class HomeComponent implements OnInit {
 
     });
 
+    this.allRequest.getKoori().subscribe((koori)=>{
+      console.log(koori);
+    })
+
     this.getDescriptionKoori()
     this.getDescriptionIbox()
     this.getServices()
@@ -57,8 +61,10 @@ export class HomeComponent implements OnInit {
   getDescriptionKoori(){
     this.allRequest.getAll("koori/last","description").subscribe((data:any)=>{
       this.koori = new Koori().deserialize(data)
+      console.log(this.koori);
     })
   }
+
   getDescriptionIbox(){
     this.allRequest.getAll("ibox/last",).subscribe((data:any)=>{
       this.ibox = new Ibox().deserialize(data)

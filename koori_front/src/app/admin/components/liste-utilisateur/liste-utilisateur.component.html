@@ -102,7 +102,7 @@
           {{u?.departement}}
         </div>
         <div class="col-sm-1 col-lg-1 m-auto text-center">
-          <span class="fw-bold" *ngIf="tab[i]?.valeur === 0; else voir">
+          <span class="fw-bold" *ngIf="tab[i].valeur === 0; else voir">
             <span style="color: var(--orange )">{{tab[i].valeur}}</span> demande
           </span>
           <ng-template #voir>

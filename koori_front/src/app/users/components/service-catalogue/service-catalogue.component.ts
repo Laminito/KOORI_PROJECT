@@ -18,7 +18,7 @@ export class ServiceCatalogueComponent implements OnInit {
     this.getAllService();
   }
 
-  getAllService(){this.allRequest.getAll("get/services/").subscribe((data)=>{
+  getAllService(){this.allRequest.getAll("service/").subscribe((data)=>{
       this.services = data
   })}
 

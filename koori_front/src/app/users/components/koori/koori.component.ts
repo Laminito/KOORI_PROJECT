@@ -33,7 +33,7 @@ export class KooriComponent implements OnInit {
     this.getDescriptionKoori()
   }
   getDescriptionKoori(){
-    this.allRequest.getAll("get/koori/last").subscribe((data:any)=>{
+    this.allRequest.getAll("koori/last").subscribe((data:any)=>{
       this.koori = new Koori().deserialize(data)
       this.senddata.setId(this.koori.id)
     })

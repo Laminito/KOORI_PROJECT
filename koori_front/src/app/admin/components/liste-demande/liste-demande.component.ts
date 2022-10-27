@@ -192,7 +192,7 @@ export class ListeDemandeComponent implements OnInit {
       }
     })
     tabb.shift();
-    this.allRequest.postData('add/participants/', tabb).subscribe(data => {
+    this.allRequest.postData('participant/', tabb).subscribe(data => {
       console.log(data)
     })
   }

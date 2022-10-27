@@ -182,10 +182,10 @@ export class AddRapportComponent implements OnInit {
             rapport.append('participants[]',JSON.stringify( this.unNotifiedUser[i]))
           }
         }
-
       }
+
       if (this.usersSession.RapportId){
-        this.allRequest.updateData(`update/rapport/${this.usersSession.RapportId}`, rapport).subscribe((data: any) => {
+        this.allRequest.updateData(`rapport/${this.usersSession.RapportId}`, rapport).subscribe((data: any) => {
           if (data){
             Swal.fire({
               position: 'top-end',
@@ -199,7 +199,7 @@ export class AddRapportComponent implements OnInit {
           }
         })
       }else {
-        this.allRequest.postData('add/rapport/', rapport).subscribe((data: any) => {
+        this.allRequest.postData('rapport/', rapport).subscribe((data: any) => {
           if (data){
             Swal.fire({
               position: 'top-end',

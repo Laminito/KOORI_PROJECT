@@ -21,7 +21,7 @@ export class ItemRapportComponent implements OnInit {
   }
 
   getParticipants(){
-    this.allRquest.getAll(`/get/rapport/${this.rapportItem.id}/participants/`).subscribe(data=>{
+    this.allRquest.getAll(`rapport/${this.rapportItem.id}/participants/`).subscribe(data=>{
       this.participants= data;
     })
   }

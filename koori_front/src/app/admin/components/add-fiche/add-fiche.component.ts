@@ -66,8 +66,9 @@ export class AddFicheComponent implements OnInit {
     // @ts-ignore
     return this.addForm.controls;
   }
+  
   getPhases(){
-    this.allRequest.getAll("get/koori/last").subscribe((data:any)=>{
+    this.allRequest.getAll("koori/last").subscribe((data:any)=>{
       this.koori = new Koori().deserialize(data)
     })
   }

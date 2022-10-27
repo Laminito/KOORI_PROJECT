@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
     this.route.data.subscribe((data: Data) => {
         this.title = data['title'];
       });
-    this.allRequest.getAll('get/services/').subscribe((data: any) =>{
+    this.allRequest.getAll('service/').subscribe((data: any) =>{
       this.services =_.orderBy(data, ['id'], ['asc'])
       while(this.nbrdemande.length > 0) {
         this.nbrdemande.pop();

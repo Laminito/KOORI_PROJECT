@@ -11,15 +11,15 @@ export class IboxService {
   constructor(private http: HttpClient) { }
 
   getFiches(id: any): any{
-    return this.http.get(`${environment.API}get/phase-fiche/${id}`)
+    return this.http.get(`${environment.API}phase-fiche/${id}`)
   }
   getIbox(): any{
-    return this.http.get(`${environment.API}get/ibox`)
+    return this.http.get(`${environment.API}ibox`)
   }
   getPhasesFiches(): any{
-    return this.http.get(`${environment.API}get/phase-fiche/`)
+    return this.http.get(`${environment.API}phase-fiche/`)
   }
   getFichesByPhase(id: any): any{
-    return this.http.get(`${environment.API}get/phase/fiche/${id}`)
+    return this.http.get(`${environment.API}phase/fiche/${id}`)
   }
 }

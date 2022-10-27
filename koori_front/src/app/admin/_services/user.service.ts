@@ -14,12 +14,12 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getUserByProfil(idprofil?: number){
-    return this.http.get<User[]>(`${environment.API}get/user/profil/${idprofil}`)
+    return this.http.get<User[]>(`${environment.API}user/profil/${idprofil}`)
   }
   getUserById(id?: number){
-    return this.http.get<User>(`${environment.API}get/user/${id}`)
+    return this.http.get<User>(`${environment.API}user/${id}`)
   }
   getDemandesByUserId(id?: number){
-    return this.http.get<Demande[]>(`${environment.API}get/demandes/user/${id}`)
+    return this.http.get<Demande[]>(`${environment.API}demande/user/${id}`)
   }
 }

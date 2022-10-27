@@ -23,14 +23,14 @@ export class RapportComponent implements OnInit {
   getRapports(){
   
     
-    this.allRequest.getAll('get/rapports').subscribe((data:any)=>{
+    this.allRequest.getAll('rapport').subscribe((data:any)=>{
       this.rapports = data.map((rapport:Rapport)=> new Rapport().deserialize(rapport))
       console.log(this.rapports)
     })
   }
 
   getServices(){
-    this.allRequest.getAll("get/services",).subscribe((data:any)=>{
+    this.allRequest.getAll("service",).subscribe((data:any)=>{
       this.services = data.map((service:Service)=> new Service().deserialize(service))
     })
   }

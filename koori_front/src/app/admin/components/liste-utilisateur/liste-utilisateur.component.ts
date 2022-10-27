@@ -29,7 +29,7 @@ export class ListeUtilisateurComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProfils()
-    this.allRequest.getAll("get/user/").subscribe((data:any)=>{
+    this.allRequest.getAll("user/").subscribe((data:any)=>{
       this.users = data
       while(this.tab.length > 0) {
         this.tab.pop();
@@ -42,14 +42,15 @@ export class ListeUtilisateurComponent implements OnInit {
     })
   }
   getProfils(){
-    this.allRequest.getAll("get/profils/").subscribe((data:any)=>{
+    this.allRequest.getAll("profil/").subscribe((data:any)=>{
       this.profils = data
+      console.log(this.profils);
     })
   }
   onChange(newValue: number) {
     this.selectedDevice = newValue;
     if(this.selectedDevice ===0){
-      this.allRequest.getAll("get/user/").subscribe((data:any)=>{
+      this.allRequest.getAll("user/").subscribe((data:any)=>{
         this.users = data
         while(this.tab.length > 0) {
           this.tab.pop();

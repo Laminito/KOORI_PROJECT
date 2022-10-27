@@ -4,6 +4,7 @@ import {Observable, Subject} from "rxjs";
 import {tap} from "rxjs/operators";
 import { environment } from 'src/environments/environment';
 import { Service } from '../_models/Service';
+import { Koori } from '../_models/koori';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,10 @@ export class AllRequestService {
  }
  receiveNotification():Observable<any>{
    return this._refresh.asObservable();
+ }
+
+ getKoori():Observable<Koori>{
+  return this.http.get<Koori>(this.envApi+'koori/last')
  }
 
   getAll(resources: string, filter="*"):Observable<Service[]>{
