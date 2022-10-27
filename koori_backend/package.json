@@ -7,6 +7,7 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "nodemon index.js"
     },
+<<<<<<< HEAD
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Laminito/KOORI_PROJECT.git"
@@ -32,6 +33,21 @@
         "swagger-ui-express": "^4.5.0"
     },
     "devDependencies": {
+=======
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "chart.js": "^2.9.4",
+        "express": "^4.18.2",
+        "ng2-charts": "^2.4.3",
+        "pg": "^8.8.0",
+        "sequelize": "^6.25.3",
+        "sequelize-cli": "^6.5.1",
+        "u": "^0.1.0"
+    },
+    "devDependencies": {
+        "@types/chart.js": "^2.9.37",
+>>>>>>> e83f12046cab025fe45318f87acd97704f3a3c6d
         "nodemon": "^2.0.20"
     }
 }

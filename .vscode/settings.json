@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
+<<<<<<< HEAD
         "acteur",
         "acteurs",
         "actuelles",
@@ -508,5 +509,10 @@
         "vous",
         "xalaat",
         "yeux"
+=======
+        "devkit",
+        "koori",
+        "kooribackend"
+>>>>>>> e83f12046cab025fe45318f87acd97704f3a3c6d
     ]
 }

@@ -1,0 +1,34 @@
+<button type="button" class="btn btn-default button-2 text-success" id="button1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  <i class="fas fa-location-arrow mr-3"></i>
+  Soumettre votre evaluation
+</button>
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <h5 class="modal-title" id="staticBackdropLabel" style="margin: auto"></h5>
+        <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="container">
+            <img src="http://previews.123rf.com/images/stodolskaya/stodolskaya1511/stodolskaya151100027/49219342-Connexion-de-l-utilisateur-ou-l-acc-s-authentification-ic-ne-Banque-d'images.jpg" alt="image" />
+            <form (ngSubmit)="onSubmit()">
+              <div class="form-input"><i class="fa fa-user" aria-hidden="true"></i>
+                <input  type="text"  placeholder="Enter Username" /></div>
+              <div class="form-input"><i class="fa fa-lock" aria-hidden="true"></i>
+                <input type="password"  placeholder="Enter Password" /></div>
+              <div class="text-center">
+                <button type="submit" data-bs-dismiss="modal" id="submit" class="btn btn-evaluer mt-1">
+                  <span style="margin-left: 2%">Valider</span>
+                </button>
+              </div>
+            </form>
+            <!--<input type="submit" id="submit" value="valider"/><br>[routerLink]="['inscription']"-->
+            <a href="/inscription">Tu n’as pas de compte? Inscrit-toi !</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

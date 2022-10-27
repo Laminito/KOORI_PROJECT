@@ -25,7 +25,14 @@
             "styles": [
               "src/styles.css"
             ],
+<<<<<<< HEAD
             "scripts": []
+=======
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.js",
+              "node_modules/jquery/dist/jquery.js"
+            ]
+>>>>>>> e83f12046cab025fe45318f87acd97704f3a3c6d
           },
           "configurations": {
             "production": {

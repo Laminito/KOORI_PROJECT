@@ -1,0 +1,107 @@
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <i class="fa fa-file-alt fa-3x"></i>
+        <h5 class="modal-title" id="staticBackdropLabel">{{usersSession.RapportId?'Modifier le rapport':'Ajouter un nouveau rapport'}}</h5>
+        <button #closebutton (click)="reset()" type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+          <i class="fas fa-times fa-2x"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="mb-4">
+              <label class="form-label">Statut<label style="color: red">*</label></label>
+              <hr>
+              <input #value (change)="changeStatut($event)" class="form-check-input me-2" type="radio" value="visible" checked [formControlName]="'statut'"  id="visible">
+              <label class="form-check-label me-4" for="visible">
+                visible
+              </label>
+              <input  #value (change)="changeStatut($event)" class="form-check-input me-2" type="radio" value="invisible" [formControlName]="'statut'" id="invisible">
+              <label class="form-check-label" for="invisible">
+                invisible
+              </label>
+            </div>
+            <div class="">
+            <label class="form-label">Titre <label style="color: red">*</label></label>
+            <input [attr.readonly]="true" [ngClass]="{ 'is-invalid': submitted && f['titre'].errors }" [formControlName]="'titre'" type="text" class="input mb-2">
+            <div *ngIf="submitted && f['titre'].errors">
+              <div *ngIf="f['titre'].errors['required'] || f['titre'].errors['pattern']" class="alert-danger">Renseigner un titre</div>
+            </div>
+          </div>
+            <div class="">
+              <label class="form-label">Description <label style="color: red">*</label></label>
+              <textarea [attr.readonly]="true" [ngClass]="{ 'is-invalid': submitted && f['description'].errors }" [formControlName]="'description'" class="input mb-2"></textarea>
+              <div *ngIf="submitted && f['description'].errors">
+                <div *ngIf="f['description'].errors['required']" class="alert-danger">Renseigner une description</div>
+              </div>
+            </div>
+            <div class="">
+              <label class="form-label">Upload Rapport <label style="color: red">*</label></label>
+              <div class="dropzoneUpload mb-2">
+              <img src="https://100dayscss.com/codepen/upload.svg" class="upload-icon"  alt=""/>
+              <input type="file" [formControlName]="'file'" (change)="onSelectFile($event)" class="upload-input" />
+            </div>
+              <div *ngIf="submitted && f['file'].errors">
+                <div *ngIf="f['file'].errors['required']" class="alert-danger">Sélectionner le fichier rapport</div>
+              </div>
+            </div>
+            <div class="usersSession">
+              <label class="form-label">Participants de la Session <label style="color: red">*</label></label>
+              <div class="container participant">
+                <div *ngIf="notifiedUser.length > 0">
+                  <h6 class="form-label m-0">Participants déjà notifiés</h6>
+                  <div class="d-flex align-items-center justify-content-center">
+                    <fieldset class=" p-1  mt-2 mb-2 notified">
+                     <h6 class="mb-1"  *ngFor="let p of notifiedUser">{{p.nomComplet}} <span class="fa">&#x2713;</span></h6>
+                    </fieldset>
+                  </div>
+                </div>
+                <div class="row addremove-multiselect d-flex justify-content-between">
+                  <div class="col-lg-5 col-sm-5 col-xs-12">
+                    <div class="panel panel-default">
+                      <h6 class="form-label">{{notifiedUser.length > 0? 'Participants restants': 'Participants'}}</h6>
+                      <div class="panel-body">
+                        <select id="available-select" class="multiselect available form-control " size="8" multiple="multiple">
+                          <option *ngFor="let uS of unNotifiedUser" value="{{uS.id}}">{{uS.nomComplet}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row multiselect-controls col-lg-2 col-sm-2 col-xs-12 justify-content-center">
+                    <button  type="button" id="rightall" class="rightall  btn-block" >
+                      <i class="bi bi-chevron-double-right"></i></button>
+                    <button type="button" id="right" class="right  btn-block">
+                      <i class="bi bi-chevron-right"></i></button>
+                    <button type="button" id="left" class="left  btn-block" >
+                      <i class="bi bi-chevron-left"></i></button>
+                    <button type="button" id="leftall" class="leftall  btn-block" >
+                      <i class="bi bi-chevron-double-left"></i></button>
+                  </div>
+
+                  <div class="col-lg-5 col-sm-5 col-xs-12">
+                    <div class="panel panel-default">
+                      <h6 class="form-label">Participants à notifier</h6>
+                      <div class="panel-body">
+                        <select id="selected-select" class="multiselect selected form-control participants" size="8" multiple="multiple">
+                        </select>
+                      </div>
+                      <div *ngIf="submitted && f['participants'].errors">
+                        <div *ngIf="f['participants'].errors['required']" class="alert-danger">Veuiller Sélectionner</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="text-center mt-3">
+              <button  type="submit" class="btn btn-evaluer mt-2">{{usersSession.RapportId?'Modifier':'Ajouter'}}</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="card rounded shadow" *ngIf="sessionItem">
+  <div class="card-content">
+    <div class="card-body">
+      <span  [ngClass]="{'text-danger':!sessionItem.date_fin,'text-success':sessionItem.date_fin}">{{!sessionItem.date_fin?'Session en cours...':'Session terminée'}}</span>
+      <div class="media  align-items-center d-flex justify-content-between mt-1">
+        <div class="media-body text-center">
+          <h5 class="danger">{{sessionItem.titre}}</h5>
+        </div>
+        <div class="">
+          <button  [disabled]="!sessionItem.date_fin" [ngClass]="{'modify_rapport':sessionItem.RapportId,'opacity-25':!sessionItem.date_fin}" (click)="sendUsersSession(sessionItem)" type="button" class="draw meet add_rapport" data-bs-toggle="modal"
+                  data-bs-target="#staticBackdrop">{{!sessionItem.RapportId?'Ajouter un rapport':'Modifier le rapport'}}</button>
+          <app-add-rapport></app-add-rapport>
+        </div>
+      </div>
+      <div>
+        <p class="card-text mt-5">{{sessionItem.description | summarize: 150}}</p>
+      </div>
+      <div  class="d-flex justify-content-between align-items-center mt-5">
+        <div>
+          <h5 class="moyenne_title">Moyenne</h5>
+          <div class="">
+            <fieldset class="rating">
+              <label class="full rate"></label>
+              <label class="half rate"></label>
+              <label class="full rate"></label>
+              <label class="half rate"></label>
+              <label class="full rate"></label>
+              <label class="half rate"></label>
+              <label class="full rate"></label>
+              <label class="half rate"></label>
+              <label class="full rate"></label>
+              <label class="half rate"></label>
+            </fieldset>
+          </div>
+          <span *ngIf="sessionItem.moyenne > 0; else defaultMessage">{{sessionItem.moyenne+' / 20'+ ' <=> '+ moyennePerFive +' / 5'}}</span>
+          <ng-template #defaultMessage><td class="text-danger">Non Disponible</td></ng-template>
+        </div>
+        <div></div>
+        <button [disabled]="!sessionItem.date_fin" [ngClass]="{'opacity-25':!sessionItem.date_fin}"  [routerLink]="['/session/'+sessionItem.id]"  class="btn btn-lg  rounded add_rapport">Details</button>
+      </div>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+</div>

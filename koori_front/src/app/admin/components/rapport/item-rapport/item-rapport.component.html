@@ -1,0 +1,45 @@
+<div class="card rounded shadow">
+    <div class="card-content">
+      <div class="card-body">
+        <div class="media d-flex justify-content-between">
+          <div></div>
+          <div class="media-body text-center">
+            <h5 class="danger">{{rapportItem.titre}}</h5>
+          </div>
+          <div class="ms-2">
+              <button (click)="getSessionByRapport(rapportItem.id)"  type="button" class="btn btn-sm border-danger" data-bs-toggle="modal"
+                      data-bs-target="#staticBackdrop"><i class="fa fa-pencil-alt modify"></i></button>
+              <app-add-rapport></app-add-rapport>
+          </div>
+        </div>
+        <a (click)="openProgramme()"><img class="card-img-top mb-3 mt-3" src="assets/img/pdf.jpg" alt="Card image"></a>
+        <div>
+          <p>Nombre d'évaluateurs sur nombre de participants</p>
+          <span *ngIf="participants" class="fw-bold">{{participants[1]?.rated_Participants+' / '+participants[0]?.participants}}</span>
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h5 class="moyenne_title">Moyenne</h5>
+            <div class="">
+              <fieldset class="rating">
+                <label class="full rate"></label>
+               <label class="half rate"></label>
+              <label class="full rate"></label>
+                <label class="half rate"></label>
+               <label class="full rate"></label>
+              <label class="half rate"></label>
+               <label class="full rate"></label>
+                <label class="half rate"></label>
+              <label class="full rate"></label>
+              <label class="half rate"></label>
+              </fieldset>
+            </div>
+            <span *ngIf="rapportItem.moyenne != 0; else defaultMessage" class="fw-bold">{{rapportItem.moyenne+'/20'}}</span>
+            <ng-template #defaultMessage><span class="text-danger">Non Disponible</span></ng-template>
+          </div>
+        <button (click)="changeMessage(rapportItem.titre)" [routerLink]="[rapportItem.id, 'details']"  class="btn btn-lg  p-2 rounded">Details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+

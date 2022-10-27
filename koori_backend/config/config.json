@@ -2,22 +2,37 @@
     "development": {
         "username": "root",
         "password": "root",
+<<<<<<< HEAD
         "database": "petaaw",
         "host": "172.17.0.1",
+=======
+        "database": "root",
+        "host": "172.21.0.1",
+>>>>>>> e83f12046cab025fe45318f87acd97704f3a3c6d
         "dialect": "postgres"
     },
     "test": {
         "username": "root",
         "password": "root",
+<<<<<<< HEAD
         "database": "petaaw",
         "host": "172.17.0.1",
+=======
+        "database": "root",
+        "host": "172.21.0.1",
+>>>>>>> e83f12046cab025fe45318f87acd97704f3a3c6d
         "dialect": "postgres"
     },
     "production": {
         "username": "root",
         "password": "root",
+<<<<<<< HEAD
         "database": "petaaw",
         "host": "172.17.0.1",
+=======
+        "database": "root",
+        "host": "172.21.0.1",
+>>>>>>> e83f12046cab025fe45318f87acd97704f3a3c6d
         "dialect": "postgres"
     }
 }

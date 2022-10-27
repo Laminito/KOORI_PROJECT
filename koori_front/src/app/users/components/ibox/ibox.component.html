@@ -1,0 +1,237 @@
+<app-kooriibox-menu></app-kooriibox-menu>
+<div class=" text-center mt-3 mb-3">
+  <div class="row bar-title p-3">
+    <div class="col-10 text-center">
+      <h1 class="text-center mt-3 head">
+        <span class="font-weight-bold" style="margin-left: 10%;">{{title}}</span>
+        <span>{{suite}}</span>
+      </h1>
+    </div>
+    <div class="col-2">
+      <img src="../../assets/img/ibox-icone.png" alt="" style="margin-top: 3%;width: 30%">
+    </div>
+  </div>
+</div>
+<div class="row py-auto">
+  <h3 class="text-center m-auto">
+    <span>Ibox, un ensemble de fichiers pratiques</span>
+  </h3>
+</div>
+<div class="row row-description text-center mx-3 mt-5 pl-5 pr-5">
+  <p style="font-size: large" class="m-auto" *ngIf="ibox && !loading.isLoading()">{{ibox.description}}</p>
+  <app-nodata *ngIf="!ibox.description && !loading.isLoading()"></app-nodata>
+  <app-loading *ngIf="loading.isLoading()"></app-loading>
+</div>
+<div class="d-flex justify-content-between row-description text-center mt-5"
+     *ngIf="phases && !loading.isLoading()">
+  <div class="grid rounded mb-3 mt-3" *ngFor="let phase of phases">
+    <div class="card card__one card-haut card-5 shadow w-100 h-100">
+      <div class="image">
+        <img *ngIf="phase.avatar; else avt" src="data:image/jpeg;base64,{{phase.avatar}}"
+             class="card-img-top rounded-circle" id="card-img{{phase?.id}}" alt="...">
+        <ng-template #avt>
+          <img src="./assets/img/{{phase.titre | lowercase}}.png"
+               class="card-img-top rounded-circle my-auto" alt="...">
+        </ng-template>
+      </div>
+      <div class="card__desc card-body">
+        <h5 class="card-title text-center text-color">{{phase?.titre}}</h5>
+        <p class="card-text text-center text-wrap" title="{{phase?.description}}">
+          {{ phase.description | summarize: 100}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row row-description text-center mx-3 mt-5 pl-3 pr-3 filtre" id="filtrer">
+  <div class="col-4 phase my-auto">
+    <div class="row">
+      <div class="col-6 pb-2" *ngFor="let phase of phases">
+        <button type="button" id="{{phase?.id}}" class="btn btn-primary mt-3 mb-3 {{phase?.titre}}" (click)="getCaract(phase.titre)">
+          {{phase?.titre}}
+        </button>
+      </div>
+      <div class="col-6 pb-2">
+        <button type="button" id="phasetout" class="btn btn-primary mt-3 mb-3 active" (click)="getDefault()">
+          tout
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col col-attribut my-auto shadow">
+    <div class="row mb-5">
+      <div class="col-3">
+        <div class="row">
+          <div class="col-12">
+            <p class="fw-bold pt-2">Pre-requis</p>
+          </div>
+          <div class="col">
+            <div class="row prerequis">
+              <div class="col-6 mt-1" *ngFor="let detail of prerequisUniq">
+                <button class="btn btn-secondary" (click)="getValue($event)" id="prerequis_{{detail}}">
+                  {{detail}}
+                </button>
+              </div>
+              <div class="col-6 my-auto mt-1">
+                <button class="btn btn-secondary active" id="prerequistout" (click)="getDefaultCaract('prerequis')">
+                  tout
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="row">
+          <div class="col-12">
+            <p class="fw-bold pt-2">Durée</p>
+          </div>
+          <!--
+          <div class="col">
+            <div class="row duree">
+              <div class="col-6 mt-1" *ngFor="let detail of dureeUniq">
+                <button class="btn btn-secondary" (click)="getValue($event)" id="duree_{{detail}}">
+                  <span style="cursor:default;" *ngIf="detail['min'] !== detail['max']; else other">
+                    {{detail['min']}} - {{detail['max']}} min
+                  </span>
+                  <ng-template #other>
+                    <span style="cursor:default;">
+                      {{detail['min']}} min
+                    </span>
+                  </ng-template>
+                </button>
+              </div>
+              <div class="col-6 my-auto mt-1">
+                <button class="btn btn-secondary active" id="dureetout" (click)="getDefaultCaract('duree')">
+                  tout
+                </button>
+              </div>
+            </div>
+          </div>
+          -->
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="row">
+          <div class="col-12">
+            <p class="fw-bold pt-2">Taille de l'equipe</p>
+          </div>
+          <!--
+          <div class="col">
+            <div class="row equipe">
+              <div class="col-6 mt-1" *ngFor="let detail of equipeUniq">
+                <button class="btn btn-secondary" (click)="getValue($event)" id="equipe_{{detail}}">
+                  <span style="cursor:default;" *ngIf="detail['min'] !== detail['max']; else other">
+                    {{detail['min']}} - {{detail['max']}}
+                  </span>
+                  <ng-template #other>
+                    <span style="cursor:default;">
+                      {{detail['min']}}
+                    </span>
+                  </ng-template>
+                </button>
+              </div>
+              <div class="col-6 my-auto mt-1">
+                <button class="btn btn-secondary active" id="equipetout" (click)="getDefaultCaract('equipe')">
+                  tout
+                </button>
+              </div>
+            </div>
+          </div>
+          -->
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="row">
+          <div class="col-12">
+            <p class="fw-bold pt-2">Outils</p>
+          </div>
+          <div class="col">
+            <div class="row outils">
+              <div class="col-6 mt-1" *ngFor="let detail of outilsUniq">
+                <button class="btn btn-secondary" (click)="getValue($event)" id="outils_{{detail}}">
+                  {{detail}}
+                </button>
+              </div>
+              <div class="col-6 my-auto mt-1">
+                <button class="btn btn-secondary active" id="outilstout" (click)="getDefaultCaract('outils')">
+                  tout
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mt-4 row row-description text-center mx-3 mb-3 fiches" *ngIf="fiches.length !== 0; else nofichedata">
+  <div class="mb-4 mt-3 col-3" *ngFor="let fiche of fiches | paginate: { itemsPerPage: 4, currentPage: p }" (click)="navigate(fiche.id, fiches)">
+    <aside class="profile-card cards p-2">
+      <header>
+        <img *ngIf="fiche.avatar; else noimg"
+             src="data:image/jpeg;base64,{{fiche?.avatar}}" class="img-fluid"
+             alt="avatar">
+        <ng-template #noimg>
+          <img src="./assets/img/about_us_aim_lab.jpg" class="img-fluid" alt="img">
+        </ng-template>
+        <h3 class="mt-2" style="color: var(--vert)">{{fiche?.titre}}</h3>
+        <div class="card-text row text-center">
+          <div class="col-4 fw-normal">
+            <i class="fas fa-user-friends row-2" style="margin-right: 2%"></i>
+            <span style="cursor:default;" *ngIf="fiche?.equipeMin !== fiche?.equipeMax; else other1">{{fiche?.equipeMin}} - {{fiche?.equipeMax}} +</span>
+            <ng-template #other1>
+              <span>{{fiche?.equipeMin}}</span>
+            </ng-template>
+          </div>
+          <div class="col-4 fw-normal">
+            <i class="fas fa-clock row-2" style="margin-right: 2%"></i>
+            <span style="cursor:default;" *ngIf="fiche?.dureeMin !== fiche?.dureeMax; else other2">{{fiche?.dureeMin}} - {{fiche?.dureeMax}} min</span>
+            <ng-template #other2>
+              <span>{{fiche?.dureeMin}} min</span>
+            </ng-template>
+          </div>
+          <div class="col-4 fw-normal">
+            <i class="fas fa-tools row-2" style="margin-right: 2%"></i>{{fiche?.outils}}
+          </div>
+        </div>
+      </header>
+      <div class="profile-bio mt-2">
+        <span class="font-weight-bold" style="color: var(--orange)">Resume</span>
+        <p class="font-italic" style="margin-bottom: 0">{{ fiche.description | summarize: 50}}</p>
+        <ul *ngIf="fiche?.Etapes?.length === 0; else etapeok">
+          <h6 class="text-danger">Aucune etape n'est liee a cette fiche</h6>
+        </ul>
+        <ng-template #etapeok>
+          <ul class="list-group float-left" *ngFor="let e of fiche.Etapes; let i=index;">
+            <li class="list-group-item bg-transparent border-0">
+              <i class="fa fa-arrow-right mr-2" style="color: #FFA000"></i>
+              <span class="fw-bold fst-italic">Etape {{i + 1}}: </span>{{e.titre}}
+            </li>
+          </ul>
+        </ng-template>
+      </div>
+    </aside>
+  </div>
+  <pagination-controls (pageChange)="p = $event" class="float-right mt-3"></pagination-controls>
+</div>
+<ng-template #nofichedata>
+  <div class="row-description text-center mx-3 mb-3 fiches p-4">
+    <h5 class="text-danger text-center">Pas de donnees disponibles</h5>
+  </div>
+</ng-template>
+<div class="row" style="font-size: large">
+  <p class="titre-evaluation text-center">
+    Comment evalueriez-vous ce cours en ligne?
+  </p>
+  <p class="text-center">
+    Nous essayons continuellement d’ameliorer nos services , pourriez-vous nous aider en nous faisant savoir si vous etes satisfait de cette boite à outils
+  </p>
+  <div class="col text-center mt-3 mb-3">
+    <app-feedback></app-feedback>
+    <!--<button class="btn btn-default button-2 text-white" id="button2"><i class="fas fa-location-arrow mr-3"></i>Soumettre votre evaluation</button>-->
+  </div>
+</div>
+
+<app-top></app-top>
+

@@ -1,0 +1,17 @@
+<div class="row justify-content-center mb-5">
+  <form class="form-inline my-2 my-lg-0 navbar-form col-md-8 col-sm-12">
+    <div class="input-group input-group-search mx-auto">
+      <div class="input-group-prepend">
+        <select  class="form-select" aria-label="Default select example" (change)="selectedValue($event)">
+          <option selected value="">TOUS LES SERVICE</option>
+          <option *ngFor="let s of services" value="{{s.libelle}}">{{s.libelle}}</option>
+        </select>
+      </div>
+      <input type="search" name="search" autocomplete="off" class="form-control" placeholder="Rechercher un rapport par titre..." aria-label="Search" aria-describedby="search-button-addon">
+      <div class="input-group-append">
+        <button class="btn" type="submit" id="search-button-addon"><i class="fa fa-search"></i></button>
+      </div>
+    </div>
+  </form>
+</div>
+

@@ -1,0 +1,18 @@
+.form-control{
+  /*padding: 0 10px 0 5px;*/
+  font-size: 15px;
+  font-weight: 500;
+  border: 2px solid var(--vert);
+  box-shadow: none;
+  min-height: 40px;
+  height: auto;
+  border-radius: 5px !important;
+  width: 32%;
+  float: right;
+}
+.form-select{
+  color: grey;
+}
+.table>:not(:first-child) {
+  border-top: none;
+}

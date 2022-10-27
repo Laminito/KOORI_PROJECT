@@ -1,0 +1,50 @@
+@import url(https://yui.yahooapis.com/pure/0.3.0/pure-min.css);
+
+.titleinfo{
+  color: var(--vert);
+  font-family: 'Revalia';
+  font-weight: bold;
+}
+.border-infoo{
+  border: var(--border-size) var(--fond);
+  box-shadow:1rem 0.5rem 0.5rem 0.5rem white;
+}
+.btn-color{
+  color: var(--fond);
+  background-color: var(--orange);
+}
+textarea, input {
+  background: #ECECEC;
+  box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.17);
+  border-radius: 5px;
+  border: none;
+  margin-top: 10px;
+}
+textarea:hover , input:hover {
+  color: gray;
+  border-color: var(--vert);
+  border: solid 1px var(--vert);
+  outline: none;
+}
+textarea:focus , input:focus{
+  color: gray;
+  border-color: var(--vert);
+  border: solid 1px var(--vert);
+  box-shadow: 0 0 0 0.1rem var(--vert);
+  outline: none;
+}
+
+/* .btn-color{
+  color: var(--vert);
+  border: 1px solid var(--vert);
+  border-radius: 4px ;
+  font-weight: bolder;
+}
+.btn-color:hover{
+  background-color: var(--orange);
+  color: #FFFFFF;
+  border: 1px solid var(--orange);
+  border-radius: 4px ;
+  box-shadow: 0 10px 10px #4646463f, 0 10px 10px #46464611;
+  font-weight: bolder;
+} */

@@ -1,0 +1,93 @@
+
+  
+  .fa-close{
+    color: red;
+  }
+  .fa-file-alt{
+    color: var(--orange);
+  }
+  .modal-content{
+    border-radius: 2%;
+  }
+  .modal-header{
+    background: #EFEFEF;
+    border-radius: 5px;
+  }
+  .btn-evaluer{
+    background: var(--vert);
+    box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.17);
+    border-radius: 5px;
+    color: var(--white);
+  }
+  .wrap {
+    position: relative;
+  }
+  .form-label {
+    float: left;
+  }
+  label{
+    color: rgba(68, 68, 68, 0.6);
+  }
+  
+  textarea, input {
+    background: #ECECEC;
+    box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.17);
+    border-radius: 5px;
+    border: none;
+  }
+  textarea:hover, input:hover {
+    color: gray;
+    border-color: var(--vert);
+    border: solid 1px var(--vert);
+    outline: none;
+  }
+  textarea:focus, input:focus {
+    color: gray;
+    border-color: var(--vert);
+    border: solid 1px var(--vert);
+    box-shadow: 0 0 0 0.1rem var(--vert);
+    outline: none;
+  }
+  .btn-default:focus{
+    box-shadow: 0 0 0 0.1rem var(--orange);
+  }
+  .input{
+    display: block;
+    width: 100%;
+    min-height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+  
+  .dropzone {
+    width: 100%;
+    height: 50%;
+    border: 1px dashed #999;
+    border-radius: 3px;
+    text-align: center;
+  }
+  .upload-icon {
+    margin: 10px 2px 2px 2px;
+  }
+  .upload-input {
+    position: relative;
+    top: -22px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+  
+  // propriete d'un service
+  

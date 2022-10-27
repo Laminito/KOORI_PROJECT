@@ -1,0 +1,53 @@
+@import "../liste-utilisateur.component";
+.btn:focus{
+  box-shadow: 0 0 0 0.1rem var(--white);
+  outline: none;
+}
+.container-profile {
+  height: 100%
+}
+
+.card {
+  width: 380px;
+  border: none;
+  border-radius: 15px;
+  padding: 8px;
+  background-color: #fff;
+  position: relative;
+  height: 370px
+}
+
+.upper {
+  height: 100px
+}
+
+.upper img {
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px
+}
+
+.user {
+  position: relative
+}
+.scroller {
+  height: 150px;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-padding: 40px;
+  scroll-snap-align: start;
+}
+.profile img {
+  height: 100%;
+  width: 100%;
+}
+
+.profile {
+  /*border: 3px solid var(--vert);*/
+  border-radius: 50%
+}
+
+.stats span {
+  font-size: 29px
+}
+

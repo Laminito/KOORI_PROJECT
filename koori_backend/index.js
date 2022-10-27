@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const express = require('express');
 // const multer = require('./multer-config')
 
@@ -87,3 +88,12 @@ server.get('/', function(req, res) {
 server.listen(3001, '0.0.0.0', function() {
     console.log('server en ecoute');
 });
+=======
+const express = require('express')
+const app = express()
+const port = 3000
+
+app.get('/', (req, res) => res.send('Hello World!'))
+app.listen(port, '0.0.0.0', () => console.log(`Example app listening on port ${port}!`));
+
+>>>>>>> e83f12046cab025fe45318f87acd97704f3a3c6d

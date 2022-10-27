@@ -1,0 +1,42 @@
+.form-control{
+  padding: 0 10px 0 20px;
+  font-size: 15px;
+  font-weight: 500;
+  border: 2px solid var(--vert);
+  box-shadow: none;
+  min-height: 40px;
+  height: auto;
+  border-radius: 5px !important;
+  width: 30%;
+}
+.form-select{
+  color: var(--vert);
+}
+
+.row-container {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  /*cursor: pointer;*/
+}
+
+.row-container:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+button {
+  position: relative;
+  bottom: 1px;
+}
+@media screen and (max-width: 992px) {
+  .le-hide {
+    visibility: hidden;
+  }
+}
+strong{
+  font-size: revert;
+  color: gray;
+}
+
+.btn:focus{
+  box-shadow: 0 0 0 0.1rem var(--white);
+  outline: none;
+}

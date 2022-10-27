@@ -1,0 +1,61 @@
+@import "../kooriibox/kooriibox.component.css";
+
+.text {
+  text-transform: uppercase;
+  background: linear-gradient(to right, var(--vert) 0%, var(--orange) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: large;
+}
+.fa-close{
+  color: red;
+}
+.fa-file-alt{
+  color: var(--orange);
+}
+.modal-content{
+  border-radius: 2%;
+}
+.modal-header{
+  background: #EFEFEF;
+  border-radius: 5px;
+}
+.btn-evaluer{
+  background: var(--vert);
+  box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.17);
+  border-radius: 5px;
+  color: var(--white);
+  font-size: larger;
+}
+.wrap {
+  position: relative;
+}
+.form-label {
+  float: left;
+}
+label{
+  color: rgba(68, 68, 68, 0.6);
+}
+
+textarea, input {
+  background: #ECECEC;
+  box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.17);
+  border-radius: 5px;
+  border: none;
+}
+textarea:hover, input:hover {
+  color: gray;
+  border-color: var(--vert);
+  border: solid 1px var(--vert);
+  outline: none;
+}
+textarea:focus, input:focus {
+  color: gray;
+  border-color: var(--vert);
+  border: solid 1px var(--vert);
+  box-shadow: 0 0 0 0.1rem var(--vert);
+  outline: none;
+}
+.btn-default:focus{
+  box-shadow: 0 0 0 0.1rem var(--orange);
+}

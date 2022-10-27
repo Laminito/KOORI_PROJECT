@@ -1,0 +1,7 @@
+.scroller {
+  height: 180px;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-padding: 40px;
+  scroll-snap-align: start;
+}
