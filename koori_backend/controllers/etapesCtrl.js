@@ -3,8 +3,8 @@ const validationResults = require('../validationResult')
 const _ = require('lodash')
 const models = require('../models')
 let asyncLib = require('async');
-module.exports = {
 
+module.exports = {
     getEtapes: (req, res) => {
         var limit = parseInt(req.query.limit);
         var offset = parseInt(req.query.offset);

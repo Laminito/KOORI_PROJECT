@@ -14,6 +14,7 @@ const smtpTransport = nodemailer.createTransport({
         pass: process.env.GMAIL_PASS
     }
 });
+
 module.exports = {
     getLastKoori: (req, res) => {
         let headerAuth = req.headers['filter'];

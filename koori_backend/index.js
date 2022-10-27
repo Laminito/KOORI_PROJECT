@@ -1,11 +1,56 @@
 const express = require('express');
+// const multer = require('./multer-config')
+
 // const sequelize = require('./util/database');
 const server = express();
 const apiRouter = require('./routes/apiRouter').router;
+// const apiRouter = require('./routes/userRoute');
 const bodyParser = require('body-parser');
+// const swaggerJSDoc = require('swagger-jsdoc');
+// const swaggerUi = require('swagger-ui-express');
+
+
+
+// const swaggerDefinition = {
+//     openapi: '3.0.0',
+//     info: {
+//         title: 'Express API for JSONPlaceholder',
+//         version: '1.0.0',
+//         description: 'This is a REST API application made with Express. It retrieves data from JSONPlaceholder.',
+//         license: {
+//             name: 'Sonatel',
+//             url: 'https://sonatel.sn/',
+//         },
+//         contact: {
+//             name: 'JSONPlaceholder',
+//             url: 'https://jsonplaceholder.typicode.com',
+//         },
+//     },
+//     servers: [{
+//         url: 'http://localhost:8001',
+//         description: 'Development server',
+//     }, ],
+// };
+
+
+// const options = {
+//     swaggerDefinition,
+//     // Paths to files containing OpenAPI definitions
+//     apis: ['./routes/*.js'],
+// };
+
+// const swaggerSpec = swaggerJSDoc(options);
+
+// server.use('/docs/api', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+server.use('/api', apiRouter);
+
+
+
+
 const cors = require('cors')
 const session = require('express-session');
 const User = require('./models/user');
+
 // const Keycloak = require('keycloak-connect');
 const memoryStore = new session.MemoryStore();
 server.use(session({
@@ -18,24 +63,21 @@ server.use(session({
 // server.use(keycloak.middleware());
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
-server.use(cors())
+server.use(cors());
 server.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     next();
 });
-server.use('/api', apiRouter);
-// server.get('/', keycloak.protect(), function(req, res) {
-//     res.setHeader('Content-Type', 'text/html');
-//     res.status(200).send('<h1>Bonjour sur le serveur de kooriibox</h1>');
-// });
-// server.get('/rassoul', function(req, res) {
-//     res.setHeader('Content-Type', 'text/html');
-//     res.status(200).send('yes');
-// });
 
-// server.use('/users', require('./routes/userRoute'));
+
+
+
+// server.use('/api', apiRouter);
+// server.use('/test', apiRouter);
+
+
 
 server.get('/', function(req, res) {
     res.setHeader('Content-Type', 'text/html');
@@ -45,15 +87,3 @@ server.get('/', function(req, res) {
 server.listen(3001, '0.0.0.0', function() {
     console.log('server en ecoute');
 });
-
-// (async() => {
-//     try {
-//         await sequelize.sync({ force: false }
-//             //Reset db every time
-//         );
-//         app.listen(3001, '0.0.0.0');
-//         // DEF in docker.compose.yml
-//     } catch (error) {
-//         console.log(error);
-//     }
-// })();

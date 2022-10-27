@@ -25,9 +25,10 @@
  exports.router = (() => {
      const apiRouter = express.Router();
      // Profils routes
-     apiRouter.get('/profil/', profilCtrl.getApropos);
-     apiRouter.post('/profil/', validator.profil.validate('createProfil'), profilCtrl.createApropos)
-     apiRouter.put('/profil/:id/', validator.profil.validate('updateProfil'), profilCtrl.updateApropos);
+
+     apiRouter.get('/profil/', profilCtrl.getProfils);
+     apiRouter.post('/profil/', validator.profil.validate('createProfil'), profilCtrl.createProfil)
+     apiRouter.put('/profil/:id/', validator.profil.validate('updateProfil'), profilCtrl.updateProfil);
      //  apiRouter.get('/profil/:id/', profilCtrl.getProfilById);
      //  apiRouter.delete('/profil/:id/', profilCtrl.deleteProfil);
 
@@ -69,7 +70,7 @@
 
 
      //Etapes
-     apiRouter.route('/etape/').get(etapesCtrl.getEtapes);
+     apiRouter.get('/etape/', etapesCtrl.getEtapes);
      apiRouter.post('/etape/', validator.etape.validate('createEtape'), etapesCtrl.createEtape);
      apiRouter.put('/etape/:id', validator.etape.validate('updateEtape'), etapesCtrl.updateEtape);
 
@@ -89,18 +90,18 @@
      //Koori routes
      //  apiRouter.get('/koori/last', kooriCtrl.getLastKoori);
      apiRouter.get('/koori/version/:id', kooriCtrl.getKooriByVersion);
-     apiRouter.get('/versions', kooriCtrl.getVersions);
-     apiRouter.post('/koori/', validator.koori.validate('createKoori'), kooriCtrl.createKoori);
+     apiRouter.get('/version', kooriCtrl.getVersions);
+     //  apiRouter.post('/koori/', validator.koori.validate('createKoori'), kooriCtrl.createKoori);
      apiRouter.put('/koori/:id/', validator.koori.validate('updateKoori'), kooriCtrl.updateKoori);
      /*apiRouter.route('/koori/').get(kooriCtrl.getKoori);*/
 
      //Mailling
-     apiRouter.post('/mail/koori', kooriCtrl.postMail);
+     //  apiRouter.post('/mail/koori', kooriCtrl.postMail);
      apiRouter.post('/mail/ibox', kooriCtrl.postMailIbox);
      apiRouter.post('/mail/fiche/:id', kooriCtrl.postMailFiche);
 
      //ibox routes
-     apiRouter.get('/ibox/last', iboxCtrl.getLastIbox);
+     //  apiRouter.get('/ibox/last', iboxCtrl.getLastIbox);
      apiRouter.get('/ibox/', iboxCtrl.getIbox);
      apiRouter.put('/ibox/:id/', validator.koori.validate('updateIbox'), iboxCtrl.updateIbox);
 
@@ -166,15 +167,15 @@
 
      //Phase routes
      apiRouter.post('/phase/', multer, validator.rapport_phase.validate('createPhase'), phaseCtrl.createPhase);
-     apiRouter.get('/phases/', phaseCtrl.getPhases);
+     apiRouter.get('/phase/', phaseCtrl.getPhases);
      apiRouter.put('/phase/:id', multer, validator.rapport_phase.validate('updatePhase'), phaseCtrl.updatePhase);
      //  apiRouter.put('/phase/:id/koori/:id1', phaseCtrl.updatePhaseKoori);
 
      //Demande routes
      apiRouter.post('/demande/', validator.demande.validate('createDemande'), demandeCtrl.createDemande);
-     apiRouter.post('/participants/', demandeCtrl.addParticipantsToSession);
-     apiRouter.get('/demandes/', demandeCtrl.getDemande);
-     apiRouter.get('/service/:id/demandes/', demandeCtrl.getDemandeByService);
+     apiRouter.post('/participant/', demandeCtrl.addParticipantsToSession);
+     apiRouter.get('/demande/', demandeCtrl.getDemande);
+     apiRouter.get('/service/:id/demande/', demandeCtrl.getDemandeByService);
      apiRouter.put('/demande/:id/', demandeCtrl.updateDemande);
      apiRouter.put('/statutdemande/:id/', demandeCtrl.updateStatutDemande);
 

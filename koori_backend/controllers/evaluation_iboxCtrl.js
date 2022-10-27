@@ -4,6 +4,7 @@ const _ = require('lodash')
 const models = require('../models');
 let asyncLib = require('async');
 const { Op } = require("sequelize");
+
 module.exports = {
     createEvaluation_ibox: (req, res) => {
         const idUser = parseInt(req.params.id);
@@ -41,8 +42,7 @@ module.exports = {
                 models.EvaluationIbox.findOne({
                     attributes: ['id', 'evaluation', 'UserId', 'IboxId'],
                     where: {
-                        [Op.and]: [{ UserId: idUser }, { IboxId: idIbox }]
-                    },
+                        [Op.and]: [{ UserId: idUser }, { IboxId: idIbox }] },
                 }).then(
                     (evaluation_kooriFound) => {
                         callback(null, evaluation_kooriFound)
@@ -87,8 +87,7 @@ module.exports = {
                     }
                 ],
                 where: {
-                    [Op.and]: [{ UserId: idUser }, { IboxId: idIbox }]
-                },
+                    [Op.and]: [{ UserId: idUser }, { IboxId: idIbox }] },
             }).then((userEvaluation_koori) => {
                 if (userEvaluation_koori) {
                     res.status(200).json(userEvaluation_koori)

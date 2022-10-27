@@ -4,6 +4,7 @@ const _ = require('lodash')
 const models = require('../models')
 let asyncLib = require('async');
 const { body } = require('express-validator');
+
 module.exports = {
 
     getSujets: (req, res) => {
@@ -95,7 +96,6 @@ module.exports = {
         ], (err, result) => {
             return res.status(201).json(result);
         })
-
     },
 
     getSujetById: (req, res) => {
@@ -113,7 +113,6 @@ module.exports = {
             .catch((err) => {
                 return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
             })
-
     },
 
     deleteSujet: (req, res) => {
@@ -134,7 +133,4 @@ module.exports = {
                 });
             })
     }
-
-
-
 }

@@ -2,12 +2,8 @@
 const models = require("../models");
 const asyncLib = require("async");
 const validationResults = require("../validationResult");
-
-
-
-
-
 const { Op } = require("sequelize");
+
 module.exports = {
 
     getUsers: (req, res) => {

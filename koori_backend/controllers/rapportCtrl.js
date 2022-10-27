@@ -15,8 +15,6 @@ const smtpTransport = nodemailer.createTransport({
     }
 });
 
-
-
 module.exports = {
 
     createRapport: (req, res) => {

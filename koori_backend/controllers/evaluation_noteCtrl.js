@@ -26,7 +26,7 @@ module.exports = {
                     }).then((evaluation_noteResult) => {
                         callback2(null, evaluation_noteResult)
                     }).catch((err) => {
-                        return res.status(500).json({ 'error': 'Erreur  d/ajout: ' + err })
+                        return res.status(500).json({ 'error': 'Erreuree dajout: ' + err })
                     })
                 }
             },
@@ -90,8 +90,7 @@ module.exports = {
                 models.Evaluation_note.findOne({
                     attributes: ['id', 'evaluation', 'note', 'statut', 'UserId', 'RapportId'],
                     where: {
-                        [Op.and]: [{ UserId: idUser }, { RapportId: idRapport }]
-                    },
+                        [Op.and]: [{ UserId: idUser }, { RapportId: idRapport }] },
                 }).then(
                     (evaluation_noteFound) => {
                         callback(null, evaluation_noteFound)
@@ -127,8 +126,7 @@ module.exports = {
         let whereCondition = {}
         if (idRapport) {
             whereCondition = {
-                [Op.and]: [{ UserId: idUser }, { RapportId: idRapport }]
-            }
+                [Op.and]: [{ UserId: idUser }, { RapportId: idRapport }] }
         } else {
             whereCondition = { UserId: idUser }
         }

@@ -3,6 +3,7 @@ const validationResults = require('../validationResult')
 const _ = require('lodash')
 const models = require('../models');
 let asyncLib = require('async');
+
 module.exports = {
     createPhase: (req, res) => {
         asyncLib.waterfall([

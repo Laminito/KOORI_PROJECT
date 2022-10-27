@@ -1,47 +1,45 @@
 // Imports
-const validationResults = require('../validationResult')
-const _ = require('lodash')
+// const validationResults = require('../validationResult')
+// const _ = require('lodash')
 const models = require('../models')
 let asyncLib = require('async');
-// module.exports = {
 
-exports.getApropos = (req, res) => {
-    var limit = parseInt(req.query.limit);
-    var offset = parseInt(req.query.offset);
-    models.Apropos.findAll({
-            attributes: ['id', 'description', 'mission'],
-            limit: (!isNaN(limit)) ? limit : null,
-            offset: (!isNaN(offset)) ? offset : null,
-        }).then((apropos) => {
-            res.status(200).json(apropos)
+module.exports = {
+
+    getApropos: (req, res) => {
+        var limit = parseInt(req.query.limit);
+        var offset = parseInt(req.query.offset);
+        models.Apropos.findAll({
+                attributes: ['id', 'description', 'mission'],
+                limit: (!isNaN(limit)) ? limit : null,
+                offset: (!isNaN(offset)) ? offset : null,
+            }).then((apropos) => {
+                res.status(200).json(apropos)
+            })
+            .catch((err) => {
+                return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
+            })
+
+    },
+
+
+    //----------------------------------------------------------------------------
+
+    createApropos: (req, res) => {
+
+        let description = req.body.description
+        let mission = req.body.mission
+        models.Apropos.create({
+            description: description,
+            mission: mission
+        }).then((aproposResult) => {
+            res.send(aproposResult);
+        }).catch((err) => {
+            return res.status(500).json({ 'error': 'Erreur dajout ' + err })
         })
-        .catch((err) => {
-            return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
-                //res.send("Bienvenu dans le controller aproposCtrl.js!!!!");
-        })
-        // res.send("Bienvenu dans le controller aproposCtrl.js!!!!");
+    },
 
-};
-
-
-//----------------------------------------------------------------------------
-
-exports.createApropos = (req, res, next) => {
-
-    let description = req.body.description
-    let mission = req.body.mission
-    models.Apropos.create({
-        description: description,
-        mission: mission
-    }).then((aproposResult) => {
-        res.send(aproposResult);
-    }).catch((err) => {
-        return res.status(500).json({ 'error': 'Erreur dajout ' + err })
-    })
-    next();
-};
-
-exports.updateApropos = (req, res) => {
+    updateApropos: (req, res) => {
         const description = req.body.description
         const mission = req.body.mission
 
@@ -81,5 +79,5 @@ exports.updateApropos = (req, res) => {
             return res.status(201).json(result);
         })
 
-    }
-    // }
+    },
+}
