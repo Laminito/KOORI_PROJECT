@@ -38,7 +38,7 @@ services:
       restart: always
       volumes:
       # - database-data:/var/lib/postgresql/data/
-      - ./Data/postgresDB:/var/lib/postgresql/data
+      - ./Data/postgresDB:/var/lib/postgresql/storage
       networks:
         koori_net:
           ipv4_address: 192.168.0.2
