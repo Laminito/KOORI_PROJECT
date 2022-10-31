@@ -57,7 +57,7 @@ services:
 
 
       ports:
-        - "9090:80"
+        - "5050:80"
       depends_on:
         - postgres_db
       networks:
