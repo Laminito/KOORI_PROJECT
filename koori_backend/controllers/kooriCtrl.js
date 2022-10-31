@@ -41,6 +41,22 @@ module.exports = {
                 return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
             })
     },
+
+    getKoori: (req, res) => {
+        models.Koori.findOne({
+                order: [
+                    ['id', 'DESC']
+                ],
+            }).then((koori) => {
+                res.status(200).json(koori)
+            })
+            .catch((err) => {
+                return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
+            })
+    },
+
+
+
     getKooriByVersion: (req, res) => {
         const versionId = req.params.id
         models.Koori.findOne({

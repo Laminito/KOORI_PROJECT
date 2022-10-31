@@ -1,13 +1,12 @@
 const express = require('express');
 // const multer = require('./multer-config')
-
-// const sequelize = require('./util/database');
-const server = express();
-const apiRouter = require('./routes/apiRouter').router;
 // const apiRouter = require('./routes/userRoute');
-const bodyParser = require('body-parser');
 // const swaggerJSDoc = require('swagger-jsdoc');
 // const swaggerUi = require('swagger-ui-express');
+// const sequelize = require('./util/database');
+const apiRouter = require('./routes/apiRouter');
+const bodyParser = require('body-parser');
+const server = express();
 
 
 

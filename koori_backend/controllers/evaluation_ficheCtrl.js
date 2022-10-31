@@ -42,7 +42,8 @@ module.exports = {
                 models.EvaluationFiche.findOne({
                     attributes: ['id', 'evaluation', 'UserId', 'FicheId'],
                     where: {
-                        [Op.and]: [{ UserId: idUser }, { FicheId: idFiche }] },
+                        [Op.and]: [{ UserId: idUser }, { FicheId: idFiche }]
+                    },
                 }).then(
                     (evaluation_kooriFound) => {
                         callback(null, evaluation_kooriFound)
@@ -87,7 +88,8 @@ module.exports = {
                     }
                 ],
                 where: {
-                    [Op.and]: [{ UserId: idUser }, { FicheId: idFiche }] },
+                    [Op.and]: [{ UserId: idUser }, { FicheId: idFiche }]
+                },
             }).then((userEvaluation_koori) => {
                 if (userEvaluation_koori) {
                     res.status(200).json(userEvaluation_koori)

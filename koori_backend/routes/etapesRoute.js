@@ -1,0 +1,13 @@
+const express = require('express')
+const etapesCtrl = require('../controllers/etapesCtrl');
+const validator = require('../validationsCheck/validationFilesRequire')
+const multer = require('../multer-config')
+const User = require("../models/user");
+
+//Etapes
+const etapeRoute = new express.Router()
+etapeRoute.get('/etape/', etapesCtrl.getEtapes);
+etapeRoute.post('/etape/', validator.etape.validate('createEtape'), etapesCtrl.createEtape);
+etapeRoute.put('/etape/:id', validator.etape.validate('updateEtape'), etapesCtrl.updateEtape);
+
+module.exports = etapeRoute
