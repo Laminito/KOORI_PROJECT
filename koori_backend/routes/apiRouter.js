@@ -88,7 +88,7 @@
      apiRouter.put('/fiche/:id/', multer, validator.fiche.validate('updateFiche'), ficheCtrl.updateFiche);
 
      //Koori routes
-     //  apiRouter.get('/koori/last', kooriCtrl.getLastKoori);
+     apiRouter.get('/koori/last/', kooriCtrl.getLastKoori);
      apiRouter.get('/koori/version/:id', kooriCtrl.getKooriByVersion);
      apiRouter.get('/version', kooriCtrl.getVersions);
 
@@ -98,11 +98,11 @@
 
      //Mailling
      //  apiRouter.post('/mail/koori', kooriCtrl.postMail);
-     apiRouter.post('/mail/ibox', kooriCtrl.postMailIbox);
+     apiRouter.post('/mail/ibox/', kooriCtrl.postMailIbox);
      apiRouter.post('/mail/fiche/:id', kooriCtrl.postMailFiche);
 
      //ibox routes
-     //  apiRouter.get('/ibox/last', iboxCtrl.getLastIbox);
+     apiRouter.get('/ibox/last', iboxCtrl.getLastIbox);
      apiRouter.get('/ibox/', iboxCtrl.getIbox);
      apiRouter.put('/ibox/:id/', validator.koori.validate('updateIbox'), iboxCtrl.updateIbox);
 

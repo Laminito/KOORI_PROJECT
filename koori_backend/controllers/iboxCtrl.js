@@ -1,5 +1,7 @@
 // Imports
 const validationResults = require('../validationResult')
+    // const Ibox = require('../models/ibox');
+const Ibox = require('../models').Ibox
 const models = require('../models');
 let asyncLib = require('async');
 
