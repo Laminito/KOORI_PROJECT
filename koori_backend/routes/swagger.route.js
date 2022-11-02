@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router({ mergeParams: true });
 
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('../swagger.json');
+const swaggerDocument = require('../swagger');
 
 router.use('/api-docs-ui', function(req, res, next) {
     swaggerDocument.host = req.get('host');
