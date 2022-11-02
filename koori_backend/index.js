@@ -1,24 +1,34 @@
+// const router = require('./routes/apiRouter')
+// const userRoute = require('./routes/userRoute');
 const express = require('express');
 const apiRouter = require('./routes/apiRouter');
-// const userRoute = require('./routes/userRoute');
 const bodyParser = require('body-parser');
-const server = express();
-
-const swaggerUi = require('swagger-ui-express')
-const swaggerFile = require('./swagger_output.json')
-    // const router = require('./routes/apiRouter')
-
-
-
-server.use('/api', apiRouter);
-// server.use('/api', userRoute);
-server.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
-
-
-
 const cors = require('cors')
 const session = require('express-session');
 const User = require('./models/user');
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./swagger_output.json')
+
+const server = express();
+
+
+server.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    next();
+});
+
+// server.use(cors());
+server.options("*", cors())
+server.use(bodyParser.urlencoded({ extended: true }));
+server.use(bodyParser.json());
+server.use('/api', apiRouter);
+server.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
+    // server.use('/api', userRoute);
+
+
+
 
 // const Keycloak = require('keycloak-connect');
 const memoryStore = new session.MemoryStore();
@@ -30,15 +40,6 @@ server.use(session({
 }));
 // const keycloak = new Keycloak({ store: memoryStore })
 // server.use(keycloak.middleware());
-server.use(bodyParser.urlencoded({ extended: true }));
-server.use(bodyParser.json());
-server.use(cors());
-server.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    next();
-});
 
 
 

@@ -9,9 +9,9 @@
 
  const rapportRoute = new express.Router();
  rapportRoute.post('/rapport/', multer, validator.rapport_phase.validate('createRapport'), rapportCtrl.createRapport)
- rapportRoute.get('/rapport/', rapportCtrl.getAllRapport)
  rapportRoute.put('/rapport/:id/', multer, validator.rapport_phase.validate('updateRapport'), rapportCtrl.updateRapport);
  rapportRoute.get('/rapport/:id/', rapportCtrl.getRapportById);
  rapportRoute.get('/user/:id/rapport', rapportCtrl.getRapportsByUser);
+ rapportRoute.get('/rapport/', rapportCtrl.getAllRapport)
 
  module.exports = rapportRoute

@@ -6,8 +6,8 @@ const User = require("../models/user");
 
 //Etapes
 const etapeRoute = new express.Router()
-etapeRoute.get('/etape/', etapesCtrl.getEtapes);
 etapeRoute.post('/etape/', validator.etape.validate('createEtape'), etapesCtrl.createEtape);
 etapeRoute.put('/etape/:id', validator.etape.validate('updateEtape'), etapesCtrl.updateEtape);
+etapeRoute.get('/etape/', etapesCtrl.getEtapes);
 
 module.exports = etapeRoute

@@ -6,11 +6,11 @@ const User = require("../models/user");
 //Koori routes
 
 const kooriRoute = new express.Router();
-kooriRoute.get('/koori/', kooriCtrl.getKoori);
+kooriRoute.post('/koori/', validator.koori.validate('createKoori'), kooriCtrl.createKoori);
 kooriRoute.get('/koori/last', kooriCtrl.getLastKoori);
 kooriRoute.get('/koori/version/:id', kooriCtrl.getKooriByVersion);
 kooriRoute.get('/version', kooriCtrl.getVersions);
-kooriRoute.post('/koori/', validator.koori.validate('createKoori'), kooriCtrl.createKoori);
 kooriRoute.put('/koori/:id/', validator.koori.validate('updateKoori'), kooriCtrl.updateKoori);
+kooriRoute.get('/koori/', kooriCtrl.getKoori);
 
 module.exports = kooriRoute

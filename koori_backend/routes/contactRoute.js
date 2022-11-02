@@ -9,8 +9,8 @@ const User = require("../models/user");
 const contactRoute = new express.Router();
 
 contactRoute.post('/contact/', validator.contact.validate('createContact'), contactCtrl.createContact);
-contactRoute.get('/contact/', contactCtrl.getContact);
 contactRoute.get('/contact/:id', contactCtrl.getContactById);
 contactRoute.put('/contact/:id', validator.contact.validate('updateContact'), contactCtrl.updateContact);
+contactRoute.get('/contact/', contactCtrl.getContact);
 
 module.exports = contactRoute

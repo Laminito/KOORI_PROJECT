@@ -6,9 +6,9 @@ const User = require("../models/user");
 
 //Fiche routes
 const ficheRoute = new express.Router()
-ficheRoute.get('/fiche/', ficheCtrl.getFiches);
-ficheRoute.get('/fiche/:id/', ficheCtrl.getFicheById);
 ficheRoute.post('/fiche/', multer, validator.fiche.validate('createFiche'), ficheCtrl.createFiche)
+ficheRoute.get('/fiche/:id/', ficheCtrl.getFicheById);
 ficheRoute.put('/fiche/:id/', multer, validator.fiche.validate('updateFiche'), ficheCtrl.updateFiche);
+ficheRoute.get('/fiche/', ficheCtrl.getFiches);
 
 module.exports = ficheRoute

@@ -34,6 +34,7 @@ module.exports = (sequelize, DataTypes) => {
         ProfilId: DataTypes.INTEGER,
         nomComplet: DataTypes.STRING,
         email: DataTypes.STRING,
+        password: DataTypes.STRING,
         profession: DataTypes.STRING,
         service: DataTypes.STRING,
         departement: DataTypes.STRING,
