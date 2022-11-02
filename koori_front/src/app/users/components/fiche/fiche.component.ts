@@ -39,7 +39,7 @@ export class FicheComponent implements OnInit {
   }
   navigate(id:number,tab: any){
     this.senddata.setData(tab)
-    this._route.navigate([`/fiche/${id}`], tab)
+    this._route.navigate([`/home/fiche/${id}`], tab)
   }
   exportHtmlToPDF(fic: Fiche){
     let data = document.getElementById('lafiche');

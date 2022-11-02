@@ -17,7 +17,7 @@
             <li class="text-light">plage_horaire => {{service.plage_horaire}}</li>
             <li class="text-light"> livrables : {{service.livrables}}</li>
           </ul>
-          <a routerLink="/service/service.id" class="btn btn-outline-light mt-5">Voir plus</a>
+          <a (click)="onGetService(service.id)" class="btn btn-outline-light mt-5">Voir plus</a>
         </div>
       </div>
     </div>
