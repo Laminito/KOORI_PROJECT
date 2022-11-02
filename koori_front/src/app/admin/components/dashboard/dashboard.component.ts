@@ -51,6 +51,6 @@ export class DashboardComponent implements OnInit {
   }
 
   navigate(id?:number){
-    this._route.navigate([`/dashboard/service/${id}`])
+    this._route.navigate([`/admin/dashboard/service/${id}`])
   }
 }

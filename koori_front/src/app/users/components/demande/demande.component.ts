@@ -53,7 +53,7 @@ export class DemandeComponent implements OnInit {
   }
 
 //recuperer tous les service
-  getService(){this.allRequest.getAll("services").subscribe((data:any)=>{this.services=data})}
+  getService(){this.allRequest.getAll("service").subscribe((data:any)=>{this.services=data})}
   getUser(){this.userService.getIdUser(2).subscribe((data)=>{this.user= data;})}
 
   get f(){return this.demandeForm.controls}
