@@ -17,4 +17,5 @@ export class FicheResolverService implements Resolve<Fiche>{
     Observable<Fiche> | Promise<Fiche> | Fiche {
     return this.ficheService.getFicheById(+route.params['id']);
   } 
+  
 }

@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Contact } from '../_models/contact';
 
 
 @Injectable({
@@ -10,7 +12,8 @@ export class ContactService {
 
   constructor(private http: HttpClient) { }
 
-  getByIdContact(id: any): any{
-    return this.http.get(`${environment.API}contact/${id}`)
+  getByIdContact(id: number): Observable<Contact>{
+    return this.http.get<Contact>(`${environment.API}contact/${id}`)
   }
+
 }

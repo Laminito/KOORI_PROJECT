@@ -9,11 +9,11 @@ import { ServiceService } from '../_services/service.service';
 })
 export class DetailServiceResolverService implements Resolve<Service>{
 
-  constructor(private service: ServiceService) {}
+  constructor(private serviceServe: ServiceService) {}
 
   resolve(route: ActivatedRouteSnapshot,
           state: RouterStateSnapshot):
     Observable<Service> | Promise<Service> | Service {
-    return this.service.getServiceById(+route.params['id'])
+    return this.serviceServe.getServiceById(+route.params['id'])
   }
 }

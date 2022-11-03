@@ -14,6 +14,7 @@ import { UserService } from '../../_services/user.service';
   styleUrls: ['./liste-utilisateur.component.scss']
 })
 export class ListeUtilisateurComponent implements OnInit {
+  
   titre: string = ""
   profils: Profil[] = []
   tab :[{ valeur: number; cle?: number }] =[{valeur: 0, cle: 0}]

@@ -13,10 +13,11 @@ import { AllRequestService } from '../../_services/all-request.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  temoignages: Temoignage[] = []
-  koori: Koori = new Koori;
-  ibox: Ibox = new Ibox;
-  services: Service[] = [];
+
+  temoignages!: Temoignage[]
+  koori!: Koori;
+  ibox!: Ibox;
+  services!: Service[];
 
   constructor( private allRequest: AllRequestService, private iboxService: IboxService) { }
 
@@ -40,21 +41,22 @@ export class HomeComponent implements OnInit {
         }
       })
       // js for our services cards
-    /*  $('.show').on('click',function(){
+    $('.show').on('click',function(){
         let target = $(this).attr('data-target');
         $('.'+target).slideToggle('slow');
       });
 
       $('.close').on('click',function(){
         $(this).parent().slideToggle('slow');
-      });*/
+      });
 
     });
 
-    this.getDescriptionKoori()
-    this.getDescriptionIbox()
-    this.getServices()
-    this.getTemoignages()
+    this.getDescriptionKoori();
+    this.getDescriptionIbox();
+    this.getServices();
+    this.getTemoignages();
+
   }
 
   getDescriptionKoori(){
@@ -69,16 +71,17 @@ export class HomeComponent implements OnInit {
   }
 
   getServices(){
-    this.allRequest.getAll("service",).subscribe((data:any)=>{
-      // this.services = data.map((service:Service)=> new Service().deserialize(service))
-      this.services= data
+    this.allRequest.getAll("service",).subscribe((data)=>{
+      this.services = data;      
     })
   }
 
   getTemoignages() {
     this.allRequest.getAll("temoignage").subscribe((data: any) => {
-      this.temoignages = data.map((temoignage: Temoignage) => new Temoignage().deserialize(temoignage))
+      this.temoignages = data.map((temoignage: Temoignage) => new Temoignage().deserialize(temoignage));
+      console.log(this.temoignages);
     })
+    
   }
 
   slideToggle(ref:any) {

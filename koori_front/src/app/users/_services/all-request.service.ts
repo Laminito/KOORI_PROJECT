@@ -19,6 +19,7 @@ export class AllRequestService {
  sendNotification(notif: any){
    this._refresh.next(notif);
  }
+
  receiveNotification():Observable<any>{
    return this._refresh.asObservable();
  }
@@ -27,9 +28,7 @@ export class AllRequestService {
     let httpHeaders = new HttpHeaders();
     httpHeaders = httpHeaders.append('filter', filter);
     let options = {headers:httpHeaders};
-
     return this.http.get<Service[]>(this.envApi+resources, options)
-
   }
 
   postData(resources:string, data:any){

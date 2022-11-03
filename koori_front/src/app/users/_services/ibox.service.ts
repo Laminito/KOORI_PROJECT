@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Ibox } from '../_models/ibox';
+import { Phase_fiche } from '../_models/phase_fiche';
 
 
 @Injectable({
@@ -10,16 +13,20 @@ export class IboxService {
 
   constructor(private http: HttpClient) { }
 
-  getFiches(id: any): any{
-    return this.http.get(`${environment.API}phase-fiche/${id}`)
+  getFiches(id: number):Observable<Ibox>{
+    return this.http.get<Ibox>(`${environment.API}phase-fiche/${id}`);
   }
+  
   getIbox(): any{
-    return this.http.get(`${environment.API}ibox`)
+    return this.http.get(`${environment.API}ibox`);
   }
-  getPhasesFiches(): any{
-    return this.http.get(`${environment.API}phase-fiche/`)
+
+  getPhasesFiches():Observable<Phase_fiche[]>{
+    return this.http.get<Phase_fiche[]>(`${environment.API}phase-fiche/`);
   }
-  getFichesByPhase(id: any): any{
-    return this.http.get(`${environment.API}phase/fiche/${id}`)
+
+  getFichesByPhase(id: number):Observable<Phase_fiche>{
+    return this.http.get<Phase_fiche>(`${environment.API}phase/fiche/${id}`);
   }
+
 }

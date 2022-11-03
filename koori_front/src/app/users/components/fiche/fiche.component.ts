@@ -55,9 +55,11 @@ export class FicheComponent implements OnInit {
     });
   }
   goTo(tab: Fiche[]){
-    // this.senddata.setDataScroll(tab, true)
+    //this.senddata.setDataScroll(tab, true)
     //console.log(this.senddata.getDataScroll())
     // @ts-ignore
     this._route.navigate([`/ibox`], this.senddata.getDataScroll())
   }
 }
+
+
