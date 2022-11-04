@@ -1,4 +1,6 @@
 <div class="container-fluide">
+
+
   <div class="row">
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-indicators">
@@ -28,10 +30,11 @@
     </div>
   </div>
 
-  <div class="bloc-presentation">
-    <div class="row justify-content-center mb-4">
 
-      <div class="containeur">
+  <div class="bloc-presentation">
+
+    <div class="row justify-content-center">
+      <div class="containeur mb-5">
         <div class="card">
           <div class="imgBx" data-taxt="Design">
               <img src="assets/img/koori.png" alt="">
@@ -39,7 +42,7 @@
           <div class="content">
             <div>
               <h3>Description Koori</h3>
-              <p>{{ koori.description | summarize: 160 }}</p>
+              <p>{{ koori.description | summarize: 150 }}</p>
               <a routerLink="/home/kooriibox/koori">Read More</a>
             </div>
           </div>
@@ -52,7 +55,7 @@
           <div class="content">
             <div>
               <h3>Description Ibox</h3>
-              <p>{{ ibox.description | summarize: 160}}</p>
+              <p>{{ ibox.description | summarize: 150}}</p>
               <a routerLink="/home/kooriibox/ibox">Read More</a>
             </div>
           </div>
@@ -60,52 +63,20 @@
       </div>
 
     </div>
+
+    <div class="bloc-bienvenus">
+      <h1>Mots de bienvenus</h1>
+      <p class="bienvenus">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis culpa nihil laboriosam ipsa, sapiente dolorum ad fuga aperiam. Error, quo pariatur quod fuga, perferendis cum culpa reprehenderit rerum eius ea nam. Itaque cupiditate aut libero eligendi nam? Perferendis fuga totam ipsam atque quidem, voluptatibus tempora quos numquam eligendi nulla suscipit?
+      </p>
+    </div>
   </div>
-  <div class="bloc-bienvenus">
-    <p class="bienvenus">
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis culpa nihil laboriosam ipsa, sapiente dolorum ad fuga aperiam. Error, quo pariatur quod fuga, perferendis cum culpa reprehenderit rerum eius ea nam. Itaque cupiditate aut libero eligendi nam? Perferendis fuga totam ipsam atque quidem, voluptatibus tempora quos numquam eligendi nulla suscipit?
-    </p>
+
+  <div class="list-services">
+    <app-card-service [services]="services"></app-card-service>
   </div>
 
   <div class="container">
-
-
-
-    <!--Les services-->
-    <div class="mb-4">
-      <!--title-->
-      <div class="mb-4">
-        <h3 class="text-color text-center">NOS SERVICES</h3>
-      </div>
-      <!--services-->
-      <div class="services">
-        <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-          <div class="col" *ngFor="let s of services; let i = index">
-            <div class="card">
-              <div class="card-image">
-                <div class="wrap">
-                  <img class="img-fluid" src="assets/img/bootcamp.jpg" alt="image 1">
-                </div><!-- card image -->
-              </div>
-              <div class="card-content bg-light text-dark">
-                <span class="card-title">{{s.libelle}}</span>
-                <button #ref  type="button" (click)="slideToggle(ref)" [attr.data-target]="'show'+i" class="show btn btn-custom float-right" aria-label="Left Align"><i class="fa fa-ellipsis-v"></i></button>
-              </div><!-- card content -->
-              <div class="card-reveal {{'show'+i}}">
-                <span class="card-title">{{s.libelle}}</span>
-                <button #ref (click)="slideToggle(ref)" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <p>{{'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.' | summarize: 60}}</p>
-                <div class="mt-3 text-center">
-                  <button type="button" class="btn btn-outline-info btn-sm">Read More</button>
-                </div>
-              </div><!-- card reveal -->
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
 
     <!--Les projets recents-->
     <div class=" mb-4">

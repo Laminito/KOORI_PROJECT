@@ -31,6 +31,7 @@ import { TopComponent } from './components/top/top.component';
 import { FilterPipe } from './_pipes/filter.pipe';
 import { SummarizePipe } from './_pipes/summarize.pipe';
 import { SharedModule } from '../shared/shared.module';
+import { CardServiceComponent } from './components/home/card-service/card-service.component';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { SharedModule } from '../shared/shared.module';
     NodataComponent,
     FicheComponent,
     ListRapportsComponent,
-    KooriiboxMenuComponent
+    KooriiboxMenuComponent,
+    CardServiceComponent
   ],
   imports: [
     SharedModule,
