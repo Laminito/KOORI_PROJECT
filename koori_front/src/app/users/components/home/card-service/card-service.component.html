@@ -1,7 +1,7 @@
 <div class="containe">
 	<h2>Nos Services</h2>
 	<div class="row-service container">
-	  <div class="service" *ngFor="let serve of services; let i = index">
+	  <div class="service" *ngFor="let serve of services; let i = index" (click)="onGetService(serve.id)">
 		<div>
 			<img src="{{ images[i] }}" alt="">
 		</div>

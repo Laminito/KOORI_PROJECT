@@ -53,8 +53,8 @@
   cursor: pointer;
   background: transparent;
   transition: transform 0.5s, background 0.5s;
-  /* box-shadow: 0 0 6px rgb(211, 204, 204);
-  background-color: #fff; */
+  box-shadow: 0 0 6px rgb(211, 204, 204);
+  background-color: rgba(255, 255, 255, 0.597);
 }
 
 .service img {

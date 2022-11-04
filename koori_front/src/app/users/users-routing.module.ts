@@ -41,9 +41,7 @@ const routes: Routes = [
   {path: 'not-found', component: NotFoundComponent },
   {path: '**', redirectTo: '/not-found'}
 
-  
 ];
-
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
