@@ -24,4 +24,5 @@ export class FeedbackService {
     // @ts-ignore
     return this.http.post(`${environment.API}mail/fiche/${id}`, data)
   }
+  
 }

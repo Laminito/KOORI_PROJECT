@@ -5,12 +5,11 @@
         <p class="mt-2" style="color: var(--orange); font-weight: 500;font-size: large;">Courbe representative du nombre de demandes annuel</p>
         <div style="display: block;">
           <canvas baseChart width="500" height="250"
-                  [datasets]="lineChartDatas"
-                  [labels]="lineChartLabels"
+                  [data]="lineChartDatas"
                   [options]="lineChartOptions"
                   [legend]="lineChartLegend"
-                  [chartType]="'line'"
-                  [plugins]="lineChartPlugins">
+                  [type]="'line'"
+                  [plugins]="plugins">
           </canvas>
         </div>
       </div>
@@ -22,11 +21,11 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
           <p class="mt-2" style="color: var(--orange); font-weight: 500;font-size: large;">Nos Visiteurs</p>
           <div class="chart-wrapper">
             <canvas baseChart
-                    [data]="pieChartDatas"
+                    [data]="pieChartData"
                     [labels]="pieChartLabels"
                     [options]="pieChartOptions"
                     [legend]="true"
-                    [chartType]="'pie'"
+                    [type]="'pie'"
                     [plugins]="pieChartPlugins">
             </canvas>
           </div>
@@ -38,7 +37,7 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
             <canvas baseChart
                     [data]="pieChartDatas"
                     [labels]="pieChartLabels"
-                    [chartType]="'pie'"
+                    [type]="'pie'"
                     [options]="pieChartOptions"
                     [plugins]="pieChartPlugins"
                     [legend]="pieChartLegend">
@@ -53,12 +52,11 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
       <p style="color: var(--orange); font-weight: 500;font-size: large;">Nos realisations annuelles suivant le statut des demandes</p>
       <div style="display: block;">
         <canvas baseChart width="500" height="350"
-                [datasets]="lineChartData"
-                [labels]="lineChartLabels"
+                [data]="lineChartData"
                 [options]="lineChartOptions"
                 [legend]="lineChartLegend"
-                [chartType]="'line'"
-                [plugins]="lineChartPlugins">
+                [type]="'line'"
+                [plugins]="plugins">
         </canvas>
       </div>
     </div>
@@ -105,7 +103,7 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
           <th scope="col" class="text-center">Statut</th>
           <th scope="col" class="text-center">Chiffre</th>
           <th scope="col" class="text-center">Pourcentage
-            <p style="font-size: x-small; margin-bottom: 0; font-weight: 300;">(Sur un total de <span style="color: var(--orange); font-size: 10px">{{service.Demandes?.length}}</span> demandes)</p>
+            <p style="font-size: x-small; margin-bottom: 0; font-weight: 300;">(Sur un total de <span style="color: var(--orange); font-size: 10px">{{service.Demandes.length}}</span> demandes)</p>
           </th>
         </tr>
         </thead>

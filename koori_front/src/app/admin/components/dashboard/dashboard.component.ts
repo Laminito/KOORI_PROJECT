@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Data, Router} from "@angular/router";
 import { Service } from '../../_models/service';
-import { AllRequestService } from '../../_services/all-request.service';
+import { ServiceService } from '../../_services/service.service';
 declare var _:any;
 
 @Component({
@@ -12,45 +12,48 @@ declare var _:any;
 export class DashboardComponent implements OnInit {
 
   title = '';
-  services: Service[]=[];
+  services!: Service[];
   p=1
-  nbrdemande :[{ valeur: number; cle?: string}] =[{valeur: 0, cle: ''}]
+  nbrdemande :[{ valeur: number; cle: string}] = [{valeur: 0, cle: ''}]
   
   tabcolor = ['#344DA8', '#258F49', '#256F49', '#CA8654', '#FF5733', '#5AA99A']
 
   constructor(private  route: ActivatedRoute,
-              private allRequest: AllRequestService,
-              private _route: Router) {
+              private service: ServiceService,
+              private _route: Router) {}
+
+  ngOnInit(): void {
     this.route.data.subscribe((data: Data) => {
-        this.title = data['title'];
-      });
-    this.allRequest.getAll('service/').subscribe((data: any) =>{
+      this.title = data['title'];
+    });
+
+    this.service.getAllServices().subscribe((data) =>{
       this.services =_.orderBy(data, ['id'], ['asc'])
+      console.log(this.services);
+      
       while(this.nbrdemande.length > 0) {
         this.nbrdemande.pop();
       }
-      for(let s of this.services){
+      for(let serve of this.services){
         let c = 0
-        if(s.Demandes?.length !== 0){
+        if(serve.Demandes.length !== 0){
           // @ts-ignore
-          for(let d of s.Demandes){
+          for(let d of serve.Demandes){
             if(d.statut === 'Nouvelle'){
               c +=1;
             }
           }
-          this.nbrdemande.push({valeur: c, cle: s.libelle})
+          this.nbrdemande.push({valeur: c, cle: serve.libelle})
         }
         else {
-          this.nbrdemande.push({valeur: 0, cle: s.libelle})
+          this.nbrdemande.push({valeur: 0, cle: serve.libelle})
         }
       }
     })
   }
 
-  ngOnInit(): void {
+  navigate(id: number){
+    this._route.navigate([`admin/dashboard/service/${id}`])
   }
-
-  navigate(id?:number){
-    this._route.navigate([`/admin/dashboard/service/${id}`])
-  }
+  
 }

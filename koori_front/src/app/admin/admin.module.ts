@@ -29,8 +29,8 @@ import { EditServiceComponent } from './components/service-catalogue/edit-servic
 import { FilterPipe } from './_pipes/filter.pipe';
 import { IboxComponent } from './components/ibox/ibox.component';
 import { AddFicheComponent } from './components/add-fiche/add-fiche.component';
-import { ChartsModule } from 'ng2-charts';
 import { SharedModule } from '../shared/shared.module';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -65,8 +65,8 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    ChartsModule,
     SharedModule,
+    NgChartsModule
   ],
   exports: [
     AccueilComponent,

@@ -1,3 +1,4 @@
+@import url('http://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900&display=swap');
 .services .card-img-top{
   height: 150px;
 }
@@ -315,7 +316,6 @@
 
 .card .card-content {
   padding: 10px;
-  background:#1A9AE1;
   color:white;
   text-align: center;
 }
@@ -365,4 +365,191 @@
   }
 
 }
+.carousel-item > img{
+  height: 65vh;
+}
+
+/* Pour les cards Koori et Ibox */
+.bloc-presentation{
+  width: 100%;
+  margin-bottom: 0;
+  /* height: 65vh; */
+  background-color: #FFF;
+}
+.bloc-bienvenus > h1{
+  text-align: center;
+  color: #338f8e;
+  margin-bottom: 2.5vh;
+}
+.bloc-bienvenus >P{
+  font-size: 1.2rem;
+}
+.containeur{
+	position: relative;
+	width: 55vw;
+	display: flex;
+	justify-content: space-between;
+  align-items: center;
+  padding: 0 2vw;
+  margin-top: 6vh;
+}
+.containeur .card{
+	position: relative;
+	height: 280px;
+  border-radius: 10px;
+	background: #fff;
+   	display: flex;
+   	width: 46%;
+   	margin: 30px 10px;
+}
+.containeur .card .imgBx{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	background: #338f8e;
+	z-index: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	transition: 0.5s ease-in-out;
+	width: 100%;
+}
+.containeur .card:hover .imgBx{
+	width: 150px;
+	height: 150px;
+	left: -75px;
+	top: calc(50% - 75px);
+	transition: 0.5s ease-in-out;
+	background: #eee;
+	border-radius: 5px;
+}
+.containeur .card .imgBx:before{
+ 
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	font-style: 6em;
+	color: #fff;
+	font-weight: 700;
+}
+
+.containeur .card .imgBx img{
+	width: 100%;
+	transition: 0.5s ease-in-out;
+}
+
+.containeur .card:hover .imgBx img{
+	max-width: 75px;
+}
+
+.containeur .card .content{
+	position: absolute;
+	right: 0;
+	width: calc(100% - 75px);
+	height: 100%;
+	padding: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  text-align: center;
+}
+
+.containeur .card .content h3{
+	margin-bottom: 5px;
+	font-size: 24px;
+  text-align: center;
+}
+
+.containeur .card .content a{
+	display: inline-block;
+	margin-top: 10px;
+	padding: 5px 10px;
+	background: #338f8e;
+	text-decoration: none;
+	color: #fff;
+	padding: 10px 15px 10px 15px;
+	border-radius: 5px;
+}
+
+@media (max-width: 1400px) {
+  .containeur{
+    height: 60vh;
+    width: 70%;
+  }
+  .containeur .card{
+    height: 80%;
+    background-color: #eee;
+  }
+  .bloc-presentation{
+    display: block;
+    min-height: 45vh;
+  }
+  .bienvenus{
+    display: none;
+  }
+  .containeur .card .imgBx{
+    height: 60%;
+    background-color: #eee;
+  }
+  .containeur .card .content{
+    width: 100%;
+    background-color: #FFF;
+  }
+}
+
+@media (max-width: 992px){
+	.containeur{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+		width: 60%;
+	}
+	.containeur .card{
+		width: 80%;
+    height: 45%;
+    margin: auto;
+	}
+  .containeur .card .imgBx{
+    height: 100%;
+    background-color: #eee;
+  }
+}
+
+@media (max-width: 760px){
+.containeur{
+  width: 100%;
+  background-color: #eee;
+  height: 100vh;
+}
+.containeur .card{
+	max-width: 400px;
+	flex-direction: column;
+}
+.containeur .card .imgBx,
+.containeur .card:hover .imgBx
+{
+  display: none;
+}
+.containeur .card .content{
+	position: relative;
+	width: 100%;
+}
+}
+.bloc-bienvenus{
+  padding: 4vh 0;
+  background-color: #FFF;
+}
+.bienvenus{
+  width: 50%;
+  margin: auto;
+  margin-bottom: 2.5vh;
+  text-align: center;
+}
+
+/* Pour nos services */
 

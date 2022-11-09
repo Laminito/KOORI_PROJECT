@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Data} from "@angular/router";
 import {formatDate} from "@angular/common";
 import * as $ from "jquery";
-import { ChartDataSets, ChartOptions } from 'chart.js';
-import { SingleDataSet, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } from 'ng2-charts';
+import { ChartConfiguration, ChartDataset, ChartOptions } from 'chart.js';
 import { Service } from 'src/app/admin/_models/service';
 import { Demande } from 'src/app/admin/_models/demande';
 import { AllRequestService } from 'src/app/admin/_services/all-request.service';
 import { User } from 'src/app/admin/_models/user';
+import { data } from 'jquery';
 declare var _:any;
 
 @Component({
@@ -16,6 +16,7 @@ declare var _:any;
   styleUrls: ['./detail-dashboard.component.scss']
 })
 export class DetailDashboardComponent implements OnInit {
+
   service: Service = new Service()
   month: [] = []
   selectedDevice1 : number = 0;
@@ -43,44 +44,90 @@ export class DetailDashboardComponent implements OnInit {
   users: User[] = []
   STATUT = ['Nouvelle', 'En attente', 'Rejetee', 'Validee', 'Annulee', 'Traitee']
   tabDem :[{ valeur: number; cle?: string; pourc: number}] =[{valeur: 0, cle: '', pourc: 0}]
+
   select0: string | undefined | string[] | number
   select1: string | undefined | string[] | number
   select2: string | undefined | string[] | number
-  lineChartDatas: ChartDataSets[] = [
-    { data: [], label: '' }
-  ];
-  lineChartData: ChartDataSets[] = [
-    { data: [], label: '' }
-  ];
-  lineChartLabels: Label[] = [];
-  lineChartOptions = {responsive: true, scales: {
-      yAxes: [
+
+  lineChartDatas: ChartConfiguration['data'] = 
+    { 
+      datasets: [
         {
+          data: [],
+          label: '',
+          backgroundColor: 'rgba(255,0,0,0.3)',
+          fill: 'origin'
+        }
+      ], 
+      labels: [] 
+    }
+
+  lineChartData: ChartConfiguration['data'] = 
+    { 
+      datasets: [], 
+      labels: [] 
+    }
+  
+  lineChartOptions: ChartConfiguration['options'] = {
+    elements: {
+      line: {
+        tension: 0.5
+      }
+    },
+    responsive: true, 
+    scales: {
+      y:{
           display: true,
-          scaleLabel: {
-            display: true,
-            labelString: "Nombre de demandes",
-          },
         },
-      ],
-      xAxes: [
-        {
-          scaleLabel: {
-            display: true,
-            labelString: "Annee",
-          },
+      x:{
+          
+          display: true
+          
         },
-      ],
-    }};
+    },
+    
+  };
+
   lineChartLegend = true;
-  lineChartPlugins = [];
-  pieChartOptions: ChartOptions = {responsive: true, legend: { position: "right" }};
-  pieChartLabels: Label[] = ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'];
+  plugins = [];
+
+
+  pieChartOptions: ChartConfiguration['options'] = 
+  {
+    responsive: true, 
+    plugins: {
+      legend: 
+      { 
+        display: true,
+        position: "right" 
+      }
+    }
+  };
+  pieChartLabels: string[] = ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'];
   moisInt: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  pieChartData: SingleDataSet = [50, 30, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  pieChartDatas: SingleDataSet = [0,0,0,0,0,0,0,0,0,0,0,0];
+  
+  pieChartData = {
+    datasets: [
+      {
+        data: [50, 30, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        fill: 'origin'
+      }
+    ],
+    labels: this.pieChartLabels
+  } 
+  pieChartDatas= {
+    datasets: [
+      {
+        data: [0,0,0,0,0,0,0,0,0,0,0,0],
+        fill: 'origin'
+      }
+    ],
+    labels: this.pieChartLabels
+  };
   pieChartLegend = true;
   pieChartPlugins = [];
+
+
   constructor(private route: ActivatedRoute,
               private allRequest: AllRequestService) {
     this.currentDate = new Date()
@@ -88,15 +135,15 @@ export class DetailDashboardComponent implements OnInit {
     this.newday = formatDate(this.currentDate, 'dd', 'en-US')
     this.newmonth = formatDate(this.currentDate, 'MMM', 'en-US')
     this.newmonthchif = formatDate(this.currentDate, 'M', 'en-US')
-    let init = 2019
-    for(let i=0;i< parseInt(this.newyear) - init +1;i++){
-      this.Annee.push(parseInt(this.newyear) -i)
+    let init = 2019;
+
+    for(let i=0; i<parseInt(this.newyear) - init + 1; i++){
+      this.Annee.push(parseInt(this.newyear)-i);
     }
+
     this.route.data.subscribe((data) => {
-      monkeyPatchChartJsTooltip();
-      monkeyPatchChartJsLegend();
       this.service = data['detailService'];
-      this.lineChartDatas[0].label = this.service.libelle
+      this.lineChartDatas.datasets[0].label = this.service.libelle
       let d = formatDate(this.currentDate, 'dd', 'en-US')
       let m = formatDate(this.currentDate, 'M', 'en-US')
       let y = formatDate(this.currentDate, 'Y', 'en-US')
@@ -104,13 +151,12 @@ export class DetailDashboardComponent implements OnInit {
       while(this.statut.length > 0) {
         this.statut.pop();
       }
+
       let tabDemVal :[{ valeur: number; cle?: string; pourc: number}] =[{valeur: 0, cle: '', pourc: 0}]
       while(this.tabDem.length > 0) {
         this.tabDem.pop();
       }
-      while(tabDemVal.length > 0) {
-        tabDemVal.pop();
-      }
+      
       if(this.service.Demandes){
         for(let dem of this.service.Demandes){
           // @ts-ignore
@@ -319,6 +365,7 @@ export class DetailDashboardComponent implements OnInit {
       }
     }
   }
+  
   onChange2(newValue: number) {
     this.selectedDevice2 = newValue
     if($(`#select0`).val()?.toString().includes(':')){
@@ -457,6 +504,7 @@ export class DetailDashboardComponent implements OnInit {
       }
     }
   }
+
   onChange3(newValue: number) {
     this.selectedDevice3 = newValue
     if($(`#select0`).val()?.toString().includes(':')){
@@ -595,15 +643,16 @@ export class DetailDashboardComponent implements OnInit {
       }
     }
   }
+
   getAllDemOfYear(){
-    if(this.lineChartDatas[0].data && this.lineChartDatas[0].data.length !=0){
-      while(this.lineChartDatas[0].data.length > 0) {
-        this.lineChartDatas[0].data.pop();
+    if(this.lineChartDatas.datasets[0].data && this.lineChartDatas.datasets[0].data.length !=0){
+      while(this.lineChartDatas.datasets[0].data.length > 0) {
+        this.lineChartDatas.datasets[0].data.pop();
       }
     }
-    if(this.lineChartLabels && this.lineChartLabels.length !=0){
-      while(this.lineChartLabels.length > 0) {
-        this.lineChartLabels.pop();
+    if(this.lineChartDatas.labels && this.lineChartDatas.labels.length !=0){
+      while(this.lineChartDatas.labels.length > 0) {
+        this.lineChartDatas.labels.pop();
       }
     }
     while(this.allYear.length > 0) {
@@ -699,25 +748,29 @@ export class DetailDashboardComponent implements OnInit {
       }
     }
     //lineChartLabels
-    let t =[]
+    let t = []
     for (let a of this.Annee){
       t.push(a.toString())
     }
     for(let i=1; i<=t.length; i++){
-      this.lineChartLabels.push(t[t.length -i])
+      if(this.lineChartDatas.labels){
+        this.lineChartDatas.labels.push(t[t.length -i]);
+      }
     }
     // nombre de demandes annuel du service
     for(let v of this.valYear){
-      let t =[]
-      for(let l of this.lineChartLabels){
-        if(this.allYear.includes(l.toString())){
+      let t = []
+      if(this.lineChartDatas.labels){
+      for(let l of this.lineChartDatas.labels){
+        if( typeof l === 'string' && this.allYear.includes(l)){
           t.push(v.valeur)
         }
         else{
           t.push(0)
         }
       }
-      this.lineChartDatas[0].data = t
+    }
+      this.lineChartDatas.datasets[0].data = t
     }
     // Nos realisations annuelles suivant le statut des demandes
     let tout:[{data: number[]; label?: string;}] =[{data: [], label: ''}]
@@ -729,10 +782,10 @@ export class DetailDashboardComponent implements OnInit {
       tout.push(x)
     }
     const itemInB = (item: string) => this.allYear.includes(item)
-    const getItemArray = (item: Label) => {
+    const getItemArray = (item: any) => {
       // @ts-ignore
       let position = this.statutsYear.map((i) => i.annee).indexOf(item)
-      return position >0 ? this.statutsYear[position].allstatutcount : this.statutsYear[0].allstatutcount
+      return position > 0 ? this.statutsYear[position].allstatutcount : this.statutsYear[0].allstatutcount
     }
     const updateX = (itemArray: any,position: any) => {
       for(let i = 0; i<tout.length; i++){
@@ -742,8 +795,9 @@ export class DetailDashboardComponent implements OnInit {
       }
     }
     const setX = () => {
-      for(let i = 0; i<this.lineChartLabels.length; i++){
-        let item = this.lineChartLabels[i];
+      if(this.lineChartDatas.labels){
+      for(let i = 0; i< this.lineChartDatas.labels.length; i++){
+        let item = this.lineChartDatas.labels[i];
         // @ts-ignore
         if(!itemInB(item)) {
           updateX([],i)
@@ -752,13 +806,15 @@ export class DetailDashboardComponent implements OnInit {
         let itemArray = getItemArray(item)
         updateX(itemArray,i)
       }
-      while(this.lineChartData.length > 0) {
-        this.lineChartData.pop();
+    }
+      while(this.lineChartData.datasets.length > 0) {
+        this.lineChartData.datasets.pop();
       }
-      this.lineChartData = tout
+      this.lineChartData.datasets = tout
     }
     setX()
   }
+
   getClients(){
     this.allRequest.getAll("client/").subscribe((data:any)=>{
       this.users = data
@@ -768,7 +824,7 @@ export class DetailDashboardComponent implements OnInit {
         let m = formatDate(u['createdAt'], 'M', 'en-US')
         tabMois.push(parseInt(m))
       }
-      let tabClient : SingleDataSet =[]
+      let tabClient = []
       for(let i of this.moisInt){
         let a =0
         for (let m of tabMois){
@@ -778,10 +834,11 @@ export class DetailDashboardComponent implements OnInit {
         }
         tabClient.push(a)
       }
-      while(this.pieChartDatas.length > 0) {
-        this.pieChartDatas.pop();
+      while(this.pieChartDatas.datasets.length > 0) {
+        this.pieChartDatas.datasets.pop();
       }
-      this.pieChartDatas = tabClient
+      this.pieChartDatas.datasets[0].data = tabClient
     })
   }
+
 }

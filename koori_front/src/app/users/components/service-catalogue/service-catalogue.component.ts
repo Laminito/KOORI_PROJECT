@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Service } from '../../_models/Service';
 import { AllRequestService } from '../../_services/all-request.service';
 
@@ -12,7 +13,7 @@ export class ServiceCatalogueComponent implements OnInit {
 
   services: Service[] = [];
 
-  constructor(private allRequest: AllRequestService) {}
+  constructor(private allRequest: AllRequestService, private router: Router) {}
 
   ngOnInit(): void {
     this.getAllService();
@@ -22,4 +23,7 @@ export class ServiceCatalogueComponent implements OnInit {
       this.services = data
   })}
 
+  onGetService(id: number){
+    this.router.navigateByUrl('/home/service/'+id);
+  }
 }

@@ -32,7 +32,6 @@
      //  apiRouter.get('/profil/:id/', profilCtrl.getProfilById);
      //  apiRouter.delete('/profil/:id/', profilCtrl.deleteProfil);
 
-
      //User routes
      apiRouter.get('/user/', userCtrl.getUsers);
      apiRouter.get('/client/', userCtrl.getClients);
@@ -68,12 +67,10 @@
      apiRouter.delete('/sujet/:id', sujetCtrl.deleteSujet);
      // apiRouter.route('/get/sujet/:id/user/:id').get(sujetCtrl.getSujetB);
 
-
      //Etapes
      apiRouter.get('/etape/', etapesCtrl.getEtapes);
      apiRouter.post('/etape/', validator.etape.validate('createEtape'), etapesCtrl.createEtape);
      apiRouter.put('/etape/:id', validator.etape.validate('updateEtape'), etapesCtrl.updateEtape);
-
 
      //Phase-Fiche
      apiRouter.get('/phase-fiche/', phaseCtrl.getPhasesFiches);
@@ -107,7 +104,6 @@
      apiRouter.put('/ibox/:id/', validator.koori.validate('updateIbox'), iboxCtrl.updateIbox);
 
      //Service routes
-
      apiRouter.get('/service/', serviceCtrl.getAllService);
      apiRouter.get('/service/:id', serviceCtrl.getServiceById);
      apiRouter.post('/service/', multer, validator.service.validate('createService'), serviceCtrl.createService);
@@ -122,12 +118,10 @@
      apiRouter.get('/session/:id/', sessionCtrl.getSessionById)
      apiRouter.post('/evaluationSession/', validator.session.validate('createEvaluation_session'), sessionCtrl.evaluationSession)
 
-
      //Evaluation_note routes
      apiRouter.post('/evaluation_note/user/:id/rapport/:id1', validator.evaluation_note.validate('createEvaluation_note'), evaluation_noteCtrl.createEvaluation_note);
      apiRouter.put('/evaluation_note/user/:id/rapport/:id1', evaluation_noteCtrl.updateEvaluation_note)
      apiRouter.get('/evaluation_note/user/:id/:idR?', evaluation_noteCtrl.getEvaluation_noteByUserId);
-
 
      //Evaluation_Koori routes
      apiRouter.post('/evaluation_koori/user/:id/koori/:id1', validator.evaluation_koori.validate('createEvaluation_koori'), evaluation_kooriCtrl.createEvaluation_koori);
@@ -135,22 +129,17 @@
      apiRouter.get('/evaluation_koori/user/:id/koori/:id1', evaluation_kooriCtrl.getEvaluation_kooriByUserId);
      apiRouter.get('/evaluation_koori/version/:id', evaluation_kooriCtrl.getEvaluation_koori);
 
-
      //Evaluation_Ibox routes
      apiRouter.post('/evaluation_ibox/user/:id/ibox/:id1', validator.evaluation_ibox.validate('createEvaluation_ibox'), evaluation_iboxCtrl.createEvaluation_ibox);
      apiRouter.put('/evaluation_ibox/user/:id/ibox/:id1', evaluation_iboxCtrl.updateEvaluation_ibox)
      apiRouter.get('/evaluation_ibox/user/:id/ibox/:id1', evaluation_iboxCtrl.getEvaluation_iboxByUserId);
      apiRouter.get('/evaluation_ibox', evaluation_iboxCtrl.getEvaluation_ibox);
 
-
-
      //Evaluation_Fiche routes
      apiRouter.post('/evaluation_fiche/user/:id/fiche/:id1', validator.evaluation_fiche.validate('createEvaluation_fiche'), evaluation_ficheCtrl.createEvaluation_fiche);
      apiRouter.put('/evaluation_fiche/user/:id/fiche/:id1', evaluation_ficheCtrl.updateEvaluation_fiche)
      apiRouter.get('/evaluation_fiche/user/:id/fiche/:id1', evaluation_ficheCtrl.getEvaluation_ficheByUserId);
      apiRouter.get('/evaluation_fiche/fiche/:id', evaluation_ficheCtrl.getEvaluation_fiche);
-
-
 
      //Temoignage routes
      apiRouter.post('/temoignage/', multer, validator.temoignage.validate('createTemoignage'), temoignageCtrl.createTemoignage)
@@ -180,7 +169,7 @@
      apiRouter.put('/demande/:id/', demandeCtrl.updateDemande);
      apiRouter.put('/statutdemande/:id/', demandeCtrl.updateStatutDemande);
 
-
-
      return apiRouter;
+
  })();
+

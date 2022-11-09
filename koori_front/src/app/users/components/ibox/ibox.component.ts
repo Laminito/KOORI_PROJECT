@@ -394,6 +394,6 @@ export class IboxComponent implements OnInit {
   navigate(id:number, tab: any){
     this.senddata.setData(tab)
     this.senddata.setHtml($(`.phase button.active`))
-    this._route.navigate([`/fiche/${id}`], tab)
+    this._route.navigate([`/home/fiche/${id}`], tab)
   }
 }

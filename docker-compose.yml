@@ -9,7 +9,6 @@ services:
     ports:
       - "4200:4200"
 
-
   # application node_app
   koori_backend:
     # container_name: koori_backend
@@ -38,7 +37,7 @@ services:
       restart: always
       volumes:
       - database-data:/var/lib/postgresql/data/
-      #- ./Data/postgresDB:/var/lib/postgresql/data
+      # - ./Data/postgresDB:/var/lib/postgresql/data
       networks:
         koori_net:
           ipv4_address: 192.168.0.2
@@ -55,7 +54,6 @@ services:
       volumes:
         - ./Data/pgadmin:/var/lib/pgadmin4/storage
 
-
       ports:
         - "5050:80"
       depends_on:
@@ -63,8 +61,6 @@ services:
       networks:
         koori_net:
           ipv4_address: 192.168.0.3
-
-
 
       #KeyCloack
   # keycloak:
@@ -82,7 +78,6 @@ services:
   #       - 8080:8080
   #     depends_on:
   #       - postgres_db
-
 
 volumes:
   database-data:
