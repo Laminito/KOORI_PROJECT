@@ -3,6 +3,16 @@
 
   <div class="row">
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+
+      <div class="news">
+        <div class="news-title">Innovation Lab</div> 
+        <div class="news-text"> 
+          <span>
+            bienvenus sur la plateforme Koori & Ibox !
+          </span>
+        </div>
+      </div>
+
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -10,7 +20,7 @@
       </div>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="https://assets-global.website-files.com/60870cca519aca7849a9262d/611161c1fb89103025e429c0_innovation-rh.png" class="d-block w-100" alt="...">
+          <img src="assets/img/innovationLab.png" class="d-block w-100" alt="...">
         </div>
         <div class="carousel-item">
           <img src="assets/img/Photographie Studio Facebook Couverture (1).png" class="d-block w-100" alt="...">
@@ -61,10 +71,9 @@
           </div>
         </div>
       </div>
-
     </div>
 
-    <div class="bloc-bienvenus">
+    <div data-aos="fade-down" class="bloc-bienvenus">
       <h1>Mots de bienvenus</h1>
       <p class="bienvenus">
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis culpa nihil laboriosam ipsa, sapiente dolorum ad fuga aperiam. Error, quo pariatur quod fuga, perferendis cum culpa reprehenderit rerum eius ea nam. Itaque cupiditate aut libero eligendi nam? Perferendis fuga totam ipsam atque quidem, voluptatibus tempora quos numquam eligendi nulla suscipit?
@@ -72,211 +81,29 @@
     </div>
   </div>
 
+  <!-- Les services -->
   <div class="list-services">
-    <app-card-service [services]="services"></app-card-service>
+    <app-card-service></app-card-service>
   </div>
 
-  <div class="container">
+  <!--Les projets recents-->
+  <div class="list-projets">
+    <app-projets></app-projets>
+  </div>
+  
+  <!--Partenaires-->
+  <div class="list-partenaires">
+  <app-partenaires></app-partenaires>
+  </div>
 
-    <!--Les projets recents-->
-    <div class=" mb-4">
-      <!--title-->
-      <div class=" row mb-4">
-        <h3 class="text-color text-center">PROJETS RECENTS</h3>
-      </div>
-      <!--projects per services-->
-      <div class=" row worko-tabs">
+  <div class=" mb-4">
+    <!--title-->
+    
+    
+    <div class="container">
 
-        <input class="state" type="radio" title="tab-one" name="tabs-state" id="tab-one" checked />
-        <input class="state" type="radio" title="tab-two" name="tabs-state" id="tab-two" />
-        <input class="state" type="radio" title="tab-three" name="tabs-state" id="tab-three" />
-        <input class="state" type="radio" title="tab-four" name="tabs-state" id="tab-four" />
-        <input class="state" type="radio" title="tab-five" name="tabs-state" id="tab-five" />
 
-        <div class="tabs flex-tabs text-center">
-          <label for="tab-one" id="tab-one-label" class="tab">Tous les projets</label>
-          <label for="tab-two" id="tab-two-label" class="tab">BootCamp</label>
-          <label for="tab-three" id="tab-three-label" class="tab">Raid Innovation</label>
-          <label for="tab-four" id="tab-four-label" class="tab">Quick Design</label>
-          <label for="tab-five" id="tab-five-label" class="tab">Day 4 Innovation</label>
-
-          <div id="tab-one-panel" class="panel active">
-            <div class="container text-center my-3">
-              <div class=" partner row mx-auto my-auto justify-content-center">
-                <div id="carouselImages" class="carousel slide" data-bs-ride="carousel">
-                  <div class="carousel-inner" role="listbox">
-                    <div class="carousel-item active">
-                      <div class="col-md-3" style="margin-right: 1%">
-                        <div class="card">
-                          <div class="card-img">
-                            <img src="assets/img/bootcamp.jpg" class="img-fluid">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="carousel-item">
-                      <div class="col-md-3" style="margin-right: 1%">
-                        <div class="card">
-                          <div class="card-img">
-                            <img src="assets/img/raid_innovation.jpeg" class="img-fluid">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="carousel-item">
-                      <div class="col-md-3" style="margin-right: 1%">
-                        <div class="card">
-                          <div class="card-img">
-                            <img src="assets/img/post_raid.jpg" class="img-fluid">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="carousel-item">
-                      <div class="col-md-3" style="margin-right: 1%">
-                        <div class="card">
-                          <div class="card-img">
-                            <img src="assets/img/quick_design.jpg" class="img-fluid">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <a class="carousel-control-prev carousel-control-prev1 w-aut" href="#carouselImages" role="button" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  </a>
-                  <a class="carousel-control-next carousel-control-next1 w-aut" href="#carouselImages" role="button" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div id="tab-two-panel" class="panel">
-            <div class="container text-center my-3">
-              <div class=" partner row mx-auto my-auto justify-content-center">
-                <div id="carouselImages" class="carousel slide" data-bs-ride="carousel">
-                  <div class="carousel-inner" role="listbox">
-                    <div class="carousel-item active">
-                      <div class="col-md-3" style="margin-right: 1%">
-                        <div class="card">
-                          <div class="card-img">
-                            <img src="assets/img/bootcamp.jpg" class="img-fluid">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="carousel-item">
-                      <div class="col-md-3" style="margin-right: 1%">
-                        <div class="card">
-                          <div class="card-img">
-                            <img src="assets/img/raid_innovation.jpeg" class="img-fluid">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <a class="carousel-control-prev carousel-control-prev1 w-aut" href="#carouselImages" role="button" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  </a>
-                  <a class="carousel-control-next carousel-control-next1 w-aut" href="#carouselImages" role="button" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div id="tab-three-panel" class="panel">
-            <div class="container text-center my-3">
-              <div class=" partner row mx-auto my-auto justify-content-center">
-                <div id="carouselImages" class="carousel slide" data-bs-ride="carousel">
-                  <div class="carousel-inner" role="listbox">
-                    <div class="carousel-item active">
-                      <div class="col-md-3" style="margin-right: 1%">
-                        <div class="card">
-                          <div class="card-img">
-                            <img src="assets/img/post_raid.jpg" class="img-fluid">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <a class="carousel-control-prev carousel-control-prev1 w-aut" href="#carouselImages" role="button" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  </a>
-                  <a class="carousel-control-next carousel-control-next1 w-aut" href="#carouselImages" role="button" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div id="tab-four-panel" class="panel">
-            <div class="container text-center my-3">
-              <div class=" partner row mx-auto my-auto justify-content-center">
-                <div id="carouselImages" class="carousel slide" data-bs-ride="carousel">
-                  <div class="carousel-inner" role="listbox">
-                    <div class="carousel-item active">
-                      <div class="col-md-3" style="margin-right: 1%">
-                        <div class="card">
-                          <div class="card-img">
-                            <img src="assets/img/quick_design.jpg" class="img-fluid">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <a class="carousel-control-prev carousel-control-prev1 w-aut" href="#carouselImages" role="button" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  </a>
-                  <a class="carousel-control-next carousel-control-next1 w-aut" href="#carouselImages" role="button" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div id="tab-five-panel" class="panel">
-            <h5 class="text-danger text-center mt-3 mb-3">Aucune donnee disponible</h5>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <!--Partenaires-->Creates an AbstractControl from a user-specified configuration.
-
-    <div class="row mb-4">
-      <!--title-->
-      <div class="row mb-4">
-        <h3 class="text-color text-center">NOS PARTENAIRES</h3>
-      </div>
-      <div class="slider">
-        <div class="slide-track">
-          <div class="slide">
-            <img src="assets/img/orange.png" height="100" width="100" alt="" />
-          </div>
-          <div class="slide">
-            <img src="assets/img/sonatel.png" height="100" width="100" alt="" />
-          </div>
-          <div class="slide">
-            <img src="assets/img/ilab.png" height="100" width="100" alt="" />
-          </div>
-          <div class="slide">
-            <img src="assets/img/oss.jpeg" height="100" width="100" alt="" />
-          </div>
-          <div class="slide">
-            <img src="assets/img/SA.jpeg" height="100" width="100" alt="" />
-          </div>
-          <div class="slide">
-            <img src="assets/img/mect.png" height="100" width="100" alt="" />
-          </div>
-        </div>
-      </div>
-
-    </div>
+    
 
     <!--Temoignages-->
     <div class="testimonial row mb-4">

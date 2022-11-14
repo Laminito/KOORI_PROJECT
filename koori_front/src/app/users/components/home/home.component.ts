@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import * as Aos from 'aos';
 import { IboxService } from 'src/app/admin/_services/ibox.service';
 import { Ibox } from '../../_models/ibox';
 import { Koori } from '../../_models/koori';
@@ -23,7 +24,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.iboxService.getExemples();
+    Aos.init({
+      duration: 800,
+    })
 
     $(function($) {
       // js for carousel
@@ -41,7 +44,7 @@ export class HomeComponent implements OnInit {
         }
       })
       // js for our services cards
-    $('.show').on('click',function(){
+      $('.show').on('click',function(){
         let target = $(this).attr('data-target');
         $('.'+target).slideToggle('slow');
       });
@@ -52,11 +55,16 @@ export class HomeComponent implements OnInit {
 
     });
 
+    this.allRequest.getAllServices().subscribe(
+      (data) => {
+        console.log(data);
+      }
+      
+    )
+
     this.getDescriptionKoori();
     this.getDescriptionIbox();
-    this.getServices();
     this.getTemoignages();
-
   }
 
   getDescriptionKoori(){
@@ -64,22 +72,17 @@ export class HomeComponent implements OnInit {
       this.koori = new Koori().deserialize(data)
     })
   }
+  
   getDescriptionIbox(){
     this.allRequest.getAll("ibox/last",).subscribe((data:any)=>{
       this.ibox = new Ibox().deserialize(data)
     })
   }
 
-  getServices(){
-    this.allRequest.getAll("service",).subscribe((data)=>{
-      this.services = data;      
-    })
-  }
 
   getTemoignages() {
     this.allRequest.getAll("temoignage").subscribe((data: any) => {
       this.temoignages = data.map((temoignage: Temoignage) => new Temoignage().deserialize(temoignage));
-      console.log(this.temoignages);
     })
     
   }

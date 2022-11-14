@@ -211,7 +211,7 @@ select {
 .text {
   text-transform: uppercase;
   background: linear-gradient(to right, var(--vert) 0%, var(--orange) 100%);
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: xx-large;
 }

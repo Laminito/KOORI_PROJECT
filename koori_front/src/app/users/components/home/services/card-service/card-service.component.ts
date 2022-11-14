@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Service } from 'src/app/users/_models/Service';
+import * as Aos from 'aos';
+import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-card-service',
@@ -11,6 +13,8 @@ export class CardServiceComponent implements OnInit {
 
   @Input() services!: Service[]
 
+  services$!: Observable<Service[]>
+
   images = [
     "assets/img/imgService_2.png",
     "assets/img/imgService_1.png",
@@ -18,9 +22,20 @@ export class CardServiceComponent implements OnInit {
     "assets/img/imgService_4.png",
     "assets/img/imgService_5.png",
   ]
-  constructor(private router: Router) { }
+ 
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+    // for animations
+    Aos.init({
+      duration: 800,
+    });
+
+    this.services$ = this.route.data.pipe(
+      map(data => data['services'])
+    );
+    
   }
 
   onGetService(id: number){

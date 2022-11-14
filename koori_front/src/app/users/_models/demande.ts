@@ -1,11 +1,12 @@
 export class Demande {
 
-  public id?:number
-  public UserId?: number
-  public ServiceId?: number
-  public titre?: string
-  public description?: string
-  public date_realisation?: string
-  public date_fin?: string
-  public statut?: string
+  id!: number
+  UserId!: number
+  ServiceId!: number
+  titre!: string
+  description!: string
+  date_realisation!: string
+  date_fin!: string
+  statut!: string
+
 }

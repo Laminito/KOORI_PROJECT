@@ -22,17 +22,20 @@
               "src/favicon.ico",
               "src/assets"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "sass"
+              ]
+            },
             "styles": [
-              "src/styles.css"
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "src/styles.css",
+              "node_modules/aos/dist/aos.css"
             ],
-<<<<<<< HEAD
-            "scripts": []
-=======
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.js",
               "node_modules/jquery/dist/jquery.js"
             ]
->>>>>>> e83f12046cab025fe45318f87acd97704f3a3c6d
           },
           "configurations": {
             "production": {
@@ -97,6 +100,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css"
             ],
             "scripts": []

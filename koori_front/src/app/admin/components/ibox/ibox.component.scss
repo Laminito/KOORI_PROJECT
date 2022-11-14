@@ -10,7 +10,6 @@
   margin: auto;
   cursor: pointer;
   background: var(--vert);
-  //box-shadow: 3px 4px 4px 2px var(--orange);
   box-shadow: 2px 2px 4px 0 var(--orange);
 }
 .row-container {
@@ -269,7 +268,7 @@ i{
   left: 0;
   right: 0;
   opacity: 0.57;
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#b3000000',GradientType=0 ); /* IE6-8 */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#b3000000',GradientType=0 );
   -webkit-transition: all .47s ease-out;
   -moz-transition: all .47s ease-out;
   -ms-transition: all .47s ease-out;

@@ -1,13 +1,61 @@
-@import url('http://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900&display=swap');
+/* for bloc Innovation lab on the carousel */
+.news{
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  z-index: 2;
+}
+.news .news-title{
+  animation: showup 15s infinite;
+  padding-left: 2%;
+  font-size: 2em;
+  color: var(--vert);
+}
+.news .news-text{
+  width:0px;
+  padding-left: 2%;
+  background-color: transparent;
+  animation: reveal 15s infinite;
+}
+.news .news-text > span{
+  margin-left:-355px;
+  animation: slidein 15s infinite;
+  font-size: 1.2em;
+  color: #338f8e;
+}
 
-/* projets recents tabs 
-@keyframes fake {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 1;
-  }
+@keyframes showup {
+  0% {opacity:0;}
+  20% {opacity:1; }
+  80% {opacity:1; }
+  100% {opacity:0;}
+}
+
+@keyframes slidein {
+  0% { margin-left:-800px; opacity: 0;}
+  20% { margin-left:-800px; opacity: 0;}
+  35% { margin-left:0px; opacity: 1;}
+  100% { margin-left:0px; opacity: 1;}
+}
+
+@keyframes reveal {
+  0% {opacity:0;width: 300px;}
+  20% {opacity:1;width: 300px; }
+  30% {width:450px; background-color: transparent}
+  80% {opacity:1; background-color: #fff;}
+  100% {opacity:0;width:450px; background-color: #fff;}
+}
+
+/* for carousel */
+.carousel-item > img{
+  height: 60vh;
+}
+
+.carousel-indicators{
+  position: absolute;
+  top: 5%;
 }
 
 /* fghjkl */
@@ -22,7 +70,6 @@
 }
 .worko-tabs .flex-tabs .tab {
   flex-grow: 1;
-  /*max-height: 40px;*/
 }
 .worko-tabs .flex-tabs .panel {
   background-color: #fff;
@@ -104,7 +151,6 @@
     border-bottom: 1px solid #ccc;
   }
 }
-/* fghjk */
 
 /*Testimonial*/
 .col-center {
@@ -167,9 +213,6 @@
   line-height: 42px;
   position: absolute;
   display: inline-block;
-  /*
-  color: rgba(0, 0, 0, 0.8);
-  */
   color: var(--vert);
   text-shadow: 0 3px 3px #e6e6e6, 0 0 0 #000;
 }
@@ -237,7 +280,6 @@
   width: 250px;
 }
 
-
 /*Projets recents caroussels*/
 @media (max-width: 767px) {
   .partner .carousel-inner .carousel-item > div {
@@ -274,38 +316,46 @@
 }
 
 
-/* Pour les cards Koori et Ibox */
+/* for Koori and Ibox cards */
 .bloc-presentation{
+  position: relative;
   width: 100%;
   margin-bottom: 0;
-  /* height: 65vh; */
-  background-color: #FFF;
+  height: 90vh;
+  background-color: #fff;
+}
+
+.bloc-bienvenus{
+  background-color: #fff;
+  padding: 2vh 0;
 }
 .bloc-bienvenus > h1{
   text-align: center;
   color: #338f8e;
   margin-bottom: 2.5vh;
 }
-.bloc-bienvenus >P{
+.bloc-bienvenus > p{
   font-size: 1.2rem;
 }
 .containeur{
 	position: relative;
-	width: 55vw;
+	width: 50vw;
+  height: 40vh;
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-evenly;
   align-items: center;
-  padding: 0 2vw;
-  margin-top: 6vh;
+  margin-top: -12vh;
+  background-color: rgba(255, 255, 255, 0.375);
+  border-radius: 15px;
 }
 .containeur .card{
 	position: relative;
-	height: 280px;
+	height: 72%;
   border-radius: 10px;
 	background: #fff;
    	display: flex;
    	width: 46%;
-   	margin: 30px 10px;
+   	/* margin: 10px; */
 }
 .containeur .card .imgBx{
 	position: absolute;
@@ -445,10 +495,6 @@
 	width: 100%;
 }
 }
-.bloc-bienvenus{
-  padding: 4vh 0;
-  background-color: #FFF;
-}
 .bienvenus{
   width: 50%;
   margin: auto;
@@ -456,5 +502,8 @@
   text-align: center;
 }
 
-/* Pour nos services */
+.list-partenaires{
+  height: 100vh;
+  background-color: #338f8e80
+}
 

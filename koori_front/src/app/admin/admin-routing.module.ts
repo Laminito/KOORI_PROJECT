@@ -27,27 +27,31 @@ import { SessionByServiceResolverService } from './_resolvers/SessionByServiceRe
 const routes: Routes = [
   {path: '', component: AccueilComponent, 
 
-  children: [
-    {path: 'dashboard', component: DashboardComponent, data: {title: 'Dashboard'}, children: [
+  children: 
+  [
+    {
+      path: 'dashboard', component: DashboardComponent, data: {title: 'Dashboard'}, children: [
       {path: 'service/:id', component: DetailDashboardComponent, resolve: {detailService: DetailServiceResolverService}},
     ]},
-      {path: 'ibox', component: IboxComponent},
-      {path: 'koori', component: KooriComponent},
-      {path: 'fiche/:id', component: FicheComponent, resolve: {fiche: FicheResolverService}},
-      {path: 'service/:id', component: DetailServiceComponent, resolve: {detailService: DetailServiceResolverService} },
-      {path: 'AddService', component: AddServiceComponent},
-      {path: 'edit/:id', component: EditServiceComponent},
-      {path: 'rapports/:id/details', component: DetailRapportComponent, resolve: {detailRapport: DetailRapportResolverService}},
-      {path: 'rapports', component: RapportComponent},
-      {path: 'ListeDemande', component: ListeDemandeComponent, resolve: {listeDemande: ListeDemandeByServiceResolver} },
-      {path: 'service/:id/sessions', component: SessionComponent , resolve: {sessionService: SessionByServiceResolverService}},
-      {path: 'session/:id', component: DetailSessionComponent , resolve: {session: DetailSessionResolverService} },
-      {path: 'utilisateur', component: ListeUtilisateurComponent},
-      {path: 'utilisateur-detail/:id', component: UtilisateurDetailComponent},
-      { path: 'not-found', component: NotFoundComponent },
-      {path: '**', redirectTo: '/not-found'}
+    {path: '', component: DashboardComponent, data: {title: 'Dashboard'}},
+    {path: 'ListeDemande', component: ListeDemandeComponent, resolve: {listeDemande: ListeDemandeByServiceResolver} },
+    {path: 'ibox', component: IboxComponent},
+    {path: 'koori', component: KooriComponent},
+    {path: 'AddService', component: AddServiceComponent},
+    {path: 'rapports', component: RapportComponent},
+    {path: 'utilisateur', component: ListeUtilisateurComponent},
+    {path: 'not-found', component: NotFoundComponent },
+    {path: 'rapports/:id/details', component: DetailRapportComponent, resolve: {detailRapport: DetailRapportResolverService}},
+    {path: 'service/:id/sessions', component: SessionComponent , resolve: {sessionService: SessionByServiceResolverService}},
+    {path: 'service/:id', component: DetailServiceComponent, resolve: {detailService: DetailServiceResolverService} },
+    {path: 'edit/:id', component: EditServiceComponent},
+    {path: 'fiche/:id', component: FicheComponent, resolve: {fiche: FicheResolverService}},
+    {path: 'session/:id', component: DetailSessionComponent , resolve: {session: DetailSessionResolverService} },
+    {path: 'utilisateur-detail/:id', component: UtilisateurDetailComponent},
+    {path: '**', redirectTo: '/not-found'}
   ]
 },
+
 ];
 
 @NgModule({

@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="faders">
+    <div class="left"></div>
+    <div class="right"></div>
+  </div>
+
+  <div class="items">
+    <div class="entry" *ngFor="let item of demandes">
+      <img src="http://dimelo-answers-production.s3-eu-west-1.amazonaws.com/268/357592665c67e9fc/sms_por_orange_original.png?e390ccc" alt="Smiling person" />
+      <p class="quote"> {{ item.description | summarize: 50 }} </p>
+    </div>
+  </div>
+
+</div>

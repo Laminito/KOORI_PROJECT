@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css?family=Muli:400,700&display=swap");
+
+body {
+  margin: 0;
+  height: calc(100vh - 8em);
+  font-family: "Muli", sans-serif;
+  background-color: #f9f9f9;
+}
+
+h1 {
+  text-align: center;
+  margin: 1.5em;
+}
+
+img {
+  width: 100%;
+  border-radius: 5%;
+}
+
+.container {
+  width: 100%;
+  padding: 0;
+  margin-top: 4%;
+  overflow: hidden;
+  position: relative;
+}
+
+.items {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  animation: carouselAnim 50s infinite alternate linear;
+}
+
+.entry {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  width: 300px;
+  background: #fff;
+  margin: 1em;
+  padding: 0.5em;
+  border-radius: 10px;
+  box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.5);
+  transition: transform 0.6s;
+  cursor: pointer;
+}
+.entry:hover{
+  transform: scale(1.1);
+}
+@media only screen and (max-width: 768px) {
+  .items {
+    animation: carouselAnim 35s infinite alternate linear;
+  }
+  
+  @keyframes carouselAnim {
+    from {
+      transform: translate(0, 0);
+    }
+    to {
+      transform: translate(calc(-100% + (2 * 300px)));
+    }
+  }
+}
+
+.entry p {
+  text-align: center;
+  padding: 1em;
+}
+
+.name {
+  font-weight: bold;
+}
+
+@keyframes carouselAnim {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(calc(-100% + (5 * 300px)));
+  }
+}
+
+.container .faders {
+  position: absolute;
+  background-color: #eee;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.faders .right,
+.faders .left{
+  position: absolute;
+  width: 15%;
+  height: 100%;
+  z-index: 200;
+}
+
+.faders .right{
+  right: 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.6) 20%, #ffffff 80%);
+}
+
+.faders .left{
+  left: 0;
+  background: linear-gradient(90deg, #ffffff 20%, rgb(255, 255, 255, 0.6) 80%);
+}
+
+.faders .right,
+.faders .left {
+  position: absolute;
+}
+
+

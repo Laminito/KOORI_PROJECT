@@ -1,7 +1,7 @@
-FROM node:16
+FROM node
 RUN mkdir kooriBackend
 COPY . ./kooriBackend
 WORKDIR /kooriBackend/.
-RUN npm i --legacy-peer-deps
+RUN npm install
 EXPOSE 3000
 CMD [ "npm", "start"]
