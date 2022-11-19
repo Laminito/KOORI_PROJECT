@@ -1,0 +1,25 @@
+<div class="bloc">
+<div class="app">
+
+	<div class="bg"></div>
+
+	<form [formGroup]="signinForm">
+		<header>
+			<img src="https://assets.codepen.io/3931482/internal/avatars/users/default.png?format=auto&height=80&version=1592223909&width=80">
+		</header>
+
+		<div class="inputs">
+			<input type="text" name="email" formControlName="email" placeholder="username or email">
+			<input type="password" name="password" formControlName="password" placeholder="password">
+
+			<p class="light"><a href="#">Forgot password?</a></p>
+		</div>
+	</form>
+
+	<footer>
+		<button>Connexion</button>
+		<p>Don't have an account? <a href="#">Sign Up</a></p>
+	</footer>
+
+</div>
+</div>

@@ -21,8 +21,8 @@ export class ProjetsComponent implements OnInit {
   ngOnInit(): void {
     this.allRequest.getAll('service').pipe(
       map(data => {
-        this.services = data;
-        data.forEach(serve => {
+        this.services = data.sort((a, b) => a.id - b.id);
+        this.services.forEach(serve => {
           serve.Demandes.forEach((dmd: Demande) => {
             this.demandes.push(dmd);
             if (dmd.statut === 'traitée') {

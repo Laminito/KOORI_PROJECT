@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Service } from 'src/app/users/_models/Service';
 import * as Aos from 'aos';
-import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-card-service',
@@ -11,9 +10,7 @@ import { map, Observable } from 'rxjs';
 })
 export class CardServiceComponent implements OnInit {
 
-  @Input() services!: Service[]
-
-  services$!: Observable<Service[]>
+  services!: Service[]
 
   images = [
     "assets/img/imgService_2.png",
@@ -32,9 +29,11 @@ export class CardServiceComponent implements OnInit {
       duration: 800,
     });
 
-    this.services$ = this.route.data.pipe(
-      map(data => data['services'])
-    );
+    this.route.data.subscribe(
+      (data) => {
+        this.services = data['services'].sort((a: Service, b: Service)=> a.id - b.id);
+      }
+    )
     
   }
 

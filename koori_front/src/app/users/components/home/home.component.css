@@ -322,7 +322,10 @@
   width: 100%;
   margin-bottom: 0;
   height: 90vh;
-  background-color: #fff;
+  /* background-color: #fff; */
+  background-image: url('src/assets/img/thinking2.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .bloc-bienvenus{
@@ -339,13 +342,13 @@
 }
 .containeur{
 	position: relative;
-	width: 50vw;
+	width: 55vw;
   height: 40vh;
 	display: flex;
 	justify-content: space-evenly;
   align-items: center;
-  margin-top: -12vh;
-  background-color: rgba(255, 255, 255, 0.375);
+  margin-top: -10vh;
+  /* background-color: rgba(255, 255, 255, 0.375); */
   border-radius: 15px;
 }
 .containeur .card{

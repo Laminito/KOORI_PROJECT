@@ -1,0 +1,49 @@
+<mat-card [formGroup]="mainForm" class="main-form">
+	<mat-card-title class="title">Inscription</mat-card-title>
+	<mat-card class="form-card">
+		<mat-card-subtitle>Informations personnelles</mat-card-subtitle>
+		<div class="form-row">
+			<mat-form-field class="nom" appearance="fill">
+				<mat-label>Nom Complet</mat-label>
+				<input type="text" matInput formControlName="nomComplet">
+			</mat-form-field>
+		</div>
+		<div class="form-row">
+			<mat-form-field appearance="fill">
+				<mat-label>Profession</mat-label>
+				<input type="text" matInput formControlName="profession">
+			</mat-form-field>
+			<mat-form-field appearance="fill">
+				<mat-label>Service</mat-label>
+				<input type="text" matInput formControlName="service">
+			</mat-form-field>
+		</div>
+		<div class="form-row">
+			<mat-form-field appearance="fill">
+				<mat-label>Département</mat-label>
+				<input type="text" matInput formControlName="departement">
+			</mat-form-field>
+			<mat-form-field appearance="fill">
+				<mat-label>Direction</mat-label>
+				<input type="text" matInput formControlName="direction">
+			</mat-form-field>
+		</div>
+
+	</mat-card>
+	<mat-card class="form-card">
+		<mat-card-subtitle>Informations de connexion</mat-card-subtitle>
+		<div class="form-row">
+			<mat-form-field appearance="fill">
+				<mat-label>Email</mat-label>
+				<input type="text" matInput formControlName="email">
+			</mat-form-field>
+			<mat-form-field appearance="fill">
+				<mat-label>Password</mat-label>
+				<input type="password" matInput formControlName="password">
+			</mat-form-field>
+		</div>
+	</mat-card>
+	<mat-card-actions>
+		<button mat-flat-button class="bouton" [disabled]="!mainForm.valid" (click)="onSubmitForm()">S'INSCRIRE</button>
+</mat-card-actions>
+

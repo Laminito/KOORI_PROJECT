@@ -37,6 +37,10 @@ import { CardProjetComponent } from './components/home/projets/card-projet/card-
 import { AllServicesResolver } from './_resolvers/all-services.resolver';
 import { PartenairesComponent } from './components/home/partenaires/partenaires.component';
 import { ServicesComponent } from './components/home/services/services.component';
+import { SigninComponent } from './components/signin/signin.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './_interceptors/auth.interceptor';
+import { SignupComponent } from './components/signup/signup.component';
 
 
 @NgModule({
@@ -73,7 +77,9 @@ import { ServicesComponent } from './components/home/services/services.component
     ProjetsComponent,
     CardProjetComponent,
     PartenairesComponent,
-    ServicesComponent
+    ServicesComponent,
+    SigninComponent,
+    SignupComponent
   ],
   imports: [
     SharedModule,
@@ -117,8 +123,14 @@ import { ServicesComponent } from './components/home/services/services.component
   ],
 
   providers:[
-    AllServicesResolver
-  ]
+    AllServicesResolver,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
+  entryComponents:[SigninComponent, SignupComponent]
 })
 
 export class UsersModule { }

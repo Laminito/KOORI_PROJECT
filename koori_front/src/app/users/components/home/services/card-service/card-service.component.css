@@ -55,7 +55,7 @@
   cursor: pointer;
   background: transparent;
   transition: all 0.5s, background 0.5s;
-  box-shadow: 10px 10px 4px #264a4a83;
+  box-shadow: 0px 0px 4px #264a4a83;
   background-color: rgba(255, 255, 255, 0.597);
 }
 

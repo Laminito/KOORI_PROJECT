@@ -6,6 +6,8 @@ import { Koori } from '../../_models/koori';
 import { Service } from '../../_models/Service';
 import { Temoignage } from '../../_models/Temoignage';
 import { AllRequestService } from '../../_services/all-request.service';
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { SignupComponent } from '../signup/signup.component';
 
 
 @Component({
@@ -20,7 +22,9 @@ export class HomeComponent implements OnInit {
   ibox!: Ibox;
   services!: Service[];
 
-  constructor( private allRequest: AllRequestService, private iboxService: IboxService) { }
+  constructor( private allRequest: AllRequestService, 
+               private iboxService: IboxService,
+               public dialog: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -55,16 +59,19 @@ export class HomeComponent implements OnInit {
 
     });
 
-    this.allRequest.getAllServices().subscribe(
-      (data) => {
-        console.log(data);
-      }
-      
-    )
-
     this.getDescriptionKoori();
     this.getDescriptionIbox();
     this.getTemoignages();
+  }
+
+  openDialog(){
+    const dialoConfig = new MatDialogConfig();
+
+    //dialoConfig.disableClose = true;
+    dialoConfig.autoFocus = true;
+
+    this.dialog.open(SignupComponent, dialoConfig);
+
   }
 
   getDescriptionKoori(){

@@ -30,37 +30,24 @@ module.exports = {
 
     },
     createUsers: (req, res) => {
-        //return res.json({"ok": req.body})
-        asyncLib.waterfall([
-            (callback1) => {
-                callback1(null, validationResults.error(req, res))
-            },
-            (errorResult, callback2) => {
-                if (!errorResult) {
-
-                    const { ProfilId, nomComplet, email, profession, service, departement, direction } = req.body
-                    models.User.create({
-                        ProfilId: ProfilId,
-                        nomComplet: nomComplet,
-                        email: email,
-                        profession: profession,
-                        service: service,
-                        departement: departement,
-                        direction: direction,
-                        avatar: req.file.buffer
-
-                    }).then((userResult) => {
-
-                        callback2(null, userResult)
-                    }).catch((err) => {
-                        return res.status(500).json({ 'error': 'Erreur d ajout ' + err })
-                    })
-                }
-            },
-        ], (err, result) => {
-            res.json(result);
+        
+        const { ProfilId, nomComplet, email, profession, service, departement, direction } = req.body
+        models.User.create({
+            ProfilId: ProfilId,
+            nomComplet: nomComplet,
+            email: email,
+            profession: profession,
+            service: service,
+            departement: departement,
+            direction: direction,
+        }).then((userResult) => {
+            return res.status(201).json(userResult);
+        }).catch((err) => {
+            return res.status(500).json({ 'error': 'Erreur d ajout ' + err })
         })
+
     },
+
     updateUser: (req, res) => {
         const { ProfilId, nomComplet, email, profession, service, departement, direction } = req.body
         const UserId = parseInt(req.params.id)
