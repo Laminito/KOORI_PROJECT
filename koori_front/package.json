@@ -6,14 +6,17 @@
     "start": "ng serve --host 0.0.0.0",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "heroku-postbuild": "ng build --configuration production",
     "test": "ng test"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^14.0.0",
     "@angular/cdk": "^14.2.5",
+    "@angular/cli": "~14.0.6",
     "@angular/common": "^14.0.0",
     "@angular/compiler": "^14.0.0",
+    "@angular/compiler-cli": "^14.0.0",
     "@angular/core": "^14.0.0",
     "@angular/forms": "^14.0.0",
     "@angular/material": "^14.2.6",
@@ -42,7 +45,8 @@
     "tslib": "^2.3.0",
     "u": "^0.1.0",
     "xlsx": "^0.18.5",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+    "typescript": "~4.7.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.0.6",
@@ -60,5 +64,9 @@
     "karma-jasmine": "~5.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "typescript": "~4.7.2"
+  },
+  "engines": {
+    "node": "18.12.1",
+    "npm": "6.14.17"
   }
 }
