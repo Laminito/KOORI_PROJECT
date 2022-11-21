@@ -94,7 +94,7 @@
      apiRouter.get('/koori/', kooriCtrl.getLastKoori);
 
      //Mailling
-     //  apiRouter.post('/mail/koori', kooriCtrl.postMail);
+      apiRouter.post('/mail/koori', kooriCtrl.postMail);
      apiRouter.post('/mail/ibox/', kooriCtrl.postMailIbox);
      apiRouter.post('/mail/fiche/:id', kooriCtrl.postMailFiche);
 

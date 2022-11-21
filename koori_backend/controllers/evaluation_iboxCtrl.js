@@ -16,11 +16,12 @@ module.exports = {
             },
             (errorResult, callback2) => {
                 if (!errorResult) {
-                    const { UserId, IboxId, evaluation } = req.body
+                    const { UserId, IboxId, evaluation, note } = req.body
                     models.EvaluationIbox.create({
                         UserId: idUser,
                         IboxId: idIbox,
-                        evaluation
+                        evaluation:evaluation,
+                        note:note
                     }).then((evaluation_kooriResult) => {
                         callback2(null, evaluation_kooriResult)
                     }).catch((err) => {
@@ -40,7 +41,7 @@ module.exports = {
         asyncLib.waterfall([
             (callback) => {
                 models.EvaluationIbox.findOne({
-                    attributes: ['id', 'evaluation', 'UserId', 'IboxId'],
+                    attributes: ['id', 'evaluation', 'UserId', 'IboxId','note'],
                     where: {
                         [Op.and]: [{ UserId: idUser }, { IboxId: idIbox }] },
                 }).then(
@@ -76,7 +77,7 @@ module.exports = {
         const idUser = parseInt(req.params.id);
         const idIbox = parseInt(req.params.id1);
         models.EvaluationIbox.findOne({
-                attributes: ['id', 'UserId', 'IboxId', 'evaluation'],
+                attributes: ['id', 'UserId', 'IboxId', 'evaluation','note'],
                 include: [{
                         model: models.Ibox,
                         attributes: ['id', 'description']

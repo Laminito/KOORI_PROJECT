@@ -5,6 +5,7 @@ import html2canvas from 'html2canvas';
 import { Fiche } from '../../_models/fiche';
 import { LoadingService } from '../../_services/loading.service';
 import { SenddataService } from '../../_services/senddata.service';
+import { Evaluation_fiche } from '../../_models/evaluation_fiche';
 declare var require: any
 const FileSaver = require('file-saver');
 
@@ -17,6 +18,9 @@ export class FicheComponent implements OnInit {
   fiche: any
   fiches: Fiche[]=[]
   p=1
+  evaluation_fiche!:Evaluation_fiche
+  resources!:string
+  type!:string   //FOR SIMULATION
   constructor(private route: ActivatedRoute,
               public loading: LoadingService,
               private senddata: SenddataService,
@@ -29,18 +33,29 @@ export class FicheComponent implements OnInit {
       }
     );
   }
+
   ngOnInit(): void {
     this.fiches = this.senddata.getdata()
+
+    this.type = 'Fiche'  //FOR SIMULATION
+    this.evaluation_fiche = new Evaluation_fiche()
+    this.evaluation_fiche.UserId = 1  //ON DEVRA PRENDRE INCHALLAH L'ID DU USER QUI SE CONNECTE. CECI N'EST QU'UN TEST
+    this.evaluation_fiche.FicheId = this.fiche.id
+    //this.resources = `evaluation_fiche/user/${this.evaluation_fiche.UserId}/fiche/${this.evaluation_fiche.FicheId}`
+
   }
+
   downloadPdf() {
     const pdfUrl = './assets/Votre_livret.pdf';
     const pdfName = 'Votre_livret';
     FileSaver.saveAs(pdfUrl, pdfName);
   }
+
   navigate(id:number,tab: any){
     this.senddata.setData(tab)
     this._route.navigate([`/home/fiche/${id}`], tab)
   }
+
   exportHtmlToPDF(fic: Fiche){
     let data = document.getElementById('lafiche');
     // @ts-ignore

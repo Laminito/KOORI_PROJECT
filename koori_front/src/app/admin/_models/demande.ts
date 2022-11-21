@@ -14,6 +14,7 @@ export class Demande {
   public DemandeUser:any
   public date_fin:any
   public moyenne:number=0
+  public createdAt:string = '';
   deserialize(input: any): this {
     return Object.assign(this, input);
   }

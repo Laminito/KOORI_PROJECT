@@ -6,6 +6,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import {KeycloakAngularModule} from "keycloak-angular";
 import { NgxPaginationModule } from 'ngx-pagination';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CoreModule,
     KeycloakAngularModule,
     NgxPaginationModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

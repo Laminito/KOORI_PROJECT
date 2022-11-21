@@ -106,15 +106,7 @@ export class DetailDashboardComponent implements OnInit {
   pieChartLabels: string[] = ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'];
   moisInt: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   
-  pieChartData = {
-    datasets: [
-      {
-        data: [50, 30, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        fill: 'origin'
-      }
-    ],
-    labels: this.pieChartLabels
-  } 
+ 
   pieChartDatas= {
     datasets: [
       {

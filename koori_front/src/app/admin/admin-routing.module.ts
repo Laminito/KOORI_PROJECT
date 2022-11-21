@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AccueilComponent } from './components/accueil/accueil.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DetailDashboardComponent } from './components/dashboard/detail-dashboard/detail-dashboard.component';
+import { DemandeAnnuelChartComponent } from './components/detail-deshboard-testing/demande-annuel-chart/demande-annuel-chart.component';
+import { DetailDeshboardTestingComponent } from './components/detail-deshboard-testing/detail-deshboard-testing.component';
 import { FicheComponent } from './components/fiche/fiche.component';
 import { IboxComponent } from './components/ibox/ibox.component';
 import { KooriComponent } from './components/koori/koori.component';
@@ -31,6 +33,7 @@ const routes: Routes = [
     {path: 'dashboard', component: DashboardComponent, data: {title: 'Dashboard'}, children: [
       {path: 'service/:id', component: DetailDashboardComponent, resolve: {detailService: DetailServiceResolverService}},
     ]},
+    {path: 'chartTest', component: DemandeAnnuelChartComponent},
       {path: 'ibox', component: IboxComponent},
       {path: 'koori', component: KooriComponent},
       {path: 'fiche/:id', component: FicheComponent, resolve: {fiche: FicheResolverService}},

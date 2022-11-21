@@ -1,0 +1,17 @@
+<div class="col-8 my-auto">
+    <div *ngFor="let demande of demandesByService | async">
+        <h1>{{ demande.titre}}</h1>
+    </div>
+    <!-- <div class="mt-2 text-center" style="border: 1px solid #000000;box-sizing: border-box;border-radius: 5px;">
+          <p class="mt-2" style="color: var(--orange); font-weight: 500;font-size: large;">Courbe representative du nombre de demandes annuel</p>
+        <div style="display: block;">
+            <canvas baseChart width="500" height="250"
+                    [data]="lineChartDatas"
+                    [options]="lineChartOptions"
+                    [legend]="lineChartLegend"
+                    [type]="'line'"
+                    [plugins]="plugins">
+            </canvas>
+        </div>
+    </div> -->
+</div>

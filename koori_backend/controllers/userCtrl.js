@@ -4,8 +4,7 @@ const asyncLib = require("async");
 const validationResults = require("../validationResult");
 const { Op } = require("sequelize");
 
-module.exports = {
-
+module.exports = { 
     getUsers: (req, res) => {
         var limit = parseInt(req.query.limit);
         var offset = parseInt(req.query.offset);

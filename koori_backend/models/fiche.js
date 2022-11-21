@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
                     onUpdate: 'RESTRICT'
                 }
             });
+            this.belongsToMany(models.User, { as: 'EvaluationFicheUser', through: models.EvaluationFiche, foreignKey: 'FicheId' });
         }
     }
     Fiche.init({

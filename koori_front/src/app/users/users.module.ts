@@ -32,6 +32,7 @@ import { FilterPipe } from './_pipes/filter.pipe';
 import { SummarizePipe } from './_pipes/summarize.pipe';
 import { SharedModule } from '../shared/shared.module';
 import { CardServiceComponent } from './components/home/card-service/card-service.component';
+import { RatingModule } from 'ngx-bootstrap/rating';
 
 
 @NgModule({
@@ -70,6 +71,7 @@ import { CardServiceComponent } from './components/home/card-service/card-servic
     SharedModule,
     CommonModule,
     UsersRoutingModule,
+    RatingModule.forRoot(),
   ],
   exports:[
     HomeComponent,

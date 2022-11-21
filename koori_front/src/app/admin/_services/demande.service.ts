@@ -19,7 +19,7 @@ export class DemandeService {
   }
 
   getDemandesByServiceId(id?: number){
-    return this.http.get<Demande[]>(`${environment.API}service/1/demande`)
+    return this.http.get<Demande[]>(`${environment.API}service/${id}/demande`)
   }
 
 }

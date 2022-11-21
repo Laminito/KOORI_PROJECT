@@ -110,7 +110,6 @@ export class AddFicheComponent implements OnInit {
     }
       //console.log(this.addForm.value)
     this.ficheService.postFiche(fiche).subscribe((data:any)=>{
-      console.log(data)
       Swal.fire({
         position: 'top-end',
         icon: 'success',

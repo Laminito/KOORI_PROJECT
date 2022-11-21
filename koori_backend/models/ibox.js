@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         static associate(models) {
             // define association here
             this.hasMany(models.Fiche);
+            this.belongsToMany(models.User, { as: 'EvaluationIboxUser', through: models.EvaluationIbox, foreignKey: 'IboxId' });
         }
     }
     Ibox.init({

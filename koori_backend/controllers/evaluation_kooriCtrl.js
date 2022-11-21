@@ -9,18 +9,18 @@ module.exports = {
     createEvaluation_koori: (req, res) => {
         const idUser = parseInt(req.params.id);
         const idKoori = parseInt(req.params.id1);
-        //return res.json({'ok': "ok"})
         asyncLib.waterfall([
             (callback1) => {
                 callback1(null, validationResults.error(req, res))
             },
             (errorResult, callback2) => {
                 if (!errorResult) {
-                    const { UserId, KooriId, evaluation } = req.body
+                const { UserId, KooriId, evaluation, note} = req.body
                     models.EvaluationKoori.create({
                         UserId: idUser,
                         KooriId: idKoori,
-                        evaluation
+                        evaluation:evaluation,
+                        note:note
                     }).then((evaluation_kooriResult) => {
                         callback2(null, evaluation_kooriResult)
                     }).catch((err) => {
@@ -32,6 +32,7 @@ module.exports = {
             res.json(result);
         })
     },
+
     updateEvaluation_koori: (req, res) => {
         const { statut } = req.body
         const idUser = parseInt(req.params.id);
@@ -40,7 +41,7 @@ module.exports = {
         asyncLib.waterfall([
             (callback) => {
                 models.EvaluationKoori.findOne({
-                    attributes: ['id', 'evaluation', 'UserId', 'KooriId'],
+                    attributes: ['id', 'evaluation', 'UserId', 'KooriId','note'],
                     where: {
                         [Op.and]: [{ UserId: idUser }, { KooriId: idKoori }] },
                 }).then(
@@ -72,11 +73,10 @@ module.exports = {
         })
     },
     getEvaluation_kooriByUserId: (req, res) => {
-        //return res.json({'ids': req.params.id1})
         const idUser = parseInt(req.params.id);
         const idKoori = parseInt(req.params.id1);
         models.EvaluationKoori.findOne({
-                attributes: ['id', 'UserId', 'KooriId', 'evaluation'],
+                attributes: ['id', 'UserId', 'KooriId', 'evaluation','note'],
                 include: [{
                         model: models.Koori,
                         attributes: ['id', 'description']

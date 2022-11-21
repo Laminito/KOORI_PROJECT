@@ -1,10 +1,11 @@
-import {Component, OnInit } from '@angular/core';
+import {Component,  OnInit } from '@angular/core';
 import {ActivatedRoute, Data, Router } from '@angular/router';
 
 import * as $ from 'jquery';
 import 'lodash';
 
 import { Subscription } from 'rxjs';
+import { Evaluation_ibox } from '../../_models/evaluation_ibox';
 import { Fiche } from '../../_models/fiche';
 import { Ibox } from '../../_models/ibox';
 import { Koori } from '../../_models/koori';
@@ -43,6 +44,9 @@ export class IboxComponent implements OnInit {
   v: string[][] = []
   count: number = 0;
   p=1
+evaluation_ibox!:Evaluation_ibox
+resources!:string
+type!:string  //FOR SIMULATION
   constructor(private allRequest: AllRequestService,
               private route:ActivatedRoute,
               private _route: Router,
@@ -52,6 +56,17 @@ export class IboxComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.evaluation_ibox = new Evaluation_ibox()
+    // this.allRequest.getAll("ibox/last").subscribe((lastibox:Ibox)=>{
+    //   this.evaluation_ibox.IboxId =lastibox.id
+    //   this.evaluation_ibox.UserId = 1  //ON DEVRA PRENDRE INCHALLAH L'ID DU USER QUI SE CONNECTE. CECI N'EST QU'UN TEST
+    //   this.resources = `evaluation_ibox/user/${this.evaluation_ibox.UserId}/ibox/${this.evaluation_ibox.IboxId}`
+    // })
+    this.type = 'Ibox'  //FOR SIMULATION
+    this.evaluation_ibox.IboxId =1  //FOR SIMULATION
+    this.evaluation_ibox.UserId = 1   //FOR SIMULATION
+
     this.route.data.subscribe(
       (data: Data) => {
         this.title = data['title'];

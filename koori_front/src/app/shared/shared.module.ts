@@ -4,7 +4,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {CdkStepperModule} from '@angular/cdk/stepper';
 import { NgStepperModule } from 'angular-ng-stepper';
 import { NgxPaginationModule } from 'ngx-pagination';
-
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [],
@@ -12,7 +12,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MaterialModule
   ],
   exports:[
     CommonModule,
@@ -20,7 +21,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FormsModule,
     CdkStepperModule,
     NgStepperModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MaterialModule
   ]
 })
 

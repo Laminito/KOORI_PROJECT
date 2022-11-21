@@ -31,6 +31,10 @@ import { IboxComponent } from './components/ibox/ibox.component';
 import { AddFicheComponent } from './components/add-fiche/add-fiche.component';
 import { SharedModule } from '../shared/shared.module';
 import { NgChartsModule } from 'ng2-charts';
+import { DetailDeshboardTestingComponent } from './components/detail-deshboard-testing/detail-deshboard-testing.component';
+import { DemandeAnnuelChartComponent } from './components/detail-deshboard-testing/demande-annuel-chart/demande-annuel-chart.component';
+import { NosClientsMensuelComponent } from './components/detail-deshboard-testing/nos-clients-mensuel/nos-clients-mensuel.component';
+import { StatutDemandeComponent } from './components/detail-deshboard-testing/statut-demande/statut-demande.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +64,11 @@ import { NgChartsModule } from 'ng2-charts';
     DetailDashboardComponent,
     EditServiceComponent,
     IboxComponent,
-    AddFicheComponent
+    AddFicheComponent,
+    DetailDeshboardTestingComponent,
+    DemandeAnnuelChartComponent,
+    NosClientsMensuelComponent,
+    StatutDemandeComponent
   ],
   imports: [
     CommonModule,
