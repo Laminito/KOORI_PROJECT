@@ -72,23 +72,10 @@ server.use((req, res, next) => {
     next();
 });
 
-
-
-
-
-
-
 server.use('/api', apiRouter);
-
-
-
-
-
 
 // server.use('/api', apiRouter);
 // server.use('/test', apiRouter);
-
-
 
 server.get('/', function(req, res) {
     res.setHeader('Content-Type', 'text/html');
@@ -98,3 +85,4 @@ server.get('/', function(req, res) {
 server.listen(3001, '0.0.0.0', function() {
     console.log('server en ecoute');
 })
+

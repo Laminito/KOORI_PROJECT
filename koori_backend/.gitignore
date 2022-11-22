@@ -1,6 +1,6 @@
-/node_modules
+./node_modules
 .vscode/*
-!.vscode/settings.json
+.vscode/settings.json
 
 # IDEs and editors
 .idea/
