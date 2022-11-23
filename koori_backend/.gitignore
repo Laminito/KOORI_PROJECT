@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /node_modules
 .vscode/*
 !.vscode/settings.json
@@ -6,3 +7,8 @@
 .idea/
 npm-debug.log
 yarn-error.log
+=======
+./Data
+./vscode
+node_modules
+>>>>>>> 363a43088ebbb9110c188a5a711c4a683210ada6

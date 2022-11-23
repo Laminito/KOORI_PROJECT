@@ -119,7 +119,7 @@ module.exports = {
                 res.status(200).json(rapports)
             })
             .catch((err) => {
-                return res.status(500).json({ 'error': 'Erreuree de récupération ' + err.message })
+                return res.status(500).json({ 'error': 'Erreure de récupération ' + err.message })
             })
     },
 

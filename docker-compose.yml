@@ -37,7 +37,6 @@ services:
         - "5432:5432"
       restart: always
       volumes:
-      # - database-data:/var/lib/postgresql/data/
       - ./Data/postgresDB:/var/lib/postgresql/storage
       networks:
         koori_net:
@@ -85,7 +84,7 @@ services:
 
 
 volumes:
-  database-data:
+  postgresDB:
   pgadmin-data:
   koori_backend:
 
