@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 3001
 const dotenv = require('dotenv').config()
 const cookieParser = require('cookie-parser')
 const model = require('./models')
-const userRoutes = require('./routes/userRoutes')
+    // const userRoutes = require('./routes/userRoutes')
 
 server.use(cookieParser())
 

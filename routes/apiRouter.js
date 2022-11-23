@@ -19,7 +19,7 @@ let sessionAllRoutes = require('../routes/sessionRoute')
 let sujetAllRoutes = require('../routes/sujetRoute')
 let temoignageAllRoutes = require('../routes/temoignageRoute')
 let userAllRoutes = require('../routes/userRoute')
-let AuthRoutes = require('../routes/userRoutes')
+let AuthRoutes = require('../routes/authRoutes')
 
 
 module.exports = [
