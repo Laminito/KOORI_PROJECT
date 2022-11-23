@@ -22,6 +22,7 @@ const endpointsFiles = [
     './routes/sujetRoute.js',
     './routes/temoignageRoute.js',
     './routes/userRoute.js',
+    './routes/userRoutes.js'
 ]
 
 swaggerAutogen(outputFile, endpointsFiles)

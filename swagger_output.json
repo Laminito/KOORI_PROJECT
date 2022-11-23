@@ -12,28 +12,6 @@
     ],
     "paths": {
         "/apropos/": {
-            "get": {
-                "description": "",
-                "parameters": [{
-                        "name": "limit",
-                        "in": "query",
-                        "type": "string"
-                    },
-                    {
-                        "name": "offset",
-                        "in": "query",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    },
-                    "500": {
-                        "description": "Internal Server Error"
-                    }
-                }
-            },
             "post": {
                 "description": "",
                 "parameters": [{
@@ -51,6 +29,28 @@
                         }
                     }
                 }],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "get": {
+                "description": "",
+                "parameters": [{
+                        "name": "limit",
+                        "in": "query",
+                        "type": "string"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "type": "string"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -97,28 +97,6 @@
             }
         },
         "/commentaire/": {
-            "get": {
-                "description": "",
-                "parameters": [{
-                        "name": "limit",
-                        "in": "query",
-                        "type": "string"
-                    },
-                    {
-                        "name": "offset",
-                        "in": "query",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    },
-                    "500": {
-                        "description": "Internal Server Error"
-                    }
-                }
-            },
             "post": {
                 "description": "",
                 "parameters": [{
@@ -151,6 +129,28 @@
                         }
                     }
                 }],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "get": {
+                "description": "",
+                "parameters": [{
+                        "name": "limit",
+                        "in": "query",
+                        "type": "string"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "type": "string"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -494,28 +494,6 @@
             }
         },
         "/etape/": {
-            "get": {
-                "description": "",
-                "parameters": [{
-                        "name": "limit",
-                        "in": "query",
-                        "type": "string"
-                    },
-                    {
-                        "name": "offset",
-                        "in": "query",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    },
-                    "500": {
-                        "description": "Internal Server Error"
-                    }
-                }
-            },
             "post": {
                 "description": "",
                 "parameters": [{
@@ -536,6 +514,28 @@
                         }
                     }
                 }],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "get": {
+                "description": "",
+                "parameters": [{
+                        "name": "limit",
+                        "in": "query",
+                        "type": "string"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "type": "string"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -707,10 +707,40 @@
                 }
             }
         },
-        "/evaluation_ibox": {
-            "get": {
+        "/evaluation_ibox/user/{id}/ibox/{id1}": {
+            "post": {
                 "description": "",
-                "parameters": [],
+                "parameters": [{
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id1",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "UserId": {
+                                    "example": "any"
+                                },
+                                "IboxId": {
+                                    "example": "any"
+                                },
+                                "evaluation": {
+                                    "example": "any"
+                                }
+                            }
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -719,9 +749,7 @@
                         "description": "Internal Server Error"
                     }
                 }
-            }
-        },
-        "/evaluation_ibox/user/{id}/ibox/{id1}": {
+            },
             "put": {
                 "description": "",
                 "parameters": [{
@@ -781,40 +809,12 @@
                         "description": "Internal Server Error"
                     }
                 }
-            },
-            "post": {
+            }
+        },
+        "/evaluation_ibox": {
+            "get": {
                 "description": "",
-                "parameters": [{
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "id1",
-                        "in": "path",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "UserId": {
-                                    "example": "any"
-                                },
-                                "IboxId": {
-                                    "example": "any"
-                                },
-                                "evaluation": {
-                                    "example": "any"
-                                }
-                            }
-                        }
-                    }
-                ],
+                "parameters": [],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -1061,28 +1061,6 @@
             }
         },
         "/fiche/": {
-            "get": {
-                "description": "",
-                "parameters": [{
-                        "name": "limit",
-                        "in": "query",
-                        "type": "string"
-                    },
-                    {
-                        "name": "offset",
-                        "in": "query",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    },
-                    "500": {
-                        "description": "Internal Server Error"
-                    }
-                }
-            },
             "post": {
                 "description": "",
                 "parameters": [{
@@ -1130,6 +1108,28 @@
                         }
                     }
                 }],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "get": {
+                "description": "",
+                "parameters": [{
+                        "name": "limit",
+                        "in": "query",
+                        "type": "string"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "type": "string"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -1223,18 +1223,6 @@
             }
         },
         "/koori/": {
-            "get": {
-                "description": "",
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    },
-                    "500": {
-                        "description": "Internal Server Error"
-                    }
-                }
-            },
             "post": {
                 "description": "",
                 "parameters": [{
@@ -1258,6 +1246,18 @@
                         }
                     }
                 }],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "get": {
+                "description": "",
+                "parameters": [],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -1498,28 +1498,6 @@
             }
         },
         "/profil/": {
-            "get": {
-                "description": "",
-                "parameters": [{
-                        "name": "limit",
-                        "in": "query",
-                        "type": "string"
-                    },
-                    {
-                        "name": "offset",
-                        "in": "query",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    },
-                    "500": {
-                        "description": "Internal Server Error"
-                    }
-                }
-            },
             "post": {
                 "description": "",
                 "parameters": [{
@@ -1534,6 +1512,28 @@
                         }
                     }
                 }],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "get": {
+                "description": "",
+                "parameters": [{
+                        "name": "limit",
+                        "in": "query",
+                        "type": "string"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "type": "string"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -1770,22 +1770,6 @@
             }
         },
         "/service/": {
-            "get": {
-                "description": "",
-                "parameters": [{
-                    "name": "filter",
-                    "in": "header",
-                    "type": "string"
-                }],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    },
-                    "500": {
-                        "description": "Internal Server Error"
-                    }
-                }
-            },
             "post": {
                 "description": "",
                 "parameters": [{
@@ -1835,6 +1819,22 @@
                             }
                         }
                     }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "get": {
+                "description": "",
+                "parameters": [{
+                    "name": "filter",
+                    "in": "header",
+                    "type": "string"
                 }],
                 "responses": {
                     "200": {
@@ -1939,20 +1939,30 @@
                 }
             }
         },
-        "/session/": {
-            "get": {
+        "/evaluationSession/": {
+            "post": {
                 "description": "",
                 "parameters": [{
-                        "name": "limit",
-                        "in": "query",
-                        "type": "string"
-                    },
-                    {
-                        "name": "offset",
-                        "in": "query",
-                        "type": "string"
+                    "name": "body",
+                    "in": "body",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "DemandeId": {
+                                "example": "any"
+                            },
+                            "UserId": {
+                                "example": "any"
+                            },
+                            "evaluation": {
+                                "example": "any"
+                            },
+                            "note": {
+                                "example": "any"
+                            }
+                        }
                     }
-                ],
+                }],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -2061,41 +2071,7 @@
                 }
             }
         },
-        "/evaluationSession/": {
-            "post": {
-                "description": "",
-                "parameters": [{
-                    "name": "body",
-                    "in": "body",
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "DemandeId": {
-                                "example": "any"
-                            },
-                            "UserId": {
-                                "example": "any"
-                            },
-                            "evaluation": {
-                                "example": "any"
-                            },
-                            "note": {
-                                "example": "any"
-                            }
-                        }
-                    }
-                }],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    },
-                    "500": {
-                        "description": "Internal Server Error"
-                    }
-                }
-            }
-        },
-        "/sujet/": {
+        "/session/": {
             "get": {
                 "description": "",
                 "parameters": [{
@@ -2117,7 +2093,9 @@
                         "description": "Internal Server Error"
                     }
                 }
-            },
+            }
+        },
+        "/sujet/": {
             "post": {
                 "description": "",
                 "parameters": [{
@@ -2138,6 +2116,28 @@
                         }
                     }
                 }],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "get": {
+                "description": "",
+                "parameters": [{
+                        "name": "limit",
+                        "in": "query",
+                        "type": "string"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "type": "string"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -2382,6 +2382,9 @@
                             "email": {
                                 "example": "any"
                             },
+                            "password": {
+                                "example": "any"
+                            },
                             "profession": {
                                 "example": "any"
                             },
@@ -2548,6 +2551,86 @@
                     },
                     "404": {
                         "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/signup": {
+            "post": {
+                "description": "",
+                "parameters": [{
+                    "name": "body",
+                    "in": "body",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "email": {
+                                "example": "any"
+                            },
+                            "ProfilId": {
+                                "example": "any"
+                            },
+                            "nomComplet": {
+                                "example": "any"
+                            },
+                            "password": {
+                                "example": "any"
+                            },
+                            "profession": {
+                                "example": "any"
+                            },
+                            "service": {
+                                "example": "any"
+                            },
+                            "departement": {
+                                "example": "any"
+                            },
+                            "direction": {
+                                "example": "any"
+                            },
+                            "avatar": {
+                                "example": "any"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "409": {
+                        "description": "Conflict"
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "description": "",
+                "parameters": [{
+                    "name": "body",
+                    "in": "body",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "email": {
+                                "example": "any"
+                            },
+                            "password": {
+                                "example": "any"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
                     }
                 }
             }

@@ -31,6 +31,12 @@ Object.keys(db).forEach(modelName => {
         db[modelName].associate(db);
     }
 });
+sequelize.authenticate().then(() => {
+    console.log(`Database connected to discover`)
+}).catch((err) => {
+    console.log(err)
+});
+
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

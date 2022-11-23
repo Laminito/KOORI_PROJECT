@@ -1,4 +1,11 @@
 'use strict';
+const bcrypt = require("bcrypt")
+const defaultpass = "pass"
+async function hash(password) {
+    const passwprdHash = await bcrypt.hash(password, 10);
+
+    return passwprdHash;
+}
 module.exports = {
     up: async(queryInterface, Sequelize) => {
         await queryInterface.createTable('Users', {
@@ -17,29 +24,38 @@ module.exports = {
                 }
             },
             nomComplet: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                allowNull: false
             },
             email: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                allowNull: false,
+                validate: { isEmail: true },
+                unique: true
             },
             password: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                allowNull: false
             },
             profession: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                allowNull: false
             },
             service: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                allowNull: false
             },
             departement: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                allowNull: false
             },
             direction: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                allowNull: false
             },
             avatar: {
                 type: Sequelize.BLOB,
-                allowNull: true
+                allowNull: false
             },
             createdAt: {
                 allowNull: false,
@@ -54,7 +70,7 @@ module.exports = {
                 ProfilId: 1,
                 nomComplet: 'Pape Saliou Mbodj',
                 email: 'papasaliou.mbodj@gmail.com',
-                password: "pass",
+                password: await hash(defaultpass),
                 profession: 'CTO',
                 service: 'Systeme information',
                 departement: 'Innovation Lab',
@@ -65,8 +81,8 @@ module.exports = {
             }, {
                 ProfilId: 1,
                 nomComplet: 'Mohamed Ba',
-                email: 'mba25516@gmail.com',
-                password: "pass",
+                email: 'mba25116@gmail.com',
+                password: await hash(defaultpass),
                 profession: 'Developpeur web',
                 service: 'Systeme information',
                 departement: 'Innovation Lab',
@@ -79,7 +95,7 @@ module.exports = {
                 ProfilId: 2,
                 nomComplet: 'Fama Sarr',
                 email: 'sfama@ept.sn',
-                password: "pass",
+                password: await hash(defaultpass),
                 profession: 'Developpeuse web',
                 service: 'Systeme information',
                 departement: 'Innovation Lab',
@@ -92,7 +108,7 @@ module.exports = {
                 ProfilId: 2,
                 nomComplet: 'Cheikhou Bodian',
                 email: 'cheikhoubodian@gmail.com',
-                password: "pass",
+                password: await hash(defaultpass),
                 profession: 'Commercial',
                 service: 'Systeme information',
                 departement: 'DSC',
@@ -105,7 +121,7 @@ module.exports = {
                 ProfilId: 2,
                 nomComplet: 'Abdoulaye Mangane',
                 email: 'abmangane12@gmail.com',
-                password: "pass",
+                password: await hash(defaultpass),
                 profession: 'Developpeur web',
                 service: 'Systeme information',
                 departement: 'Innovation Lab',

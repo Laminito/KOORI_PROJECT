@@ -12,6 +12,7 @@
         "database": "petaaw",
         "host": "172.17.0.1",
         "dialect": "postgres"
+
     },
     "production": {
         "username": "root",

@@ -13,6 +13,7 @@ module.exports = {
         ] : attribute = [headerAuth]
 
         models.Service.findAll({
+
                 where: { archive: false },
                 include: [{
                     model: models.Demande
