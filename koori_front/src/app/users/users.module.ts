@@ -31,9 +31,17 @@ import { TopComponent } from './components/top/top.component';
 import { FilterPipe } from './_pipes/filter.pipe';
 import { SummarizePipe } from './_pipes/summarize.pipe';
 import { SharedModule } from '../shared/shared.module';
-import { CardServiceComponent } from './components/home/card-service/card-service.component';
+import { CardServiceComponent } from './components/home/services/card-service/card-service.component';
+import { ProjetsComponent } from './components/home/projets/projets.component';
+import { CardProjetComponent } from './components/home/projets/card-projet/card-projet.component';
+import { AllServicesResolver } from './_resolvers/all-services.resolver';
+import { PartenairesComponent } from './components/home/partenaires/partenaires.component';
+import { ServicesComponent } from './components/home/services/services.component';
+import { SigninComponent } from './components/signin/signin.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './_interceptors/auth.interceptor';
+import { SignupComponent } from './components/signup/signup.component';
 import { RatingModule } from 'ngx-bootstrap/rating';
-
 
 @NgModule({
   declarations: [
@@ -65,7 +73,13 @@ import { RatingModule } from 'ngx-bootstrap/rating';
     FicheComponent,
     ListRapportsComponent,
     KooriiboxMenuComponent,
-    CardServiceComponent
+    CardServiceComponent,
+    ProjetsComponent,
+    CardProjetComponent,
+    PartenairesComponent,
+    ServicesComponent,
+    SigninComponent,
+    SignupComponent
   ],
   imports: [
     SharedModule,
@@ -107,6 +121,17 @@ import { RatingModule } from 'ngx-bootstrap/rating';
     NodataComponent,
     FicheComponent,
     ListRapportsComponent,
-  ]
+  ],
+
+  providers:[
+    AllServicesResolver,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
+  entryComponents:[SigninComponent, SignupComponent]
 })
+
 export class UsersModule { }

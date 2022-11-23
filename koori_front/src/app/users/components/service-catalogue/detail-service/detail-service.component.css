@@ -23,7 +23,7 @@
 }
 /* propriete d'un service */
 .text-color{
-  color: var(--vert);
+  color: #338f8e;
   font-family: 'Zen Antique Soft', serif;
   text-align: center;
   font-weight: bolder;
@@ -43,12 +43,12 @@
   flex-direction:row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  background-color: var(--white);
+  background-color: #fff;
   box-shadow: 2px 2px 5px 5px #00000041
 }
 .p-text{
-  background: var(--white);
-  border: 1px dashed var(--vert);
+  background: #fff;
+  border: 1px dashed #338f8e;
 }
 
 .gallery .p-text{
@@ -95,7 +95,7 @@ button {
   box-sizing: border-box;
   margin: 1em;
   padding: 1em;
-  box-shadow: inset 0 0 0 1px var(--vert);
+  box-shadow: inset 0 0 0 1px #338f8e;
   color: var(--orange);
   font-size: inherit;
   font-weight: 700;
@@ -193,10 +193,10 @@ button::before, button::after {
   border-radius: 5px;
 }
 .btn-evaluer{
-  background: var(--vert);
+  background: #338f8e;
   box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.17);
   border-radius: 5px;
-  color: var(--white);
+  color: #fff;
 }
 .wrap {
   position: relative;
@@ -216,15 +216,15 @@ textarea, input, select {
 }
 textarea:hover, input:hover ,select:hover{
   color: gray;
-  border-color: var(--vert);
-  border: solid 1px var(--vert);
+  border-color: #338f8e;
+  border: solid 1px #338f8e;
   outline: none;
 }
 textarea:focus, input:focus, select:focus {
   color: gray;
-  border-color: var(--vert);
-  border: solid 1px var(--vert);
-  box-shadow: 0 0 0 0.1rem var(--vert);
+  border-color: #338f8e;
+  border: solid 1px #338f8e;
+  box-shadow: 0 0 0 0.1rem #338f8e;
   outline: none;
 }
 .btn-default:focus{

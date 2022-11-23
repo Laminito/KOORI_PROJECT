@@ -1,0 +1,26 @@
+.section-projects{
+	height: 100vh;
+	background-color: #eee;
+	padding: 2% 0;
+	text-align: center;
+}
+.section-projects .row h2{
+	font-size: 1.8em;
+}
+mat-button-toggle-group{
+	margin-top: 3%;
+	border-radius: 25px;
+}
+mat-button-toggle{
+	width: 8vw;
+}
+mat-button-toggle:nth-child(1){
+	border-radius: 25px 0 0 25px;
+}
+mat-button-toggle:nth-child(6){
+	border-radius: 0 25px 25px 0;
+}
+.btnActive, mat-button-toggle:hover{
+	background-color: var(--vert);
+	color: #fff;
+}

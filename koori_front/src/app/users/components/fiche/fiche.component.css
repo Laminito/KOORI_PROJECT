@@ -51,7 +51,7 @@
   margin: auto;
   cursor: pointer;
   background: var(--vert);
-  //box-shadow: 3px 4px 4px 2px var(--orange);
+  box-shadow: 3px 4px 4px 2px var(--orange);
   box-shadow: 2px 2px 4px 0 var(--orange);
 }
 
@@ -123,7 +123,6 @@
   border-radius: 10px;
 }
 #button1 {
-  /*width: 17%;*/
   height: 100%;
   transition: .5s all;
   background-color: var(--orange);
@@ -189,25 +188,17 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  /*max-width: 19%;*/
   margin: 0 auto;
-}
-@media screen and (min-width: 768px) {
-  .grid {
-    /*max-width: 1200px;*/
-  }
 }
 .card {
   position: relative;
   flex: 1 1 100%;
-  /*margin: 31px 0;*/
   padding: 20px;
   background: #fff;
 }
 @media screen and (min-width: 768px) {
   .card {
     flex-basis: calc(33.33% - (62px + 40px));
-    /*margin: 0 31px;*/
   }
 }
 .profile-card {
@@ -284,7 +275,6 @@
   line-height: 27px;
   color: #333;
   text-align: left;
-  /*margin: 30px;*/
 }
 
 .profile-social-links {

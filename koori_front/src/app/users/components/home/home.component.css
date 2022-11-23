@@ -1,23 +1,61 @@
-@import url('http://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900&display=swap');
-.services .card-img-top{
-  height: 150px;
+/* for bloc Innovation lab on the carousel */
+.news{
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  z-index: 2;
 }
-.koori_ibox img{
-  height: 100%;
-  border: var(--border-size) var(--orange);
+.news .news-title{
+  animation: showup 15s infinite;
+  padding-left: 2%;
+  font-size: 2em;
+  color: var(--vert);
 }
-.border-vert{
-  border: 1px solid var(--vert);
+.news .news-text{
+  width:0px;
+  padding-left: 2%;
+  background-color: transparent;
+  animation: reveal 15s infinite;
+}
+.news .news-text > span{
+  margin-left:-355px;
+  animation: slidein 15s infinite;
+  font-size: 1.2em;
+  color: #338f8e;
 }
 
-/* projets recents tabs */
-@keyframes fake {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 1;
-  }
+@keyframes showup {
+  0% {opacity:0;}
+  20% {opacity:1; }
+  80% {opacity:1; }
+  100% {opacity:0;}
+}
+
+@keyframes slidein {
+  0% { margin-left:-800px; opacity: 0;}
+  20% { margin-left:-800px; opacity: 0;}
+  35% { margin-left:0px; opacity: 1;}
+  100% { margin-left:0px; opacity: 1;}
+}
+
+@keyframes reveal {
+  0% {opacity:0;width: 300px;}
+  20% {opacity:1;width: 300px; }
+  30% {width:450px; background-color: transparent}
+  80% {opacity:1; background-color: #fff;}
+  100% {opacity:0;width:450px; background-color: #fff;}
+}
+
+/* for carousel */
+.carousel-item > img{
+  height: 60vh;
+}
+
+.carousel-indicators{
+  position: absolute;
+  top: 5%;
 }
 
 /* fghjkl */
@@ -32,7 +70,6 @@
 }
 .worko-tabs .flex-tabs .tab {
   flex-grow: 1;
-  /*max-height: 40px;*/
 }
 .worko-tabs .flex-tabs .panel {
   background-color: #fff;
@@ -114,7 +151,6 @@
     border-bottom: 1px solid #ccc;
   }
 }
-/* fghjk */
 
 /*Testimonial*/
 .col-center {
@@ -177,9 +213,6 @@
   line-height: 42px;
   position: absolute;
   display: inline-block;
-  /*
-  color: rgba(0, 0, 0, 0.8);
-  */
   color: var(--vert);
   text-shadow: 0 3px 3px #e6e6e6, 0 0 0 #000;
 }
@@ -238,7 +271,7 @@
   top: 0;
 }
 .slider .slide-track {
-  animation: scroll 60s linear 2s infinite ;
+  animation: scroll 60s linear 3s infinite ;
   display: flex;
   width: calc(250px * 14);
 }
@@ -246,7 +279,6 @@
   height: 100px;
   width: 250px;
 }
-
 
 /*Projets recents caroussels*/
 @media (max-width: 767px) {
@@ -284,123 +316,49 @@
 }
 
 
-/* Nos services */
-.card .card-image{
-  overflow: hidden;
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-}
-
-.card .card-image img{
-  -webkit-transition: all 0.4s ease-in-out;
-  -moz-transition: all 0.4s ease-in-out;
-  -o-transition: all 0.4s ease-in-out;
-  transition: all 0.4s ease-in-out;
-}
-
-.card .card-image:hover img{
-  -webkit-transform: scale(1.2) rotate(-7deg);
-  -moz-transform: scale(1.2) rotate(-7deg);
-  -ms-transform: scale(1.2) rotate(-7deg);
-  -o-transform: scale(1.2) rotate(-7deg);
-  transform: scale(1.2) rotate(-7deg);
-}
-
-.card{
-  border:none;
-  position: relative;
-  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-  -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-  box-shadow: 4px 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-}
-
-.card .card-content {
-  padding: 10px;
-  color:white;
-  text-align: center;
-}
-
-.card .card-content .card-title, .card-reveal .card-title{
-  font-size: 20px;
-  font-weight: 200;
-}
-
-.card .card-reveal{
-  padding: 20px;
-  position: absolute;
-  background-color: #FFF;
-  width: 100%;
-  overflow-y: auto;
-  left:0;
-  bottom:0;
-  height: 100%;
-  z-index: 1;
-  display: none;
-}
-
-.card .card-reveal .card-title{
-  color: rgba(0, 0, 0, 0.71);
-  margin:10px;
-  font-size:1.2rem;
-}
-
-.card .card-reveal p{
-  color: rgba(0, 0, 0, 0.71);
-  margin-top:10px;
-}
-
-.btn-custom{
-  background-color: transparent;
-  font-size:18px;
-}
-
-@media (max-width: 425px) {
-  .card .card-content .card-title, .card-reveal .card-title{
-    font-size: 12px;
-    font-weight: 200;
-  }
-  .btn-custom{
-    background-color: transparent;
-    font-size:12px;
-  }
-
-}
-.carousel-item > img{
-  height: 65vh;
-}
-
-/* Pour les cards Koori et Ibox */
+/* for Koori and Ibox cards */
 .bloc-presentation{
+  position: relative;
   width: 100%;
   margin-bottom: 0;
-  /* height: 65vh; */
-  background-color: #FFF;
+  height: 90vh;
+  /* background-color: #fff; */
+  background-image: url('src/assets/img/thinking2.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bloc-bienvenus{
+  background-color: #fff;
+  padding: 2vh 0;
 }
 .bloc-bienvenus > h1{
   text-align: center;
   color: #338f8e;
   margin-bottom: 2.5vh;
 }
-.bloc-bienvenus >P{
+.bloc-bienvenus > p{
   font-size: 1.2rem;
 }
 .containeur{
 	position: relative;
 	width: 55vw;
+  height: 40vh;
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-evenly;
   align-items: center;
-  padding: 0 2vw;
-  margin-top: 6vh;
+  margin-top: -10vh;
+  /* background-color: rgba(255, 255, 255, 0.375); */
+  border-radius: 15px;
 }
 .containeur .card{
 	position: relative;
-	height: 280px;
+	height: 72%;
   border-radius: 10px;
 	background: #fff;
    	display: flex;
    	width: 46%;
-   	margin: 30px 10px;
+   	/* margin: 10px; */
 }
 .containeur .card .imgBx{
 	position: absolute;
@@ -540,10 +498,6 @@
 	width: 100%;
 }
 }
-.bloc-bienvenus{
-  padding: 4vh 0;
-  background-color: #FFF;
-}
 .bienvenus{
   width: 50%;
   margin: auto;
@@ -551,5 +505,8 @@
   text-align: center;
 }
 
-/* Pour nos services */
+.list-partenaires{
+  height: 100vh;
+  background-color: #338f8e80
+}
 

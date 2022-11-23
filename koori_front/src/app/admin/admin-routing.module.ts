@@ -29,8 +29,10 @@ import { SessionByServiceResolverService } from './_resolvers/SessionByServiceRe
 const routes: Routes = [
   {path: '', component: AccueilComponent, 
 
-  children: [
-    {path: 'dashboard', component: DashboardComponent, data: {title: 'Dashboard'}, children: [
+  children: 
+  [
+    {
+      path: 'dashboard', component: DashboardComponent, data: {title: 'Dashboard'}, children: [
       {path: 'service/:id', component: DetailDashboardComponent, resolve: {detailService: DetailServiceResolverService}},
     ]},
     {path: 'chartTest', component: DemandeAnnuelChartComponent},
@@ -51,6 +53,7 @@ const routes: Routes = [
       {path: '**', redirectTo: '/not-found'}
   ]
 },
+
 ];
 
 @NgModule({

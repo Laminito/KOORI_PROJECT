@@ -6,14 +6,17 @@
     "start": "ng serve --host 0.0.0.0",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "heroku-postbuild": "ng build --configuration production",
     "test": "ng test"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^14.0.0",
     "@angular/cdk": "^14.2.5",
+    "@angular/cli": "~14.0.6",
     "@angular/common": "^14.0.0",
     "@angular/compiler": "^14.0.0",
+    "@angular/compiler-cli": "^14.0.0",
     "@angular/core": "^14.0.0",
     "@angular/forms": "^14.0.0",
     "@angular/material": "^14.2.6",
@@ -22,6 +25,7 @@
     "@angular/router": "^14.0.0",
     "angular-font-awesome": "^3.1.2",
     "angular-ng-stepper": "^2.0.0",
+    "aos": "^2.3.4",
     "bootstrap": "^5.2.2",
     "bootstrap-icons": "^1.9.1",
     "chart.js": "^3.9.1",
@@ -40,6 +44,7 @@
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.6.0",
     "tslib": "^2.3.0",
+    "typescript": "~4.7.2",
     "u": "^0.1.0",
     "xlsx": "^0.18.5",
     "zone.js": "~0.11.4"
@@ -48,6 +53,7 @@
     "@angular-devkit/build-angular": "^14.0.6",
     "@angular/cli": "~14.0.6",
     "@angular/compiler-cli": "^14.0.0",
+    "@types/aos": "^3.0.4",
     "@types/file-saver": "^2.0.5",
     "@types/jasmine": "~4.0.0",
     "@types/jquery": "^3.5.14",
@@ -59,5 +65,9 @@
     "karma-jasmine": "~5.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "typescript": "~4.7.2"
+  },
+  "engines": {
+    "node": "18.12.1",
+    "npm": "6.14.17"
   }
 }

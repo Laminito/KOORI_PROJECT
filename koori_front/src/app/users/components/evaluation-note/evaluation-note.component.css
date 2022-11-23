@@ -38,14 +38,8 @@ textarea:focus {
 }
 .wrap {
   position: relative;
-  /*width: 33.33%;*/
-  /*margin: -72px 0;*/
-  /*top: 50%;*/
-  /*float: left;*/
 }
-label {
-  /*margin: 1.5em auto;*/
-}
+
 input {
   position: absolute;
 }
@@ -80,9 +74,6 @@ input:checked + .slider-v3::after {
   box-shadow: 0 0 0 0 #f2f2f2 inset;
 }
 
-
-
-
 .rating {
   border: none;
   float: left;
@@ -107,19 +98,16 @@ input:checked + .slider-v3::after {
   float: right;
 }
 
-/***** CSS Magic to Highlight Stars on Hover *****/
+/* CSS Magic to Highlight Stars on Hover */
 
-.rating > input:checked ~ label, /* show gold star when clicked */
-.rating:not(:checked) > label:hover, /* hover current star */
-.rating:not(:checked) > label:hover ~ label { color: var(--orange);  } /* hover previous stars in list */
+.rating > input:checked ~ label, 
+.rating:not(:checked) > label:hover, 
+.rating:not(:checked) > label:hover ~ label { color: var(--orange);  } 
 
-.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked + label:hover, 
 .rating > input:checked ~ label:hover,
-.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > label:hover ~ input:checked ~ label, 
 .rating > input:checked ~ label:hover ~ label { color: var(--vert);  }
-
-
-
 
 .form-dark .font-small {
   font-size: 0.8rem; }
@@ -177,7 +165,7 @@ input:checked + .slider-v3::after {
   -webkit-transform: rotate(40deg);
   -ms-transform: rotate(40deg);
   transform: rotate(40deg);
-  -webkit-backface-visibility: hidden;
+  visibility: hidden;
   -webkit-transform-origin: 100% 100%;
   -ms-transform-origin: 100% 100%;
   transform-origin: 100% 100%;

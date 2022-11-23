@@ -1,0 +1,22 @@
+<div class="section-projects">
+	<div class="row">
+		<h2 class="text-color text-center">PROJETS RECENTS</h2>
+	</div>
+	<div class="containe">
+
+		<div class="recents-projects">
+			<div class="choices">
+				<mat-button-toggle-group #toggleBtnGroup="matButtonToggleGroup">
+					<mat-button-toggle value="all" [ngClass]="{ btnActive: toggleBtnGroup.value == 'all' }" checked>
+						Tous les projets
+					</mat-button-toggle>
+					<mat-button-toggle *ngFor="let item of services" [ngClass]="{ btnActive: toggleBtnGroup.value == item.id }" value="{{item.id}}">
+						{{ item.libelle }}
+					</mat-button-toggle>
+				</mat-button-toggle-group>
+				{{toggleBtnGroup.value}}
+			</div>
+			<app-card-projet [demandes]="demandes"></app-card-projet>
+		</div>
+	</div>
+</div>

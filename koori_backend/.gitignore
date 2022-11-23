@@ -1,8 +1,0 @@
-/node_modules
-.vscode/*
-!.vscode/settings.json
-
-# IDEs and editors
-.idea/
-npm-debug.log
-yarn-error.log

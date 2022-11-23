@@ -1,10 +1,13 @@
 import {Component, OnInit} from '@angular/core';
+import * as Aos from 'aos';
 import { IboxService } from 'src/app/admin/_services/ibox.service';
 import { Ibox } from '../../_models/ibox';
 import { Koori } from '../../_models/koori';
 import { Service } from '../../_models/Service';
 import { Temoignage } from '../../_models/Temoignage';
 import { AllRequestService } from '../../_services/all-request.service';
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { SignupComponent } from '../signup/signup.component';
 
 
 @Component({
@@ -19,11 +22,15 @@ export class HomeComponent implements OnInit {
   ibox!: Ibox;
   services!: Service[];
 
-  constructor( private allRequest: AllRequestService, private iboxService: IboxService) { }
+  constructor( private allRequest: AllRequestService, 
+               private iboxService: IboxService,
+               public dialog: MatDialog) { }
 
   ngOnInit(): void {
 
-    this.iboxService.getExemples();
+    Aos.init({
+      duration: 800,
+    })
 
     $(function($) {
       // js for carousel
@@ -41,7 +48,7 @@ export class HomeComponent implements OnInit {
         }
       })
       // js for our services cards
-    $('.show').on('click',function(){
+      $('.show').on('click',function(){
         let target = $(this).attr('data-target');
         $('.'+target).slideToggle('slow');
       });
@@ -54,8 +61,16 @@ export class HomeComponent implements OnInit {
 
     this.getDescriptionKoori();
     this.getDescriptionIbox();
-    this.getServices();
     this.getTemoignages();
+  }
+
+  openDialog(){
+    const dialoConfig = new MatDialogConfig();
+
+    //dialoConfig.disableClose = true;
+    dialoConfig.autoFocus = true;
+
+    this.dialog.open(SignupComponent, dialoConfig);
 
   }
 
@@ -64,22 +79,17 @@ export class HomeComponent implements OnInit {
       this.koori = new Koori().deserialize(data)
     })
   }
+  
   getDescriptionIbox(){
     this.allRequest.getAll("ibox/last",).subscribe((data:any)=>{
       this.ibox = new Ibox().deserialize(data)
     })
   }
 
-  getServices(){
-    this.allRequest.getAll("service",).subscribe((data)=>{
-      this.services = data;      
-    })
-  }
 
   getTemoignages() {
     this.allRequest.getAll("temoignage").subscribe((data: any) => {
       this.temoignages = data.map((temoignage: Temoignage) => new Temoignage().deserialize(temoignage));
-      console.log(this.temoignages);
     })
     
   }

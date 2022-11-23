@@ -17,12 +17,17 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { RapportComponent } from './components/rapport/rapport.component';
 import { DetailServiceComponent } from './components/service-catalogue/detail-service/detail-service.component';
 import { ServiceCatalogueComponent } from './components/service-catalogue/service-catalogue.component';
+import { SigninComponent } from './components/signin/signin.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { AllServicesResolver } from './_resolvers/all-services.resolver';
 import { FicheResolverService } from './_resolvers/FicheResolverService';
 import { ServiceResolverService } from './_resolvers/ServiceResolverService';
 
 const routes: Routes = [
 
-  {path: '', component: HomeComponent},
+  {path: '', component: HomeComponent, resolve: { services: AllServicesResolver }},
+  {path: 'signup', component: SignupComponent},
+  {path: 'signin', component: SigninComponent},
   {path: 'kooriibox/ibox', component: IboxComponent, data: {title: 'Ibox', suite: ' ,les activités à faire'}},
   {path: 'kooriibox/koori', component: KooriComponent, data: {title: 'Koori', suite: ' ,les processus à dérouler'}},
   {path: 'service', component: ServiceCatalogueComponent},
@@ -41,15 +46,12 @@ const routes: Routes = [
   {path: 'not-found', component: NotFoundComponent },
   {path: '**', redirectTo: '/not-found'}
 
-  
 ];
-
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-
 
 export class UsersRoutingModule { }
 

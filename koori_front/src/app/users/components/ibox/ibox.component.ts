@@ -35,10 +35,10 @@ export class IboxComponent implements OnInit {
   prerequisUniq: string[] = []
   outils: string[] = []
   outilsUniq: string[] = []
-  duree: object[] = []
-  dureeUniq: object[] = []
-  equipe: object[] = []
-  equipeUniq: object[] = []
+  duree: {min: number, max: number}[] = []
+  dureeUniq: {min: number, max: number}[] = []
+  equipe: {min: number, max: number}[] = []
+  equipeUniq: {min: number, max: number}[] = []
   phase : string = ""
   k :string[] = []
   v: string[][] = []
@@ -46,26 +46,28 @@ export class IboxComponent implements OnInit {
   p=1
 evaluation_ibox!:Evaluation_ibox
 resources!:string
-type!:string  //FOR SIMULATION
   constructor(private allRequest: AllRequestService,
               private route:ActivatedRoute,
               private _route: Router,
               private senddata: SenddataService,
               public loading: LoadingService,
-              private iboxservice: IboxService){
+              private iboxservice: IboxService,
+              private iboxService: IboxService){
   }
 
   ngOnInit(): void {
 
     this.evaluation_ibox = new Evaluation_ibox()
-    // this.allRequest.getAll("ibox/last").subscribe((lastibox:Ibox)=>{
-    //   this.evaluation_ibox.IboxId =lastibox.id
-    //   this.evaluation_ibox.UserId = 1  //ON DEVRA PRENDRE INCHALLAH L'ID DU USER QUI SE CONNECTE. CECI N'EST QU'UN TEST
-    //   this.resources = `evaluation_ibox/user/${this.evaluation_ibox.UserId}/ibox/${this.evaluation_ibox.IboxId}`
-    // })
-    this.type = 'Ibox'  //FOR SIMULATION
-    this.evaluation_ibox.IboxId =1  //FOR SIMULATION
-    this.evaluation_ibox.UserId = 1   //FOR SIMULATION
+    // this.iboxService.getLastIbox().subscribe((lastibox:Ibox)=>{
+    // this.evaluation_ibox.IboxId =lastibox.id
+    // this.evaluation_ibox.UserId = 1  //ON DEVRA PRENDRE INCHALLAH L'ID DU USER QUI SE CONNECTE. CECI N'EST QU'UN TEST
+    // this.resources = `evaluation_ibox/user/${this.evaluation_ibox.UserId}/ibox/${this.evaluation_ibox.IboxId}`
+    //  })
+    
+    this.evaluation_ibox.IboxId = 1
+    this.evaluation_ibox.UserId = 1 
+    this.resources = `evaluation_ibox/user/${this.evaluation_ibox.UserId}/ibox/${this.evaluation_ibox.IboxId}`
+
 
     this.route.data.subscribe(
       (data: Data) => {
@@ -75,19 +77,19 @@ type!:string  //FOR SIMULATION
     );
     this.getIbox()
     this.getPhases()
-    // if (this.senddata.getDataScroll()['boolean'] === true){
-    //   this.deleteTab(this.fiches)
-    //   this.fiches = this.senddata.getDataScroll()['temp']
-    // }
-    // else{
-    //   this.fiches = this.getData()
-    // }
+    if (this.senddata.getDataScroll()['boolean'] === true){
+      this.deleteTab(this.fiches)
+      this.fiches = this.senddata.getDataScroll()['temp']
+    }
+    else{
+      this.fiches = this.getData()
+    }
   }
 
   Scroll(){
     console.log('scrolling')
     // @ts-ignore
-    //document.querySelector('#fichessss').scrollIntoView();
+    // document.querySelector('#fichessss').scrollIntoView();
   }
 
   getData(){
@@ -110,23 +112,23 @@ type!:string  //FOR SIMULATION
         // @ts-ignore
         this.outils.push(f.outils)
         this.duree.push(
-          {min:f.dureeMin, max:f.dureeMax}
+          {min: f.dureeMin, max: f.dureeMax}
         )
         this.equipe.push({min:f.equipeMin, max:f.equipeMax})
       }
       this.prerequisUniq = _.uniq(this.prerequis)
       this.outilsUniq = _.uniq(this.outils)
-      // this.dureeUniq = this.duree.filter((thing, index, self) =>
-      //     index === self.findIndex((t) => (
-      //       t['min'] === thing['min'] && t['max'] === thing['max']
-      //     ))
-      // )
-      // this.equipeUniq = this.equipe.filter(
-      //   (thing1, index1, self1) =>
-      //     index1 === self1.findIndex((t1) => (
-      //       t1['min'] === thing1['min'] && t1['max'] === thing1['max']
-      //     ))
-      // )
+      this.dureeUniq = this.duree.filter((thing, index, self) =>
+          index === self.findIndex((t) => (
+            t['min'] === thing['min'] && t['max'] === thing['max']
+          ))
+      )
+      this.equipeUniq = this.equipe.filter(
+        (thing1, index1, self1) =>
+          index1 === self1.findIndex((t1) => (
+            t1['min'] === thing1['min'] && t1['max'] === thing1['max']
+          ))
+      )
     })
   }
   getPhases(){

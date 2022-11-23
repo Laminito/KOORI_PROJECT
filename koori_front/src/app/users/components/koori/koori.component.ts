@@ -3,6 +3,7 @@ import { ActivatedRoute, Data } from '@angular/router';
 import { Evaluation_koori } from '../../_models/evaluation_koori';
 import { Koori } from '../../_models/koori';
 import { AllRequestService } from '../../_services/all-request.service';
+import { KooriService } from '../../_services/koori.service';
 import { LoadingService } from '../../_services/loading.service';
 import { SenddataService } from '../../_services/senddata.service';
 
@@ -19,15 +20,15 @@ export class KooriComponent implements OnInit {
   suite: string = ""
   evaluation_koori!: Evaluation_koori
   resources!:string
-  type!:string
   constructor(private allRequest: AllRequestService, private route:ActivatedRoute,
               public loading: LoadingService,
-              private senddata: SenddataService) {
+              private senddata: SenddataService,
+              private kooriService: KooriService) 
+              {
     this.title = route.snapshot.data['title']
     this.suite = route.snapshot.data['suite']
   }
   ngOnInit(): void {
-    this.type = 'Koori'
     this.route.data.subscribe(
       // tslint:disable-next-line:no-shadowed-variable
       (data: Data) => {
@@ -38,14 +39,16 @@ export class KooriComponent implements OnInit {
     this.getDescriptionKoori()
 
     this.evaluation_koori = new Evaluation_koori()
-    //this.allRequest.getAll("koori/last").subscribe((lastKoori:Koori)=>{
+    // this.kooriService.getLastKoori().subscribe((lastKoori:Koori)=>{
     // this.evaluation_koori.KooriId =lastKoori.id
+    // console.log(lastKoori.id)
     // this.evaluation_koori.UserId = 1  //ON DEVRA PRENDRE INCHALLAH L'ID DU USER QUI SE CONNECTE. CECI N'EST QU'UN TEST
     // this.resources = `evaluation_koori/user/${this.evaluation_koori.UserId}/koori/${this.evaluation_koori.KooriId}`
     // })
 
-    this.evaluation_koori.KooriId =1
-    this.evaluation_koori.UserId = 1 
+    this.evaluation_koori.KooriId = 1
+    this.evaluation_koori.UserId = 2 //DOIT VENIR DU TOKEN 
+    this.resources = `evaluation_koori/user/${this.evaluation_koori.UserId}/koori/${this.evaluation_koori.KooriId}`
     
     
   }

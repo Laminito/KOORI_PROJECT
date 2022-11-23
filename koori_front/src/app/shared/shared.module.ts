@@ -6,6 +6,7 @@ import { NgStepperModule } from 'angular-ng-stepper';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MaterialModule } from './material.module';
 
+
 @NgModule({
   declarations: [],
   imports: [

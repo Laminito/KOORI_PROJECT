@@ -16,53 +16,21 @@ export class EvaluationsService {
   evaluationsIbox:Evaluation_ibox[] = []
   evaluationsFiche:Evaluation_fiche[] = []
 
+  
   envApi = environment.API
 
   constructor(private http:HttpClient) { }
 
-  saveEvaluation(resources: string, data:{}):Observable<any>{ 
+  saveEvaluation(resources: string, data: any):Observable<any>{ 
     return this.http.post(this.envApi+ resources,data)
   }
 
-  updateEvaluation(resources: string, data:{}):Observable<any>{ 
-    return this.http.put(this.envApi+ resources,data)
+  updateEvaluation(resources: string, data:any):Observable<any>{ 
+    return this.http.put(this.envApi+ resources, data)
   }
 
-  simulateSavingEvaluation(evaluation:any,type:string){
-    if(type=='Koori'){
-      this.evaluationsKoori.push(evaluation)
+  getEvaluationByIdUser(resources: string):Observable<any>{
+    return this.http.get(this.envApi+ resources)
   }
-
-  else if(type=='Ibox'){
-    this.evaluationsKoori.push(evaluation)
-  }
-  else if(type=='Fiche'){
-    this.evaluationsKoori.push(evaluation)
-  }
-}
-
-
-simulateUpdatingEvaluation(evaluation:any,type:string){
-  if(type=='Koori'){
-    for (let obj of this.evaluationsKoori ) {
-      if (obj.UserId === evaluation.UserId && obj.KooriId === evaluation.KooriId) {
-          obj.evaluation = evaluation.evaluation;
-      }
-  }
-}
-  else if(type=='Ibox'){
-    for (let obj of this.evaluationsIbox ) {
-      if (obj.UserId === evaluation.UserId && obj.IboxId === evaluation.IboxId) {
-          obj.evaluation = evaluation.evaluation;
-      }
-  }
-}
-  else if(type=='Fiche'){
-    for (let obj of this.evaluationsFiche ) {
-      if (obj.UserId === evaluation.UserId && obj.FicheId === evaluation.FicheId) {
-          obj.evaluation = evaluation.evaluation;
-      }
-  }
-}
-}
+  
 }

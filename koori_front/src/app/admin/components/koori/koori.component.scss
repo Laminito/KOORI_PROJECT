@@ -3,7 +3,6 @@
   margin: auto;
   cursor: pointer;
   background: var(--vert);
-  //box-shadow: 3px 4px 4px 2px var(--orange);
   box-shadow: 2px 2px 4px 0 var(--orange);
 }
 .row-container {
@@ -82,7 +81,6 @@ i{
 }
 .worko-tabs .flex-tabs .tab {
   flex-grow: 1;
-  //max-height: 40px;
 }
 .tab{
   font-size: x-large;

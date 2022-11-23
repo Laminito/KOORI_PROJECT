@@ -24,11 +24,11 @@ export class AllRequestService {
    return this._refresh.asObservable();
  }
 
-  getAll(resources: string, filter="*"):Observable<any>{
+  getAll(resources: string, filter="*"):Observable<any[]>{
     let httpHeaders = new HttpHeaders();
     httpHeaders = httpHeaders.append('filter', filter);
     let options = {headers:httpHeaders};
-    return this.http.get<any>(this.envApi+resources, options)
+    return this.http.get<any[]>(this.envApi+resources, options)
   }
 
   postData(resources:string, data:any){
@@ -39,5 +39,7 @@ export class AllRequestService {
     return this.http.get(this.envApi+entity+id);
   }
 
-
+  getAllServices():Observable<Service[]>{
+    return this.http.get<Service[]>(`${environment.API}service`);
+  }
 }

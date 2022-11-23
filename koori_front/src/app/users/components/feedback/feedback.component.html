@@ -15,6 +15,7 @@
 <div class = "after_comment row mx-auto" *ngIf="isSubmitted" >
     <div class="card col-4 mx-auto">
         <div class="card-body">
+            <p class="card-text mb-4" style="font-size:15px;">Merci pour votre avis</p>
             <p class="card-text">{{ comment }}</p>
             <div class = "d-flex justify-content-end" style="color: var(--orange);cursor:pointer;" >
                 <p  (click) = "onModify()" title="Modifier votre evaluation"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="edit"></mat-icon></p>

@@ -16,4 +16,5 @@ export class ContactService {
     return this.http.get<Contact>(`${environment.API}contact/${id}`)
   }
 
+  
 }

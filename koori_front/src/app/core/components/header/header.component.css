@@ -64,3 +64,7 @@
 	}
   }
   
+  .inscription{
+	background-color: var(--vert);
+	color: #fff;
+  }

@@ -20,7 +20,6 @@ export class FicheComponent implements OnInit {
   p=1
   evaluation_fiche!:Evaluation_fiche
   resources!:string
-  type!:string   //FOR SIMULATION
   constructor(private route: ActivatedRoute,
               public loading: LoadingService,
               private senddata: SenddataService,
@@ -37,11 +36,10 @@ export class FicheComponent implements OnInit {
   ngOnInit(): void {
     this.fiches = this.senddata.getdata()
 
-    this.type = 'Fiche'  //FOR SIMULATION
     this.evaluation_fiche = new Evaluation_fiche()
     this.evaluation_fiche.UserId = 1  //ON DEVRA PRENDRE INCHALLAH L'ID DU USER QUI SE CONNECTE. CECI N'EST QU'UN TEST
     this.evaluation_fiche.FicheId = this.fiche.id
-    //this.resources = `evaluation_fiche/user/${this.evaluation_fiche.UserId}/fiche/${this.evaluation_fiche.FicheId}`
+    this.resources = `evaluation_fiche/user/${this.evaluation_fiche.UserId}/fiche/${this.evaluation_fiche.FicheId}`
 
   }
 

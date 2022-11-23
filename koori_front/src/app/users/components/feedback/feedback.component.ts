@@ -11,6 +11,7 @@ import { SenddataService } from '../../_services/senddata.service';
 import { EvaluationsService } from '../../_services/evaluations.service';
 import { userInfo } from 'os';
 import { User } from '../../_models/user';
+import { isEmpty, map } from 'rxjs';
 
 @Component({
   selector: 'app-feedback',
@@ -37,32 +38,55 @@ export class FeedbackComponent implements OnInit {
     })
 
   ngOnInit(): void {
-    //METTRE this.rate = rateofuser; this.comment = commentofuser; this.Evaluated = true; this.isSubmitted = true; if user rated earlier
     this.rate = 0
     this.isReadOnly = false
     this.isSubmitted = false
     this.isEvaluated = false
+    this.evaluationsService.getEvaluationByIdUser(this.resources).subscribe(
+        data => {
+            this.rate = data.note
+            this.isEvaluated = true
+
+            if(data.evaluation!=='no comment'){
+                this.evaluation.evaluation = data.evaluation  
+                this.isSubmitted = true
+                this.comment = String(data.evaluation)
+
+
+            }
+        }
+    )
+
+   
   }
   
   onSubmit(){
     this.evaluation.evaluation = this.evaluationForm.value.commentaire
-    //this.evaluationsService.updateEvaluation(this.resources,{evaluation:this.evaluation.evaluation}).subscribe()
-    this.evaluationsService.simulateUpdatingEvaluation(this.evaluation,this.type)
+    //this.evaluationsService.updateEvaluation(this.resources,this.evaluation).subscribe()
     this.comment = String(this.evaluationForm.value.commentaire)
     this.isSubmitted = true
     console.log(this.comment);
   }
 
   onEvaluate(){
+    this.evaluationsService.getEvaluationByIdUser(this.resources).subscribe(
+        data => {
+            this.evaluation.note = this.rate
+            this.evaluationsService.updateEvaluation(this.resources,this.evaluation).subscribe()
+            this.isEvaluated = true
+        }
+    )
+        
+
     //if(this.rate == 0){
     //this.evaluationsService.saveEvaluation(this.resources,this.evaluation).subscribe()
-      this.evaluationsService.simulateSavingEvaluation(this.evaluation,this.type)
     //}
     //else{
-    //this.evaluationsService.updateEvaluation(this.resources,{note:this.evaluation.note}).subscribe()
-      //this.evaluationsService.simulateUpdatingEvaluation(this.evaluation,this.type)
+    //this.evaluation.note = this.rate
+    //this.evaluationsService.updateEvaluation(this.resources,this.evaluation).subscribe()
+    
     //}
-    this.isEvaluated = true
+    //this.isEvaluated = true
     //this.sendMail();
     console.log(this.evaluation);
     
