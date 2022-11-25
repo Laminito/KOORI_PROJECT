@@ -15,8 +15,8 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const server = express();
 const PORT = process.env.PORT || 3001
-const HOST = "localhost";
-const API_SERVICE_URL = "https://psm.onrender.com";
+    // const HOST = "localhost";
+    // const API_SERVICE_URL = "https://ilab.onrender.com";
 
 
 server.use(cookieParser())
@@ -51,13 +51,13 @@ server.use(bodyParser.json());
 //Entrypoint de mon swagger
 // server.use('/', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
-const memoryStore = new session.MemoryStore();
-server.use(session({
-    secret: 'KWhjV<T=-*VW<;cC5Y6U-{F.ppK+])Ub',
-    resave: false,
-    saveUninitialized: true,
-    store: memoryStore
-}));
+// const memoryStore = new session.MemoryStore();
+// server.use(session({
+//     secret: 'KWhjV<T=-*VW<;cC5Y6U-{F.ppK+])Ub',
+//     resave: false,
+//     saveUninitialized: true,
+//     store: memoryStore
+// }));
 
 //EndPoint
 server.use('/api', apiRouter);
@@ -77,24 +77,24 @@ server.use('/', (req, res, next) => {
 // });
 
 // Proxy endpoints
-server.use('/proxy', createProxyMiddleware({
-    target: API_SERVICE_URL,
-    changeOrigin: true,
-    pathRewrite: {
-        [`^/test`]: '',
-    },
-}));
+// server.use('/proxy', createProxyMiddleware({
+//     target: API_SERVICE_URL,
+//     changeOrigin: true,
+//     pathRewrite: {
+//         [`^/test`]: '',
+//     },
+// }));
 
 // Start the Proxy
-server.listen(PORT, HOST, () => {
-    console.log(`Starting Proxy at ${HOST}:${PORT}`);
-    model.sequelize.sync({ force: false }).then(() => {
-        console.log("model has been re sync")
-    })
-});
+// server.listen(PORT, HOST, () => {
+//     console.log(`Starting Proxy at ${HOST}:${PORT}`);
+//     model.sequelize.sync({ force: false }).then(() => {
+//         console.log("model has been re sync")
+//     })
+// });
 
 
-// server.listen(PORT, () => console.log(`Server is connected on ${PORT}`))
-// model.sequelize.sync({ force: false }).then(() => {
-//     console.log("model has been re sync")
-// })
+server.listen(PORT, () => console.log(`Server is connected on ${PORT}`))
+model.sequelize.sync({ force: false }).then(() => {
+    console.log("model has been re sync")
+})
