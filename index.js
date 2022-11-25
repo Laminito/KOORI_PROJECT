@@ -49,7 +49,7 @@ server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
 
 //Entrypoint de mon swagger
-server.use('/', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+server.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 const memoryStore = new session.MemoryStore();
 server.use(session({
@@ -60,7 +60,7 @@ server.use(session({
 }));
 
 //EndPoint
-server.use('/api', apiRouter);
+server.use('/', apiRouter);
 
 // Info GET endpoint
 server.use('/test', (req, res, next) => {
