@@ -16,7 +16,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 const server = express();
 const PORT = process.env.PORT || 3001
 const HOST = "localhost";
-const API_SERVICE_URL = "https://ilab.onrender.com";
+const API_SERVICE_URL = "https://psmilab.onrender.com";
 
 
 server.use(cookieParser())
@@ -49,7 +49,7 @@ server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
 
 //Entrypoint de mon swagger
-// server.use('/', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+server.use('/', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 const memoryStore = new session.MemoryStore();
 server.use(session({
@@ -63,7 +63,7 @@ server.use(session({
 server.use('/api', apiRouter);
 
 // Info GET endpoint
-server.use('/', (req, res, next) => {
+server.use('/test', (req, res, next) => {
     res.send('This is a proxy service which proxies to Billing and Account APIs.');
 });
 
