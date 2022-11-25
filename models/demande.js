@@ -41,7 +41,12 @@ module.exports = (sequelize, DataTypes) => {
         description: DataTypes.TEXT,
         date_realisation: DataTypes.DATE,
         date_fin: DataTypes.DATE,
-        statut: DataTypes.STRING
+        statut: DataTypes.STRING,
+        disponibilte: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+            allowNull: false
+        }
     }, {
         sequelize,
         modelName: 'Demande',

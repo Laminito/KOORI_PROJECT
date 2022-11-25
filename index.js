@@ -4,30 +4,24 @@ const helmet = require('helmet');
 const cors = require('cors')
 const session = require('express-session');
 const morgan = require('morgan');
+const dotenv = require('dotenv').config()
+const cookieParser = require('cookie-parser')
+const model = require('./models')
 const apiRouter = require('./routes/apiRouter');
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('./swagger_output.json');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 
 const server = express();
 const PORT = process.env.PORT || 3001
+const HOST = "localhost";
+const API_SERVICE_URL = "https://ilab.onrender.com";
 
-
-//#####################################################
-const dotenv = require('dotenv').config()
-const cookieParser = require('cookie-parser')
-const model = require('./models')
-    // const userRoutes = require('./routes/userRoutes')
 
 server.use(cookieParser())
 
-model.sequelize.sync({ force: false }).then(() => {
-    console.log("model has been re sync")
-})
 
-
-
-//#####################################################
 
 
 server.use((req, res, next) => {
@@ -37,7 +31,7 @@ server.use((req, res, next) => {
     next();
 });
 /**
- * CORS signifie Cross-Origin Resource Sharing.
+ *CORS signifie Cross-Origin Resource Sharing.
  *Cela permet d 'assouplir la sécurité appliquée à une API.
  *Cela se fait en contournant les en - têtes Access - Control - Allow - Origin,
  *qui spécifient quelles origines peuvent accéder à l 'API.
@@ -54,16 +48,9 @@ server.use(morgan('dev'));
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
 
-//EndPoint
-server.use('/api', apiRouter);
-
 //Entrypoint de mon swagger
-server.use('/', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+// server.use('/', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
-
-
-
-// const Keycloak = require('keycloak-connect');
 const memoryStore = new session.MemoryStore();
 server.use(session({
     secret: 'KWhjV<T=-*VW<;cC5Y6U-{F.ppK+])Ub',
@@ -71,23 +58,43 @@ server.use(session({
     saveUninitialized: true,
     store: memoryStore
 }));
-// const keycloak = new Keycloak({ store: memoryStore })
-// server.use(keycloak.middleware());
 
+//EndPoint
+server.use('/api', apiRouter);
 
+// Info GET endpoint
+server.use('/', (req, res, next) => {
+    res.send('This is a proxy service which proxies to Billing and Account APIs.');
+});
 
-
-// server.use('/api', apiRouter);
-// server.use('/test', apiRouter);
-
-
-
-// server.get('/', function(req, res) {
-//     res.setHeader('Content-Type', 'text/html');
-//     res.status(200).send('HELLO WORLD HHHH');
+// Authorization
+// server.use('', (req, res, next) => {
+//     if (req.headers.authorization) {
+//         next();
+//     } else {
+//         res.sendStatus(403);
+//     }
 // });
 
-// server.listen(3001, '0.0.0.0', function() {
-//     console.log('server en ecoute');
-// });
-server.listen(PORT, () => console.log(`Server is connected on ${PORT}`))
+// Proxy endpoints
+server.use('/proxy', createProxyMiddleware({
+    target: API_SERVICE_URL,
+    changeOrigin: true,
+    pathRewrite: {
+        [`^/test`]: '',
+    },
+}));
+
+// Start the Proxy
+server.listen(PORT, HOST, () => {
+    console.log(`Starting Proxy at ${HOST}:${PORT}`);
+    model.sequelize.sync({ force: false }).then(() => {
+        console.log("model has been re sync")
+    })
+});
+
+
+// server.listen(PORT, () => console.log(`Server is connected on ${PORT}`))
+// model.sequelize.sync({ force: false }).then(() => {
+//     console.log("model has been re sync")
+// })
