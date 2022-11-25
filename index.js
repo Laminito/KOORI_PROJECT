@@ -8,6 +8,8 @@ const dotenv = require('dotenv').config()
 const cookieParser = require('cookie-parser')
 const model = require('./models')
 const apiRouter = require('./routes/apiRouter');
+const user = require('./routes/userRoute');
+const cont = require('./controllers/userCtrl');
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('./swagger_output.json');
 const { createProxyMiddleware } = require('http-proxy-middleware');
@@ -60,7 +62,8 @@ server.use(session({
 }));
 
 //EndPoint
-server.use('/', apiRouter);
+server.use('/api', apiRouter);
+server.use('/', user);
 
 // Info GET endpoint
 server.use('/test', (req, res, next) => {
