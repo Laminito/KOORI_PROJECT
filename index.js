@@ -81,7 +81,7 @@ server.use('/proxy', createProxyMiddleware({
     target: API_SERVICE_URL,
     changeOrigin: true,
     pathRewrite: {
-        [`^/test`]: '',
+        [`^/proxy`]: '',
     },
 }));
 
