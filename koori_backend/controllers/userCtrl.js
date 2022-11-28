@@ -33,7 +33,8 @@ module.exports = {
                 //         u.avatar = buff.toString('base64');
                 //     }
                 // })
-                return res.status(200).json(users)
+                // res.send('Vous etes bien dans la methode getUsers.')
+                return res.status(200).json(users, { 'succes': 'Toutes les données sont retourné' })
             })
             .catch((err) => {
                 return res.status(500).json({ 'error': 'Erreur de récupération ' + err })

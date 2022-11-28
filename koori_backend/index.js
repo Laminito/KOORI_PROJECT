@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config()
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const cors = require('cors')
@@ -8,21 +9,30 @@ const dotenv = require('dotenv').config()
 const cookieParser = require('cookie-parser')
 const model = require('./models')
 const apiRouter = require('./routes/apiRouter');
+const index = require('./routes/index');
+const cont = require('./controllers/userCtrl');
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('./swagger_output.json');
 const { createProxyMiddleware } = require('http-proxy-middleware');
+const rateLimit = require('express-rate-limit')
+const errorHandler = require('./middleware/error')
+const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header');
+
+// Rate limiting
+const limiter = rateLimit({
+    windowMs: 10 * 60 * 1000, // 10 Mins
+    max: 100,
+})
 
 
 const server = express();
 const PORT = process.env.PORT || 3001
-    // const HOST = "localhost";
-    // const API_SERVICE_URL = "https://ilab.onrender.com";
 
-
+server.use(limiter);
+server.set('trust proxy', 1);
+// Error handler middleware
+server.use(errorHandler)
 server.use(cookieParser())
-
-
-
 
 server.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -49,7 +59,7 @@ server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
 
 //Entrypoint de mon swagger
-// server.use('/', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+server.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 // const memoryStore = new session.MemoryStore();
 // server.use(session({
@@ -61,11 +71,12 @@ server.use(bodyParser.json());
 
 //EndPoint
 server.use('/api', apiRouter);
+server.use('/', index);
 
 // Info GET endpoint
-server.use('/', (req, res, next) => {
-    res.send('This is a proxy service which proxies to Billing and Account APIs.');
-});
+// server.use('/test', (req, res, next) => {
+//     res.send('This is a proxy service which proxies to Billing and Account APIs.');
+// });
 
 // Authorization
 // server.use('', (req, res, next) => {
@@ -81,7 +92,7 @@ server.use('/', (req, res, next) => {
 //     target: API_SERVICE_URL,
 //     changeOrigin: true,
 //     pathRewrite: {
-//         [`^/test`]: '',
+//         [`^/proxy`]: '',
 //     },
 // }));
 
@@ -92,6 +103,29 @@ server.use('/', (req, res, next) => {
 //         console.log("model has been re sync")
 //     })
 // });
+
+
+server.use(expressCspHeader({
+    directives: {
+        'default-src': [SELF],
+        'report-to': 'my-report-group'
+    },
+    reportUri: 'https://cspreport.com/send',
+    reportTo: [{
+        group: 'my-report-group',
+        max_age: 30 * 60,
+        endpoints: [{ url: 'https://cspreport.com/send' }],
+        include_subdomains: true
+    }]
+}));
+
+server.use(function(req, res, next) {
+    res.setHeader(
+        'Content-Security-Policy-Report-Only',
+        "default-src 'self'; font-src 'self'; img-src 'self' https://images.unsplash.com; script-src 'self'; style-src 'self' https://fonts.googleapis.com https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css; frame-src 'self' https://www.youtube.com https://youtube.com;"
+    );
+    next();
+});
 
 
 server.listen(PORT, () => console.log(`Server is connected on ${PORT}`))
