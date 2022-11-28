@@ -103,6 +103,14 @@ server.use('/', index);
 //     })
 // });
 
+const csp = require('express-csp-header');
+server.use(csp({
+    policies: {
+        'default-src': [csp.NONE],
+        'img-src': [csp.SELF],
+    }
+}));
+
 
 server.listen(PORT, () => console.log(`Server is connected on ${PORT}`))
 model.sequelize.sync({ force: false }).then(() => {
