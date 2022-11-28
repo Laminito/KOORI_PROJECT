@@ -1,49 +1,61 @@
-<mat-card [formGroup]="mainForm" class="main-form">
-	<mat-card-title class="title">Inscription</mat-card-title>
-	<mat-card class="form-card">
-		<mat-card-subtitle>Informations personnelles</mat-card-subtitle>
-		<div class="form-row">
-			<mat-form-field class="nom" appearance="fill">
-				<mat-label>Nom Complet</mat-label>
-				<input type="text" matInput formControlName="nomComplet">
-			</mat-form-field>
-		</div>
-		<div class="form-row">
-			<mat-form-field appearance="fill">
-				<mat-label>Profession</mat-label>
-				<input type="text" matInput formControlName="profession">
-			</mat-form-field>
-			<mat-form-field appearance="fill">
-				<mat-label>Service</mat-label>
-				<input type="text" matInput formControlName="service">
-			</mat-form-field>
-		</div>
-		<div class="form-row">
-			<mat-form-field appearance="fill">
-				<mat-label>Département</mat-label>
-				<input type="text" matInput formControlName="departement">
-			</mat-form-field>
-			<mat-form-field appearance="fill">
-				<mat-label>Direction</mat-label>
-				<input type="text" matInput formControlName="direction">
-			</mat-form-field>
-		</div>
+<body>
+	<div class="container">
+	  <div class="row">
+		<div class="col-lg-10 col-xl-9 mx-auto">
+		  <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
+			<div class="card-img-left d-none d-md-flex">
+			  <!-- Background image for card set in CSS! -->
+			</div>
+			<div class="card-body p-4 p-sm-5">
+			  <h5 class="card-title text-center mb-5 fw-light fs-5">Inscription</h5>
+			  <form [formGroup]="mainForm">
+  
+				<div class="form-floating mb-3">
+				  <input type="text" class="form-control" id="floatingInputUsername" formControlName="nomComplet" placeholder="myusername" required autofocus>
+				  <label for="floatingInputUsername">Nom Complet</label>
+				</div>
 
-	</mat-card>
-	<mat-card class="form-card">
-		<mat-card-subtitle>Informations de connexion</mat-card-subtitle>
-		<div class="form-row">
-			<mat-form-field appearance="fill">
-				<mat-label>Email</mat-label>
-				<input type="text" matInput formControlName="email">
-			</mat-form-field>
-			<mat-form-field appearance="fill">
-				<mat-label>Password</mat-label>
-				<input type="password" matInput formControlName="password">
-			</mat-form-field>
-		</div>
-	</mat-card>
-	<mat-card-actions>
-		<button mat-flat-button class="bouton" [disabled]="!mainForm.valid" (click)="onSubmitForm()">S'INSCRIRE</button>
-</mat-card-actions>
+				<div class="form-floating mb-3">
+					<input type="text" class="form-control" id="floatingInputUsername" formControlName="profession" placeholder="myusername" required autofocus>
+					<label for="floatingInputUsername">Profession</label>
+				</div>
+  
+				<div class="form-floating mb-3">
+					<input type="text" class="form-control" id="floatingInputUsername" formControlName="departement" placeholder="myusername" required autofocus>
+					<label for="floatingInputUsername">Département</label>
+				</div>
 
+				<div class="form-floating mb-3">
+					<input type="text" class="form-control" id="floatingInputUsername" formControlName="direction" placeholder="myusername" required autofocus>
+					<label for="floatingInputUsername">Direction</label>
+				</div>
+
+				<div class="form-floating mb-3">
+				  <input type="email" class="form-control" id="floatingInputEmail" formControlName="service" placeholder="myusername">
+				  <label for="floatingInputEmail">Service</label>
+				</div>
+  
+				<div class="form-floating mb-3">
+					<input type="email" class="form-control" id="floatingInputEmail" formControlName="email" placeholder="name@example.com">
+					<label for="floatingInputEmail">Email</label>
+				</div>
+
+				<div class="form-floating mb-3">
+				  <input type="password" class="form-control" id="floatingPassword"formControlName="password"  placeholder="Password">
+				  <label for="floatingPassword">Password</label>
+				</div>
+  
+				<div class="d-grid mb-2">
+				  <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" (click)="onSubmitForm()" type="submit">S'inscrire</button>
+				</div>
+  
+				<a class="d-block text-center mt-2 small" href="#">Have an account? Sign In</a>
+  
+  
+			  </form>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+</body>

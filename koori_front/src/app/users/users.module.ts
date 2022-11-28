@@ -34,13 +34,13 @@ import { SharedModule } from '../shared/shared.module';
 import { CardServiceComponent } from './components/home/services/card-service/card-service.component';
 import { ProjetsComponent } from './components/home/projets/projets.component';
 import { CardProjetComponent } from './components/home/projets/card-projet/card-projet.component';
-import { AllServicesResolver } from './_resolvers/all-services.resolver';
 import { PartenairesComponent } from './components/home/partenaires/partenaires.component';
 import { ServicesComponent } from './components/home/services/services.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './_interceptors/auth.interceptor';
 import { SignupComponent } from './components/signup/signup.component';
+import { AllServicesResolver } from './_resolvers/all-services.resolver';
 
 
 @NgModule({

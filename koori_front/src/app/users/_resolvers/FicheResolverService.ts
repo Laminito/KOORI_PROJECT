@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 import {Observable} from 'rxjs';
-import { Fiche } from '../_models/fiche';
 // @ts-ignore
+import { Fiche } from '../_models/fiche';
 import { FicheService } from '../_services/fiche.service';
 
 @Injectable({
