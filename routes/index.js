@@ -30,7 +30,7 @@ router.get('/api', cache('2 minutes'), apiRouter, async(req, res, next) => {
             console.log(`REQUEST: ${API_BASE_URL}?${params}`)
         }
 
-        res.send('This is a proxy service which proxies to Billing and Account APIs.')
+        res.send('Vous etes bien sur le proxy de notre application.')
         res.status(200).json(data)
 
     } catch (error) {
