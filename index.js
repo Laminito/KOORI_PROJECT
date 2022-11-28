@@ -70,7 +70,7 @@ server.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 // }));
 
 //EndPoint
-// server.use('/api', apiRouter);
+server.use('/api', apiRouter);
 server.use('/', index);
 
 // Info GET endpoint
@@ -118,6 +118,14 @@ server.use(expressCspHeader({
         include_subdomains: true
     }]
 }));
+
+server.use(function(req, res, next) {
+    res.setHeader(
+        'Content-Security-Policy-Report-Only',
+        "default-src 'self'; font-src 'self'; img-src 'self' https://images.unsplash.com; script-src 'self'; style-src 'self' https://fonts.googleapis.com https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css; frame-src 'self' https://www.youtube.com https://youtube.com;"
+    );
+    next();
+});
 
 
 server.listen(PORT, () => console.log(`Server is connected on ${PORT}`))
