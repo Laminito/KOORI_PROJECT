@@ -1,4 +1,3 @@
-
 <button type="button" class="draw meet" data-bs-toggle="modal"
         data-bs-target="#staticBackdrop">Ajouter une fiche</button>
 
@@ -12,8 +11,9 @@
         </button>
       </div>
       <div class="modal-body">
-        <img src="../../assets/img/koori.png" alt="tof koori" width="75" height="75" style="margin-left: 45%">
-        		<form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+        <!--<img src="../../assets/img/koori.png" alt="tof koori" width="75" height="75" style="margin-left: 45%">-->
+        
+		<form [formGroup]="addForm" (ngSubmit)="onSubmit()">
           <div class="row row-1 mt-4 mb-4" style="height: 20%">
             <div class="col-12 mb-2">
               <label class="form-label">Selectionner la phase <label style="color: red">*</label></label>
@@ -28,22 +28,23 @@
               </div>
             </div>
             <div class="col-6 mb-3 entete text-center">
-              <h2 class="text-center titrehaut">oki</h2>
+              <!--<h2 class="text-center titrehaut">oki</h2>-->
 
-			                <label class="form-label">Titre <label style="color: red">*</label></label>
+			  
+              <label class="form-label">Titre <label style="color: red">*</label></label>
               <input [ngClass]="{'is-invalid': submitted && f['titre'].errors }" [formControlName]="'titre'" type="text" class="input mb-2">
               <div *ngIf="submitted && f['titre'].errors">
                 <div *ngIf="f['titre'].errors['required']" class="alert-danger">Le titre est incorrect</div>
               </div>
             </div>
             <div class="col-6 mb-3 entete text-center">
-              <h6 style="font-size: large;" class="text-center sous-titrehaut">oki</h6>
+              <!--<h6 style="font-size: large;" class="text-center sous-titrehaut">oki</h6>-->
 
 			  
               <label class="form-label">Sous-Titre <label style="color: red">*</label></label>
-              <input [ngClass]="{ 'is-invalid': submitted && f['sous-titre'].errors }" [formControlName]="'sous_titre'" type="text" class="input mb-2">
-              <div *ngIf="submitted && f['sous-titre'].errors">
-                <div *ngIf="f['sous-titre'].errors['required']" class="alert-danger">Le sous-titre est incorrect</div>
+              <input [ngClass]="{ 'is-invalid': submitted && f['sous_titre'].errors }" [formControlName]="'sous_titre'" type="text" class="input mb-2">
+              <div *ngIf="submitted && f['sous_titre'].errors">
+                <div *ngIf="f['sous_titre'].errors['required']" class="alert-danger">Le sous-titre est incorrect</div>
               </div>
             </div>
             <div class="col-12 mb-3">
@@ -82,9 +83,10 @@
                     <div class="col-6">
                       <i class="fas fa-paperclip" style="margin-right: 2%; font-size: large"></i>
                       <span class="fw-bold spanprerequis" style="font-size: large;">Pré-réquis <label style="color: red">*</label></span>
-                      <p class="prerequis">oki</p>
+                      <!--<p class="prerequis">oki</p>-->
 
-					                        <input [ngClass]="{ 'is-invalid': submitted && f['prerequis'].errors }" [formControlName]="'prerequis'" type="text" class="input mb-2">
+					  
+                      <input [ngClass]="{ 'is-invalid': submitted && f['prerequis'].errors }" [formControlName]="'prerequis'" type="text" class="input mb-2">
                       <div *ngIf="submitted && f['prerequis'].errors">
                         <div *ngIf="f['prerequis'].errors['required'] || f['prerequis'].errors['pattern']" class="alert-danger">Le sous-titre est incorrect</div>
                       </div>

@@ -23,6 +23,7 @@ import { AllServicesResolver } from './_resolvers/all-services.resolver';
 import { FicheResolverService } from './_resolvers/FicheResolverService';
 import { ServiceResolverService } from './_resolvers/ServiceResolverService';
 
+
 const routes: Routes = [
 
   {path: '', component: HomeComponent, resolve: { services: AllServicesResolver }},

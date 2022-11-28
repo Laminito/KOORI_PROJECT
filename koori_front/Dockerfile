@@ -1,4 +1,4 @@
-FROM node:16
+FROM node:16-alpine
 RUN mkdir kooriFront
 COPY . ./kooriFront
 WORKDIR /kooriFront/.

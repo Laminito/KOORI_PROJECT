@@ -1,64 +1,23 @@
-.bloc{
-	height: 100vh;
-	background: linear-gradient(180deg, rgb(24, 130, 132) 0%, rgba(253,120,45,1) 100%);
-	padding-top: 2%;
-}
-.title{
-	color: var(--vert);
-	text-align: center;
-}
-mat-form-field {
-	width: 48%;
-	font-size: 1.2em;
-}
-  
-.nom{
-	width: 100%;
-}
-  .form-row {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+
+.card-img-left {
+	width: 45%;
+	/* Link to your background image using in the property below! */
+	background: scroll center url('https://www.iwievents.com/public/images/aniket7.png');
+	background-size: 100% 100%;
   }
   
-  .form-card {
-	margin: 20px 0;
+  .btn-login {
+	font-size: 0.9rem;
+	letter-spacing: 0.05rem;
+	padding: 0.75rem 1rem;
   }
   
-  .mat-radio-button ~ .mat-radio-button {
-	margin-left: 16px;
-  }
-  .bouton{
-	background-color: var(--vert);
-	color: white;
-  }
-  mat-card-actions {
-	text-align: center;
+  .btn-google {
+	color: white !important;
+	background-color: #ea4335;
   }
   
-  .main-form {
-	padding-bottom: 30px;
-	position: relative;
-	margin: auto;
+  .btn-facebook {
+	color: white !important;
+	background-color: #3b5998;
   }
-  
-  .loading {
-	position: absolute;
-	top: -10px;
-	bottom: -10px;
-	left: -10px;
-	right: -10px;
-	height: inherit;
-	z-index: 10;
-	backdrop-filter: blur(5px);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-  }
-  
-  .error-text {
-	color: red;
-  }
-mat-card-subtitle{
-	font-size: 1.3em;
-}
