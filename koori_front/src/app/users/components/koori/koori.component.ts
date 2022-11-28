@@ -47,7 +47,7 @@ export class KooriComponent implements OnInit {
     // })
 
     this.evaluation_koori.KooriId = 1
-    this.evaluation_koori.UserId = 2 //DOIT VENIR DU TOKEN 
+    this.evaluation_koori.UserId = 3 //DOIT VENIR DU TOKEN 
     this.resources = `evaluation_koori/user/${this.evaluation_koori.UserId}/koori/${this.evaluation_koori.KooriId}`
     
     

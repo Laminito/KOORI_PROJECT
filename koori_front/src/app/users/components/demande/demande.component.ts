@@ -27,7 +27,7 @@ export class DemandeComponent implements OnInit {
 
   public errorsMessage ={
     titre:[
-      {type: 'required', message:'ce champs est obligatoire'}
+      {type: 'required', message:'ce champ est obligatoire'}
     ]
   } ;
 

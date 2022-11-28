@@ -6,7 +6,7 @@
       <div class="form-outline w-100">
         <label class="form-label" for="commentaire">Ajoutez un avis <mat-icon matSuffix>sentiment_very_satisfied</mat-icon></label>
         <textarea class="form-control" id="commentaire" formControlName="commentaire" rows="4"
-          style="background: #fff;"></textarea>
+          style="background: #fff;" [(ngModel)]="commentaire" [value]="commentaire" ></textarea>
           <mat-icon aria-hidden="false"   aria-label="Example home icon" (click) = "onSubmit()" style="color: var(--orange);cursor:pointer;"  fontIcon="send" ></mat-icon>
       </div>
     </div>

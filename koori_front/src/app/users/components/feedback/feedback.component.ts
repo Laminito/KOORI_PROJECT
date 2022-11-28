@@ -27,7 +27,7 @@ export class FeedbackComponent implements OnInit {
   isSubmitted!:boolean
   isEvaluated!:boolean
   comment!:string;
-
+  commentaire!:string;
 
   constructor(private evaluationsService: EvaluationsService, private formBuilder: FormBuilder,
     private feedbackService: FeedbackService){
@@ -44,57 +44,41 @@ export class FeedbackComponent implements OnInit {
     this.isEvaluated = false
     this.evaluationsService.getEvaluationByIdUser(this.resources).subscribe(
         data => {
-            this.rate = data.note
-            this.isEvaluated = true
+            
+             if(data.note!=0){
+              this.rate = data.note
+              this.isEvaluated = true
+          }
 
-            if(data.evaluation!=='no comment'){
+            if(data.evaluation!= 'no comment'){
+                this.commentaire = data.evaluation
                 this.evaluation.evaluation = data.evaluation  
                 this.isSubmitted = true
                 this.comment = String(data.evaluation)
-
-
             }
-        }
-    )
+          }
+          
+        )
 
-   
+    
   }
   
   onSubmit(){
     this.evaluation.evaluation = this.evaluationForm.value.commentaire
-    //this.evaluationsService.updateEvaluation(this.resources,this.evaluation).subscribe()
+    this.evaluationsService.updateEvaluation(this.resources,this.evaluation).subscribe()
     this.comment = String(this.evaluationForm.value.commentaire)
     this.isSubmitted = true
-    console.log(this.comment);
   }
 
   onEvaluate(){
-    this.evaluationsService.getEvaluationByIdUser(this.resources).subscribe(
-        data => {
-            this.evaluation.note = this.rate
-            this.evaluationsService.updateEvaluation(this.resources,this.evaluation).subscribe()
-            this.isEvaluated = true
-        }
-    )
-        
-
-    //if(this.rate == 0){
-    //this.evaluationsService.saveEvaluation(this.resources,this.evaluation).subscribe()
-    //}
-    //else{
-    //this.evaluation.note = this.rate
-    //this.evaluationsService.updateEvaluation(this.resources,this.evaluation).subscribe()
-    
-    //}
-    //this.isEvaluated = true
-    //this.sendMail();
-    console.log(this.evaluation);
-    
+    this.evaluation.note = this.rate
+    this.evaluationsService.updateEvaluation(this.resources,this.evaluation).subscribe()
+    this.isEvaluated = true  
+      
   }
 
-  onModify(){
+  onModify(){    
     this.isSubmitted = false
-    this.evaluationForm.value.commentaire = this.comment //NE PAS OUBLIER QUE CETTE VALEUR DOIT VENIR DE LA BASE POUR CHAQUE USER QUI SE CONNECTE
   }
 
   // sendMail(){
