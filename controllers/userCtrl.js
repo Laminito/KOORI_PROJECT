@@ -7,7 +7,6 @@ const { Op } = require("sequelize");
 module.exports = {
 
     getUsers: (req, res) => {
-        res.send('Vous etes bien dans la methode getUsers.')
         var limit = parseInt(req.query.limit);
         var offset = parseInt(req.query.offset);
         models.User.findAll({
@@ -34,6 +33,7 @@ module.exports = {
                 //         u.avatar = buff.toString('base64');
                 //     }
                 // })
+                res.send('Vous etes bien dans la methode getUsers.')
                 return res.status(200).json(users)
             })
             .catch((err) => {
