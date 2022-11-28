@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output  } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import {ActivatedRoute, Router } from '@angular/router';
+import { SigninComponent } from 'src/app/users/components/signin/signin.component';
 import { SignupComponent } from 'src/app/users/components/signup/signup.component';
 
 @Component({
@@ -32,11 +33,7 @@ export class HeaderComponent implements OnInit {
     $(document.getElementsByClassName('w-75')).hide()
   }
 
-  openDialog(){
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-    this.dialog.open(SignupComponent, dialogConfig);
-  }
+ 
 
 
 

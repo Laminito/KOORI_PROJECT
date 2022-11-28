@@ -42,6 +42,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './_interceptors/auth.interceptor';
 import { SignupComponent } from './components/signup/signup.component';
 import { RatingModule } from 'ngx-bootstrap/rating';
+import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { RatingModule } from 'ngx-bootstrap/rating';
     CommonModule,
     UsersRoutingModule,
     RatingModule.forRoot(),
+    ModalModule
   ],
   exports:[
     HomeComponent,
@@ -121,9 +123,10 @@ import { RatingModule } from 'ngx-bootstrap/rating';
     NodataComponent,
     FicheComponent,
     ListRapportsComponent,
+    SigninComponent
   ],
 
-  providers:[
+  providers:[BsModalService,
     AllServicesResolver,
     {
       provide: HTTP_INTERCEPTORS,
