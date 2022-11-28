@@ -16,6 +16,7 @@ const swaggerFile = require('./swagger_output.json');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const rateLimit = require('express-rate-limit')
 const errorHandler = require('./middleware/error')
+const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header');
 
 // Rate limiting
 const limiter = rateLimit({
@@ -103,12 +104,19 @@ server.use('/', index);
 //     })
 // });
 
-const csp = require('express-csp-header');
-server.use(csp({
-    policies: {
-        'default-src': [csp.NONE],
-        'img-src': [csp.SELF],
-    }
+
+server.use(expressCspHeader({
+    directives: {
+        'default-src': [SELF],
+        'report-to': 'my-report-group'
+    },
+    reportUri: 'https://cspreport.com/send',
+    reportTo: [{
+        group: 'my-report-group',
+        max_age: 30 * 60,
+        endpoints: [{ url: 'https://cspreport.com/send' }],
+        include_subdomains: true
+    }]
 }));
 
 
