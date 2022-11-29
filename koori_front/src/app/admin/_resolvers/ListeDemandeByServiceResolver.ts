@@ -14,10 +14,8 @@ export class ListeDemandeByServiceResolver implements Resolve<Demande[]>{
 
   resolve(route: ActivatedRouteSnapshot,
           state: RouterStateSnapshot):
-    Observable<Demande[]>| Demande[] {
-      this.allRequestService.getAll('demande').subscribe((demandes: Demande[])=>{
-        this.demandes = demandes;
-      })
-    return this.demandes;
+    Observable<Demande[]>{
+      return this.allRequestService.getAll('demande')
+    
   }
 }

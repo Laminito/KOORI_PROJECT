@@ -25,12 +25,8 @@ export class ListeDemandeComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.route.data.pipe(
-      map(data => {
-        this.demandes = data['listDemande']
-        console.log(this.demandes);
-        
-      })
-    ).subscribe() 
+   this.route.data.subscribe(data => {this.demandes = data['listeDemande']
+   console.log(this.demandes[0])})
+     
    }
 }
