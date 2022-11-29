@@ -1,8 +1,0 @@
-touch apropos.js evaluation_note.js rapport.js commentaire.js fiche.js service.js contact.js ibox.js session.js
-
-
-touch demande.js index.js sujet.js etape.js koori.js telechargement.js evaluationFiche.js phase_fiche.js temoignage.js
-
-
-
-touch evaluationIbox.js phase.js user.js evaluationKoori.js profil.js
