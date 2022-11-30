@@ -2,9 +2,9 @@ import { Service } from "./service";
 import { User } from "./user";
 
 export class Demande {
-  public id?:number;
+  public id!:number;
   public RapportId?:number;
-  public User?: User;
+  public UserId?: number;
   public Service?: Service;
   public ServiceId?: number;
   public titre?: string

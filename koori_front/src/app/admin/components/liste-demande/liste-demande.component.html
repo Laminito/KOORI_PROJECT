@@ -1,3 +1,5 @@
+
+
 <div class="bg-bar p-5">
     <div class="row">
       <div class="col"><h3 class="text-white fw-bold">La Liste des demandes </h3></div>
@@ -32,29 +34,19 @@
       </div>
 </div>
 <div class="row" *ngIf="demandes.length != 0" >
-    <div class="col-sm-4 col-lg-12 mt-2 mb-2" *ngFor="let demande of demandes">
-      <div class="m-0 row row-container p-3" style="background: white;">
-        <div class="col-sm-1 col-lg-1 m-auto text-center">
-          {{demande.User?.nomComplet}}
-        </div>
-        <div class="col-sm-2 col-lg-2 m-auto text-center">
-          {{demande.User?.email}}
-        </div>
-        <div class="col-sm-2 col-lg-2 m-auto text-center">
-          {{demande?.titre}}
-        </div>
-        <div class="col-sm-2 col-lg-2 m-auto text-center">
-          {{demande?.date_realisation | date: 'mediumDate'}}
-        </div>
-        <div class="col-sm-3 col-lg-3 m-auto text-center" id="statut{{demande.id}}">
-          <i class="fa fa-circle circle{{demande.id}}" [style.color]="colors[statuts.indexOf(demande.statut)]"></i>
-          <span class="span{{demande.id}}" style="margin-left: 3%">{{demande.statut}}</span>
+   <app-card-demande *ngFor="let demande of demandes" [demande]="demande"></app-card-demande> 
+</div>   
+        <!-- <div class="col-sm-3 col-lg-3 m-auto text-center" id="statut{{demande.id}}" *ngIf="isClicked && demande.statut == 'Nouvelle'">
+          <select class='form-select' style='border-color: var(--vert);border: solid 1px var(--vert); box-shadow: 0 0 0 0.1rem var(--vert); outline: none;'>
+            <option value='en attente'>En attente</option>
+            <option value='rejetee'>Rejetee</option>
+          </select>
         </div> 
-        <div class="col-sm-1 col-lg-1 m-auto text-center">
+        <div class="col-sm-1 col-lg-1 m-auto  text-center" >
             <button class="btn btn-sm btn{{demande.id}}" (click)="changeStatut($event)">
             <i class="fas fa-pencil-alt" id="{{demande.id}}" style="color: var(--orange)"></i>
             </button>
         </div>   
       </div>  
     </div>
-</div>  
+</div>   -->
