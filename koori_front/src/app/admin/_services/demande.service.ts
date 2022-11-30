@@ -11,10 +11,10 @@ export class DemandeService {
 
   constructor(private http: HttpClient) { }
 
-  updateDemande(id: any, body: object): any{
+  updateDemande(id: any, body: object): Observable<any>{
     return this.http.put(`${environment.API}demande/${id}`, body)
   }
-  updateStatutDemande(id: any, data: object): any{
+  updateStatutDemande(id: any, data: object): Observable<any>{
     return this.http.put(`${environment.API}statutdemande/${id}`, data)
   }
 
