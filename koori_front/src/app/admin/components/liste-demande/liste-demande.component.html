@@ -6,7 +6,7 @@
       </div>
     </div>
   </div>
-  <div class="container shadow mt-3" style="background: var(--white)">
+<div class="container shadow mt-3" style="background: var(--white)">
     <div class="row le-hide">
       <div class="col-lg-12" style="border-bottom: solid 1px var(--orange)">
         <div class="m-0 row p-3">
@@ -30,8 +30,8 @@
           </div>
         </div>
       </div>
-    </div>
-<div class="row" *ngIf="demandes.length != 0">
+</div>
+<div class="row" *ngIf="demandes.length != 0" >
     <div class="col-sm-4 col-lg-12 mt-2 mb-2" *ngFor="let demande of demandes">
       <div class="m-0 row row-container p-3" style="background: white;">
         <div class="col-sm-1 col-lg-1 m-auto text-center">
@@ -47,13 +47,14 @@
           {{demande?.date_realisation | date: 'mediumDate'}}
         </div>
         <div class="col-sm-3 col-lg-3 m-auto text-center" id="statut{{demande.id}}">
-          <select class="form-select" aria-label="Default select example">
-            <option selected><span class="span{{demande.id}}" style="margin-left: 3%" >{{demande.statut}}</span></option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
-        </div>
-      </div>
+          <i class="fa fa-circle circle{{demande.id}}" [style.color]="this.colors[this.statuts.indexOf(this.demandes[0].statut)]"></i>
+          <span class="span{{demande.id}}" style="margin-left: 3%">{{demande.statut}}</span>
+        </div> 
+        <div class="col-sm-1 col-lg-1 m-auto text-center">
+            <button class="btn btn-sm btn{{demande.id}}" (click)="changeStatut($event)">
+            <i class="fas fa-pencil-alt" id="{{demande.id}}" style="color: var(--orange)"></i>
+            </button>
+        </div>   
+      </div>  
     </div>
 </div>  
