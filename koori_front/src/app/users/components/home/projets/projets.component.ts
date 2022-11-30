@@ -13,7 +13,7 @@ export class ProjetsComponent implements OnInit {
 
   services!: Service[];
   demandes: Demande[] = [];
-  toggleBtnGroup!: string
+  toggleBtn!: string
 
   constructor(private allRequest: AllRequestService) { }
 
@@ -25,7 +25,7 @@ export class ProjetsComponent implements OnInit {
         this.services.forEach(serve => {
           serve.Demandes.forEach((dmd: Demande) => {
             this.demandes.push(dmd);
-            if (dmd.statut === 'traitée') {
+            if (this.toggleBtn == String(dmd.id)) {
               // this.demandes.push(dmd);
             }
           })

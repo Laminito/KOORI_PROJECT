@@ -6,7 +6,7 @@
 
 		<div class="recents-projects">
 			<div class="choices">
-				<mat-button-toggle-group #toggleBtnGroup="matButtonToggleGroup">
+				<mat-button-toggle-group #toggleBtnGroup="matButtonToggleGroup" [(value)]="toggleBtn">
 					<mat-button-toggle value="all" [ngClass]="{ btnActive: toggleBtnGroup.value == 'all' }" checked>
 						Tous les projets
 					</mat-button-toggle>
@@ -14,9 +14,9 @@
 						{{ item.libelle }}
 					</mat-button-toggle>
 				</mat-button-toggle-group>
-				{{toggleBtnGroup.value}}
 			</div>
 			<app-card-projet [demandes]="demandes"></app-card-projet>
 		</div>
 	</div>
 </div>
+

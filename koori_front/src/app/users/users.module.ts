@@ -41,6 +41,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './_interceptors/auth.interceptor';
 import { SignupComponent } from './components/signup/signup.component';
 import { AllServicesResolver } from './_resolvers/all-services.resolver';
+import { TextAnimateComponent } from './components/home/text-animate/text-animate.component';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import { AllServicesResolver } from './_resolvers/all-services.resolver';
     PartenairesComponent,
     ServicesComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    TextAnimateComponent
   ],
   imports: [
     SharedModule,
