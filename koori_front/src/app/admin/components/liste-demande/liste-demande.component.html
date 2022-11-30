@@ -36,17 +36,6 @@
 <div class="row" *ngIf="demandes.length != 0" >
    <app-card-demande *ngFor="let demande of demandes" [demande]="demande"></app-card-demande> 
 </div>   
-        <!-- <div class="col-sm-3 col-lg-3 m-auto text-center" id="statut{{demande.id}}" *ngIf="isClicked && demande.statut == 'Nouvelle'">
-          <select class='form-select' style='border-color: var(--vert);border: solid 1px var(--vert); box-shadow: 0 0 0 0.1rem var(--vert); outline: none;'>
-            <option value='en attente'>En attente</option>
-            <option value='rejetee'>Rejetee</option>
-          </select>
-        </div> 
-        <div class="col-sm-1 col-lg-1 m-auto  text-center" >
-            <button class="btn btn-sm btn{{demande.id}}" (click)="changeStatut($event)">
-            <i class="fas fa-pencil-alt" id="{{demande.id}}" style="color: var(--orange)"></i>
-            </button>
-        </div>   
-      </div>  
-    </div>
-</div>   -->
+        
+       
+     

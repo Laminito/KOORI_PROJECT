@@ -35,13 +35,7 @@ export class ListeDemandeComponent implements OnInit {
    })
   }
 
-  onDelete(id:any){
-    console.log(id)
-  }
+ 
 
-
-changeStatut(event:any) {
-  let id = event.target.getAttribute('id')
-  }
 
 }
