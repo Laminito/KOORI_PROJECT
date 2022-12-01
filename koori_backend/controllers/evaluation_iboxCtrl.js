@@ -16,11 +16,12 @@ module.exports = {
             },
             (errorResult, callback2) => {
                 if (!errorResult) {
-                    const { UserId, IboxId, evaluation } = req.body
+                    const { UserId, IboxId, evaluation, note } = req.body
                     models.EvaluationIbox.create({
                         UserId: idUser,
                         IboxId: idIbox,
-                        evaluation
+                        evaluation,
+                        note
                     }).then((evaluation_kooriResult) => {
                         callback2(null, evaluation_kooriResult)
                     }).catch((err) => {
@@ -40,9 +41,12 @@ module.exports = {
         asyncLib.waterfall([
             (callback) => {
                 models.EvaluationIbox.findOne({
-                    attributes: ['id', 'evaluation', 'UserId', 'IboxId'],
+                    attributes: ['id', 'evaluation', 'note',
+                        'UserId', 'IboxId'
+                    ],
                     where: {
-                        [Op.and]: [{ UserId: idUser }, { IboxId: idIbox }] },
+                        [Op.and]: [{ UserId: idUser }, { IboxId: idIbox }]
+                    },
                 }).then(
                     (evaluation_kooriFound) => {
                         callback(null, evaluation_kooriFound)
@@ -76,7 +80,7 @@ module.exports = {
         const idUser = parseInt(req.params.id);
         const idIbox = parseInt(req.params.id1);
         models.EvaluationIbox.findOne({
-                attributes: ['id', 'UserId', 'IboxId', 'evaluation'],
+                attributes: ['id', 'UserId', 'IboxId', 'evaluation', 'note'],
                 include: [{
                         model: models.Ibox,
                         attributes: ['id', 'description']
@@ -87,7 +91,8 @@ module.exports = {
                     }
                 ],
                 where: {
-                    [Op.and]: [{ UserId: idUser }, { IboxId: idIbox }] },
+                    [Op.and]: [{ UserId: idUser }, { IboxId: idIbox }]
+                },
             }).then((userEvaluation_koori) => {
                 if (userEvaluation_koori) {
                     res.status(200).json(userEvaluation_koori)

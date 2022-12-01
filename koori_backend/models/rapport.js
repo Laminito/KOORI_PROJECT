@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
                 }
             });
             this.belongsToMany(models.User, { as: 'TelechargementUser', through: models.Telechargement, foreignKey: 'RapportId' });
-            this.belongsToMany(models.User, { as: 'EvaluationUser', through: models.Evaluation_note, foreignKey: 'RapportId' });
+            this.belongsToMany(models.User, { as: 'EvaluationUser', through: models.EvaluationNote, foreignKey: 'RapportId' });
         }
     }
     Rapport.init({

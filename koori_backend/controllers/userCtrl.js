@@ -10,43 +10,70 @@ module.exports = {
         var limit = parseInt(req.query.limit);
         var offset = parseInt(req.query.offset);
         models.User.findAll({
+                attributes: [
+                    'id',
+                    'nomComplet',
+                    'email',
+                    'password',
+                    'profession',
+                    'service',
+                    'departement',
+                    'direction',
+                    'avatar'
+                ],
                 limit: (!isNaN(limit)) ? limit : null,
                 offset: (!isNaN(offset)) ? offset : null,
                 include: [{
                     model: models.Profil
                 }],
             }).then((users) => {
-                users.forEach(u => {
-                    if (u.avatar) {
-                        let buff = new Buffer(u.avatar);
-                        u.avatar = buff.toString('base64');
-                    }
-                })
-                return res.status(200).json(users)
+                // users.forEach(u => {
+                //     if (u.avatar) {
+                //         let buff = new Buffer(u.avatar);
+                //         u.avatar = buff.toString('base64');
+                //     }
+                // })
+                // res.send('Vous etes bien dans la methode getUsers.')
+                return res.status(200).json(users, { 'succes': 'Toutes les données sont retourné' })
             })
             .catch((err) => {
                 return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
             })
 
     },
-    createUsers: (req, res) => {
-        
-        const { ProfilId, nomComplet, email, profession, service, departement, direction } = req.body
-        models.User.create({
-            ProfilId: ProfilId,
-            nomComplet: nomComplet,
-            email: email,
-            profession: profession,
-            service: service,
-            departement: departement,
-            direction: direction,
-        }).then((userResult) => {
-            return res.status(201).json(userResult);
-        }).catch((err) => {
-            return res.status(500).json({ 'error': 'Erreur d ajout ' + err })
-        })
+    // createUsers: (req, res) => {
+    //     //return res.json({"ok": req.body})
+    //     asyncLib.waterfall([
+    //         (callback1) => {
+    //             callback1(null, validationResults.error(req, res))
+    //         },
+    //         (errorResult, callback2) => {
+    //             if (!errorResult) {
 
-    },
+    //                 const { ProfilId, nomComplet, email, password, profession, service, departement, direction } = req.body
+    //                 models.User.create({
+    //                     ProfilId: ProfilId,
+    //                     nomComplet: nomComplet,
+    //                     email: email,
+    //                     password: password,
+    //                     profession: profession,
+    //                     service: service,
+    //                     departement: departement,
+    //                     direction: direction,
+    //                     avatar: req.file.buffer
+
+    //                 }).then((userResult) => {
+
+    //                     callback2(null, userResult)
+    //                 }).catch((err) => {
+    //                     return res.status(500).json({ 'error': 'Erreur d ajout ' + err })
+    //                 })
+    //             }
+    //         },
+    //     ], (err, result) => {
+    //         res.json(result);
+    //     })
+    // },
 
     updateUser: (req, res) => {
         const { ProfilId, nomComplet, email, profession, service, departement, direction } = req.body
@@ -122,10 +149,10 @@ module.exports = {
                 }],
             }).then((user) => {
                 if (user) {
-                    /*user.forEach(u=>{
-                        let buff = new Buffer(u?.avatar);
+                    user.forEach(u => {
+                        let buff = new Buffer(u.avatar);
                         u.avatar = buff.toString('base64');
-                    })*/
+                    })
                     res.status(200).json(user)
                 } else {
                     res.status(404).json({ "erreur": "L'utilisateur n'existe pas" })

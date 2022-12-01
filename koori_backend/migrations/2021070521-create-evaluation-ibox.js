@@ -1,6 +1,6 @@
 'use strict';
 module.exports = {
-    up: async (queryInterface, Sequelize) => {
+    up: async(queryInterface, Sequelize) => {
         await queryInterface.createTable('EvaluationIboxs', {
             id: {
                 allowNull: false,
@@ -28,6 +28,10 @@ module.exports = {
                 allowNull: true,
                 type: Sequelize.TEXT
             },
+            note: {
+                allowNull: true,
+                type: Sequelize.INTEGER
+            },
 
             createdAt: {
                 allowNull: false,
@@ -37,11 +41,21 @@ module.exports = {
                 allowNull: false,
                 type: Sequelize.DATE
             }
-        },{
+        }, {
             freezeTableName: true
         });
+        await queryInterface.bulkInsert('EvaluationIboxs', [{
+            UserId: 3,
+            IboxId: 1,
+            evaluation: "L'ibox est un ensemble de fiches pratiques destines qux animateurs d'ateliers de design thinking." +
+                "Chaque exercice fait reference a une ou plusieurs etapes de la methode Koori. la couleur correspond au cauris utilisant le plus cette fiche." +
+                "Il n'est pas a exclure que des fiches soient utiles a d'autres cauris. Plusieurs exercices, de differentes fiches peuvent egalement etre combines afin d'atteindre un objectif de creativite particulier.",
+            note: 3,
+            createdAt: new Date(),
+            updatedAt: new Date()
+        }])
     },
-    down: async (queryInterface, Sequelize) => {
+    down: async(queryInterface, Sequelize) => {
         await queryInterface.dropTable('EvaluationIboxs');
     }
 };

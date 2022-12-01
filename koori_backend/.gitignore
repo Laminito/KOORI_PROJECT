@@ -6,3 +6,7 @@
 .idea/
 npm-debug.log
 yarn-error.log
+=======
+./Data
+./vscode
+node_modules

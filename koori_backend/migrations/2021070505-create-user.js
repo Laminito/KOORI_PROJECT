@@ -1,4 +1,11 @@
 'use strict';
+const bcrypt = require("bcrypt")
+const defaultpass = "pass"
+async function hash(password) {
+    const passwprdHash = await bcrypt.hash(password, 10);
+
+    return passwprdHash;
+}
 module.exports = {
     up: async(queryInterface, Sequelize) => {
         await queryInterface.createTable('Users', {
@@ -17,27 +24,39 @@ module.exports = {
                 }
             },
             nomComplet: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                allowNull: false
             },
             email: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                allowNull: false,
+                validate: { isEmail: true },
+                unique: true
+            },
+            password: {
+                type: Sequelize.STRING,
+                allowNull: false
             },
             profession: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                allowNull: false
             },
             service: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                allowNull: false
             },
             departement: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                allowNull: false
             },
             direction: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                allowNull: false
             },
-            // avatar: {
-            //     type: Sequelize.BLOB,
-            //     allowNull: true
-            // },
+            avatar: {
+                type: Sequelize.BLOB,
+                allowNull: false
+            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE
@@ -49,37 +68,65 @@ module.exports = {
         });
         await queryInterface.bulkInsert('Users', [{
                 ProfilId: 1,
-                nomComplet: 'Papa Saliou',
-                email: 'mainashou@gmail.com',
+                nomComplet: 'Pape Saliou Mbodj',
+                email: 'papasaliou.mbodj@gmail.com',
+                password: await hash(defaultpass),
+                profession: 'CTO',
+                service: 'Systeme information',
+                departement: 'Innovation Lab',
+                direction: 'Direction Systeme information',
+                avatar: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Ffr.freepik.com%2Fvecteurs-premium%2Fportrait-femme-afro-americaine-profil-avatar-jeune-fille-noire_6291373.htm&psig=AOvVaw2IjzYSx3dPch48NxWm7Emv&ust=1666375424572000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCJCU9auy7_oCFQAAAAAdAAAAABAN',
+                createdAt: new Date(),
+                updatedAt: new Date()
+            }, {
+                ProfilId: 1,
+                nomComplet: 'Mohamed Ba',
+                email: 'mba25116@gmail.com',
+                password: await hash(defaultpass),
                 profession: 'Developpeur web',
                 service: 'Systeme information',
                 departement: 'Innovation Lab',
                 direction: 'Direction Systeme information',
-                // avatar: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fprofile&psig=AOvVaw2IjzYSx3dPch48NxWm7Emv&ust=1666375424572000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCJCU9auy7_oCFQAAAAAdAAAAABAE',
+                avatar: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Ffr.freepik.com%2Fvecteurs-premium%2Fportrait-femme-afro-americaine-profil-avatar-jeune-fille-noire_6291373.htm&psig=AOvVaw2IjzYSx3dPch48NxWm7Emv&ust=1666375424572000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCJCU9auy7_oCFQAAAAAdAAAAABAN',
                 createdAt: new Date(),
                 updatedAt: new Date()
             },
             {
                 ProfilId: 2,
-                nomComplet: 'fatou',
-                email: 'mainashou@gmail.com',
+                nomComplet: 'Fama Sarr',
+                email: 'sfama@ept.sn',
+                password: await hash(defaultpass),
                 profession: 'Developpeuse web',
                 service: 'Systeme information',
                 departement: 'Innovation Lab',
                 direction: 'Direction Systeme information',
-                // avatar: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F131659989098183089%2F&psig=AOvVaw2IjzYSx3dPch48NxWm7Emv&ust=1666375424572000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCJCU9auy7_oCFQAAAAAdAAAAABAJ',
+                avatar: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Ffr.freepik.com%2Fvecteurs-premium%2Fportrait-femme-afro-americaine-profil-avatar-jeune-fille-noire_6291373.htm&psig=AOvVaw2IjzYSx3dPch48NxWm7Emv&ust=1666375424572000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCJCU9auy7_oCFQAAAAAdAAAAABAN',
                 createdAt: new Date(),
                 updatedAt: new Date()
             },
             {
                 ProfilId: 2,
-                nomComplet: 'Maimouna',
-                email: 'mainashou@gmail.com',
-                profession: 'Developpeuse web',
+                nomComplet: 'Cheikhou Bodian',
+                email: 'cheikhoubodian@gmail.com',
+                password: await hash(defaultpass),
+                profession: 'Commercial',
+                service: 'Systeme information',
+                departement: 'DSC',
+                direction: 'Direction Systeme Commercial',
+                avatar: 'https://img.freepik.com/photos-gratuite/beau-jeune-homme-africain-pensif-s-appuyant-main-tout-pensant_1262-12382.jpg?w=2000',
+                createdAt: new Date(),
+                updatedAt: new Date()
+            },
+            {
+                ProfilId: 2,
+                nomComplet: 'Abdoulaye Mangane',
+                email: 'abmangane12@gmail.com',
+                password: await hash(defaultpass),
+                profession: 'Developpeur web',
                 service: 'Systeme information',
                 departement: 'Innovation Lab',
                 direction: 'Direction Systeme information',
-                // avatar: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Ffr.freepik.com%2Fvecteurs-premium%2Fportrait-femme-afro-americaine-profil-avatar-jeune-fille-noire_6291373.htm&psig=AOvVaw2IjzYSx3dPch48NxWm7Emv&ust=1666375424572000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCJCU9auy7_oCFQAAAAAdAAAAABAN',
+                avatar: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Ffr.freepik.com%2Fvecteurs-premium%2Fportrait-femme-afro-americaine-profil-avatar-jeune-fille-noire_6291373.htm&psig=AOvVaw2IjzYSx3dPch48NxWm7Emv&ust=1666375424572000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCJCU9auy7_oCFQAAAAAdAAAAABAN',
                 createdAt: new Date(),
                 updatedAt: new Date()
             }

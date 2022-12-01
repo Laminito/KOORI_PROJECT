@@ -4,11 +4,6 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
     class Demande extends Model {
-        /**
-         * Helper method for defining associations.
-         * This method is not a part of Sequelize lifecycle.
-         * The `models/index` file will call this method automatically.
-         */
         static associate(models) {
             // define association here
             this.belongsTo(models.User, {
@@ -31,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
             this.belongsTo(models.Rapport, {
                 foreignKey: {
                     name: "RapportId",
-                    allowNull: true,
+                    allowNull: false,
                     onDelete: 'RESTRICT',
                     onUpdate: 'RESTRICT'
                 }
@@ -46,7 +41,12 @@ module.exports = (sequelize, DataTypes) => {
         description: DataTypes.TEXT,
         date_realisation: DataTypes.DATE,
         date_fin: DataTypes.DATE,
-        statut: DataTypes.STRING
+        statut: DataTypes.STRING,
+        disponibilte: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+            allowNull: false
+        }
     }, {
         sequelize,
         modelName: 'Demande',

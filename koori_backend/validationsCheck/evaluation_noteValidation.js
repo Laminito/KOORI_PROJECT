@@ -1,5 +1,5 @@
 const { check } = require('express-validator')
-const modelEvaluation_note = require('../models')
+const modelEvaluationNote = require('../models')
 const _ = require('lodash');
 module.exports.validate = (method) => {
     switch (method) {

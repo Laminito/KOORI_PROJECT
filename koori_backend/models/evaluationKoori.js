@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
         UserId: DataTypes.INTEGER,
         KooriId: DataTypes.INTEGER,
         evaluation: DataTypes.TEXT,
+        note: DataTypes.INTEGER
     }, {
         sequelize,
         modelName: 'EvaluationKoori',

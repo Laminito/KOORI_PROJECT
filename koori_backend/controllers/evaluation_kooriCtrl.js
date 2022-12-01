@@ -16,11 +16,12 @@ module.exports = {
             },
             (errorResult, callback2) => {
                 if (!errorResult) {
-                    const { UserId, KooriId, evaluation } = req.body
+                    const { UserId, KooriId, evaluation, note } = req.body
                     models.EvaluationKoori.create({
                         UserId: idUser,
                         KooriId: idKoori,
-                        evaluation
+                        evaluation,
+                        note
                     }).then((evaluation_kooriResult) => {
                         callback2(null, evaluation_kooriResult)
                     }).catch((err) => {
@@ -40,9 +41,10 @@ module.exports = {
         asyncLib.waterfall([
             (callback) => {
                 models.EvaluationKoori.findOne({
-                    attributes: ['id', 'evaluation', 'UserId', 'KooriId'],
+                    attributes: ['id', 'evaluation', 'note', 'UserId', 'KooriId'],
                     where: {
-                        [Op.and]: [{ UserId: idUser }, { KooriId: idKoori }] },
+                        [Op.and]: [{ UserId: idUser }, { KooriId: idKoori }]
+                    },
                 }).then(
                     (evaluation_kooriFound) => {
                         callback(null, evaluation_kooriFound)
@@ -76,7 +78,7 @@ module.exports = {
         const idUser = parseInt(req.params.id);
         const idKoori = parseInt(req.params.id1);
         models.EvaluationKoori.findOne({
-                attributes: ['id', 'UserId', 'KooriId', 'evaluation'],
+                attributes: ['id', 'UserId', 'KooriId', 'evaluation', 'note'],
                 include: [{
                         model: models.Koori,
                         attributes: ['id', 'description']
@@ -87,7 +89,8 @@ module.exports = {
                     }
                 ],
                 where: {
-                    [Op.and]: [{ UserId: idUser }, { KooriId: idKoori }] },
+                    [Op.and]: [{ UserId: idUser }, { KooriId: idKoori }]
+                },
             }).then((userEvaluation_koori) => {
                 if (userEvaluation_koori) {
                     res.status(200).json(userEvaluation_koori)
