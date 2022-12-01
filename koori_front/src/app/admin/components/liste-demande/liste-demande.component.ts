@@ -33,6 +33,8 @@ export class ListeDemandeComponent implements OnInit {
     this.demandes = data
     console.log(this.demandes)  
    })
+
+  
   }
 
  

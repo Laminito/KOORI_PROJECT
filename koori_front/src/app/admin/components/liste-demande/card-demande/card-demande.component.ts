@@ -3,6 +3,7 @@ import { Demande } from 'src/app/admin/_models/demande';
 import { User } from 'src/app/admin/_models/user';
 import { UserService } from 'src/app/admin/_services/user.service';
 import { DemandeService } from 'src/app/admin/_services/demande.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-card-demande',
@@ -16,6 +17,7 @@ export class CardDemandeComponent implements OnInit {
   statuts:string[]= [  'Nouvelle', 'Traitee', 'Validee','Rejetee','En attente', 'Annulee']
   isClicked!:Boolean;
   isValidated!:Boolean;
+  isFinished:string = 'false';
   
   constructor(private userService: UserService,
     private demandeService: DemandeService) { }
@@ -28,6 +30,9 @@ export class CardDemandeComponent implements OnInit {
     this.isValidated = false
     if(this.demande.statut === 'Validee'){
       this.isValidated = true
+    }
+    if(this.demande.statut === 'Traitee'){
+      this.isFinished = 'true true'
     }
   }
 
@@ -52,29 +57,44 @@ export class CardDemandeComponent implements OnInit {
     console.log(obj);
     
     this.demandeService.updateStatutDemande(id, obj).subscribe()
+    this.sendMailReponseDemande()
   }
 
+  
+onClickForFinish(){
+  this.isFinished = 'true'
 
+}
 
-  downloadExcelFile(evt: any) {
-    console.log('Method is called');
-    
-    // const target: DataTransfer = <DataTransfer>(evt.target);
-
-    // if (target.files.length !== 1) throw new Error('Cannot use multiple files');
-
-    // const reader: FileReader = new FileReader();
-    // reader.onload = (e: any) => {
-    //   const bstr: string = e.target.result;
-    //   const wb: XLSX.WorkBook = XLSX.read(bstr, {type: 'binary'});
-    //   const wsname: string = wb.SheetNames[0];
-    //   const ws: XLSX.WorkSheet = wb.Sheets[wsname];
-    //   // console.log(ws);
-    //   this.data = (XLSX.utils.sheet_to_json(ws, {header: 1}));
-    // };
-    // reader.readAsBinaryString(target.files[0]);
-
+onFinishSession(){
+  this.isClicked = false
+  this.isFinished = 'true true'
+  this.demande.statut = 'Traitee'
+  let input = $(`#Aurevoir${this.demande.id} textarea`)
+  let obj = {
+    statut: 'Traitee',
+    text: String(input.val()).charAt(0).toUpperCase() + String(input.val()).slice(1)
   }
+  let id = this.demande.id
+  console.log(id)
+  this.demandeService.updateStatutDemande(id, obj).subscribe()
+}
+
+
+
+sendMailReponseDemande(){
+  Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: 'MERCI BEAUCOUP !',
+    text: 'Vous avez tres reponse a la demande a ete bien envoyee',
+    showConfirmButton: false,
+    timer: 3000
+  })
+  
+}
+
+ 
 
 
 }

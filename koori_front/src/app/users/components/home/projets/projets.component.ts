@@ -24,9 +24,9 @@ export class ProjetsComponent implements OnInit {
         this.services = data.sort((a, b) => a.id - b.id);
         this.services.forEach(serve => {
           serve.Demandes.forEach((dmd: Demande) => {
-            this.demandes.push(dmd);
-            if (dmd.statut === 'traitée') {
-              // this.demandes.push(dmd);
+            // this.demandes.push(dmd);
+            if (dmd.statut === 'Traitee') {
+              this.demandes.push(dmd);
             }
           })
         })

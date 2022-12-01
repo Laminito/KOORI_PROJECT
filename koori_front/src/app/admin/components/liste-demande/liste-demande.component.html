@@ -33,9 +33,13 @@
         </div>
       </div>
 </div>
-<div class="row" *ngIf="demandes.length != 0" >
+<div class="row" *ngIf="demandes.length != 0; else other" >
    <app-card-demande *ngFor="let demande of demandes" [demande]="demande"></app-card-demande> 
 </div>   
-        
+<ng-template #other>
+  <div class="row text-center text-danger mt-3 mb-3">
+    <h6>Aucune donnee n'est disponible pour le moment</h6>
+  </div>
+</ng-template>
        
      

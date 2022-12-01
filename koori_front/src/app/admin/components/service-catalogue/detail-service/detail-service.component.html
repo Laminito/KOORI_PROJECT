@@ -50,7 +50,7 @@
                 <!-- btn lister les demande par service -->
           <!-- <app-demande (click)="libelleService()"></app-demande> -->
           <!-- <div class="col"> -->
-            <button  [routerLink]="['/admin/ListeDemande']" class="btn draw meet"><i class="fas fa-sliders-h"></i>  Voir la liste des demandes {{service.libelle}}</button>
+            <button  [routerLink]="['/admin/ListeDemande', service.id]" class="btn draw meet"><i class="fas fa-sliders-h"></i>  Voir la liste des demandes {{service.libelle}}</button>
            <!-- </div> -->
         </div>
       </div>

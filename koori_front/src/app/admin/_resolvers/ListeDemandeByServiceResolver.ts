@@ -8,13 +8,14 @@ import { DemandeService } from '../_services/demande.service';
   providedIn: 'root'
 })
 export class ListeDemandeByServiceResolver implements Resolve<Demande[]>{
+  demandes: Demande[]=[];
 
   constructor(private demandeService: DemandeService ) {}
 
   resolve(route: ActivatedRouteSnapshot,
           state: RouterStateSnapshot):
     Observable<Demande[]>{
-      return this.demandeService.getDemandesByServiceId()
+      return this.demandeService.getDemandesByServiceId(Number(route.params['serviceId']))
     
   }
 }
