@@ -55,7 +55,10 @@ module.exports = {
             },
             avatar: {
                 type: Sequelize.BLOB,
-                allowNull: false
+                allowNull: false,
+                get() {
+                    return this.getDataValue('avatar').toString('utf8'); // or whatever encoding is right
+                },
             },
             createdAt: {
                 allowNull: false,

@@ -19,12 +19,12 @@ module.exports = {
                     model: models.Demande
                 }]
             }).then((services) => {
-                services.forEach(s => {
-                    if (s.avatar) {
-                        let buff = new Buffer(s.avatar);
-                        s.avatar = buff.toString('base64');
-                    }
-                })
+                // services.forEach(s => {
+                //     if (s.avatar) {
+                //         let buff = new Buffer(s.avatar);
+                //         s.avatar = buff.toString('base64');
+                //     }
+                // })
                 res.status(200).json(services)
             })
             .catch((err) => {
