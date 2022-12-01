@@ -20,13 +20,7 @@
   background: #EFEFEF;
   border-radius: 5px;
 }
-.btn-evaluer{
-  background: var(--vert);
-  box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.17);
-  border-radius: 5px;
-  color: var(--white);
-  font-size: larger;
-}
+
 .wrap {
   position: relative;
 }
@@ -37,25 +31,14 @@ label{
   color: rgba(68, 68, 68, 0.6);
 }
 
-textarea, input {
-  background: #ECECEC;
-  box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.17);
-  border-radius: 5px;
-  border: none;
-}
-textarea:hover, input:hover {
-  color: gray;
-  border-color: var(--vert);
-  border: solid 1px var(--vert);
+
+
+.form-control:focus,.form-control:hover {
+  border: solid 1px var(--orange);
   outline: none;
+  box-shadow: 0 0 0 0;
 }
-textarea:focus, input:focus {
-  color: gray;
-  border-color: var(--vert);
-  border: solid 1px var(--vert);
-  box-shadow: 0 0 0 0.1rem var(--vert);
-  outline: none;
-}
-.btn-default:focus{
-  box-shadow: 0 0 0 0.1rem var(--orange);
+
+.after_comment{
+  width:60%;
 }

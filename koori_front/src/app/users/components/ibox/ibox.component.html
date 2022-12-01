@@ -100,6 +100,9 @@
                     </span>
                   </ng-template>
                 </button>
+
+
+                
               </div>
               <div class="col-6 my-auto mt-1">
                 <button class="btn btn-secondary active" id="dureetout" (click)="getDefaultCaract('duree')">
@@ -228,8 +231,7 @@
     Nous essayons continuellement d’ameliorer nos services , pourriez-vous nous aider en nous faisant savoir si vous etes satisfait de cette boite à outils
   </p>
   <div class="col text-center mt-3 mb-3">
-    <app-feedback></app-feedback>
-    <!--<button class="btn btn-default button-2 text-white" id="button2"><i class="fas fa-location-arrow mr-3"></i>Soumettre votre evaluation</button>-->
+    <app-feedback [evaluation]="evaluation_ibox" [resources]="resources"></app-feedback>
   </div>
 </div>
 

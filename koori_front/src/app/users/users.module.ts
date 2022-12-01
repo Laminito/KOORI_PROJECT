@@ -40,9 +40,10 @@ import { SigninComponent } from './components/signin/signin.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './_interceptors/auth.interceptor';
 import { SignupComponent } from './components/signup/signup.component';
+import { RatingModule } from 'ngx-bootstrap/rating';
+import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 import { AllServicesResolver } from './_resolvers/all-services.resolver';
 import { TextAnimateComponent } from './components/home/text-animate/text-animate.component';
-
 
 @NgModule({
   declarations: [
@@ -87,6 +88,8 @@ import { TextAnimateComponent } from './components/home/text-animate/text-animat
     SharedModule,
     CommonModule,
     UsersRoutingModule,
+    RatingModule.forRoot(),
+    ModalModule
   ],
   exports:[
     HomeComponent,
@@ -122,9 +125,10 @@ import { TextAnimateComponent } from './components/home/text-animate/text-animat
     NodataComponent,
     FicheComponent,
     ListRapportsComponent,
+    SigninComponent
   ],
 
-  providers:[
+  providers:[BsModalService,
     AllServicesResolver,
     {
       provide: HTTP_INTERCEPTORS,

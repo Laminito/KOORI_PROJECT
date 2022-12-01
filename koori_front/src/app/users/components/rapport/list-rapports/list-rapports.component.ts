@@ -50,7 +50,7 @@ export class ListRapportsComponent implements OnInit {
   }
 
   getRapportByUser(){
-    this.allRequest.getAll("user/4/rapports",).subscribe( (data:any)=>{
+    this.allRequest.getAll("user/4/rapport",).subscribe( (data:any)=>{
       this.rapportByUser = data.map((rapport:Rapport)=> new Rapport().deserialize(rapport))
       this.rapportByUser.forEach(r => {
         console.log(r)

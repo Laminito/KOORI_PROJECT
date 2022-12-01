@@ -12,9 +12,7 @@
     <div class="col-3 mb-3 mt-1 d-flex justify-content-around"
          *ngFor="let s of services | paginate: { itemsPerPage: 4, currentPage: p }; let i = index;" [attr.data-index]="i" (click)="navigate(s.id)"
          style="cursor: pointer; width: 25%">
-      <div 
-      class="row" 
-      [ngStyle]="{ 'border' : '1px solid'+ tabcolor[i+1], 'box-shadow': '2px 2px 3px' + tabcolor[i+1], 'box-sizing': 'border-box',  'border-radius': '10px'}">
+      <div class="row" [ngStyle]="{'border': '1px solid' + tabcolor[i+1],'box-shadow': '2px 2px 3px' + tabcolor[i+1],'box-sizing': 'border-box','border-radius': '10px'}">
         <div class="col-10 py-2">
           <p style="font-size: larger;" class="fw-bold">{{s.libelle}}</p>
           <p style="font-size: unset;" class="text-center"><span class="fw-bold" style="color: var(--orange)">{{nbrdemande[i].valeur}}</span> nouvelles demandes</p>

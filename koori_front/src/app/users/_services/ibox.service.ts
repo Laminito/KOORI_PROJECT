@@ -29,4 +29,7 @@ export class IboxService {
     return this.http.get<Phase_fiche>(`${environment.API}phase/fiche/${id}`);
   }
 
+  getLastIbox(){
+    return this.http.get<Ibox>(`${environment.API}ibox/last/`)
+  }
 }

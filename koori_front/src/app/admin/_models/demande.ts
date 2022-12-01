@@ -10,10 +10,11 @@ export class Demande {
   public titre?: string
   public description: string=''
   public date_realisation?: string
-  public statut?: string
+  public statut: string = 'nouvelle'
   public DemandeUser:any
   public date_fin:any
   public moyenne:number=0
+  public createdAt:string = '';
   deserialize(input: any): this {
     return Object.assign(this, input);
   }

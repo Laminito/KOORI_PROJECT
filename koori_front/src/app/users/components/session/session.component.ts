@@ -33,7 +33,7 @@ export class SessionComponent implements OnInit {
     });
   }
   getSession(){
-    this.AllRequest.getAll("sessions/user/1").subscribe((data:any)=>{
+    this.AllRequest.getAll("session/user/1").subscribe((data:any)=>{
       console.log(data);
       this.sessions=data
     })
