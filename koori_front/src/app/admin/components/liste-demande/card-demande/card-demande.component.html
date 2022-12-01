@@ -1,0 +1,61 @@
+<div class="col-sm-4 col-lg-12 mt-2 mb-2">
+    <div class="m-0 row row-container p-3" style="background: white;">
+      <!-- <div class="col-sm-1 col-lg-1 m-auto text-center">
+        {{ user.nomComplet }}
+      </div>
+      <div class="col-sm-2 col-lg-2 m-auto text-center">
+        {{ user.email }}
+      </div> -->
+      <div class="col-sm-2 col-lg-2 m-auto text-center">
+        {{ demande.titre }}
+      </div>
+      
+      <div class="col-sm-3 col-lg-3 m-auto text-center"  *ngIf="!isClicked">
+        <i class="fa fa-circle circle{{demande.id}}" [style.color]="colors[statuts.indexOf(demande.statut)]"></i>
+        <span class="span{{demande.id}}" style="margin-left: 3%">{{demande.statut}}</span>
+      </div>   
+      <div class="col-sm-3 col-lg-3 m-auto text-center"   *ngIf="isClicked && demande.statut == 'Nouvelle' || isClicked && demande.statut == 'Rejetee'">
+          <select class='form-select' id="statut{{demande.id}}"  style='border-color: var(--vert);border: solid 1px var(--vert); box-shadow: 0 0 0 0.1rem var(--vert); outline: none;'>
+            <option value='en attente'>En attente</option>
+            <option value='rejetee'>Rejetee</option>
+          </select>
+      </div>
+      <div class="col-sm-3 col-lg-3 m-auto text-center"   *ngIf="isClicked && demande.statut == 'En attente'  || isClicked && demande.statut == 'Annulee'">
+        <select class='form-select' id="statut{{demande.id}}"  style='border-color: var(--vert);border: solid 1px var(--vert); box-shadow: 0 0 0 0.1rem var(--vert); outline: none;'>
+            <option value='validee'>Validee</option>
+            <option value='annulee'>Annulee</option>
+        </select>
+    </div>
+    <div id="sujet{{demande.id}}" class="sujet" *ngIf="isClicked">
+    <label class='text-wrap mt-2 fw-bold ' >Sujet</label>
+     <textarea class='text-wrap mt-2' style='background: #ECECEC;box-shadow: 0 0 0 0.1rem var(--vert);border-radius: 5px;border: solid 1px var(--vert); width: 100%'></textarea>
+    </div>
+     <div class="col-sm-1 col-lg-1 m-auto  text-center"  *ngIf="isValidated && demande.statut == 'Validee' && isFinished == 'false'">
+        <button class="btn btn-sm " (click)="onClickForFinish()">
+        <i class="fa-sharp fa-solid fa-circle-check" title = 'Boucler la session' style="color: var(--orange)"></i>
+        </button>
+      </div> 
+      <div class="col-sm-1 col-lg-1 m-auto  text-center"  *ngIf="isFinished == 'true true'">
+        <button class="btn btn-sm " >
+          <i class="fas fa-check-double" style="color: green"></i>
+        </button>
+      </div> 
+      <div id="sujet{{demande.id}}" class="sujet" *ngIf="isFinished == 'true'">
+        <label class='text-wrap mt-2 fw-bold ' >Mot de finission</label>
+         <textarea class='text-wrap mt-2' id="Aurevoir{{demande.id}}}" style='background: #ECECEC;box-shadow: 0 0 0 0.1rem var(--vert);border-radius: 5px;border: solid 1px var(--vert); width: 100%'></textarea>
+         <button class="btn btn-sm " (click) = "onFinishSession()">
+         <i class="fas fa-check"  style="color: green"></i>
+         </button>
+      </div>
+      <div class="col-sm-1 col-lg-1 m-auto  text-center"  *ngIf="!isClicked && !isValidated && isFinished == 'false'">
+        <button class="btn btn-sm " (click)="changeStatut()">
+        <i class="fas fa-pencil-alt"  style="color: var(--orange)"></i>
+        </button>
+      </div> 
+      <div class="col-sm-1 col-lg-1 m-auto  text-center"  *ngIf="isClicked">
+        <button class="btn btn-sm btn{{demande.id}}" (click)="saveChangeStatut($event)">  
+        <i class="fas fa-check" id="{{demande.id}}" style="color: green"></i>
+        </button>
+      </div> 
+    </div>
+</div>

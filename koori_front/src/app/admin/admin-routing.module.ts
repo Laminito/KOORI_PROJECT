@@ -44,7 +44,7 @@ const routes: Routes = [
       {path: 'edit/:id', component: EditServiceComponent},
       {path: 'rapports/:id/details', component: DetailRapportComponent, resolve: {detailRapport: DetailRapportResolverService}},
       {path: 'rapports', component: RapportComponent},
-      {path: 'ListeDemande', component: ListeDemandeComponent, resolve: {listeDemande: ListeDemandeByServiceResolver} },
+      {path: 'ListeDemande/:serviceId', component: ListeDemandeComponent, resolve: {listeDemande: ListeDemandeByServiceResolver} },
       {path: 'service/:id/sessions', component: SessionComponent , resolve: {sessionService: SessionByServiceResolverService}},
       {path: 'session/:id', component: DetailSessionComponent , resolve: {session: DetailSessionResolverService} },
       {path: 'utilisateur', component: ListeUtilisateurComponent},

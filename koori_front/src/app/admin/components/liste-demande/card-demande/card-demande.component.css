@@ -1,0 +1,19 @@
+label {
+    background-color: var(--vert);
+    color: white;
+    padding: 0.5rem;
+    font-family: sans-serif;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin-top: 1rem;
+  }
+  textarea{
+    background: #ECECEC; 
+    box-shadow: 0 0 0 0.1rem var(--vert);
+    border-radius: 2px; border: solid 1px var(--vert); 
+  }
+.sujet{
+    width: 25%;
+}
+
+  
