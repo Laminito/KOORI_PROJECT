@@ -38,12 +38,13 @@ export class CardDemandeComponent implements OnInit {
   saveChangeStatut(event:any){
     let id = event.target.getAttribute('id')
     let input1 = $(`#statut${this.demande.id}`)
+    let input2 = $(`#sujet${this.demande.id} textarea`)
     this.isClicked = false
     this.demande.statut = String(input1.val()).charAt(0).toUpperCase() + String(input1.val()).slice(1)
     console.log(id);
     let obj = {
       statut: String(input1.val()).charAt(0).toUpperCase() + String(input1.val()).slice(1),
-      text: 'par defaut'
+      text: String(input2.val()).charAt(0).toUpperCase() + String(input2.val()).slice(1)
     }
     if(obj.statut === 'Validee'){
       this.isValidated = true
