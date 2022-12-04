@@ -73,7 +73,7 @@ server.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 //EndPoint
 server.use('/api', apiRouter);
-server.use('/', index);
+// server.use('/', index);
 
 // Info GET endpoint
 // server.use('/test', (req, res, next) => {

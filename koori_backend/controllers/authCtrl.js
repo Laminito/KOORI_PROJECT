@@ -5,7 +5,7 @@ const db = require("../models");
 const jwt = require("jsonwebtoken");
 
 // Assigning users to the variable User
-const User = db.users;
+const User = db.User
 
 //signing a user up
 //hashing users password before its saved to the database with bcrypt
@@ -75,10 +75,10 @@ const login = async(req, res) => {
 
         //if user email is found, compare password with bcrypt
         if (user) {
-            console.log("password :", password);
-
+            // console.log("password :", password);
+            const userId = user.id;
             const isSame = await bcrypt.compare(password, user.password);
-            console.log("isSame", user.password);
+            // console.log("isSame", user.password);
 
             //if password is the same
             //generate token with the user's id and the secretKey in the env file
@@ -91,10 +91,10 @@ const login = async(req, res) => {
                 //if password matches wit the one in the database
                 //go ahead and generate a cookie for the user
                 res.cookie("jwt", token, { maxAge: 1 * 24 * 60 * 60, httpOnly: true });
-                console.log("user", JSON.stringify(user, null, 2));
-                console.log(token);
+                // console.log("user", JSON.stringify(user, null, 2));
+                // console.log(token);
                 //send user data
-                return res.status(201).send(user);
+                return res.status(200).json({id: userId, token: token});
             } else {
                 return res.status(401).send("Connexion refusée");
             }

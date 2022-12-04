@@ -24,5 +24,6 @@ export class ServiceCatalogueComponent implements OnInit {
   })}
 
   onGetService(id: number){
+    this.router.navigateByUrl('/home/service/'+id)
   }
 }

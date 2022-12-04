@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { Route } from '@angular/router';
-import { UserService } from '../../_services/user.service';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../../_services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -12,8 +12,9 @@ export class SignupComponent implements OnInit {
 
   mainForm!: FormGroup;
 
-  constructor(private userService: UserService, 
-              private formBuilder: FormBuilder) {} 
+  constructor(private auth: AuthService, 
+              private formBuilder: FormBuilder,
+              private router: Router) {} 
 
   ngOnInit(): void {
     this.initMainForm();
@@ -28,15 +29,15 @@ export class SignupComponent implements OnInit {
       departement: ['', Validators.required],
       direction: ['', Validators.required],
       email: ['', Validators.required],
+      avatar: "http://www.marhba.com/images/business/Orange.png",
       password: ['', Validators.required],
     });
   }
 
   onSubmitForm() {
-    this.userService.postUser(this.mainForm.value).subscribe(
-      (data: any) => console.log(data)
-    );
+    this.auth.signUp(this.mainForm.value).subscribe();
     this.mainForm.reset();
+    this.router.navigateByUrl('/home/signin');
   }
 
 }

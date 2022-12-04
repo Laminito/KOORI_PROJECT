@@ -344,7 +344,10 @@
                             "description": {
                                 "example": "any"
                             },
-                            "date_realisation": {
+                            "date_debut_souhaitee": {
+                                "example": "any"
+                            },
+                            "disponibilite": {
                                 "example": "any"
                             }
                         }
@@ -376,28 +379,6 @@
                     "200": {
                         "description": "OK"
                     },
-                    "500": {
-                        "description": "Internal Server Error"
-                    }
-                }
-            }
-        },
-        "/participant/": {
-            "post": {
-                "description": "",
-                "parameters": [{
-                    "name": "body",
-                    "in": "body",
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "forEach(user": {
-                                "example": "any"
-                            }
-                        }
-                    }
-                }],
-                "responses": {
                     "500": {
                         "description": "Internal Server Error"
                     }
@@ -438,42 +419,19 @@
                         "schema": {
                             "type": "object",
                             "properties": {
+                                "titre": {
+                                    "example": "any"
+                                },
                                 "statut": {
                                     "example": "any"
                                 },
-                                "text": {
+                                "description": {
                                     "example": "any"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    },
-                    "500": {
-                        "description": "Internal Server Error"
-                    }
-                }
-            }
-        },
-        "/statutdemande/{id}/": {
-            "put": {
-                "description": "",
-                "parameters": [{
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "statut": {
+                                },
+                                "date_debut_souhaitee": {
+                                    "example": "any"
+                                },
+                                "disponibilite": {
                                     "example": "any"
                                 },
                                 "text": {
@@ -613,6 +571,9 @@
                                 },
                                 "evaluation": {
                                     "example": "any"
+                                },
+                                "note": {
+                                    "example": "any"
                                 }
                             }
                         }
@@ -736,6 +697,9 @@
                                 },
                                 "evaluation": {
                                     "example": "any"
+                                },
+                                "note": {
+                                    "example": "any"
                                 }
                             }
                         }
@@ -853,6 +817,9 @@
                                     "example": "any"
                                 },
                                 "evaluation": {
+                                    "example": "any"
+                                },
+                                "note": {
                                     "example": "any"
                                 }
                             }
@@ -2364,50 +2331,6 @@
                         "description": "Internal Server Error"
                     }
                 }
-            },
-            "post": {
-                "description": "",
-                "parameters": [{
-                    "name": "body",
-                    "in": "body",
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "ProfilId": {
-                                "example": "any"
-                            },
-                            "nomComplet": {
-                                "example": "any"
-                            },
-                            "email": {
-                                "example": "any"
-                            },
-                            "password": {
-                                "example": "any"
-                            },
-                            "profession": {
-                                "example": "any"
-                            },
-                            "service": {
-                                "example": "any"
-                            },
-                            "departement": {
-                                "example": "any"
-                            },
-                            "direction": {
-                                "example": "any"
-                            }
-                        }
-                    }
-                }],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    },
-                    "500": {
-                        "description": "Internal Server Error"
-                    }
-                }
             }
         },
         "/client/": {
@@ -2555,7 +2478,7 @@
                 }
             }
         },
-        "/signup": {
+        "/register": {
             "post": {
                 "description": "",
                 "parameters": [{
@@ -2564,16 +2487,13 @@
                     "schema": {
                         "type": "object",
                         "properties": {
+                            "nomComplet": {
+                                "example": "any"
+                            },
                             "email": {
                                 "example": "any"
                             },
                             "ProfilId": {
-                                "example": "any"
-                            },
-                            "nomComplet": {
-                                "example": "any"
-                            },
-                            "password": {
                                 "example": "any"
                             },
                             "profession": {
@@ -2582,22 +2502,22 @@
                             "service": {
                                 "example": "any"
                             },
-                            "departement": {
-                                "example": "any"
-                            },
                             "direction": {
                                 "example": "any"
                             },
+                            "departement": {
+                                "example": "any"
+                            },
                             "avatar": {
+                                "example": "any"
+                            },
+                            "password": {
                                 "example": "any"
                             }
                         }
                     }
                 }],
                 "responses": {
-                    "200": {
-                        "description": "OK"
-                    },
                     "201": {
                         "description": "Created"
                     },

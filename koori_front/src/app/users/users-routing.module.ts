@@ -14,6 +14,7 @@ import { KooriComponent } from './components/koori/koori.component';
 import { KooriiboxComponent } from './components/kooriibox/kooriibox.component';
 import { MenuVerticalComponent } from './components/menu-vertical/menu-vertical.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ProfilComponent } from './components/profil/profil.component';
 import { RapportComponent } from './components/rapport/rapport.component';
 import { DetailServiceComponent } from './components/service-catalogue/detail-service/detail-service.component';
 import { ServiceCatalogueComponent } from './components/service-catalogue/service-catalogue.component';
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path: '', component: HomeComponent, resolve: { services: AllServicesResolver }},
   {path: 'signup', component: SignupComponent},
   {path: 'signin', component: SigninComponent},
+  {path: 'profil', component: ProfilComponent},
   {path: 'kooriibox/ibox', component: IboxComponent, data: {title: 'Ibox', suite: ' ,les activités à faire'}},
   {path: 'kooriibox/koori', component: KooriComponent, data: {title: 'Koori', suite: ' ,les processus à dérouler'}},
   {path: 'service', component: ServiceCatalogueComponent},

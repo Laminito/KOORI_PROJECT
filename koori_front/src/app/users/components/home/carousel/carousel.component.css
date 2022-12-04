@@ -1,0 +1,59 @@
+/* for bloc Innovation lab on the carousel */
+.news{
+	position: absolute;
+	top: 10%;
+	left: 50%;
+	transform: translateX(-50%);
+	color: #fff;
+	z-index: 2;
+  }
+  .news .news-title{
+	animation: showup 15s infinite;
+	padding-left: 2%;
+	font-size: 2em;
+	color: var(--vert);
+  }
+  .news .news-text{
+	width:0px;
+	padding-left: 2%;
+	background-color: transparent;
+	animation: reveal 15s infinite;
+  }
+  .news .news-text > span{
+	margin-left:-355px;
+	animation: slidein 15s infinite;
+	font-size: 1.2em;
+	color: #338f8e;
+  }
+  
+  @keyframes showup {
+	0% {opacity:0;}
+	20% {opacity:1; }
+	80% {opacity:1; }
+	100% {opacity:0;}
+  }
+  
+  @keyframes slidein {
+	0% { margin-left:-800px; opacity: 0;}
+	20% { margin-left:-800px; opacity: 0;}
+	35% { margin-left:0px; opacity: 1;}
+	100% { margin-left:0px; opacity: 1;}
+  }
+  
+  @keyframes reveal {
+	0% {opacity:0;width: 300px;}
+	20% {opacity:1;width: 300px; }
+	30% {width:450px; background-color: transparent}
+	80% {opacity:1; background-color: #fff;}
+	100% {opacity:0;width:450px; background-color: #fff;}
+  }
+  
+  /* for carousel */
+  .carousel-item > img{
+	height: 60vh;
+  }
+  
+  .carousel-indicators{
+	position: absolute;
+	top: 5%;
+  }

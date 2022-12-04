@@ -15,12 +15,12 @@ export class AuthService {
 
   constructor(private http: HttpClient, public router: Router) { }
 
+  signUp(data: any):any{
+    return this.http.post(`${environment.API}register`, data)
+  }
+
   signIn(user: {email: string, password: string}){
-    return this.http.post<any>(`${environment.API}signin`, user).subscribe(
-      (res: any) => {
-        localStorage.setItem('access_token', res.token);
-      }
-    )
+    return this.http.post<any>(`${environment.API}login`, user)
   }
 
   getToken() {

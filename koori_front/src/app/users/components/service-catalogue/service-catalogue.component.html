@@ -4,10 +4,7 @@
     <div class="col-md-4 card-container" *ngFor="let service of services">
       <div class="card card-flip">
         <div class="front card-block">
-          <span><img *ngIf="service.avatar;else other" class="card-img-top" src="data:image/jpeg;base64,{{service.avatar}}" alt="pp"></span>
-          <ng-template #other>
-            <img class="w-100 h-100" src="../assets/img/bootcamp.jpg" alt="pp">
-          </ng-template>
+          <img class="w-100 h-100" src="assets/img/bootcamp.jpg" alt="pp">
           <h4 class="card-title mt-4"> {{service.libelle}} </h4>
           <p class="card-text mb-4">{{ service.description | summarize: 130 }}.</p>
         </div>

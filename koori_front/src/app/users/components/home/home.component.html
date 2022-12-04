@@ -1,78 +1,13 @@
 <div class="container-fluide">
 
-
-  <div class="row">
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-
-      <div class="news">
-        <div class="news-title">Innovation Lab</div> 
-        <div class="news-text"> 
-          <span>
-            bienvenus sur la plateforme Koori & Ibox !
-          </span>
-        </div>
-      </div>
-
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-      </div>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="assets/img/Photographie Studio Facebook Couverture.png" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-          <img src="assets/img/Photographie Studio Facebook Couverture (1).png" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-          <img src="assets/img/innovationLab.png" class="d-block w-100" alt="...">
-        </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
+  <!-- Carousel -->
+  <div class="carousel">
+    <app-carousel></app-carousel>
   </div>
 
-
-  <div class="bloc-presentation">
-
-    <div class="row justify-content-center">
-      <div class="containeur mb-5">
-        <div class="card">
-          <div class="imgBx" data-taxt="Design">
-              <img src="assets/img/koori.png" alt="">
-          </div>
-          <div class="content">
-            <div>
-              <h3>Description Koori</h3>
-              <p>{{ koori.description | summarize: 150 }}</p>
-              <a routerLink="/home/kooriibox/koori">Read More</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="imgBx" data-taxt="Code">
-            <img src="assets/img/ibox.png" alt="">  
-          </div>
-          <div class="content">
-            <div>
-              <h3>Description Ibox</h3>
-              <p>{{ ibox.description | summarize: 150}}</p>
-              <a routerLink="/home/kooriibox/ibox">Read More</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <app-text-animate></app-text-animate>
+  <!-- Koori-Ibox -->
+  <div class="koori-ibox">
+    <app-koori-ibox></app-koori-ibox>
   </div>
 
   <!-- Les services -->
@@ -87,63 +22,14 @@
   
   <!--Partenaires-->
   <div class="list-partenaires">
-  <app-partenaires></app-partenaires>
+    <app-partenaires></app-partenaires>
   </div>
 
-  <div class=" mb-4">
-    <!--title-->
-    
-    <div class="container">
-
-    <!--Temoignages-->
-    <div class="testimonial row mb-4">
-      <!--title-->
-      <div class="row mb-4">
-        <h3 class="text-color text-center">TEMOIGNAGES</h3>
-      </div>
-      <div class="container-xl">
-        <div class="row border border-dark bg-white p-3">
-          <div class="mx-auto">
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-              <!-- Carousel indicators -->
-              <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-              </ol>
-              <!-- Wrapper for carousel items -->
-              <div class="carousel-inner" *ngIf="temoignages !== []; else notemoignage">
-                <div [class.active]="isFirst" class="carousel-item" *ngFor="let temoignage of temoignages; let isFirst = first">
-                  <div class="img-box">
-                    <img *ngIf="temoignage.avatar; else noimg"
-                        src="data:image/jpeg;base64,{{temoignage?.avatar}}" class="img-fluid"
-                        alt="avatar">
-                    <ng-template #noimg>
-                      <img src="https://www.w3schools.com/howto/img_avatar.png" class="img-fluid" alt="img">
-                    </ng-template>
-                  </div>
-                  <p class="testimonial">{{temoignage.message}}</p>
-                  <p class="overview"><b>{{temoignage.nomComplet}}</b></p>
-                </div>
-              </div>
-              <ng-template #notemoignage>
-                <div class="carousel-item">
-                  <h5 class="text-danger text-center mt-3 mb-3">Aucune donnee disponible pour le moment</h5>
-                </div>
-              </ng-template>
-              <!-- Carousel controls -->
-              <a class="carousel-control-prev w-aut" href="#myCarousel" role="button" data-bs-slide="prev">
-                <i class="fa fa-angle-left"></i>
-              </a>
-              <a class="carousel-control-next w-aut" href="#myCarousel" role="button" data-bs-slide="next">
-                <i class="fa fa-angle-right"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!--Temoignages-->
+  <div class="list-temoignages">
+    <app-temoignage></app-temoignage>
   </div>
+
 </div>
 
 <app-top></app-top>

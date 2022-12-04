@@ -44,6 +44,10 @@ import { RatingModule } from 'ngx-bootstrap/rating';
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 import { AllServicesResolver } from './_resolvers/all-services.resolver';
 import { TextAnimateComponent } from './components/home/text-animate/text-animate.component';
+import { ProfilComponent } from './components/profil/profil.component';
+import { TemoignageComponent } from './components/home/temoignage/temoignage.component';
+import { CarouselComponent } from './components/home/carousel/carousel.component';
+import { KooriIboxComponent } from './components/home/koori-ibox/koori-ibox.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +86,11 @@ import { TextAnimateComponent } from './components/home/text-animate/text-animat
     ServicesComponent,
     SigninComponent,
     SignupComponent,
-    TextAnimateComponent
+    TextAnimateComponent,
+    ProfilComponent,
+    TemoignageComponent,
+    CarouselComponent,
+    KooriIboxComponent
   ],
   imports: [
     SharedModule,
