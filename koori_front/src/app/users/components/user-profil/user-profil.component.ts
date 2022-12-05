@@ -18,6 +18,16 @@ export class UserProfilComponent implements OnInit {
             this.user = data         
         }
       )
+
+      var el = document.getElementById("wrapper");
+      var toggleButton = document.getElementById("menu-toggle");
+      // @ts-ignore
+      toggleButton.onclick = function () {
+        // @ts-ignore
+        el.classList.toggle("toggled");
+      };
     }
+    
+   
   
 }

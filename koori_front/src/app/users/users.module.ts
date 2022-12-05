@@ -44,6 +44,8 @@ import { RatingModule } from 'ngx-bootstrap/rating';
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 import { AllServicesResolver } from './_resolvers/all-services.resolver';
 import { UserProfilComponent } from './components/user-profil/user-profil.component';
+import { MesDemandesComponent } from './components/user-profil/mes-demandes/mes-demandes.component';
+import { SessionsInviteesComponent } from './components/user-profil/sessions-invitees/sessions-invitees.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +84,9 @@ import { UserProfilComponent } from './components/user-profil/user-profil.compon
     ServicesComponent,
     SigninComponent,
     SignupComponent,
-    UserProfilComponent
+    UserProfilComponent,
+    MesDemandesComponent,
+    SessionsInviteesComponent
   ],
   imports: [
     SharedModule,
