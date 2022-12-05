@@ -43,6 +43,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { RatingModule } from 'ngx-bootstrap/rating';
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 import { AllServicesResolver } from './_resolvers/all-services.resolver';
+import { UserProfilComponent } from './components/user-profil/user-profil.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { AllServicesResolver } from './_resolvers/all-services.resolver';
     PartenairesComponent,
     ServicesComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    UserProfilComponent
   ],
   imports: [
     SharedModule,

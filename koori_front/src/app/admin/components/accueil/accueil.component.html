@@ -1,114 +1,12 @@
-<div class="d-flex" id="wrapper">
-  <!-- Sidebar -->
-  <div class="bg-white shadow" id="sidebar-wrapper">
-    <div class="sidebar-heading text-center py-4 fs-4 fw-bold border-bottom">
-      <!--<img src="assets/img/logo_pnp.png" width="50" height="50" alt="">-->
-      <a href="http://localhost:4201" target="_blank" title="Lisons notre livret !">
-        <span style="color: black; font-size: xx-large; font-family: 'Impact, fantasy',serif">Ko</span>
-          <img src="./assets/img/ideation.png" width="25" height="25" alt="">
-        <span style="color: black; font-size: xx-large; font-family: 'Impact, fantasy',serif">ri</span>
-      </a>
-    </div>
-    <div class="list-group list-group-flush my-4">
-      <div class="sidebar-menu">
-        <ul>
-          <li class="sidebar-dropdown">
-            <a>
-              <i class="fas fa-chart-bar"></i>
-              <span id="span1">Dashboard</span>
-            </a>
-            <div class="sidebar-submenu">
-              <ul *ngFor="let service of services">
-                <li>
-                  <a style="font-size: initial" routerLinkActive='active' [routerLink]="['dashboard/service/'+service.id]">{{service.libelle}}</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="sidebar-dropdown">
-            <a>
-              <!--<img src="assets/img/logo_pnp.png" width="25" height="25" alt="">-->
-              <i class="fas fa-book"></i>
-              <span id="span1">Koori & Ibox</span>
-            </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a routerLinkActive='active' style="font-size: initial" [routerLink]="['koori']">Koori</a>
-                </li>
-                <li>
-                  <a routerLinkActive='active' style="font-size: initial" [routerLink]="['ibox']">Ibox</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="sidebar-dropdown">
-            <a>
-              <i class="fas fa-cogs"></i>
-              <span id="span1" routerLinkActive="router-link-active">Services</span>
-            </a>
-            <div class="sidebar-submenu">
-              <ul *ngFor="let service of services">
-                <li>
-                  <a style="font-size: initial" routerLinkActive='active' [routerLink]="['service/'+service.id]">{{service.libelle}}</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li>
-            <a [routerLink]="['rapports']" routerLinkActive="router-link-active">
-              <i class="fa fa-book"></i>
-              <span id="span1">Rapports</span>
-            </a>
-          </li>
-          <li id="cas2">
-            <a [routerLink]="['utilisateur']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-              <i class="fas fa-users"></i>
-              <span id="span1">Utilisateurs</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="fa fa-folder"></i>
-              <span id="span1">A propos de Ilab</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="fa fa-folder"></i>
-              <span>Communauté</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div id="page-content-wrapper">
-    <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-2 px-4 position-static">
-      <div class="d-flex align-items-center">
-        <i class="fas fa-align-left primary-text fs-4 me-4" id="menu-toggle"></i>
-      </div>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="col-xs-10 col-xs-offset-1">
-          <form action="#" method="#" role="search">
-            <div class="input-group">
-              <input class="form-control inputSearch" placeholder="Search . . ." name="srch-term" id="ed-srch-term" type="text">
-              <div class="input-group-btn">
-                <button type="submit" id="searchbtn">
-                  search</button>
-              </div>
-            </div>
-          </form>
-        </div>
-        
-      </div>
-    </nav>
-    <div class="container-fluid">
-      <router-outlet></router-outlet>
-    </div>
-    <app-top></app-top>
-  </div>
+<div id="mySidebar" class="sidebar">
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+
+<div id="main">
+  <header class='dashboard-toolbar'><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a></header>
+  <h2>Collapsed Sidebar</h2>
+  <p>Content...</p>
 </div>

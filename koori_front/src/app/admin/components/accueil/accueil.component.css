@@ -1,269 +1,51 @@
-
-.rounded-full {
-	border-radius: 100%;
+.sidebar {
+	height: 100%; /* 100% Full-height */
+	width: 0; /* 0 width - change this with JavaScript */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Stay on top */
+	top: 0;
+	left: 0;
+	background-color: #111; /* Black*/
+	overflow-x: hidden; /* Disable horizontal scroll */
+	padding-top: 60px; /* Place content 60px from the top */
+	transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
   }
   
-  #wrapper {
-	overflow-x: hidden;
-	background-color: var(--fond);
-  }
-  
-  #sidebar-wrapper {
-	min-height: 100vh;
-	margin-left: -15rem;
-	-webkit-transition: margin 0.25s ease-out;
-	-moz-transition: margin 0.25s ease-out;
-	-o-transition: margin 0.25s ease-out;
-	transition: margin 0.25s ease-out;
-  }
-  
-  #sidebar-wrapper .list-group {
-	width: 15rem;
-  }
-  
-  @media (min-width: 768px) {
-	#sidebar-wrapper {
-	  margin-left: 0;
-	}
-	form{
-	  margin-top: 20px;
-	  margin-bottom: 20px;
-	}
-  
-	#page-content-wrapper {
-	  min-width: 0;
-	  width: 100%;
-	}
-  
-	#wrapper.toggled #sidebar-wrapper {
-	  margin-left: -15rem;
-	}
-  }
-  
-  /*----------------sidebar-wrapper----------------*/
-  
-  
-  #sidebar-wrapper ul {
-	list-style-type: circle;
-	padding: 0;
-	margin: 0;
-  }
-  
-  #sidebar-wrapper a {
+  /* The sidebar links */
+  .sidebar a {
+	padding: 8px 8px 8px 32px;
 	text-decoration: none;
+	font-size: 25px;
+	color: #818181;
+	display: block;
+	transition: 0.3s;
   }
   
-  .header-menu span:hover{
-	color: var(--orange);
+  /* When you mouse over the navigation links, change their color */
+  .sidebar a:hover {
+	color: #f1f1f1;
   }
   
-  .sidebar-dropdown span:hover{
-	color: var(--orange);
-  }
-  .sidebar-dropdown span{
-	font-weight: 600;
-  }
-  .sidebar-menu span{
-	font-weight: 600;
-  }
-  
-  /*.sidebar-submenu li > a{
-	color: var(--orange);
-  }*/
-  #sidebar-wrapper .sidebar-menu ul li > a.active{
-	color: var(--orange);
-  }
-  #sidebar-wrapper .sidebar-menu ul #cas2 > a.active{
-	color: var(--orange);
-  }
-  
-  
-  /*----------------sidebar-content----------------*/
-  
-  .sidebar-content {
-	max-height: calc(100% - 30px);
-	height: calc(100% - 30px);
-	overflow-y: auto;
-	position: relative;
-  }
-  
-  /*----------------------sidebar-menu-------------------------*/
-  
-  #sidebar-wrapper .sidebar-menu {
-	padding-bottom: 10px;
-  }
-  
-  #sidebar-wrapper .sidebar-menu .header-menu span {
-	font-weight: bold;
-	font-size: 14px;
-	padding: 15px 20px 5px 20px;
-	display: inline-block;
-  }
-  
-  #sidebar-wrapper .sidebar-menu ul li a {
-	display: inline-block;
-	width: 100%;
-	text-decoration: none;
-	position: relative;
-	padding: 8px 30px 8px 20px;
-	color: black;
-	font-size: 18px;
-  }
-  #sidebar-wrapper .sidebar-submenu ul li a:hover{
-	color: var(--vert);
-  }
-  /*#sidebar-wrapper .sidebar-submenu ul li a:focus {
-	color: var(--orange);
-  }*/
-  
-  #sidebar-wrapper .sidebar-menu ul li a i {
-	margin-right: 10px;
-	font-size: 12px;
-	width: 30px;
-	height: 30px;
-	line-height: 30px;
-	text-align: center;
-	border-radius: 4px;
-  }
-  
-  #sidebar-wrapper .sidebar-menu ul li a:hover > i::before {
-	display: inline-block;
-	animation: swing ease-in-out 0.5s 1 alternate;
-  }
-  
-  #sidebar-wrapper .sidebar-menu .sidebar-dropdown > a:after {
-	font-family: FontAwesome, serif;
-	font-weight: 900;
-	content: "\f105";
-	font-style: normal;
-	display: inline-block;
-	font-variant: normal;
-	text-rendering: auto;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
-	background: 0 0;
+  /* Position and style the close button (top right corner) */
+  .sidebar .closebtn {
 	position: absolute;
-	right: 15px;
-	top: 14px;
+	top: 0;
+	right: 25px;
+	font-size: 36px;
+	margin-left: 50px;
   }
   
-  #sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu ul {
-	padding: 5px 0;
-  }
-  
-  #sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li {
-	padding-left: 25px;
-	font-size: 13px;
-  }
-  #sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li a:before {
-	content: "o";
-	font-weight: 400;
-	margin-right: 10px;
-	font-size: 9px;
-  }
-  
-  .sidebar-dropdown{
-	cursor: pointer;
-  }
-  #sidebar-wrapper .sidebar-menu ul li a span.label,
-  #sidebar-wrapper .sidebar-menu ul li a span.badge {
-	float: right;
-	margin-top: 8px;
-	margin-left: 5px;
-  }
-  
-  #sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li a .badge,
-  #sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li a .label {
-	float: right;
-	margin-top: 0;
-  }
-  
-  #sidebar-wrapper .sidebar-menu .sidebar-submenu {
-	display: none;
-  }
-  
-  #sidebar-wrapper .sidebar-menu .sidebar-dropdown.active > a:after {
-	transform: rotate(90deg);
-	right: 17px;
-  }
-  
-  /*search bar*/
-  .form-group {
-	margin:0;
-	padding:20px ;
-  }
-  .form-group:first-child { 
-	border-color: transparent; 
-  }
-  .inputSearch {
-	padding: 0 10px 0 20px;
-	font-size: 15px;
-	font-weight: 500;
-	border: 1px solid var(--vert);
-	-webkit-box-shadow: none;
-	box-shadow: none;
-	min-height:40px;
-	height: auto;
-	border-radius: 50px 0  0 50px !important;
-  }
-  .inputSearch :focus {
-	-webkit-box-shadow: none;
-	box-shadow: none;
-	border-color: transparent;
-  }
-  
-  #searchbtn
-  {
-	padding: 0 10px;
-	color: #fff;
-	background: var(--vert);
+  /* The button used to open the sidebar */
+  .openbtn {
 	font-size: 20px;
-	font-weight: 400;
-	border: 1px solid var(--vert);
-	border-left: none;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-	min-height:40px;
-	height: auto;
-	border-radius: 0 50px 50px 0 !important;
-  }
-  
-  /*navbar right with icons*/
-  nav .right i{
-	color: var(--vert);
-	font-size: 20px;
-  }
-  nav .right span.badge{
-	color: var(--vert);
-	font-size: 13px;
-	font-weight: bold;
-  }
-  .avatar {
-	vertical-align: middle;
-	width: 30px;
-	height: 30px;
-	border-radius: 50%;
-  }
-  nav.topbar{
-	background-color: var(--vert);
-	font-size: 13px;
-  }
-  
-  .breadcrumb-item + .breadcrumb-item::before {
-	content: ">";
-	color: var(--white);
-	font-weight: bold;
-  }
-  .breadcrumb-item.active{
-	color: var(--orange);
-  }
-  nav #menu-toggle{
-	color: var(--vert);
 	cursor: pointer;
-  }
-  #span1{
-	font-size: 15px;
+	background-color: #111;
+	color: white;
+	padding: 10px 15px;
+	border: none;
   }
   
+  .openbtn:hover {
+	background-color: #444;
+  }
   

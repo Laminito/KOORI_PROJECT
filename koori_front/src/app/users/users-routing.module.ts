@@ -19,6 +19,7 @@ import { DetailServiceComponent } from './components/service-catalogue/detail-se
 import { ServiceCatalogueComponent } from './components/service-catalogue/service-catalogue.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { UserProfilComponent } from './components/user-profil/user-profil.component';
 import { AllServicesResolver } from './_resolvers/all-services.resolver';
 import { FicheResolverService } from './_resolvers/FicheResolverService';
 import { ServiceResolverService } from './_resolvers/ServiceResolverService';
@@ -45,6 +46,7 @@ const routes: Routes = [
   {path: 'demande', component: DemandeComponent},
   {path: 'service/:id', component: DetailServiceComponent, resolve: {service: ServiceResolverService}},
   {path: 'not-found', component: NotFoundComponent },
+  {path: 'profil', component: UserProfilComponent },
   {path: '**', redirectTo: '/not-found'}
 
 ];
