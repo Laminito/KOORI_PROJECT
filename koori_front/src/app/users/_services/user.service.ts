@@ -11,7 +11,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getIdUser(id: number){
+  getUserById(id: number){
     return this.http.get(`${environment.API}user/${id}`)
   }
 

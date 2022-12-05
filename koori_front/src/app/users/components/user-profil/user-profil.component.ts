@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../../_models/user';
+import { UserService } from '../../_services/user.service';
 
 @Component({
   selector: 'app-user-profil',
@@ -6,30 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-profil.component.css']
 })
 export class UserProfilComponent implements OnInit {
+    user!:User
+    constructor(private userService: UserService) { }
 
-  constructor() { }
-
-  ngOnInit(): void {
-
-    const mobileScreen = window.matchMedia("(max-width: 990px )");
-$(document).ready(function () {
-    $(".dashboard-nav-dropdown-toggle").click(function () {
-        $(this).closest(".dashboard-nav-dropdown")
-            .toggleClass("show")
-            .find(".dashboard-nav-dropdown")
-            .removeClass("show");
-        $(this).parent()
-            .siblings()
-            .removeClass("show");
-    });
-    $(".menu-toggle").click(function () {
-        if (mobileScreen.matches) {
-            $(".dashboard-nav").toggleClass("mobile-show");
-        } else {
-            $(".dashboard").toggleClass("dashboard-compact");
+    ngOnInit(): void {
+      this.userService.getUserById(1).subscribe(
+        (data) => {
+            console.log(data)
+            this.user = data         
         }
-    });
-});
-}
-
+      )
+    }
+  
 }
