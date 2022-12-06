@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Demande } from 'src/app/users/_models/demande';
+import { Service } from 'src/app/users/_models/Service';
+import { CatalogueServiceService } from 'src/app/users/_services/catalogue-service.service';
+import { DemandeService } from 'src/app/users/_services/demande.service';
+import { forEachChild } from 'typescript';
 
 @Component({
   selector: 'app-mes-demandes',
@@ -6,10 +11,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mes-demandes.component.css']
 })
 export class MesDemandesComponent implements OnInit {
-
-  constructor() { }
+  demandes!:Demande[]
+  //colors = {'Nouvelle':'#344DA8','#258F49','#256F49','#CA8654','#FF7713','#FF0000'}
+  services:String[] = []
+  constructor(private demandeService: DemandeService,private catalogueServiceService: CatalogueServiceService) { }
 
   ngOnInit(): void {
+    this.demandeService.getAllDemande().subscribe( //NE PAS OUBLIER DE PRENDRE LA METHODE GETDEMANDESBYUSERID
+      data => {
+        //console.log(data);
+        this.demandes = data
+        for (let demande of data){
+
+          this.catalogueServiceService.getByIdService(demande.Service.id).subscribe(
+            service => {
+              this.services.push(service.libelle)
+            }
+          )
+        }
+      }
+    )
   }
 
 }

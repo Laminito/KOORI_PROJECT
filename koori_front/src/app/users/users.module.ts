@@ -46,6 +46,7 @@ import { AllServicesResolver } from './_resolvers/all-services.resolver';
 import { UserProfilComponent } from './components/user-profil/user-profil.component';
 import { MesDemandesComponent } from './components/user-profil/mes-demandes/mes-demandes.component';
 import { SessionsInviteesComponent } from './components/user-profil/sessions-invitees/sessions-invitees.component';
+import { CardDemandeComponent } from './components/user-profil/mes-demandes/card-demande/card-demande.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { SessionsInviteesComponent } from './components/user-profil/sessions-inv
     SignupComponent,
     UserProfilComponent,
     MesDemandesComponent,
-    SessionsInviteesComponent
+    SessionsInviteesComponent,
+    CardDemandeComponent
   ],
   imports: [
     SharedModule,

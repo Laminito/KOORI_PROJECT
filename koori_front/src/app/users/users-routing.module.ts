@@ -22,6 +22,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { MesDemandesComponent } from './components/user-profil/mes-demandes/mes-demandes.component';
 import { SessionsInviteesComponent } from './components/user-profil/sessions-invitees/sessions-invitees.component';
 import { UserProfilComponent } from './components/user-profil/user-profil.component';
+import { AuthGuard } from './_guards/auth.guard';
 import { AllServicesResolver } from './_resolvers/all-services.resolver';
 import { FicheResolverService } from './_resolvers/FicheResolverService';
 import { ServiceResolverService } from './_resolvers/ServiceResolverService';
@@ -51,7 +52,9 @@ const routes: Routes = [
   {
     path: 'profil',
     component: UserProfilComponent, 
+    canActivate: [AuthGuard],
     children: [
+      { path: '', redirectTo: 'mesDemandes', pathMatch: 'full' },
       {
         path: 'mesDemandes', 
         component: MesDemandesComponent, 

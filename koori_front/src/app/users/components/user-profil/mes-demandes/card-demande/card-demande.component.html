@@ -1,0 +1,25 @@
+<div class="col-sm-4 col-lg-12 mt-2 mb-2">
+    <div class="m-0 row row-container p-3" style="background: white;">
+      <div class="col-sm-1 col-lg-1 m-auto text-center">
+        {{ service }}
+      </div>
+      <div class="col-sm-2 col-lg-2 m-auto text-center">
+        {{ demande.titre }}
+      </div>
+      <div class="col-sm-2 col-lg-2 m-auto text-center">
+        <p>
+            {{ demande.description.substr(0,20) }}<a class="text-blue fs-4" data-toggle="collapse" href="#collapseExample{{ demande.id}}" role="button" aria-expanded="false" aria-controls="collapseExample">
+              ...
+            </a>
+          </p>
+          <div class="collapse" id="collapseExample{{ demande.id}}">
+            <div class="card card-body">
+              {{ demande.description}}
+            </div>
+          </div>
+      </div>
+      <div class="col-sm-2 col-lg-2 m-auto text-center">
+        <i class="fa fa-circle circle{{demande.id}}" [style.color]="color"></i>{{ demande.statut }}
+      </div>
+    </div>
+</div>           
