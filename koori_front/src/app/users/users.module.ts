@@ -48,6 +48,8 @@ import { ProfilComponent } from './components/profil/profil.component';
 import { TemoignageComponent } from './components/home/temoignage/temoignage.component';
 import { CarouselComponent } from './components/home/carousel/carousel.component';
 import { KooriIboxComponent } from './components/home/koori-ibox/koori-ibox.component';
+import { DemandesResolver } from './_resolvers/demandes.resolver';
+import { ProjectFilterPipe } from './_pipes/project-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -90,7 +92,8 @@ import { KooriIboxComponent } from './components/home/koori-ibox/koori-ibox.comp
     ProfilComponent,
     TemoignageComponent,
     CarouselComponent,
-    KooriIboxComponent
+    KooriIboxComponent,
+    ProjectFilterPipe
   ],
   imports: [
     SharedModule,
@@ -136,8 +139,10 @@ import { KooriIboxComponent } from './components/home/koori-ibox/koori-ibox.comp
     SigninComponent
   ],
 
-  providers:[BsModalService,
+  providers:[
+    BsModalService,
     AllServicesResolver,
+    DemandesResolver,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
 import { Demande } from 'src/app/users/_models/demande';
 import { Service } from 'src/app/users/_models/Service';
@@ -13,25 +14,25 @@ export class ProjetsComponent implements OnInit {
 
   services!: Service[];
   demandes: Demande[] = [];
-  toggleBtn!: string
+  toggleBtn!: string;
 
-  constructor(private allRequest: AllRequestService) { }
-
+  constructor(private allRequest: AllRequestService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.allRequest.getAll('service').pipe(
-      map(data => {
-        this.services = data.sort((a, b) => a.id - b.id);
-        this.services.forEach(serve => {
-          serve.Demandes.forEach((dmd: Demande) => {
-            this.demandes.push(dmd);
-            if (dmd.statut === 'Traitee') {
-              // this.demandes.push(dmd);
-            }
-          })
-        })
-      })
-    ).subscribe();
+
+    this.route.data.subscribe(
+      (data) => {
+        this.services = data["services"]
+      }
+    )
+    
+    this.route.data.subscribe(
+      (data) => {
+        this.demandes = data["projets"];
+      }
+    )
+
   }
 
 }
+

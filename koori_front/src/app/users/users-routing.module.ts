@@ -21,19 +21,29 @@ import { ServiceCatalogueComponent } from './components/service-catalogue/servic
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { AllServicesResolver } from './_resolvers/all-services.resolver';
+import { DemandesResolver } from './_resolvers/demandes.resolver';
 import { FicheResolverService } from './_resolvers/FicheResolverService';
 import { ServiceResolverService } from './_resolvers/ServiceResolverService';
 
 
 const routes: Routes = [
 
-  {path: '', component: HomeComponent, resolve: { services: AllServicesResolver }},
+  {
+    path: '', 
+    component: HomeComponent, 
+    resolve: { 
+      services: AllServicesResolver, 
+      projets: DemandesResolver,
+    }
+  },
   {path: 'signup', component: SignupComponent},
   {path: 'signin', component: SigninComponent},
   {path: 'profil', component: ProfilComponent},
   {path: 'kooriibox/ibox', component: IboxComponent, data: {title: 'Ibox', suite: ' ,les activités à faire'}},
   {path: 'kooriibox/koori', component: KooriComponent, data: {title: 'Koori', suite: ' ,les processus à dérouler'}},
-  {path: 'service', component: ServiceCatalogueComponent},
+  {path: 'service', component: ServiceCatalogueComponent, resolve: { 
+    services: AllServicesResolver, 
+  }},
   {path: 'rapport', component: RapportComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'kooriibox', component: KooriiboxComponent},

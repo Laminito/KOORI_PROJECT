@@ -41,7 +41,7 @@ const signup = async(req, res) => {
         //generate token with the user's id and the secretKey in the env file
         // set cookie with the token generated
         if (user) {
-            let token = jwt.sign({ id: user.id }, process.env.secretKey, {
+            let token = jwt.sign({ email: user.emial }, process.env.secretKey, {
                 expiresIn: 1 * 24 * 60 * 60 * 1000,
             });
 
@@ -58,43 +58,29 @@ const signup = async(req, res) => {
     }
 };
 
-//login authentication
 
+
+
+//login authentication
 const login = async(req, res) => {
     try {
         const { email, password } = req.body;
-
-        //find a user by their email
         const user = await db.User.findOne({
             where: {
                 email: req.body.email
             },
         });
-        console.log('email :', email);
-
-
-        //if user email is found, compare password with bcrypt
+        console.log(user);
         if (user) {
-            // console.log("password :", password);
-            const userId = user.id;
+            
             const isSame = await bcrypt.compare(password, user.password);
-            // console.log("isSame", user.password);
-
-            //if password is the same
-            //generate token with the user's id and the secretKey in the env file
-
             if (isSame) {
-                let token = jwt.sign({ id: user.id }, process.env.secretKey, {
-                    expiresIn: 1 * 24 * 60 * 60 * 1000,
-                });
-
-                //if password matches wit the one in the database
-                //go ahead and generate a cookie for the user
+                let token = jwt.sign({ email: user.email }
+                    , process.env.secretKey, {
+                    expiresIn: 1 * 24 * 60 * 60 * 1000,}
+                    );
                 res.cookie("jwt", token, { maxAge: 1 * 24 * 60 * 60, httpOnly: true });
-                // console.log("user", JSON.stringify(user, null, 2));
-                // console.log(token);
-                //send user data
-                return res.status(200).json({id: userId, token: token});
+                return res.status(200).json({token: token});
             } else {
                 return res.status(401).send("Connexion refusée");
             }
@@ -105,6 +91,8 @@ const login = async(req, res) => {
         console.log(error);
     }
 };
+
+
 
 module.exports = {
     signup,
