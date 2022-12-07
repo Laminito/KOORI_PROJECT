@@ -12,7 +12,6 @@ import { forEachChild } from 'typescript';
 })
 export class MesDemandesComponent implements OnInit {
   demandes!:Demande[]
-  //colors = {'Nouvelle':'#344DA8','#258F49','#256F49','#CA8654','#FF7713','#FF0000'}
   services:String[] = []
   constructor(private demandeService: DemandeService,private catalogueServiceService: CatalogueServiceService) { }
 

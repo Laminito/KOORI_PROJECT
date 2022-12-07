@@ -23,7 +23,7 @@
       </div>
 </div>
 <div class="row" *ngIf="demandes.length != 0; else other" >
-    <app-card-demande *ngFor="let demande of demandes; let i =index;" [demande] = "demande" [service] = "services[i]" [color] = "colors[i]"></app-card-demande>          
+    <app-card-demande *ngFor="let demande of demandes; let i =index;" [demande] = "demande" [service] = "services[i]"></app-card-demande>          
 </div>   
 <ng-template #other>
   <div class="row text-center text-danger mt-3 mb-3">

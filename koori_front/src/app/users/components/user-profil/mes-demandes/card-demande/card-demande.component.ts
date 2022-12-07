@@ -10,14 +10,19 @@ import { Service } from 'src/app/users/_models/Service';
 export class CardDemandeComponent implements OnInit {
   @Input() demande!:Demande
   @Input() service!:String
-  @Input() color!:String
+  colors:string[] = ['#344DA8','#258F49','#256F49','#CA8654','#FF7713','#FF0000'] 
+  statuts:string[]= [  'Nouvelle', 'Traitee', 'Validee','Rejetee','En attente', 'Annulee']
 
 
 
   constructor() { }
 
   ngOnInit(): void {
-
+    
+    
   }
 
+  downloadExcelFile(){
+    
+  }
 }
