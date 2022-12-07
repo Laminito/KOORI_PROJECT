@@ -4,9 +4,9 @@
   <div class="row p-5 mb-3">
     <div class="col-xl-8 col-sm-12 col-md-12">
         <div class="card">
-          <img *ngIf="service.avatar;else other" class="card-img" src="data:image/jpeg;base64,{{service.avatar}}" alt="Card image">
+          <img class="img-thumbnail w-100 h-100" src="assets/img/bootcamp.png" alt="pp">
           <ng-template #other>
-            <img class="img-thumbnail w-100 h-100" src="../assets/img/bootcamp.png" alt="pp">
+            <img *ngIf="service.avatar;else other" class="card-img" src="data:image/jpeg;base64,{{service.avatar}}" alt="Card image">
           </ng-template>
       </div>
     </div>

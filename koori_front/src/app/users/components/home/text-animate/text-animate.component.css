@@ -1,0 +1,47 @@
+/* Base */
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+h1 {
+  position: relative;
+  color: var(--vert);
+  font-weight: bold;
+  letter-spacing: 3px;
+  font-size: 2.4em;
+  overflow: hidden;
+  border-right: 2px solid hsl(0, 0%, 80%);
+  white-space: nowrap;
+  animation: typewriter 6s steps(44) 2s normal infinite both,
+    blinkTextCursor 10s infinite;
+  margin-left: 22%;
+  margin-top: 15vh;
+}
+
+@keyframes typewriter {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 58%;
+  }
+  100% {
+    width: 58%;
+  }
+}
+@keyframes blinkTextCursor {
+  from {
+    border-right-color: hsl(0, 0%, 80%);
+  }
+  to {
+    border-right-color: transparent;
+  }
+}
+b{
+  color: var(--orange);
+}

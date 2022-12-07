@@ -1,13 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import * as Aos from 'aos';
-import { IboxService } from 'src/app/admin/_services/ibox.service';
-import { Ibox } from '../../_models/ibox';
-import { Koori } from '../../_models/koori';
-import { Service } from '../../_models/Service';
-import { Temoignage } from '../../_models/Temoignage';
-import { AllRequestService } from '../../_services/all-request.service';
-import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
-import { SignupComponent } from '../signup/signup.component';
 
 
 @Component({
@@ -17,14 +9,7 @@ import { SignupComponent } from '../signup/signup.component';
 })
 export class HomeComponent implements OnInit {
 
-  temoignages!: Temoignage[]
-  koori!: Koori;
-  ibox!: Ibox;
-  services!: Service[];
-
-  constructor( private allRequest: AllRequestService, 
-               private iboxService: IboxService,
-               public dialog: MatDialog) { }
+  constructor() { }
 
   ngOnInit(): void {
 
@@ -58,40 +43,6 @@ export class HomeComponent implements OnInit {
       });
 
     });
-
-    this.getDescriptionKoori();
-    this.getDescriptionIbox();
-    this.getTemoignages();
-  }
-
-  openDialog(){
-    const dialoConfig = new MatDialogConfig();
-
-    //dialoConfig.disableClose = true;
-    dialoConfig.autoFocus = true;
-
-    this.dialog.open(SignupComponent, dialoConfig);
-
-  }
-
-  getDescriptionKoori(){
-    this.allRequest.getAll("koori/last","description").subscribe((data:any)=>{
-      this.koori = new Koori().deserialize(data)
-    })
-  }
-  
-  getDescriptionIbox(){
-    this.allRequest.getAll("ibox/last",).subscribe((data:any)=>{
-      this.ibox = new Ibox().deserialize(data)
-    })
-  }
-
-
-  getTemoignages() {
-    this.allRequest.getAll("temoignage").subscribe((data: any) => {
-      this.temoignages = data.map((temoignage: Temoignage) => new Temoignage().deserialize(temoignage));
-    })
-    
   }
 
   slideToggle(ref:any) {

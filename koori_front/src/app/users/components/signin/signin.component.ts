@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../_services/auth.service';
 import { UserService } from '../../_services/user.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-signin',
@@ -23,21 +24,20 @@ export class SigninComponent implements OnInit {
 
   ngOnInit(): void {
     this.signinForm = this.fb.group({
-      email: ['', Validators.required, Validators.email],
-      password: ['', Validators.required]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
     })
   }
 
-  
   onSubmitForm(){
-    //this.authService.signIn(this.signinForm.value);
-    if (!this.signinForm.valid){
-    this.isValid = false
-    this.error="Identifiants incorrectes, voulez vous verifier s'il vous plait"
-    
-    }
-    console.log(this.signinForm.value);
-    
+    this.authService.signIn(this.signinForm.value).subscribe(
+      (res: any) => {
+        localStorage.setItem('acces_token', res.token);
+        let decoded = jwt_decode(res.token, { header: true });
+        console.log(decoded)
+      }
+    ) 
+    this.signinForm.reset();
   }
 
   openModal(template: TemplateRef<any>) {

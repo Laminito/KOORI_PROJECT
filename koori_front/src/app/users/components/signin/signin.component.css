@@ -44,4 +44,7 @@
 		color:var(--vert)
 	}
 
+	li{
+		list-style-type: none;
+	}
 	

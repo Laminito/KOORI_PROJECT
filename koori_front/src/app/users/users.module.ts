@@ -46,6 +46,12 @@ import { AllServicesResolver } from './_resolvers/all-services.resolver';
 import { UserProfilComponent } from './components/user-profil/user-profil.component';
 import { MesDemandesComponent } from './components/user-profil/mes-demandes/mes-demandes.component';
 import { SessionsInviteesComponent } from './components/user-profil/sessions-invitees/sessions-invitees.component';
+import { TextAnimateComponent } from './components/home/text-animate/text-animate.component';
+import { TemoignageComponent } from './components/home/temoignage/temoignage.component';
+import { CarouselComponent } from './components/home/carousel/carousel.component';
+import { KooriIboxComponent } from './components/home/koori-ibox/koori-ibox.component';
+import { DemandesResolver } from './_resolvers/demandes.resolver';
+import { ProjectFilterPipe } from './_pipes/project-filter.pipe';
 import { CardDemandeComponent } from './components/user-profil/mes-demandes/card-demande/card-demande.component';
 
 @NgModule({
@@ -86,9 +92,15 @@ import { CardDemandeComponent } from './components/user-profil/mes-demandes/card
     SigninComponent,
     SignupComponent,
     UserProfilComponent,
-    MesDemandesComponent,
     SessionsInviteesComponent,
-    CardDemandeComponent
+    CardDemandeComponent,
+    MesDemandesComponent,
+    TextAnimateComponent,
+    TemoignageComponent,
+    CarouselComponent,
+    KooriIboxComponent,
+    ProjectFilterPipe
+    
   ],
   imports: [
     SharedModule,
@@ -131,11 +143,13 @@ import { CardDemandeComponent } from './components/user-profil/mes-demandes/card
     NodataComponent,
     FicheComponent,
     ListRapportsComponent,
-    SigninComponent
+    SigninComponent,
   ],
 
-  providers:[BsModalService,
+  providers:[
+    BsModalService,
     AllServicesResolver,
+    DemandesResolver,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

@@ -1,0 +1,47 @@
+<div class="testimonial container row mb-4">
+	<!--title-->
+	<div class="row mb-4">
+	  <h3 class="text-color text-center title">TEMOIGNAGES</h3>
+	</div>
+	<div class="container-xl">
+	  <div class="row border border-dark bg-white p-3">
+		<div class="mx-auto">
+		  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+			<!-- Carousel indicators -->
+			<ol class="carousel-indicators">
+			  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			  <li data-target="#myCarousel" data-slide-to="1"></li>
+			  <li data-target="#myCarousel" data-slide-to="2"></li>
+			</ol>
+			<!-- Wrapper for carousel items -->
+			<div class="carousel-inner" *ngIf="temoignages !== []; else notemoignage">
+			  <div [class.active]="isFirst" class="carousel-item" *ngFor="let temoignage of temoignages; let isFirst = first">
+				<div class="img-box">
+				  <img *ngIf="temoignage.avatar; else noimg"
+					  src="data:image/jpeg;base64,{{temoignage?.avatar}}" class="img-fluid"
+					  alt="avatar">
+				  <ng-template #noimg>
+					<img src="https://www.w3schools.com/howto/img_avatar.png" class="img-fluid" alt="img">
+				  </ng-template>
+				</div>
+				<p class="testimonial">{{temoignage.message}}</p>
+				<p class="overview"><b>{{temoignage.nomComplet}}</b></p>
+			  </div>
+			</div>
+			<ng-template #notemoignage>
+			  <div class="carousel-item">
+				<h5 class="text-danger text-center mt-3 mb-3">Aucune donnee disponible pour le moment</h5>
+			  </div>
+			</ng-template>
+			<!-- Carousel controls -->
+			<a class="carousel-control-prev w-aut" href="#myCarousel" role="button" data-bs-slide="prev">
+			  <i class="fa fa-angle-left"></i>
+			</a>
+			<a class="carousel-control-next w-aut" href="#myCarousel" role="button" data-bs-slide="next">
+			  <i class="fa fa-angle-right"></i>
+			</a>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </div>

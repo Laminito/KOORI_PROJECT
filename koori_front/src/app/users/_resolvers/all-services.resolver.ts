@@ -14,6 +14,6 @@ export class AllServicesResolver implements Resolve<Service[]> {
   constructor(private request: AllRequestService){}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Service[]> {
-    return this.request.getAllServices();
+    return this.request.getAll("service");
   }
 }

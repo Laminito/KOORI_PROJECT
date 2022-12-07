@@ -1,0 +1,34 @@
+<div class="bloc-presentation">
+
+    <div class="row justify-content-center">
+      <div class="containeur mb-5">
+        <div class="card">
+          <div class="imgBx" data-taxt="Design">
+              <img src="assets/img/koori.png" alt="">
+          </div>
+          <div class="content">
+            <div>
+              <h3>Description Koori</h3>
+              <p>{{ koori.description | summarize: 150 }}</p>
+              <a routerLink="/home/kooriibox/koori">Read More</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="imgBx" data-taxt="Code">
+            <img src="assets/img/ibox.png" alt="">  
+          </div>
+          <div class="content">
+            <div>
+              <h3>Description Ibox</h3>
+              <p>{{ ibox.description | summarize: 150}}</p>
+              <a routerLink="/home/kooriibox/ibox">Read More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-text-animate></app-text-animate>
+
+  </div>
