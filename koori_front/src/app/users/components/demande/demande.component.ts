@@ -1,13 +1,15 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2'
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Demande } from '../../_models/demande';
 import { Service } from '../../_models/Service';
 import { User } from '../../_models/user';
 import { AllRequestService } from '../../_services/all-request.service';
 import { DemandeService } from '../../_services/demande.service';
 import { UserService } from '../../_services/user.service';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { AuthService } from '../../_services/auth.service';
 
 
 @Component({
@@ -24,7 +26,9 @@ export class DemandeComponent implements OnInit {
   message: string= "";
   tab: any;
   submitted= false;
-
+  @Input() libelleService!:String
+  modalRef!: BsModalRef;
+  isLoggedIn!:Boolean;
   public errorsMessage ={
     titre:[
       {type: 'required', message:'ce champ est obligatoire'}
@@ -37,10 +41,13 @@ export class DemandeComponent implements OnInit {
     private allRequest: AllRequestService,
     private userService: UserService,
     private formBuilder: FormBuilder,
-    private route: Router) { }
+    private route: Router,
+    private modalService: BsModalService,
+    private authService: AuthService,
+    private router: ActivatedRoute) { }
 
   ngOnInit(): void {
-
+    this.isLoggedIn = this.authService.isLoggedIn()
        //this.getService();
        this.getUser()
   this.demandeForm = this.formBuilder.group({
@@ -51,6 +58,37 @@ export class DemandeComponent implements OnInit {
     date_realisation: ["", Validators.required],
   });
   }
+
+  openModalDemande(template: TemplateRef<any>) {
+    
+   if(this.isLoggedIn){
+    this.modalRef = this.modalService.show(template,
+      {
+        class: 'modal-dialog-centered'
+      });
+   }
+
+   else{ Swal.fire({
+    position: 'center',
+    icon: 'info',
+    title: "<h4>Veuillez d'abord vous connecter please</h4>",
+    cancelButtonText:'Quitter',
+    confirmButtonText:'Se Connecter',
+    confirmButtonColor:'#338F8E',
+    showConfirmButton: true,
+    showCancelButton: true,
+    timer: 10000
+  }).then((result) => {
+    if (result.isConfirmed) {
+       this.route.navigate(['/home/signin'])
+    }
+  })
+
+  
+       }
+   
+    
+ }
 
 //recuperer tous les service
   getService(){this.allRequest.getAll("service").subscribe((data:any)=>{this.services=data})}

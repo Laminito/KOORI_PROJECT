@@ -6,6 +6,12 @@
 	color: black ;
 	font-weight: 500;
   }
+  .btn-color{
+	background-color: var(--vert);
+	color:  #fff;
+
+
+  }
   .icononmenu i{
 	color: var(--vert);
   }

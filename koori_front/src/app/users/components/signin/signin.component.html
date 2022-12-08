@@ -1,24 +1,45 @@
-<li class="nav-item mx-3">
-	<a class="nav-link">
-		<button type="button" mat-raised-button class="btn-color btn-sn" (click)="openModal(template)">Se connecter</button>
-	</a>
-</li>
+<div class="container mx-auto" id="connexion">
+	<div class="drop">
+		<div class="content">
+			<h2 class='animate__heartBeat'>Connexion</h2>
+			<form [formGroup]="signinForm">
+				<div class="input-box">
+					<input type="email" name="username" formControlName="email" placeholder="Email">
+					</div>
+				<div class="input-box">
+					<input type="password" name="password" placeholder="Password" formControlName="password">
+					</div>
+				<div class="input-box">
+					<input type="submit" value="connexion" (click)="onSubmitForm()">
+					</div>
+			</form>
+		</div>	
+	</div>
+	<a href="#" class='btn'>Mot de passe oublie</a> 
+	<a href="#" class='btn signup'>Se connecter</a>
+</div>
 
-<ng-template #template >
-	<div class="modal-body">
-		 <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef.hide()"></button>
-			 <h2 class="text-center titre mt-5 pt-5">Connexion</h2>	 
-			   <form class=" p-lg-5" [formGroup]="signinForm">
-				 <div class="mb-3">
-				   <input type="email" class="form-control"  formControlName="email" id="Username" aria-describedby="emailHelp"
+
+
+
+
+
+
+
+
+<!-- <div>
+	<h2 class="text-center titre mt-5 pt-5">Connexion</h2>	 
+		<form class=" p-lg-5" [formGroup]="signinForm">
+			<div class="mb-3">
+				<input type="email" class="form-control"  formControlName="email" id="Username" aria-describedby="emailHelp"
 					 placeholder="Email">
-				 </div>
-				 <div class="mb-3">
-				   <input type="password" class="form-control" id="password" placeholder="Mot de passe" formControlName="password">
-				 </div>
-				 <div class="text-center"><button type="submit" class="btn btn-color px-5 mb-5 w-100" (click)="onSubmitForm()">Se connecter</button></div>
-				 <div id="emailHelp" class="form-text text-center mb-5 text-dark">Pas de compte? <a (click)="modalRef.hide()" routerLink="/home/signup" class=" fw-bold" > Creer un compte des maintenant</a>
-				 </div>
-			   </form>
-			 </div>
-</ng-template>
+			</div>
+			<div class="mb-3">
+				<input type="password" class="form-control" id="password" placeholder="Mot de passe" formControlName="password">
+			</div>
+			<div class="text-center"><button type="submit" class="btn btn-color px-5 mb-5 w-100" (click)="onSubmitForm()">Se connecter</button></div>
+			<div id="emailHelp" class="form-text text-center mb-5 text-dark">Pas de compte? <a  routerLink="/home/signup" class=" fw-bold" > Creer un compte des maintenant</a>
+			</div>
+		</form>
+</div> -->
+

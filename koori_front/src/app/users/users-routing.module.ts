@@ -2,14 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AproposComponent } from './components/apropos/apropos.component';
 import { CommunauteComponent } from './components/communaute/communaute.component';
-import { ConnexionComponent } from './components/connexion/connexion.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { DemandeComponent } from './components/demande/demande.component';
 import { EvaluationNoteComponent } from './components/evaluation-note/evaluation-note.component';
 import { FicheComponent } from './components/fiche/fiche.component';
 import { HomeComponent } from './components/home/home.component';
 import { IboxComponent } from './components/ibox/ibox.component';
-import { InscriptionComponent } from './components/inscription/inscription.component';
 import { KooriComponent } from './components/koori/koori.component';
 import { KooriiboxComponent } from './components/kooriibox/kooriibox.component';
 import { MenuVerticalComponent } from './components/menu-vertical/menu-vertical.component';
@@ -46,13 +44,11 @@ const routes: Routes = [
   {path: 'service', component: ServiceCatalogueComponent, resolve: { 
     services: AllServicesResolver, 
   }},
-  {path: 'rapport', component: RapportComponent},
+  {path: 'rapport',canActivate: [AuthGuard], component: RapportComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'kooriibox', component: KooriiboxComponent},
   {path: 'evaluation-note', component: EvaluationNoteComponent},
   {path: 'fiche/:id', component: FicheComponent, resolve: {fiche: FicheResolverService}},
-  {path: 'inscription', component: InscriptionComponent},
-  {path: 'authentification', component: ConnexionComponent},
   {path: 'apropos', component: AproposComponent},
   {path: 'communaute', component: CommunauteComponent},
   {path: 'menu-vertical', component: MenuVerticalComponent},

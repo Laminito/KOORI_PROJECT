@@ -45,7 +45,6 @@ export class KooriComponent implements OnInit {
     // this.evaluation_koori.UserId = 1  //ON DEVRA PRENDRE INCHALLAH L'ID DU USER QUI SE CONNECTE. CECI N'EST QU'UN TEST
     // this.resources = `evaluation_koori/user/${this.evaluation_koori.UserId}/koori/${this.evaluation_koori.KooriId}`
     // })
-
     this.evaluation_koori.KooriId = 1
     this.evaluation_koori.UserId = 3 //DOIT VENIR DU TOKEN 
     this.resources = `evaluation_koori/user/${this.evaluation_koori.UserId}/koori/${this.evaluation_koori.KooriId}`

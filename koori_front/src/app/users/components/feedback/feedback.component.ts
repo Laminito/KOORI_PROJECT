@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { ActivatedRoute, Data } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 import * as $ from 'jquery';
 import { Fiche } from '../../_models/fiche';
 import { AllRequestService } from '../../_services/all-request.service';
@@ -12,6 +12,7 @@ import { EvaluationsService } from '../../_services/evaluations.service';
 import { userInfo } from 'os';
 import { User } from '../../_models/user';
 import { isEmpty, map } from 'rxjs';
+import { AuthService } from '../../_services/auth.service';
 
 @Component({
   selector: 'app-feedback',
@@ -30,7 +31,8 @@ export class FeedbackComponent implements OnInit {
   commentaire!:string;
 
   constructor(private evaluationsService: EvaluationsService, private formBuilder: FormBuilder,
-    private feedbackService: FeedbackService){
+    private feedbackService: FeedbackService, private authService: AuthService,
+    private router:Router){
   }
 
   evaluationForm = this.formBuilder.group({
@@ -42,7 +44,8 @@ export class FeedbackComponent implements OnInit {
     this.isReadOnly = false
     this.isSubmitted = false
     this.isEvaluated = false
-    this.evaluationsService.getEvaluationByIdUser(this.resources).subscribe(
+    if(this.authService.isLoggedIn()){
+      this.evaluationsService.getEvaluationByIdUser(this.resources).subscribe(
         data => {
             
              if(data.note!=0){
@@ -58,7 +61,9 @@ export class FeedbackComponent implements OnInit {
             }
           }
           
-        )
+        ) 
+    }
+    
 
     
   }
@@ -71,9 +76,31 @@ export class FeedbackComponent implements OnInit {
   }
 
   onEvaluate(){
-    this.evaluation.note = this.rate
-    this.evaluationsService.updateEvaluation(this.resources,this.evaluation).subscribe()
-    this.isEvaluated = true  
+
+    if(this.authService.isLoggedIn()){
+      this.evaluation.note = this.rate
+      this.evaluationsService.updateEvaluation(this.resources,this.evaluation).subscribe()
+      this.isEvaluated = true 
+    }
+    else{
+      Swal.fire({
+        position: 'center',
+        icon: 'info',
+        title: "<h4>Veuillez d'abord vous connecter please</h4>",
+        cancelButtonText:'Quitter',
+        confirmButtonText:'Se Connecter',
+        confirmButtonColor:'#338F8E',
+        showConfirmButton: true,
+        showCancelButton: true,
+        timer: 10000
+      }).then((result) => {
+        if (result.isConfirmed) {
+           this.router.navigate(['/home/signin'])
+        }
+      })
+    
+    }
+    
       
   }
 

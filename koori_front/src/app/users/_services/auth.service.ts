@@ -19,17 +19,26 @@ export class AuthService {
     return this.http.post(`${environment.API}register`, data)
   }
 
+  // signIn(user: {email: string, password: string}){
+  //   return this.http.post<any>(`${environment.API}login`, user)
+  // }
+
   signIn(user: {email: string, password: string}){
-    return this.http.post<any>(`${environment.API}login`, user)
+    return 'false'
   }
 
   getToken() {
     return localStorage.getItem('access_token');
   }
   
-  get isLoggedIn(): boolean {
-    let authToken = localStorage.getItem('access_token');
-    return authToken !== null ? true : false;
+  // get isLoggedIn(): boolean {
+  //   let authToken = localStorage.getItem('access_token');
+  //   return authToken !== null ? true : false;
+  // }
+
+  isLoggedIn(): boolean {
+    let isAuthenticated = localStorage.getItem('access_user');
+    return isAuthenticated === 'true'? true: false
   }
 
   doLogout() {
@@ -54,6 +63,8 @@ export class AuthService {
     }
     return throwError(() => new Error('test'));
   }
+
+
 
 }
 

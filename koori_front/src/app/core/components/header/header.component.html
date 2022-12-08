@@ -55,7 +55,7 @@
                     <a routerLink="/home/service" routerLinkActive="active-link" class="nav-link scroll-link">Catalogue de Services</a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/home/rapport" routerLinkActive="active-link" class="nav-link scroll-link">Rapports</a>
+                    <a routerLink="/home/rapport" routerLinkActive="active-link" class="nav-link scroll-link" *ngIf = "isLoggedIn">Rapports</a>
                 </li>
                 <li class="nav-item">
                     <a routerLink="/home/apropos" routerLinkActive="active-link" class="nav-link scroll-link">A propos de nous</a>
@@ -78,7 +78,11 @@
                         <i class="fas fa-bell fa-lg"></i>
                     </a>
                 </li> -->
-               <app-signin></app-signin>
+                <li class="nav-item mx-3">
+                    <a class="nav-link">
+                        <button type="button" mat-raised-button class="btn-color btn-sn" routerLink="home/signin">Se connecter</button>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

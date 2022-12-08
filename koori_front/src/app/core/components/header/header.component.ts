@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import {ActivatedRoute, Router } from '@angular/router';
 import { SigninComponent } from 'src/app/users/components/signin/signin.component';
 import { SignupComponent } from 'src/app/users/components/signup/signup.component';
+import { AuthService } from 'src/app/users/_services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -12,17 +13,20 @@ import { SignupComponent } from 'src/app/users/components/signup/signup.componen
 export class HeaderComponent implements OnInit {
 
   @Output() newItemEvent = new EventEmitter<boolean>();
-
+  isLoggedIn!:boolean
   menu = false;
 
   defaultRoute: string = "";
 
   constructor(private route: Router, 
               private actRoute: ActivatedRoute,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private authService: AuthService) {
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isLoggedIn = Boolean(localStorage.getItem('access_user'))
+  }
 
   open(){
       // @ts-ignore

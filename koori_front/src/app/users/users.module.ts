@@ -5,14 +5,12 @@ import { UsersRoutingModule } from './users-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { AproposComponent } from './components/apropos/apropos.component';
 import { CommunauteComponent } from './components/communaute/communaute.component';
-import { ConnexionComponent } from './components/connexion/connexion.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { DemandeComponent } from './components/demande/demande.component';
 import { EvaluationNoteComponent } from './components/evaluation-note/evaluation-note.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { FicheComponent } from './components/fiche/fiche.component';
 import { IboxComponent } from './components/ibox/ibox.component';
-import { InscriptionComponent } from './components/inscription/inscription.component';
 import { KooriComponent } from './components/koori/koori.component';
 import { KooriiboxMenuComponent } from './components/kooriibox-menu/kooriibox-menu.component';
 import { KooriiboxComponent } from './components/kooriibox/kooriibox.component';
@@ -57,7 +55,6 @@ import { CardDemandeComponent } from './components/user-profil/mes-demandes/card
 @NgModule({
   declarations: [
     HomeComponent,
-    ConnexionComponent,
     AproposComponent,
     KooriiboxComponent,
     KooriComponent,
@@ -74,7 +71,6 @@ import { CardDemandeComponent } from './components/user-profil/mes-demandes/card
     TopComponent,
     FeedbackComponent,
     NotFoundComponent,
-    InscriptionComponent,
     NavLinkServiceComponent,
     ServiceCatalogueComponent,
     SummarizePipe,
@@ -111,7 +107,6 @@ import { CardDemandeComponent } from './components/user-profil/mes-demandes/card
   ],
   exports:[
     HomeComponent,
-    ConnexionComponent,
     HomeComponent,
     AproposComponent,
     KooriiboxComponent,
@@ -132,7 +127,6 @@ import { CardDemandeComponent } from './components/user-profil/mes-demandes/card
     FeedbackComponent,
     ServiceCatalogueComponent,
     NotFoundComponent,
-    InscriptionComponent,
     NavLinkServiceComponent,
     ServiceCatalogueComponent,
     SummarizePipe,

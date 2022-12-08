@@ -5,6 +5,7 @@ import { AuthService } from '../../_services/auth.service';
 import { UserService } from '../../_services/user.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import jwt_decode from "jwt-decode";
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-signin',
@@ -19,7 +20,8 @@ export class SigninComponent implements OnInit {
   isValid!:Boolean;
 
   constructor(public fb: FormBuilder, public router: Router, private authService: AuthService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private _location: Location
    ) { }
 
   ngOnInit(): void {
@@ -30,21 +32,23 @@ export class SigninComponent implements OnInit {
   }
 
   onSubmitForm(){
-    this.authService.signIn(this.signinForm.value).subscribe(
-      (res: any) => {
-        localStorage.setItem('acces_token', res.token);
-        let decoded = jwt_decode(res.token, { header: true });
-        console.log(decoded)
-      }
-    ) 
-    this.signinForm.reset();
+    localStorage.setItem('access_user', this.authService.signIn(this.signinForm.value))   
+    this._location.back();
+  
+
+ 
+    // this.authService.signIn(this.signinForm.value).subscribe(
+    //   (res: any) => {
+    //     localStorage.setItem('acces_token', res.token);
+    //     let decoded = jwt_decode(res.token, { header: true });
+    //     console.log(decoded)
+    //   }
+    // ) 
+    //this.signinForm.reset();
   }
 
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template,
-      {
-        class: 'modal-dialog-centered'
-      });
+ redirectToAuthentication(){
+
  }
     
 

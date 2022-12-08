@@ -5,7 +5,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from "@angular/common/http";
 import { SharedModule } from '../shared/shared.module';
-import { UsersModule } from '../users/users.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +16,6 @@ import { UsersModule } from '../users/users.module';
     HttpClientModule,
     RouterModule,
     SharedModule,
-    UsersModule
   ],
   exports: [
     HeaderComponent,
