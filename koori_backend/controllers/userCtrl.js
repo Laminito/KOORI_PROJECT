@@ -4,6 +4,7 @@ const asyncLib = require("async");
 const validationResults = require("../validationResult");
 const { Op } = require("sequelize");
 
+
 module.exports = {
 
     getUsers: (req, res) => {
@@ -19,7 +20,8 @@ module.exports = {
                     'service',
                     'departement',
                     'direction',
-                    'avatar'
+                    'avatar',
+                    'role'
                 ],
                 limit: (!isNaN(limit)) ? limit : null,
                 offset: (!isNaN(offset)) ? offset : null,
@@ -28,14 +30,12 @@ module.exports = {
                 }],
             }).then((users) => {
                 users.forEach(user => {
-                        if (user.avatar) {
-                            let buff = new Buffer(user.avatar);
-                            user.avatar = buff.toString('base64');
-                            return res.status(200).json(users)
-                        }
-                    })
-                    // res.send('Vous etes bien dans la methode getUsers.')
-                    // return res.status(200).json(users)
+                    if (user.avatar) {
+                        let buff = new Buffer(user.avatar);
+                        user.avatar = buff.toString('base64');
+                    }
+                })
+                return res.status(200).json(users)
             })
             .catch((err) => {
                 return res.status(500).json({ 'error': 'Erreur de récupération' + err })
@@ -141,6 +141,28 @@ module.exports = {
                 return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
             })
     },
+    // getUserByEmail: (req, res) => {
+    //     const email = req.params.email;
+    //     console.log(email);
+    //     models.User.findOne({
+    //             //attributes: ['id', 'ProfilId', 'nomComplet', 'email', 'profession', 'service', 'departement', 'direction'],
+    //             where: { email: email },
+    //             include: [{
+    //                 model: models.Profil
+    //             }],
+    //         }).then((user) => {
+    //             if (user) {
+    //                 /*let buff = new Buffer(user?.avatar);
+    //                 user?.avatar = buff.toString('base64');*/
+    //                 res.status(200).json(user)
+    //             } else {
+    //                 res.status(404).json({ "erreur": "L'utilisateur n'existe pas" })
+    //             }
+    //         })
+    //         .catch((err) => {
+    //             return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
+    //         })
+    // },
     getUserByProfil: (req, res) => {
         const id = parseInt(req.params.id);
         models.User.findAll({

@@ -42,7 +42,8 @@ module.exports = {
             },
             date_debut_souhaitee: {
                 allowNull: true,
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                defaultValue: new Date()
             },
             disponibilite: {
                 allowNull: true,

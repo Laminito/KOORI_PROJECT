@@ -3,6 +3,7 @@ const express = require('express')
 const userController = require('../controllers/authCtrl')
 const { signup, login } = userController
 const userAuth = require('../middleware/userAuth')
+const verifyToken = require('../accessControl/verifyToken')
 
 const authrouter = express.Router()
 

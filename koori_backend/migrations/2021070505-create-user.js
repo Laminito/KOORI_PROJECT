@@ -60,6 +60,12 @@ module.exports = {
                     return this.getDataValue('avatar').toString('utf8'); // or whatever encoding is right
                 },
             },
+            // role: {
+            //     type: Sequelize.ENUM,
+            //     enum: ["ADMIN", "USER"],
+            //     allowNull: true,
+            //     defaultValue: "USER",
+            // },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE
@@ -71,8 +77,8 @@ module.exports = {
         });
         await queryInterface.bulkInsert('Users', [{
                 ProfilId: 1,
-                nomComplet: 'Pape Saliou Mbodj',
-                email: 'papasaliou.mbodj@gmail.com',
+                nomComplet: 'PSM',
+                email: 'psm@gmail.com',
                 password: await hash(defaultpass),
                 profession: 'CTO',
                 service: 'Systeme information',

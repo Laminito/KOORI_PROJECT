@@ -3,14 +3,43 @@ const _ = require('lodash')
 const models = require('../models');
 const dotenv = require('dotenv').config()
 const nodemailer = require("nodemailer");
-const smtpTransport = nodemailer.createTransport({
-    service: "gmail",
-    host: "smtp.gmail.com",
-    auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_PASS
-    }
-});
+const send_mail = require('../middleware/sendMail')
+
+
+// function sendEmail() {
+//     return new Promise((resolve, reject) => {
+//         const username = process.env.GMAIL_USER
+//         const password = process.env.GMAIL_PASSWORD
+//         const transporter = nodemailer.createTransport({
+//             service: 'gmail',
+//             host: "smtp.gmail.com",
+//             port: 465,
+//             secure: true, // use TLS,
+//             requireTLS: true,
+//             auth: {
+//                 user: username,
+//                 pass: password
+//             }
+//         })
+
+//         const mail_option = {
+//             from: username,
+//             to: "mainashou@gmail.com",
+//             subject: "Message de test",
+//             text: "Si vous recevez ce message c'est parceque\nVous avez effectuez une demande de service\nSur KOORI/IBOX"
+//         }
+//         transporter.sendMail(mail_option, function(error, info) {
+//             if (error) {
+//                 console.log(error);
+//                 return reject({ message: `une erreur est survenue` })
+//             }
+//             return resolve({
+//                 message: "Le mail a été envoyé avec succes "
+//             })
+//         })
+
+//     })
+// }
 
 
 
@@ -27,7 +56,11 @@ module.exports = {
             description: description
         }).then((demandes) => {
             //callback2(null,demandResult)
-            return res.status(200).json({ 'sucess': demandes })
+            send_mail.sendEmail('abmangane14@gmail.com', "message de test")
+                // .then(response => res.send(response.message))
+                .then(response => res.status(200).json({ 'sucess': demandes }))
+                .catch(error => res.status(500).send(error.message))
+                // return res.status(200).json({ 'sucess': demandes })
 
         }).catch((err) => {
             return res.status(500).json({ 'error': 'Erreur dajout ' + err })

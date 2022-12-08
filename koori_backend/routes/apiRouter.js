@@ -20,6 +20,7 @@ let sujetAllRoutes = require('../routes/sujetRoute')
 let temoignageAllRoutes = require('../routes/temoignageRoute')
 let userAllRoutes = require('../routes/userRoute')
 let AuthRoutes = require('../routes/authRoutes')
+let handlersRoutes = require('../routes/handlersRoute')
 
 
 module.exports = [
@@ -44,5 +45,6 @@ module.exports = [
     sujetAllRoutes,
     temoignageAllRoutes,
     userAllRoutes,
-    AuthRoutes
+    AuthRoutes,
+    handlersRoutes
 ]
