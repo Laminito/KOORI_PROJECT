@@ -5,14 +5,12 @@ import { UsersRoutingModule } from './users-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { AproposComponent } from './components/apropos/apropos.component';
 import { CommunauteComponent } from './components/communaute/communaute.component';
-import { ConnexionComponent } from './components/connexion/connexion.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { DemandeComponent } from './components/demande/demande.component';
 import { EvaluationNoteComponent } from './components/evaluation-note/evaluation-note.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { FicheComponent } from './components/fiche/fiche.component';
 import { IboxComponent } from './components/ibox/ibox.component';
-import { InscriptionComponent } from './components/inscription/inscription.component';
 import { KooriComponent } from './components/koori/koori.component';
 import { KooriiboxMenuComponent } from './components/kooriibox-menu/kooriibox-menu.component';
 import { KooriiboxComponent } from './components/kooriibox/kooriibox.component';
@@ -38,7 +36,7 @@ import { PartenairesComponent } from './components/home/partenaires/partenaires.
 import { ServicesComponent } from './components/home/services/services.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './_interceptors/auth.interceptor';
+// import { AuthInterceptor } from './_interceptors/auth.interceptor';
 import { SignupComponent } from './components/signup/signup.component';
 import { RatingModule } from 'ngx-bootstrap/rating';
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
@@ -54,7 +52,6 @@ import { ProjectFilterPipe } from './_pipes/project-filter.pipe';
 @NgModule({
   declarations: [
     HomeComponent,
-    ConnexionComponent,
     AproposComponent,
     KooriiboxComponent,
     KooriComponent,
@@ -71,7 +68,6 @@ import { ProjectFilterPipe } from './_pipes/project-filter.pipe';
     TopComponent,
     FeedbackComponent,
     NotFoundComponent,
-    InscriptionComponent,
     NavLinkServiceComponent,
     ServiceCatalogueComponent,
     SummarizePipe,
@@ -104,7 +100,6 @@ import { ProjectFilterPipe } from './_pipes/project-filter.pipe';
   ],
   exports:[
     HomeComponent,
-    ConnexionComponent,
     HomeComponent,
     AproposComponent,
     KooriiboxComponent,
@@ -125,7 +120,6 @@ import { ProjectFilterPipe } from './_pipes/project-filter.pipe';
     FeedbackComponent,
     ServiceCatalogueComponent,
     NotFoundComponent,
-    InscriptionComponent,
     NavLinkServiceComponent,
     ServiceCatalogueComponent,
     SummarizePipe,
@@ -143,11 +137,11 @@ import { ProjectFilterPipe } from './_pipes/project-filter.pipe';
     BsModalService,
     AllServicesResolver,
     DemandesResolver,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    }
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptor,
+    //   multi: true
+    // }
   ],
   entryComponents:[SigninComponent, SignupComponent]
 })

@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Data } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Demande } from 'src/app/users/_models/demande';
 import { Service } from 'src/app/users/_models/Service';
 import { DemandeService } from 'src/app/users/_services/demande.service';
 
 import Swal from 'sweetalert2';
+import { SigninComponent } from '../../signin/signin.component';
 
 const colors: any = {
   red: { primary: '#ad2121', secondary: '#FAE3E3'},
@@ -31,9 +33,12 @@ export class DetailServiceComponent implements OnInit {
   submitted: boolean = false;
   titre: string="";
 
+  bsModalRef?: BsModalRef;
+
   constructor(private route: ActivatedRoute,
-    private demandService: DemandeService,
-    private formBuilder: FormBuilder) { }
+              private demandService: DemandeService,
+              private formBuilder: FormBuilder,
+              private modalService: BsModalService) { }
 
   ngOnInit(): void {
 
@@ -83,6 +88,11 @@ export class DetailServiceComponent implements OnInit {
       console.log(error);
 
     })
+   }
+
+   openModal(){
+    this.bsModalRef = this.modalService.show(SigninComponent);
+    this.bsModalRef.content.closeBtnName = 'Close';
    }
   //  reset() {
   //   this.demandeForm.reset();

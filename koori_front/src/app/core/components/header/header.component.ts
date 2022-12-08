@@ -1,8 +1,5 @@
 import { Component, EventEmitter, OnInit, Output  } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import {ActivatedRoute, Router } from '@angular/router';
-import { SigninComponent } from 'src/app/users/components/signin/signin.component';
-import { SignupComponent } from 'src/app/users/components/signup/signup.component';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(private route: Router, 
               private actRoute: ActivatedRoute,
-              private dialog: MatDialog) {
+              ) {
   }
 
   ngOnInit(): void {}

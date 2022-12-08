@@ -5,6 +5,8 @@ import { AuthService } from '../../_services/auth.service';
 import { UserService } from '../../_services/user.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import jwt_decode from "jwt-decode";
+import { AllRequestService } from '../../_services/all-request.service';
+import { User } from '../../_models/user';
 
 @Component({
   selector: 'app-signin',
@@ -17,9 +19,13 @@ export class SigninComponent implements OnInit {
   modalRef!: BsModalRef;
   error!:string;
   isValid!:Boolean;
+  currentUser!: User
 
-  constructor(public fb: FormBuilder, public router: Router, private authService: AuthService,
-    private modalService: BsModalService
+  constructor(public fb: FormBuilder, 
+              public router: Router, 
+              private authService: AuthService,
+              private modalService: BsModalService,
+              private allRequest: AllRequestService
    ) { }
 
   ngOnInit(): void {
@@ -33,11 +39,22 @@ export class SigninComponent implements OnInit {
     this.authService.signIn(this.signinForm.value).subscribe(
       (res: any) => {
         localStorage.setItem('acces_token', res.token);
-        let decoded = jwt_decode(res.token, { header: true });
-        console.log(decoded)
+        this.allRequest.getAll("user").subscribe(
+          (data) => {
+            console.log(data);
+            // const userFound = data.find(user => user.email === res.email);
+            data.forEach(item => {
+              if(item.email === res.email){
+                  console.log(item)
+              }
+            })
+            // if (userFound) {
+            //   console.log(userFound);
+            // }
+          }
+        )
       }
     ) 
-    this.signinForm.reset();
   }
 
   openModal(template: TemplateRef<any>) {

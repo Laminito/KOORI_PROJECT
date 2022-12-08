@@ -109,44 +109,23 @@
       </button>
     </div>
     <div class="modal-body">
-      <form [formGroup]="demandeForm" >
+      <form [formGroup]="demandeForm">
         <!-- {{demandeForm.value | json}} -->
         <div class="row">
           <div class="col-12">
             <label class="form-label">Challenge ou objet <label class="text-danger">*</label></label>
             <input type="text" [ngClass]="{ 'is-invalid': submitted }" [formControlName]="'titre'" class="input mb-2">
-          <!--
-            <div *ngIf="submitted && f.titre?.errors">
-              <div *ngIf="f.titre.errors.required " class="alert-danger">{{titre=='titre'?message:""}}</div>
-            </div>
-          -->
           </div>
         </div>
         <label class="form-label">Description de la demande <label class="text-danger">*</label></label>
         <textarea [ngClass]="{ 'is-invalid': submitted }" [formControlName]="'description'" class="form-control input mb-2" ></textarea>
-        <!--
-        
-          <div *ngIf="submitted && f.description.errors">
-          <div *ngIf="f.description.errors.required" class="alert-danger">{{titre=='description'?message:""}}</div>
-          </div>
-        
-        -->
-        
             <!-- calendar -->
         <div class="col-12">
           <label class="form-label">Periode souhaité <label class="text-danger">*</label></label>
             <input type="date" [ngClass]="{ 'is-invalid': submitted }" class="form-control input mb-2"
               [formControlName]="'date_realisation'" name="date_realisation">
-            <!-- 
-              <div *ngIf="submitted && f.date_realisation.errors">
-                <div *ngIf="f.date_realisation.errors.required" class="alert-danger">{{titre=='date_realisation'?message:""}}</div>
-              </div>
-            -->
         </div>
-        <!-- //////////////////////////////////////////// -->
-
-        
-        <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+      
         <div class="row text-center">
         </div>
         <div class="text-center">

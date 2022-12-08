@@ -59,8 +59,6 @@ const signup = async(req, res) => {
 };
 
 
-
-
 //login authentication
 const login = async(req, res) => {
     try {
@@ -72,15 +70,15 @@ const login = async(req, res) => {
         });
         console.log(user);
         if (user) {
-            
+            userEmail = user.email            
             const isSame = await bcrypt.compare(password, user.password);
             if (isSame) {
-                let token = jwt.sign({ email: user.email }
+                let token = jwt.sign({ id: user.id }
                     , process.env.secretKey, {
                     expiresIn: 1 * 24 * 60 * 60 * 1000,}
                     );
                 res.cookie("jwt", token, { maxAge: 1 * 24 * 60 * 60, httpOnly: true });
-                return res.status(200).json({token: token});
+                return res.status(200).json({email: userEmail, token: token});
             } else {
                 return res.status(401).send("Connexion refusée");
             }
@@ -91,7 +89,6 @@ const login = async(req, res) => {
         console.log(error);
     }
 };
-
 
 
 module.exports = {
