@@ -16,42 +16,11 @@ const models = require("../models");
 const User = db.users;
 
 
-
-
-//     let userNow1;
-//     let userNow
-
-//     models.User.findAll({
-//         attributes: ['id', 'email']
-//     }).then((users) => {
-
-
-//         let userId
-//         users.forEach(users => {
-
-
-//             if (users.email === params) {
-//                 userId = users.dataValues.id;
-//                 console.log("userId", userId, "\n", "email", params);
-//                 console.log();
-//             }
-//             return userId
-//         })
-//         userNow = userId
-//         console.log("userNow1", userNow);
-//         return userNow
-
-//     })
-//     userNow1 = userNow
-//     console.log("userNow2", userNow1);
-
-// }
-
 //signing a user up
 //hashing users password before its saved to the database with bcrypt
 const signup = async() => {
-    console.log('pasjfgveyrbcehjberhvfhvghev', passwordgenerator.password);
-    console.log(" expiredans :", ms(10 * 60000, { long: true }));
+    // console.log('pasjfgveyrbcehjberhvfhvghev', passwordgenerator.password);
+    // console.log(" expiredans :", ms(10 * 60000, { long: true }));
     const message = `Bonjour ${req.body.nomComplet} <br> Voici votre mot de passe par defaut <br> Utilisable une seule fois  <br> Via votre compte KOORI <br> Password : <a href="#">${passwordgenerator.password}</a>`
     try {
         const {
@@ -77,11 +46,6 @@ const signup = async() => {
             avatar,
             password: await bcrypt.hash(password, 10),
         };
-        //saving the user
-        // .then(response => res.send(response.message))
-        // .then(response => res.status(200).json({ 'sucess': demandes }))
-        // .catch(error => res.status(500).send(error.message))
-        // console.log("dfgfqsfgfsd:", req.body.email, "\n", req.body.password);
 
         const user = await db.User.create(data);
 
@@ -135,7 +99,7 @@ const login = async(req, res) => {
             //if password is the same
             //generate token with the user's id and the secretKey in the env file
             if (isSame) {
-                let userNow
+                let currentUser
                 models.User.findAll({
                     attributes: ['id', 'email']
                 }).then((users) => {
@@ -143,17 +107,15 @@ const login = async(req, res) => {
 
                     let userId
                     users.forEach(users => {
-
-
                         if (users.email === user.email) {
                             userId = users.dataValues.id;
                             console.log("userId", userId, "\n", "email", user.email);
                         }
                         return userId
                     })
-                    userNow = userId
-                    console.log("userNow1", userNow);
-                    let token = jwt.sign({ id: userNow }, process.env.secretKey, {
+                    currentUser = userId
+                    console.log("userNow1", currentUser);
+                    let token = jwt.sign({ id: currentUser }, process.env.secretKey, {
                         algorithm: "HS256",
                         expiresIn: process.env.jwtExpirySeconds,
                     });
@@ -165,7 +127,7 @@ const login = async(req, res) => {
                         success: 1,
                         message: "login successfully",
                         token: token,
-                        idUser: userNow
+                        userID: currentUser
                     });
                 })
 

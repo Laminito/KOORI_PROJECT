@@ -18,8 +18,17 @@ module.exports = (sequelize, DataTypes) => {
     EvaluationFiche.init({
         UserId: DataTypes.INTEGER,
         FicheId: DataTypes.INTEGER,
-        evaluation: DataTypes.TEXT,
-        note: DataTypes.INTEGER
+        evaluation: {
+            type: DataTypes.TEXT,
+            allowNull: true,
+        },
+        note: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            defaultValue: 0
+        }
+
+
     }, {
         sequelize,
         modelName: 'EvaluationFiche',
