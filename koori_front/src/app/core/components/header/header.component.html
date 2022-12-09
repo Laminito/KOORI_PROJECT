@@ -68,17 +68,11 @@
                 </li>
             </ul>
             <ul class="navbar-nav-bas ms-auto">
-                <!-- <li class="nav-item mx-3">
-                    <a class="nav-link">
-                        <i class="fas fa-user-circle fa-lg"></i>
-                    </a>
-                </li>
-                <li class="nav-item mx-3">
-                    <a class="nav-link">
-                        <i class="fas fa-bell fa-lg"></i>
-                    </a>
-                </li> -->
+                
                <app-signin></app-signin>
+            </ul>
+            <ul *ngIf="isLoggedIn" routerLink="/home/profil">
+                <button class="btn-sm btn-info">Profil</button>
             </ul>
         </div>
     </div>

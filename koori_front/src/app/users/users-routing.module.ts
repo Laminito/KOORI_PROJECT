@@ -12,12 +12,15 @@ import { KooriComponent } from './components/koori/koori.component';
 import { KooriiboxComponent } from './components/kooriibox/kooriibox.component';
 import { MenuVerticalComponent } from './components/menu-vertical/menu-vertical.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { ProfilComponent } from './components/profil/profil.component';
 import { RapportComponent } from './components/rapport/rapport.component';
 import { DetailServiceComponent } from './components/service-catalogue/detail-service/detail-service.component';
 import { ServiceCatalogueComponent } from './components/service-catalogue/service-catalogue.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { MesDemandesComponent } from './components/user-profil/mes-demandes/mes-demandes.component';
+import { SessionsInviteesComponent } from './components/user-profil/sessions-invitees/sessions-invitees.component';
+import { UserProfilComponent } from './components/user-profil/user-profil.component';
+import { AuthGuard } from './_guards/auth.guard';
 import { AllServicesResolver } from './_resolvers/all-services.resolver';
 import { DemandesResolver } from './_resolvers/demandes.resolver';
 import { FicheResolverService } from './_resolvers/FicheResolverService';
@@ -36,7 +39,6 @@ const routes: Routes = [
   },
   {path: 'signup', component: SignupComponent},
   {path: 'signin', component: SigninComponent},
-  {path: 'profil', component: ProfilComponent},
   {path: 'kooriibox/ibox', component: IboxComponent, data: {title: 'Ibox', suite: ' ,les activités à faire'}},
   {path: 'kooriibox/koori', component: KooriComponent, data: {title: 'Koori', suite: ' ,les processus à dérouler'}},
   {path: 'service', component: ServiceCatalogueComponent, resolve: { 
@@ -53,6 +55,22 @@ const routes: Routes = [
   {path: 'demande', component: DemandeComponent},
   {path: 'service/:id', component: DetailServiceComponent, resolve: {service: ServiceResolverService}},
   {path: 'not-found', component: NotFoundComponent },
+  {
+    path: 'profil',
+    component: UserProfilComponent, 
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', redirectTo: 'mesDemandes', pathMatch: 'full' },
+      {
+        path: 'mesDemandes', 
+        component: MesDemandesComponent, 
+      },
+      {
+        path: 'sessionsInvitees',
+        component: SessionsInviteesComponent, 
+      },
+    ],
+  },
   {path: '**', redirectTo: '/not-found'}
 
 ];

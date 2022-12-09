@@ -23,6 +23,7 @@ export class SigninComponent implements OnInit {
 
   constructor(public fb: FormBuilder, 
               public router: Router, 
+              private userService: UserService,
               private authService: AuthService,
               private modalService: BsModalService,
               private allRequest: AllRequestService
@@ -36,34 +37,16 @@ export class SigninComponent implements OnInit {
   }
 
   onSubmitForm(){
-    this.authService.signIn(this.signinForm.value).subscribe(
-      (res: any) => {
-        localStorage.setItem('acces_token', res.token);
-        this.allRequest.getAll("user").subscribe(
-          (data) => {
-            console.log(data);
-            // const userFound = data.find(user => user.email === res.email);
-            data.forEach(item => {
-              if(item.email === res.email){
-                  console.log(item)
-              }
-            })
-            // if (userFound) {
-            //   console.log(userFound);
-            // }
-          }
-        )
-      }
-    ) 
+    this.authService.signIn(this.signinForm.value)
   }
 
-  openModal(template: TemplateRef<any>) {
+  openModal(template: TemplateRef<any>) 
+  {
     this.modalRef = this.modalService.show(template,
-      {
-        class: 'modal-dialog-centered'
-      });
+      { class: 'modal-dialog-centered'}
+    );
  }
     
-
+ 
 }
 

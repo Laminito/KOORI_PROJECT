@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output  } from '@angular/core';
 import {ActivatedRoute, Router } from '@angular/router';
+import { UserService } from 'src/app/users/_services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -10,12 +11,15 @@ export class HeaderComponent implements OnInit {
 
   @Output() newItemEvent = new EventEmitter<boolean>();
 
+  isLoggedIn!: boolean
+
   menu = false;
 
   defaultRoute: string = "";
 
   constructor(private route: Router, 
               private actRoute: ActivatedRoute,
+              private userService: UserService
               ) {
   }
 
@@ -30,9 +34,7 @@ export class HeaderComponent implements OnInit {
     $(document.getElementsByClassName('w-75')).hide()
   }
 
- 
 
-
+  
 
 }
-

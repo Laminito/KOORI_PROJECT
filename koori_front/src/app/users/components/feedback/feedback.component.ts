@@ -29,8 +29,9 @@ export class FeedbackComponent implements OnInit {
   comment!:string;
   commentaire!:string;
 
-  constructor(private evaluationsService: EvaluationsService, private formBuilder: FormBuilder,
-    private feedbackService: FeedbackService){
+  constructor(private evaluationsService: EvaluationsService, 
+              private formBuilder: FormBuilder,
+              private feedbackService: FeedbackService){
   }
 
   evaluationForm = this.formBuilder.group({
@@ -59,8 +60,6 @@ export class FeedbackComponent implements OnInit {
           }
           
         )
-
-    
   }
   
   onSubmit(){

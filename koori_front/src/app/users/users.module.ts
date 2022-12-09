@@ -41,13 +41,16 @@ import { SignupComponent } from './components/signup/signup.component';
 import { RatingModule } from 'ngx-bootstrap/rating';
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 import { AllServicesResolver } from './_resolvers/all-services.resolver';
+import { UserProfilComponent } from './components/user-profil/user-profil.component';
+import { MesDemandesComponent } from './components/user-profil/mes-demandes/mes-demandes.component';
+import { SessionsInviteesComponent } from './components/user-profil/sessions-invitees/sessions-invitees.component';
 import { TextAnimateComponent } from './components/home/text-animate/text-animate.component';
-import { ProfilComponent } from './components/profil/profil.component';
 import { TemoignageComponent } from './components/home/temoignage/temoignage.component';
 import { CarouselComponent } from './components/home/carousel/carousel.component';
 import { KooriIboxComponent } from './components/home/koori-ibox/koori-ibox.component';
 import { DemandesResolver } from './_resolvers/demandes.resolver';
 import { ProjectFilterPipe } from './_pipes/project-filter.pipe';
+import { CardDemandeComponent } from './components/user-profil/mes-demandes/card-demande/card-demande.component';
 
 @NgModule({
   declarations: [
@@ -84,12 +87,16 @@ import { ProjectFilterPipe } from './_pipes/project-filter.pipe';
     ServicesComponent,
     SigninComponent,
     SignupComponent,
+    UserProfilComponent,
+    SessionsInviteesComponent,
+    CardDemandeComponent,
+    MesDemandesComponent,
     TextAnimateComponent,
-    ProfilComponent,
     TemoignageComponent,
     CarouselComponent,
     KooriIboxComponent,
     ProjectFilterPipe
+    
   ],
   imports: [
     SharedModule,
@@ -130,7 +137,7 @@ import { ProjectFilterPipe } from './_pipes/project-filter.pipe';
     NodataComponent,
     FicheComponent,
     ListRapportsComponent,
-    SigninComponent
+    SigninComponent,
   ],
 
   providers:[

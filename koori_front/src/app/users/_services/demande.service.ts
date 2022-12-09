@@ -16,7 +16,7 @@ export class DemandeService {
     return this.http.post(this.envApi+'demande/', body)
   }
 
-  getAllDemande():Observable<Demande[]>{
+  getAllDemande():Observable<any>{
     return this.http.get<Demande[]>(this.envApi+'demande/');
   }
 

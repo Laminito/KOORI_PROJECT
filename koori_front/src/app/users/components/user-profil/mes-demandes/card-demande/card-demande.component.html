@@ -1,0 +1,28 @@
+<div class="col-sm-4 col-lg-12 mt-2 mb-2">
+    <div class="m-0 row row-container p-3" style="background: white;">
+      <div class="col-sm-1 col-lg-1 m-auto text-center">
+        {{ service }}
+      </div>
+      <div class="col-sm-2 col-lg-2 m-auto text-center">
+        {{ demande.titre }}
+      </div>
+      <div class="col-sm-2 col-lg-2 m-auto text-center">
+        <p>
+            {{ demande.description.substr(0,20) }}<a class="text-blue fs-4" data-toggle="collapse" href="#collapseExample{{ demande.id}}" role="button" aria-expanded="false" aria-controls="collapseExample">
+              ...
+            </a>
+          </p>
+          <div class="collapse" id="collapseExample{{ demande.id}}">
+            <div class="card card-body">
+              {{ demande.description}}
+            </div>
+          </div>
+      </div>
+      <div class="col-sm-2 col-lg-2 m-auto text-center" *ngIf="demande.statut!='Validee'">
+        <i class="fa fa-circle circle{{demande.id}} mx-2" [style.color]="colors[statuts.indexOf(demande.statut)]"></i>{{ demande.statut }}
+      </div>
+      <div class="col-sm-2 col-lg-2 m-auto text-center" title="Cliquez pour ajouter les participants a votre session" style="cursor:pointer;" *ngIf="demande.statut=='Validee'">
+        <i class="fa-solid fa-file-excel mx-2" (click) = "downloadExcelFile()"></i>{{ demande.statut }}
+      </div>
+    </div>
+</div>           
