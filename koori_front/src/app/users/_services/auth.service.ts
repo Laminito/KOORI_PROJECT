@@ -24,7 +24,7 @@ export class AuthService {
   // }
 
   signIn(user: {email: string, password: string}){
-    return 'false'
+    return 'true'
   }
 
   getToken() {
