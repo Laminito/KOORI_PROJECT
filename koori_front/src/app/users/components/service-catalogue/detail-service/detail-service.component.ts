@@ -41,7 +41,6 @@ export class DetailServiceComponent implements OnInit {
               private modalService: BsModalService) { }
 
   ngOnInit(): void {
-
     this.route.data.subscribe((data: Data) => { this.service = data['service']});
 
     this.demandeForm = this.formBuilder.group({

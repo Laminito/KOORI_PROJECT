@@ -35,7 +35,6 @@ export class FicheComponent implements OnInit {
 
   ngOnInit(): void {
     this.fiches = this.senddata.getdata()
-
     this.evaluation_fiche = new Evaluation_fiche()
     this.evaluation_fiche.UserId = 1  //ON DEVRA PRENDRE INCHALLAH L'ID DU USER QUI SE CONNECTE. CECI N'EST QU'UN TEST
     this.evaluation_fiche.FicheId = this.fiche.id

@@ -44,7 +44,7 @@ const routes: Routes = [
   {path: 'service', component: ServiceCatalogueComponent, resolve: { 
     services: AllServicesResolver, 
   }},
-  {path: 'rapport', component: RapportComponent},
+  {path: 'rapport',canActivate: [AuthGuard], component: RapportComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'kooriibox', component: KooriiboxComponent},
   {path: 'evaluation-note', component: EvaluationNoteComponent},

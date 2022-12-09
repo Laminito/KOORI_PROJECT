@@ -11,12 +11,7 @@ import { Evaluation_koori } from '../_models/evaluation_koori';
   providedIn: 'root'
 })
 export class EvaluationsService {
-   
-  evaluationsKoori:Evaluation_koori[] = []
-  evaluationsIbox:Evaluation_ibox[] = []
-  evaluationsFiche:Evaluation_fiche[] = []
-
-  
+    
   envApi = environment.API
 
   constructor(private http:HttpClient) { }

@@ -63,7 +63,6 @@ resources!:string
     // this.evaluation_ibox.UserId = 1  //ON DEVRA PRENDRE INCHALLAH L'ID DU USER QUI SE CONNECTE. CECI N'EST QU'UN TEST
     // this.resources = `evaluation_ibox/user/${this.evaluation_ibox.UserId}/ibox/${this.evaluation_ibox.IboxId}`
     //  })
-    
     this.evaluation_ibox.IboxId = 1
     this.evaluation_ibox.UserId = 2 
     this.resources = `evaluation_ibox/user/${this.evaluation_ibox.UserId}/ibox/${this.evaluation_ibox.IboxId}`
