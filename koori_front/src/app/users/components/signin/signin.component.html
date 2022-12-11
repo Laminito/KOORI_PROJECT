@@ -1,31 +1,28 @@
-<div class="container mx-auto" id="connexion">
-	<div class="drop">
-		<div class="content">
-			<h2 class='animate__heartBeat'>Connexion</h2>
-			<form [formGroup]="signinForm">
-				<div class="input-box">
-					<input type="email" name="username" formControlName="email" placeholder="Email">
-					</div>
-				<div class="input-box">
-					<input type="password" name="password" placeholder="Password" formControlName="password">
-					</div>
-				<div class="input-box">
-					<input type="submit" value="connexion" (click)="onSubmitForm()">
-					</div>
-			</form>
-		</div>	
+<div class="main">
+	<div class="container mx-auto" id="connexion">
+		<div class="drop">
+			<span>
+				{{error}}
+			</span>
+			<div class="content">
+				<h2 class='animate__heartBeat'>Connexion</h2>
+				<form [formGroup]="signinForm">
+					<div class="input-box">
+						<input type="email" name="username" formControlName="email" placeholder="Email">
+						</div>
+					<div class="input-box">
+						<input type="password" name="password" placeholder="Password" formControlName="password">
+						</div>
+					<div class="input-box">
+						<input type="submit" value="connexion" (click)="onSubmitForm()">
+						</div>
+				</form>
+			</div>	
+		</div>
+		<a href="#" class='btn'>Mot de passe oublie</a> 
+		<a href="#" class='btn signup'>Se connecter</a>
 	</div>
-	<a href="#" class='btn'>Mot de passe oublie</a> 
-	<a href="#" class='btn signup'>Se connecter</a>
 </div>
-
-
-
-
-
-
-
-
 
 <!-- <div>
 	<h2 class="text-center titre mt-5 pt-5">Connexion</h2>	 

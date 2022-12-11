@@ -6,6 +6,7 @@ import { UserService } from '../../_services/user.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import jwt_decode from "jwt-decode";
 import {Location} from '@angular/common';
+import { User } from '../../_models/user';
 
 @Component({
   selector: 'app-signin',
@@ -20,10 +21,11 @@ export class SigninComponent implements OnInit {
   isValid!:Boolean;
   currentUser!: User
 
-  constructor(public fb: FormBuilder, public router: Router, private authService: AuthService,
-    private modalService: BsModalService,
-    private _location: Location
-   ) { }
+
+  constructor(public fb: FormBuilder, 
+              public router: Router, 
+              private authService: AuthService,
+              private _location: Location) { }
 
   ngOnInit(): void {
     this.signinForm = this.fb.group({
@@ -33,19 +35,10 @@ export class SigninComponent implements OnInit {
   }
 
   onSubmitForm(){
-    localStorage.setItem('access_user', this.authService.signIn(this.signinForm.value))   
-    this._location.back();
-  
+    if (this.signinForm.valid) {
+      this.authService.signIn(this.signinForm.value)
+    }
 
- 
-    // this.authService.signIn(this.signinForm.value).subscribe(
-    //   (res: any) => {
-    //     localStorage.setItem('acces_token', res.token);
-    //     let decoded = jwt_decode(res.token, { header: true });
-    //     console.log(decoded)
-    //   }
-    // ) 
-    //this.signinForm.reset();
   }
 
  redirectToAuthentication(){

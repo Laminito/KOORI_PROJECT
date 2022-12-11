@@ -55,7 +55,7 @@
                     <a routerLink="/home/service" routerLinkActive="active-link" class="nav-link scroll-link">Catalogue de Services</a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/home/rapport" routerLinkActive="active-link" class="nav-link scroll-link" *ngIf = "isLoggedIn">Rapports</a>
+                    <a routerLink="/home/rapport" routerLinkActive="active-link" class="nav-link scroll-link" *ngIf = "isConnect$ | async">Rapports</a>
                 </li>
                 <li class="nav-item">
                     <a routerLink="/home/apropos" routerLinkActive="active-link" class="nav-link scroll-link">A propos de nous</a>
@@ -84,8 +84,8 @@
                     </a>
                 </li>
             </ul>
-            <ul *ngIf="isLoggedIn" routerLink="/home/profil">
-                <button class="btn-sm btn-info">Profil</button>
+            <ul *ngIf="isConnect$ | async" routerLink="/home/profil">
+                <button class="btn btn-sm btn-info">Profil</button>
             </ul>
         </div>
     </div>
