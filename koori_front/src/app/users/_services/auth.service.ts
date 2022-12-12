@@ -15,7 +15,6 @@ export class AuthService {
 
   currentUser!: User
   private connected = new BehaviorSubject<boolean>(false);
-  error!: string;
 
   constructor(private http: HttpClient, 
               public router: Router,
@@ -30,9 +29,7 @@ export class AuthService {
       (res) => {
         localStorage.setItem('access_token', res.token);
         localStorage.setItem('id_user', res.userID);
-        if (localStorage.getItem('access_token') !== null) {
-            this.connected.next(true);
-        }
+        this.connected.next(true);
         this._location.back();
       }
     )
@@ -74,7 +71,4 @@ export class AuthService {
     return throwError(() => new Error('test'));
   }
 
-
-
 }
-
