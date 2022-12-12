@@ -55,12 +55,9 @@ module.exports = {
             titre: _.capitalize(titre),
             description: description
         }).then((demandes) => {
-            //callback2(null,demandResult)
             send_mail.sendEmail('abmangane14@gmail.com', "message de test")
-                // .then(response => res.send(response.message))
-                .then(response => res.status(200).json({ 'sucess': demandes }))
-                .catch(error => res.status(500).send(error.message))
-                // return res.status(200).json({ 'sucess': demandes })
+                .then(demandes => res.status(200).json({ 'sucess': demandes }))
+                .catch(error => res.status(500).send(error))
 
         }).catch((err) => {
             return res.status(500).json({ 'error': 'Erreur dajout ' + err })

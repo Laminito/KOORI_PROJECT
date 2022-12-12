@@ -6,9 +6,11 @@ const User = require("../models/user");
 
 //Evaluation_Koori routes
 const evaluation_kooriRoute = new express.Router()
-evaluation_kooriRoute.post('/evaluation_koori/user/:id/koori/:id1', validator.evaluation_koori.validate('createEvaluation_koori'), evaluation_kooriCtrl.createEvaluation_koori);
+    // evaluation_kooriRoute.post('/evaluation_koori/user/:id/koori/:id1', validator.evaluation_koori.validate('createEvaluation_koori'), evaluation_kooriCtrl.createEvaluation_koori);
+evaluation_kooriRoute.get('/evaluation_koori', evaluation_kooriCtrl.getAllEvaluation_koori);
+evaluation_kooriRoute.post('/evaluation_koori', evaluation_kooriCtrl.createEvaluation_koori);
 evaluation_kooriRoute.put('/evaluation_koori/user/:id/koori/:id1', evaluation_kooriCtrl.updateEvaluation_koori)
 evaluation_kooriRoute.get('/evaluation_koori/user/:id/koori/:id1', evaluation_kooriCtrl.getEvaluation_kooriByUserId);
-evaluation_kooriRoute.get('/evaluation_koori/version/:id', evaluation_kooriCtrl.getEvaluation_koori);
+evaluation_kooriRoute.get('/evaluation_koori/version/:id', evaluation_kooriCtrl.getEvaluation_kooriByVersion);
 
 module.exports = evaluation_kooriRoute

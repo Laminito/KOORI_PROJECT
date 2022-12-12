@@ -15,7 +15,12 @@ module.exports = (sequelize, DataTypes) => {
         }
     }
     Ibox.init({
-        description: DataTypes.TEXT
+        description: DataTypes.TEXT,
+        version: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            unique: true
+        }
     }, {
         sequelize,
         modelName: 'Ibox',

@@ -19,9 +19,11 @@ module.exports = {
             limit: (!isNaN(limit)) ? limit : null,
             offset: (!isNaN(offset)) ? offset : null,
             include: [{
-                model: models.User
+                model: models.User,
+                attributes: ['id']
             }, {
-                model: models.Fiche
+                model: models.Fiche,
+                attributes: ['id', 'description']
             }],
         }).then((allEvaluationFiche => {
             // console.log(allEvaluationFiche);
