@@ -36,7 +36,7 @@ import { PartenairesComponent } from './components/home/partenaires/partenaires.
 import { ServicesComponent } from './components/home/services/services.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './_interceptors/auth.interceptor';
+// import { AuthInterceptor } from './_interceptors/auth.interceptor';
 import { SignupComponent } from './components/signup/signup.component';
 import { RatingModule } from 'ngx-bootstrap/rating';
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
@@ -144,11 +144,11 @@ import { CardDemandeComponent } from './components/user-profil/mes-demandes/card
     BsModalService,
     AllServicesResolver,
     DemandesResolver,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    }
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptor,
+    //   multi: true
+    // }
   ],
   entryComponents:[SigninComponent, SignupComponent]
 })

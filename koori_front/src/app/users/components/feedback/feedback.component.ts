@@ -44,7 +44,7 @@ export class FeedbackComponent implements OnInit {
     this.isReadOnly = false
     this.isSubmitted = false
     this.isEvaluated = false
-    if(this.authService.isLoggedIn()){
+    if(this.authService.isLoggedIn){
       this.evaluationsService.getEvaluationByIdUser(this.resources).subscribe(
         data => {
             
@@ -77,7 +77,7 @@ export class FeedbackComponent implements OnInit {
 
   onEvaluate(){
 
-    if(this.authService.isLoggedIn()){
+    if(this.authService.isLoggedIn){
       this.evaluation.note = this.rate
       this.evaluationsService.updateEvaluation(this.resources,this.evaluation).subscribe()
       this.isEvaluated = true 

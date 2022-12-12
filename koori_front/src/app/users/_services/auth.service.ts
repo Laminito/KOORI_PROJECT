@@ -1,10 +1,12 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Profil } from '../_models/profil';
 import { User } from '../_models/user';
+import { UserService } from './user.service';
+import {Location} from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -12,33 +14,38 @@ import { User } from '../_models/user';
 export class AuthService {
 
   currentUser!: User
+  private connected = new BehaviorSubject<boolean>(false);
 
-  constructor(private http: HttpClient, public router: Router) { }
+  constructor(private http: HttpClient, 
+              public router: Router,
+              private _location: Location) { }
 
   signUp(data: any):any{
     return this.http.post(`${environment.API}register`, data)
   }
 
-  // signIn(user: {email: string, password: string}){
-  //   return this.http.post<any>(`${environment.API}login`, user)
-  // }
-
   signIn(user: {email: string, password: string}){
-    return 'true'
+    return this.http.post<any>(`${environment.API}login`, user).subscribe(
+      (res) => {
+        localStorage.setItem('access_token', res.token);
+        localStorage.setItem('id_user', res.userID);
+        this.connected.next(true);
+        this._location.back();
+      }
+    )
   }
 
   getToken() {
     return localStorage.getItem('access_token');
   }
-  
-  // get isLoggedIn(): boolean {
-  //   let authToken = localStorage.getItem('access_token');
-  //   return authToken !== null ? true : false;
-  // }
 
-  isLoggedIn(): boolean {
-    let isAuthenticated = localStorage.getItem('access_user');
-    return isAuthenticated === 'true'? true: false
+  get isConnected() {
+    return this.connected.asObservable();
+  }
+  
+  get isLoggedIn(): boolean {
+    let authToken = localStorage.getItem('access_token');
+    return authToken !== null ? true : false;
   }
 
   doLogout() {
@@ -64,7 +71,4 @@ export class AuthService {
     return throwError(() => new Error('test'));
   }
 
-
-
 }
-
