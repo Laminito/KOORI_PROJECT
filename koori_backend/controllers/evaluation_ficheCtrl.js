@@ -6,6 +6,31 @@ let asyncLib = require('async');
 const { Op } = require("sequelize");
 
 module.exports = {
+
+    getAllEvaluation_fiche: (req, res) => {
+        var limit = parseInt(req.query.limit);
+        var offset = parseInt(req.query.offset);
+        models.EvaluationFiche.findAll({
+            attributes: [
+                'id',
+                'evaluation',
+                'note'
+            ],
+            limit: (!isNaN(limit)) ? limit : null,
+            offset: (!isNaN(offset)) ? offset : null,
+            include: [{
+                model: models.User
+            }, {
+                model: models.Fiche
+            }],
+        }).then((allEvaluationFiche => {
+            // console.log(allEvaluationFiche);
+            return res.status(200).json(allEvaluationFiche)
+
+        })).catch((err) => {
+            return res.status(500).json({ 'error': 'Erreur de récupération' + err })
+        })
+    },
     createEvaluation_fiche: (req, res) => {
         // const idUser = parseInt(req.params.id);
         // const idFiche = parseInt(req.params.id1);
@@ -18,7 +43,7 @@ module.exports = {
             evaluation: evaluation,
             note: note
         }).then((evaluation_kooriResult) => {
-            console.log("evaluation_kooriResult : ", evaluation_kooriResult);
+            // console.log("evaluation_kooriResult : ", evaluation_kooriResult);
             return res.status(200).json(evaluation_kooriResult)
         }).catch((err) => {
             return res.status(500).json({ 'error': 'Erreur dajout: ' + err })
@@ -43,7 +68,7 @@ module.exports = {
                     evaluation: evaluation,
                     note: note
                 }).then((ficheResult) => {
-                    console.log("ficheResult :", ficheResult)
+                    // console.log("ficheResult :", ficheResult)
                     return res.status(200).json(ficheResult)
                 }).catch((err) => {
                     res.status(500).json({ 'impossible de mettre a jour ': err });

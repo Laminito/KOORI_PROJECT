@@ -20,8 +20,7 @@ module.exports = {
                     'service',
                     'departement',
                     'direction',
-                    'avatar',
-                    'role'
+                    'avatar'
                 ],
                 limit: (!isNaN(limit)) ? limit : null,
                 offset: (!isNaN(offset)) ? offset : null,
@@ -141,7 +140,7 @@ module.exports = {
                 return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
             })
     },
-    // getUserByEmail: (req, res) => {
+
     //     const email = req.params.email;
     //     console.log(email);
     //     models.User.findOne({
