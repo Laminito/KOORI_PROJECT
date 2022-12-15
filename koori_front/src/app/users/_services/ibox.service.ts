@@ -30,6 +30,6 @@ export class IboxService {
   }
 
   getLastIbox(){
-    return this.http.get<Ibox>(`${environment.API}ibox/last/`)
+    return this.http.get<Ibox>(`${environment.API}lastibox/`)
   }
 }

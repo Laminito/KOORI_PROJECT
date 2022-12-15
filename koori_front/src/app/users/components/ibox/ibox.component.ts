@@ -11,6 +11,7 @@ import { Ibox } from '../../_models/ibox';
 import { Koori } from '../../_models/koori';
 import { Phase } from '../../_models/phase';
 import { AllRequestService } from '../../_services/all-request.service';
+import { AuthService } from '../../_services/auth.service';
 import { IboxService } from '../../_services/ibox.service';
 import { LoadingService } from '../../_services/loading.service';
 import { SenddataService } from '../../_services/senddata.service';
@@ -52,20 +53,18 @@ resources!:string
               private senddata: SenddataService,
               public loading: LoadingService,
               private iboxservice: IboxService,
-              private iboxService: IboxService){
+              private iboxService: IboxService,
+              private authService:AuthService){
   }
 
   ngOnInit(): void {
 
     this.evaluation_ibox = new Evaluation_ibox()
-    // this.iboxService.getLastIbox().subscribe((lastibox:Ibox)=>{
-    // this.evaluation_ibox.IboxId =lastibox.id
-    // this.evaluation_ibox.UserId = 1  //ON DEVRA PRENDRE INCHALLAH L'ID DU USER QUI SE CONNECTE. CECI N'EST QU'UN TEST
-    // this.resources = `evaluation_ibox/user/${this.evaluation_ibox.UserId}/ibox/${this.evaluation_ibox.IboxId}`
-    //  })
-    this.evaluation_ibox.IboxId = 1
-    this.evaluation_ibox.UserId = 2 
+    this.iboxService.getLastIbox().subscribe((lastibox:Ibox)=>{
+    this.evaluation_ibox.IboxId =lastibox.id
+    this.evaluation_ibox.UserId = Number(this.authService.getIdUserConnected())//DOIT VENIR DU TOKEN 
     this.resources = `evaluation_ibox/user/${this.evaluation_ibox.UserId}/ibox/${this.evaluation_ibox.IboxId}`
+     })
 
 
     this.route.data.subscribe(
@@ -102,7 +101,7 @@ resources!:string
   }
 
   getIbox(){
-    this.allRequest.getAll("ibox/last").subscribe((data:any)=>{
+    this.allRequest.getAll("lastibox/").subscribe((data:any)=>{
       this.ibox = new Ibox().deserialize(data)
       // @ts-ignore
       for (let f of this.ibox.Fiches){

@@ -53,7 +53,7 @@ export class FeedbackComponent implements OnInit {
               this.isEvaluated = true
           }
 
-            if(data.evaluation!= 'no comment'){
+            if(data.evaluation!= ''){
                 this.commentaire = data.evaluation
                 this.evaluation.evaluation = data.evaluation  
                 this.isSubmitted = true
@@ -70,7 +70,7 @@ export class FeedbackComponent implements OnInit {
   
   onSubmit(){
     this.evaluation.evaluation = this.evaluationForm.value.commentaire
-    this.evaluationsService.updateEvaluation(this.resources,this.evaluation).subscribe()
+    this.evaluationsService.updateEvaluation(this.resources,{evaluation:this.evaluation.evaluation,note:this.evaluation.note}).subscribe()
     this.comment = String(this.evaluationForm.value.commentaire)
     this.isSubmitted = true
   }
@@ -79,7 +79,7 @@ export class FeedbackComponent implements OnInit {
 
     if(this.authService.isLoggedIn){
       this.evaluation.note = this.rate
-      this.evaluationsService.updateEvaluation(this.resources,this.evaluation).subscribe()
+      this.evaluationsService.updateEvaluation(this.resources,{evaluation:this.evaluation.evaluation,note:this.evaluation.note}).subscribe()
       this.isEvaluated = true 
     }
     else{
@@ -108,16 +108,7 @@ export class FeedbackComponent implements OnInit {
     this.isSubmitted = false
   }
 
-  // sendMail(){
-  //   if(this.type=='Koori'){
-  //     this.feedbackService.postMailKoori({to:User.email,evaluation:this.evaluation.evaluation})
-  // }
-
-  // else if(this.type=='Ibox'){
-  //   this.feedbackService.postMailIbox({to:User.email,evaluation:this.evaluation.evaluation})
-  // }
-  // else if(this.type=='Fiche'){
-  //   this.feedbackService.postMailFiche(this.evaluation.FicheId,{to:User.email,evaluation:this.evaluation.evaluation}
-  // }
-  // }
+  sendMail(){
+   
+  }
 }

@@ -20,4 +20,8 @@ export class DemandeService {
     return this.http.get<Demande[]>(this.envApi+'demande/');
   }
 
+  getDemandeByUserId(id:number){
+    return this.http.get<Demande[]>('/demande/user/iduser')
+  }
+
  }

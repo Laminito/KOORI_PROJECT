@@ -3,19 +3,43 @@
 
   <ng-template #template >
     <div class="modal-body">
-       <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef.hide()"></button>
-         <h2 class="text-center titre mt-5 pt-5">Connexion</h2>	 
-           <form class=" p-lg-5" >
-           <div class="mb-3">
-             <input type="email" class="form-control"  formControlName="email" id="Username" aria-describedby="emailHelp"
-             placeholder="Email">
-           </div>
-           <div class="mb-3">
-             <input type="password" class="form-control" id="password" placeholder="Mot de passe" formControlName="password">
-           </div>
-           <div class="text-center"><button type="submit" class="btn btn-color px-5 mb-5 w-100" >Se connecter</button></div>
-           <div id="emailHelp" class="form-text text-center mb-5 text-dark">Pas de compte? <a  routerLink="/home/signup" class=" fw-bold" > Creer un compte des maintenant</a>
-           </div>
+      <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+        <i class="fas fa-times"></i>
+      </button>
+       <!-- <button type="button" class="btn-close close pull-right" aria-label="Close" ></button> -->
+       <h5 class="modal-title" id="staticBackdropLabel" style="margin: auto"> Demander un service</h5> 
+           <form [formGroup]="demandeForm" (ngSubmit)="onsubmit()" >
+            <div class="row">
+              <div class="col-12">
+                <label class="form-label">Challenge ou objet <label class="text-danger">*</label></label>
+              <input type="text" [ngClass]="{ 'is-invalid': submitted }" [formControlName]="'titre'" class="input mb-2">
+              
+              </div>
+            </div>
+            <label class="form-label">Description de la demande <label class="text-danger">*</label></label>
+            <textarea [ngClass]="{ 'is-invalid': submitted }" [formControlName]="'description'" class="form-control input mb-2" ></textarea>
+           
+  
+            <div class="col">
+              <div class="form-group">
+                <label class="form-label">Service <label class="text-danger">*</label></label>
+                <select [ngClass]="{ 'is-invalid': submitted }" class="form-control input mb-2" name="ServiceId" id="ServiceId " [formControlName]="'ServiceId'">
+                  <option *ngFor="let s of services" value="{{s.id}}"> {{s.libelle}}</option>
+                </select>
+              </div>
+            </div>
+                <!-- calendar -->
+             <div class="col-12">
+              <label for="" class="form-label">Periode souhaité</label>
+                <input type="date"
+                  [ngClass]="{ 'is-invalid': submitted }" class="form-control input mb-2"
+                  [formControlName]="'date_realisation'"
+                  name="date_realisation"
+                  required>
+                </div>
+            <div class="text-center">
+              <button type="submit" data-bs-dismiss="modal" class="btn btn-evaluer mt-1">Enregistrer votre demande</button>
+            </div>
            </form>
          </div>
   </ng-template>

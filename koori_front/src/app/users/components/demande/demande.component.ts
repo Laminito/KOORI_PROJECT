@@ -51,8 +51,8 @@ export class DemandeComponent implements OnInit {
        //this.getService();
        this.getUser()
   this.demandeForm = this.formBuilder.group({
-    UserId: [3, Validators.required],
-    ServiceId: [2, Validators.required],
+    UserId: [this.authService.getIdUserConnected, Validators.required],
+    ServiceId: [this.router.snapshot.params['id'], Validators.required],
     titre: ['', Validators.required],
     description: ['', Validators.required],
     date_realisation: ["", Validators.required],
@@ -100,12 +100,11 @@ export class DemandeComponent implements OnInit {
 
     this.demandService.create(this.demandeForm.value,).subscribe((data: any)=>{
       if(data){
-        //this.route.navigate(['/service']);
         Swal.fire({
           position: 'center',
           icon: 'success',
           title: 'MERCI BEAUCOUP !',
-          text: 'Votre evaluation a été enregistré avec succés',
+          text: 'Votre demande a ete envoye avec succes',
           showConfirmButton: false,
           timer: 3000
         })

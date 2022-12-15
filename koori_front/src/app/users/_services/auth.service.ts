@@ -43,6 +43,10 @@ export class AuthService {
     return this.connected.asObservable();
   }
   
+  getIdUserConnected(){
+    return localStorage.getItem('id_user')
+  }
+
   get isLoggedIn(): boolean {
     let authToken = localStorage.getItem('access_token');
     return authToken !== null ? true : false;

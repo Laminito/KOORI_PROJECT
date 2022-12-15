@@ -6,6 +6,7 @@ import { Fiche } from '../../_models/fiche';
 import { LoadingService } from '../../_services/loading.service';
 import { SenddataService } from '../../_services/senddata.service';
 import { Evaluation_fiche } from '../../_models/evaluation_fiche';
+import { AuthService } from '../../_services/auth.service';
 declare var require: any
 const FileSaver = require('file-saver');
 
@@ -23,7 +24,8 @@ export class FicheComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               public loading: LoadingService,
               private senddata: SenddataService,
-              private _route: Router)
+              private _route: Router,
+              private authService: AuthService)
   {
     this.route.
     data.subscribe(
@@ -36,7 +38,7 @@ export class FicheComponent implements OnInit {
   ngOnInit(): void {
     this.fiches = this.senddata.getdata()
     this.evaluation_fiche = new Evaluation_fiche()
-    this.evaluation_fiche.UserId = 1  //ON DEVRA PRENDRE INCHALLAH L'ID DU USER QUI SE CONNECTE. CECI N'EST QU'UN TEST
+    this.evaluation_fiche.UserId = Number(this.authService.getIdUserConnected())//DOIT VENIR DU TOKEN 
     this.evaluation_fiche.FicheId = this.fiche.id
     this.resources = `evaluation_fiche/user/${this.evaluation_fiche.UserId}/fiche/${this.evaluation_fiche.FicheId}`
 

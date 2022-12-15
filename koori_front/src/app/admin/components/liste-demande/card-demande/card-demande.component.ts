@@ -45,7 +45,6 @@ export class CardDemandeComponent implements OnInit {
     let input1 = $(`#statut${this.demande.id}`)
     let input2 = $(`#sujet${this.demande.id} textarea`)
     this.isClicked = false
-    this.demande.statut = String(input1.val()).charAt(0).toUpperCase() + String(input1.val()).slice(1)
     console.log(id);
     let obj = {
       statut: String(input1.val()).charAt(0).toUpperCase() + String(input1.val()).slice(1),
@@ -56,7 +55,9 @@ export class CardDemandeComponent implements OnInit {
     }
     console.log(obj);
     
-    this.demandeService.updateStatutDemande(id, obj).subscribe()
+    this.demandeService.updateStatutDemande(id, obj).subscribe(
+    data => this.demande.statut = String(input1.val()).charAt(0).toUpperCase() + String(input1.val()).slice(1)
+    )
     this.sendMailReponseDemande()
   }
 
