@@ -4,13 +4,18 @@ const bcrypt = require("bcrypt");
 const db = require("../models");
 const models = require("../models")
 const jwt = require("jsonwebtoken");
-
+const send_mail = require("../middleware/sendMail")
+const ms = require ('ms')
+const passwordgenerator = require("../middleware/password_generator");
 // Assigning users to the variable User
 const User = db.User
 
 //signing a user up
 //hashing users password before its saved to the database with bcrypt
 const signup = async(req, res) => {
+    const expireDans = `Ce mot de pass expire dans : ${ms(2 * 60000, { long: true })}`
+    const message = `Bonjour ${req.body.nomComplet} <br> Voici votre mot de passe par defaut <br> Utilisable une seule fois  <br> Via votre compte KOORI <br> Password : <a href="#">${passwordgenerator.password}</a>`
+
     try {
         const {
             ProfilId,
@@ -21,7 +26,7 @@ const signup = async(req, res) => {
             direction,
             departement,
             avatar,
-            password
+            password=passwordgenerator.password
         } = req.body;
         const data = {
             ProfilId,
@@ -47,12 +52,14 @@ const signup = async(req, res) => {
             });
 
             res.cookie("jwt", token, { maxAge: 1 * 24 * 60 * 60, httpOnly: true });
-            console.log("user", JSON.stringify(user, null, 2));
-            console.log(token);
+            send_mail.sendEmail(req.body.email, expireDans, message)
+
+            return res.status(200).json(user);
+            // console.log("user", JSON.stringify(user, null, 2));
+            // console.log(token);
             //send users details
-            return res.status(201).send(user);
         } else {
-            return res.status(409).send("Details are not correct");
+            return res.status(409).json("Details are not correct");
         }
     } catch (error) {
         console.log(error);

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../_models/user';
+import { AuthService } from '../../_services/auth.service';
 import { UserService } from '../../_services/user.service';
 
 @Component({
@@ -8,17 +9,16 @@ import { UserService } from '../../_services/user.service';
   styleUrls: ['./user-profil.component.css']
 })
 export class UserProfilComponent implements OnInit {
-    user!:User
-    constructor(private userService: UserService) { }
+  
+    user!: User
+
+    constructor(private userService: UserService,
+                private authService: AuthService) { }
 
     ngOnInit(): void {
-      this.userService.getUserById(1).subscribe(
-        (data) => {
-            console.log(data)
-            this.user = data         
-        }
+      this.userService.getUserById(this.authService.getIdUserConnected()).subscribe(
+        user => this.user = user
       )
-
       var el = document.getElementById("wrapper");
       var toggleButton = document.getElementById("menu-toggle");
       // @ts-ignore

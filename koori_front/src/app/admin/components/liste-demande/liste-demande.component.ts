@@ -20,8 +20,8 @@ export class ListeDemandeComponent implements OnInit {
 
   
   demandes!:Demande[]
-  constructor(private route: ActivatedRoute,private demandeService:DemandeService ){
-    
+  constructor(private route: ActivatedRoute,
+          private demandeService:DemandeService ){
   }
   
   ngOnInit(): void {

@@ -22,8 +22,6 @@ module.exports = (sequelize, DataTypes) => {
             this.belongsToMany(models.Ibox, { as: 'UserEvaluationIbox', through: models.EvaluationIbox, foreignKey: 'UserId' });
             this.belongsToMany(models.Fiche, { as: 'UserEvaluationFiche', through: models.EvaluationFiche, foreignKey: 'UserId' });
             this.belongsToMany(models.Rapport, { as: 'UserEvaluation', through: models.EvaluationNote, foreignKey: 'UserId' });
-
-
         }
     }
     User.init({
@@ -61,7 +59,8 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         avatar: {
-            type: DataTypes.BLOB
+            type: DataTypes.BLOB,
+            allowNull:true
         },
     }, {
         sequelize,

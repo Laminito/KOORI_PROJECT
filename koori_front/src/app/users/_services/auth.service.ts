@@ -1,24 +1,28 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Profil } from '../_models/profil';
 import { User } from '../_models/user';
-import { UserService } from './user.service';
 import {Location} from '@angular/common';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  currentUser!: User
+  private currentUser = new BehaviorSubject<User>({})
+
   private connected = new BehaviorSubject<boolean>(false);
+
+  @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
 
   constructor(private http: HttpClient, 
               public router: Router,
-              private _location: Location) { }
+              private _location: Location,
+              private userService: UserService) { }
 
   signUp(data: any):any{
     return this.http.post(`${environment.API}register`, data)
@@ -27,9 +31,15 @@ export class AuthService {
   signIn(user: {email: string, password: string}){
     return this.http.post<any>(`${environment.API}login`, user).subscribe(
       (res) => {
+        console.log(res.token)
         localStorage.setItem('access_token', res.token);
         localStorage.setItem('id_user', res.userID);
-        this.connected.next(true);
+        this.userService.getUserById(res.userID).subscribe(
+          data => {
+            this.currentUser.next(data);
+          }
+        )
+        this.connected.next(true)
         this._location.back();
       }
     )
@@ -41,6 +51,10 @@ export class AuthService {
 
   get isConnected() {
     return this.connected.asObservable();
+  }
+
+  get userLogged(){
+    return this.currentUser.asObservable();
   }
   
   get isLoggedIn(): boolean {
@@ -55,6 +69,9 @@ export class AuthService {
     }
   }
 
+  getIdUserConnected(){
+    return Number(localStorage.getItem('id_user'))
+  }
   getUserProfil(id: any):Observable<Profil>{
     return this.http.get<Profil>(`${environment.API}profil/${id}`)
   }
@@ -70,5 +87,6 @@ export class AuthService {
     }
     return throwError(() => new Error('test'));
   }
+
 
 }

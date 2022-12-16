@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs';
+import { ActivatedRoute, Data } from '@angular/router';
+import { data } from 'jquery';
+import { filter, map, Observable } from 'rxjs';
 import { Demande } from 'src/app/users/_models/demande';
 import { Service } from 'src/app/users/_models/Service';
 import { AllRequestService } from 'src/app/users/_services/all-request.service';
@@ -13,7 +14,8 @@ import { AllRequestService } from 'src/app/users/_services/all-request.service';
 export class ProjetsComponent implements OnInit {
 
   services!: Service[];
-  demandes: Demande[] = [];
+  demandes$!: Observable<any>
+  demandes: Demande[] = []
   toggleBtn!: string;
 
   constructor(private allRequest: AllRequestService, private route: ActivatedRoute) { }
@@ -25,14 +27,39 @@ export class ProjetsComponent implements OnInit {
         this.services = data["services"]
       }
     )
-    
-    this.route.data.subscribe(
+
+    this.allRequest.getAll('demande').subscribe(
       (data) => {
-        this.demandes = data["projets"];
+        data.forEach(demande => {
+          if(demande.statut === 'Traitee'){
+              this.demandes.push(demande);
+          }
+        })
       }
     )
+    
+    // this.demandes$ = this.allRequest.getAll('demande').pipe(
+    //   filter((data: any) => data.statut == 'Traitee')
+    //   // (data) => data
+    // )
 
   }
+
+  // getAllDemandes(){
+  //   this.route.data.subscribe(
+  //     (data) => {
+  //       this.demandes = data["projets"]
+  //     }
+  //   )
+  // }
+
+  // checkDemandesType(idService: any){
+  //     if(this.toggleBtn == 'all'){
+  //       this.getAllDemandes()
+  //     }else{
+  //       this.demandes = this.demandes.filter(dmd => dmd.ServiceId == idService)
+  //     }
+  // }
 
 }
 

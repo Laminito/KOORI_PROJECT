@@ -12,7 +12,7 @@ demandeRoute.post('/demande/', demandeCtrl.createDemande);
 // demandeRoute.post('/participant/', demandeCtrl.addParticipantsToSession);
 demandeRoute.get('/service/:id/demande/', demandeCtrl.getDemandeByService);
 demandeRoute.put('/demande/:id/', demandeCtrl.updateDemande);
-// demandeRoute.put('/statutdemande/:id/', demandeCtrl.updateStatutDemande);
+demandeRoute.put('/statutdemande/:id/', demandeCtrl.updateStatutDemande);
 demandeRoute.get('/demande/', demandeCtrl.getDemande);
 
 module.exports = demandeRoute

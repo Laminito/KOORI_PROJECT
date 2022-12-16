@@ -2,11 +2,11 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../_services/auth.service';
-import { UserService } from '../../_services/user.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import jwt_decode from "jwt-decode";
 import {Location} from '@angular/common';
 import { User } from '../../_models/user';
+import { Output, EventEmitter } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-signin',
@@ -20,12 +20,13 @@ export class SigninComponent implements OnInit {
   error!:string;
   isValid!:Boolean;
   currentUser!: User
-
-
+  
   constructor(public fb: FormBuilder, 
               public router: Router, 
               private authService: AuthService,
-              private _location: Location) { }
+              private _location: Location) {
+                
+              }
 
   ngOnInit(): void {
     this.signinForm = this.fb.group({
@@ -38,12 +39,7 @@ export class SigninComponent implements OnInit {
     if (this.signinForm.valid) {
       this.authService.signIn(this.signinForm.value)
     }
-
   }
-
- redirectToAuthentication(){
-
- }
     
  
 }

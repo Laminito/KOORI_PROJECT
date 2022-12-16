@@ -51,6 +51,7 @@ import { KooriIboxComponent } from './components/home/koori-ibox/koori-ibox.comp
 import { DemandesResolver } from './_resolvers/demandes.resolver';
 import { ProjectFilterPipe } from './_pipes/project-filter.pipe';
 import { CardDemandeComponent } from './components/user-profil/mes-demandes/card-demande/card-demande.component';
+import { ForUserConnectedComponent } from './components/home/for-user-connected/for-user-connected.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,8 @@ import { CardDemandeComponent } from './components/user-profil/mes-demandes/card
     TemoignageComponent,
     CarouselComponent,
     KooriIboxComponent,
-    ProjectFilterPipe
+    ProjectFilterPipe,
+    ForUserConnectedComponent
     
   ],
   imports: [
@@ -138,6 +140,7 @@ import { CardDemandeComponent } from './components/user-profil/mes-demandes/card
     FicheComponent,
     ListRapportsComponent,
     SigninComponent,
+    ForUserConnectedComponent
   ],
 
   providers:[

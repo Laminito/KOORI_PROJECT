@@ -1,0 +1,16 @@
+.navbar{
+	background: #fff;
+}
+.navbar-link{
+	display: inline-block;
+	position: relative;
+	margin: 0;
+	left: 85%;
+	z-index: 200;
+}
+
+.navbar-link > li{
+	margin: 0 2rem;
+	display: inline-block;
+
+}

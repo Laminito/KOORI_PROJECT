@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Ibox } from 'src/app/users/_models/ibox';
 import { Koori } from 'src/app/users/_models/koori';
 import { AllRequestService } from 'src/app/users/_services/all-request.service';
+import { AuthService } from 'src/app/users/_services/auth.service';
 
 @Component({
   selector: 'app-koori-ibox',
@@ -12,9 +13,12 @@ export class KooriIboxComponent implements OnInit {
 
   koori!: Koori;
   ibox!: Ibox;
-  constructor(private allRequest: AllRequestService,) { }
+  isLoggedIn!: boolean
+  constructor(private allRequest: AllRequestService,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.isLoggedIn = this.authService.isLoggedIn
     this.getDescriptionKoori();
     this.getDescriptionIbox();
   }

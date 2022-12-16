@@ -31,14 +31,14 @@ module.exports = {
                         if (user.avatar) {
                             let buff = new Buffer(user.avatar);
                             user.avatar = buff.toString('base64');
-                            return res.status(200).json(users)
+                            // return res.status(200).json(users)
                         }
                     })
                     // res.send('Vous etes bien dans la methode getUsers.')
-                    // return res.status(200).json(users)
+                     return res.status(200).json(users)
             })
             .catch((err) => {
-                return res.status(500).json({ 'error': 'Erreur de récupération' + err })
+                return res.status(500).json({ 'Erreur de récupération' : err })
             })
 
     },

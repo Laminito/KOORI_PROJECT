@@ -2,6 +2,7 @@
 const {
     Model
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
     class Demande extends Model {
         /**
@@ -39,13 +40,27 @@ module.exports = (sequelize, DataTypes) => {
         }
     }
     Demande.init({
+        
         UserId: DataTypes.INTEGER,
         ServiceId: DataTypes.INTEGER,
         titre: DataTypes.STRING,
         description: DataTypes.TEXT,
-        date_debut_souhaitee: DataTypes.DATE,
-        disponibilite: DataTypes.BOOLEAN,
-        statut: DataTypes.STRING,
+        date_debut_souhaitee: {
+            type: DataTypes.DATE,
+            allowNull: true,
+            DefaultValue:new Date()
+        },
+        disponibilite: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true,
+            DefaultValue:true
+        },
+        statut: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            DefaultValue:"NOUVELLE"
+        }
+        
 
     }, {
         sequelize,

@@ -61,6 +61,8 @@ module.exports = {
     //         })
     //     }
     // },
+
+
     getDemande: (req, res) => {
         const limit = parseInt(req.query.limit);
         const offset = parseInt(req.query.offset);
@@ -72,15 +74,20 @@ module.exports = {
                 include: [{
                     model: models.Service,
                     attributes: ['id', 'libelle']
-
                 }],
             }).then((demandes) => {
+                demandes.forEach(fama => {
+                    
+                   // console.log(fama)
+                });
                 res.status(200).json(demandes)
             })
             .catch((err) => {
                 return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
             })
     },
+
+
     getDemandeByService: (req, res) => {
         const id = parseInt(req.params.id);
         models.Demande.findAll({
@@ -108,6 +115,8 @@ module.exports = {
                 return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
             })
     },
+
+    
     updateDemande: (req, res) => {
         const id = req.params.id
         const titre = req.body.titre;
@@ -137,7 +146,6 @@ module.exports = {
                         // return res.status(200).json(demandeResult.statut)
                         if (demandeResult.statut === 'Validee') {
                             // return res.status(200).json(' validee')
-
                             // models.Session.create({
                             //         UserId: demandeResult.User.id,
                             //         DemandeId: demandeResult.id,
@@ -156,7 +164,7 @@ module.exports = {
                             //         return res.status(200).json(demandeResult);
                             //     }
                             // });
-                            return res.status(200).json(' validee')
+                            return res.status(200).json({message: 'validee'})
 
                         } else if (demandeResult.statut === 'Traitee') {
                             demandeResult.update({
@@ -190,81 +198,45 @@ module.exports = {
         })
     },
 
-    // updateStatutDemande: (req, res) => {
-    //     const statut = req.body.statut;
-    //     const text = req.body.text
-    //     const id = req.params.id
-    //     models.Demande.findOne({
-    //         include: [{
-    //                 model: models.User
-    //             },
-    //             {
-    //                 model: models.Service
-    //             }
-    //         ],
-    //         where: { id: id }
-    //     }).then(
-    //         (demandeFound) => {
-    //             demandeFound.update({
-    //                 UserId: demandeFound.UserId,
-    //                 ServiceId: demandeFound.ServiceId,
-    //                 date_realisation: demandeFound.date_debut_souhaitee,
-    //                 disponibilite: disponiblite,
-    //                 titre: demandeFound.titre,
-    //                 description: demandeFound.description,
-    //                 statut: statut ? _.capitalize(statut) : demandeFound.statut
-    //             }).then((demandeResult) => {
-    //                 if (demandeResult.statut !== 'Traitee' || demandeResult.statut !== 'Nouvelle') {
-    //                     if (demandeResult.statut === 'Validee') {
-    //                         models.Session.create({
-    //                             UserId: demandeResult.User.id,
-    //                             DemandeId: demandeResult.id,
-    //                         })
-    //                         var mailOptions = {
-    //                                 from: process.env.GMAIL_USER,
-    //                                 to: demandeFound.User.email,
-    //                                 subject: 'Feedback sur votre demande du service ' + demandeResult.Service.libelle,
-    //                                 text: text //retour de la demande
-    //                             }
-    //                             //return res.json(mailOptions);
-    //                         smtpTransport.sendMail(mailOptions, function(error, response) {
-    //                             if (error) {
-    //                                 return res.json(error);
-    //                             } else {
-    //                                 return res.status(200).json(demandeResult);
-    //                             }
-    //                         });
-    //                     } else {
-    //                         if (demandeResult.statut === 'Traitee') {
-    //                             demandeResult.update({
-    //                                 date_fin: new Date()
-    //                             })
-    //                         } else {
-    //                             var mailOptions = {
-    //                                 from: process.env.GMAIL_USER,
-    //                                 to: demandeResult.User.email,
-    //                                 subject: 'Feedback sur votre demande du service ' + demandeResult.Service.libelle,
-    //                                 text: text
-    //                             }
-    //                             smtpTransport.sendMail(mailOptions, function(error, response) {
-    //                                 if (error) {
-    //                                     return res.json(error);
-    //                                 } else {
-    //                                     return res.status(200).json(demandeResult);
-    //                                 }
-    //                             });
-    //                         }
-    //                     }
-    //                 } else {
-    //                     return res.status(200).json(demandeResult);
-    //                 }
-    //                 //return res.json(demandeResult);
-    //             }).catch((err) => {
-    //                 res.status(500).json({ 'impossible de mettre a jour ': err });
-    //             })
-    //         }
-    //     ).catch((err) => {
-    //         return res.status(500).json({ 'erreur serveur ': err });
-    //     })
-    // },
+    updateStatutDemande: (req, res) => {
+        const statut = req.body.statut;
+        const id = req.params.id
+        models.Demande.findOne({
+            attributes: ['id', 'statut'],
+            include: [{
+                    model: models.User,
+                    attributes: ['id', 'nomComplet']
+                },
+                {
+                    model: models.Service,
+                    attributes: ['id', 'libelle']
+                }
+            ],
+            where: { id: id }
+        }).then((demandeFound) => {
+            demandeFound.update({
+                statut: statut ? _.capitalize(statut) : demandeFound.statut
+            }).then((demandeResult) => {
+                if (demandeResult) {
+                    if (demandeResult.dataValues.statut === 'Traitee') {
+                        return res.status(200).json(demandeResult)
+                    }
+                    if (demandeResult.dataValues.statut === 'Validee') {
+                        return res.status(200).json(demandeResult)
+                    }
+                    if (demandeResult.dataValues.statut === 'En attente') {
+                        return res.status(200).json(demandeResult)
+                    }
+                } else {
+                    return res.status(500).json("Le statut n'existe pas");
+                }
+            }).catch((err) => {
+                res.status(500).json({ 'impossible de mettre a jour ': err });
+            })
+        }).catch((err) => {
+            return res.status(500).json({ 'erreur serveur ': err });
+        })
+    },
+
+
 }

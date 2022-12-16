@@ -8,22 +8,6 @@ import * as Aos from 'aos';
 })
 export class PartenairesComponent implements OnInit {
 
-  partenairesImg = [
-    "assets/img/orange.png",
-    "assets/img/sonatel.png",
-    "assets/img/ilab.png",
-    "assets/img/oss.jpeg",
-    "assets/img/SA.jpeg",
-    "assets/img/mect.png"
-  ]
-  partenaires = [
-    "Orange",
-    "Sonatel",
-    "Innovation Lab",
-    "Orange Startup Studio",
-    "Sonatel Academy",
-    "Ministère de l'éconmie numérique"
-  ]
   constructor() { }
 
   ngOnInit(): void {
