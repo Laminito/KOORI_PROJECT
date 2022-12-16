@@ -11,6 +11,7 @@ kooriRoute.get('/koori/last', kooriCtrl.getLastKoori);
 kooriRoute.get('/koori/version/:id', kooriCtrl.getKooriByVersion);
 kooriRoute.get('/version', kooriCtrl.getVersions);
 kooriRoute.put('/koori/:id/', validator.koori.validate('updateKoori'), kooriCtrl.updateKoori);
-kooriRoute.get('/koori/', kooriCtrl.getKoori);
+kooriRoute.get('/lastkoori/', kooriCtrl.getKoori);
+kooriRoute.get('/kooris/', kooriCtrl.getAllkoori);
 
 module.exports = kooriRoute

@@ -148,8 +148,8 @@ module.exports = {
             })
     },
     getFiches: (req, res) => {
-        const limit = parseInt(req.query.limit);
-        const offset = parseInt(req.query.offset);
+        var limit = parseInt(req.query.limit);
+        var offset = parseInt(req.query.offset);
         models.Fiche.findAll({
                 limit: (!isNaN(limit)) ? limit : null,
                 offset: (!isNaN(offset)) ? offset : null,

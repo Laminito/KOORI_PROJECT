@@ -24,15 +24,15 @@ module.exports = {
                     key: 'id'
                 }
             },
-            RapportId: {
-                allowNull: true,
-                type: Sequelize.INTEGER,
-                defaultValue: null,
-                references: {
-                    model: 'Rapports',
-                    key: 'id'
-                }
-            },
+            // RapportId: {
+            //     allowNull: true,
+            //     type: Sequelize.INTEGER,
+            //     defaultValue: null,
+            //     references: {
+            //         model: 'Rapports',
+            //         key: 'id'
+            //     }
+            // },
             titre: {
                 allowNull: false,
                 type: Sequelize.STRING
@@ -40,23 +40,20 @@ module.exports = {
             description: {
                 type: Sequelize.TEXT
             },
-            date_realisation: {
-                allowNull: false,
-                type: Sequelize.DATE
-            },
-            date_fin: {
+            date_debut_souhaitee: {
                 allowNull: true,
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                defaultValue: new Date()
+            },
+            disponibilite: {
+                allowNull: true,
+                type: Sequelize.BOOLEAN,
+                defaultValue: true
             },
             statut: {
                 allowNull: false,
                 type: Sequelize.STRING,
-                defaultValue: 'Nouvelle'
-            },
-            disponibilte: {
-                type: Sequelize.BOOLEAN,
-                defaultValue: true,
-                allowNull: false
+                defaultValue: 'NOUVELLE'
             },
             createdAt: {
                 allowNull: false,
@@ -72,34 +69,28 @@ module.exports = {
                 ServiceId: 1,
                 titre: 'ORANGE MONEY',
                 description: 'Monsieur Ali est un homme maigre, solide comme sa barque, lent, lucide ; un des hommes qui semblent' +
-                    ' faits pour être toujours en contact avec leur monde préféré : la mer. Il a un gros nez, un gros front, de ' +
+                    'faits pour être toujours en contact avec leur monde préféré : la mer. Il a un gros nez, un gros front, de ' +
                     'gros yeux qui peuvent détecter les profonds secrets de la mer.',
-                date_realisation: new Date(),
-                date_fin: null,
                 createdAt: new Date(),
                 updatedAt: new Date()
             },
             {
                 UserId: 2,
-                ServiceId: 3,
+                ServiceId: 2,
                 titre: 'NEW CHALLENGE',
                 description: 'Monsieur Ali est un homme maigre, solide comme sa barque, lent, lucide ; un des hommes qui semblent' +
-                    ' faits pour être toujours en contact avec leur monde préféré : la mer. Il a un gros nez, un gros front, de ' +
+                    'faits pour être toujours en contact avec leur monde préféré : la mer. Il a un gros nez, un gros front, de ' +
                     'gros yeux qui peuvent détecter les profonds secrets de la mer.',
-                date_realisation: new Date(),
-                date_fin: null,
                 createdAt: new Date(),
                 updatedAt: new Date()
             },
             {
                 UserId: 3,
-                ServiceId: 1,
+                ServiceId: 3,
                 titre: 'BAISSE DES FRAIS OM',
                 description: 'Monsieur Ali est un homme maigre, solide comme sa barque, lent, lucide ; un des hommes qui semblent' +
-                    ' faits pour être toujours en contact avec leur monde préféré : la mer. Il a un gros nez, un gros front, de ' +
+                    'faits pour être toujours en contact avec leur monde préféré : la mer. Il a un gros nez, un gros front, de ' +
                     'gros yeux qui peuvent détecter les profonds secrets de la mer.',
-                date_realisation: new Date(),
-                date_fin: null,
                 createdAt: new Date(),
                 updatedAt: new Date()
             }

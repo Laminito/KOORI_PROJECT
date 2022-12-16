@@ -6,6 +6,7 @@ let asyncLib = require('async');
 const dotenv = require('dotenv').config()
 const nodemailer = require('nodemailer');
 const { koori } = require("../validationsCheck/validationFilesRequire");
+const { result } = require('lodash');
 const smtpTransport = nodemailer.createTransport({
     service: "gmail",
     host: "smtp.gmail.com",
@@ -16,6 +17,41 @@ const smtpTransport = nodemailer.createTransport({
 });
 
 module.exports = {
+    create_Koori: (req, res) => {
+        const { description, quoi, quand, comment, version } = req.body
+        models.Koori.create({
+            description: description,
+            quoi: quoi,
+            quand: quand,
+            comment: comment,
+            version: version,
+        }).then((kooris) => {
+            console.log("koori : ", kooris);
+            return res.status(200).json(kooris)
+        }).catch((err) => {
+            return res.status(500).json({ 'error': 'Erreur dajout: ' + err })
+        })
+    },
+    getAllkoori: (req, res) => {
+
+        var limit = parseInt(req.query.limit);
+        var offset = parseInt(req.query.offset);
+        models.Koori.findAll({
+            attributes: [
+                'id',
+                'description',
+                'version'
+            ],
+            limit: (!isNaN(limit)) ? limit : null,
+            offset: (!isNaN(offset)) ? offset : null,
+        }).then((AllKooris => {
+            console.log(AllKooris);
+            return res.status(200).json(AllKooris)
+
+        })).catch((err) => {
+            return res.status(500).json({ 'error': 'Erreur de récupération' + err })
+        })
+    },
     getLastKoori: (req, res) => {
         let headerAuth = req.headers['filter'];
         headerAuth === "*" ? attribute = ['id', 'description', 'quoi', 'comment', 'quand'] : attribute = [headerAuth]
@@ -41,7 +77,6 @@ module.exports = {
                 return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
             })
     },
-
     getKoori: (req, res) => {
         models.Koori.findOne({
                 order: [
@@ -54,9 +89,6 @@ module.exports = {
                 return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
             })
     },
-
-
-
     getKooriByVersion: (req, res) => {
         const versionId = req.params.id
         models.Koori.findOne({
@@ -81,6 +113,7 @@ module.exports = {
                 ],
                 attributes: ['version'],
             }).then((versions) => {
+                console.log(versions);
                 res.status(200).json(versions)
             })
             .catch((err) => {
@@ -88,30 +121,19 @@ module.exports = {
             })
     },
     createKoori: (req, res) => {
-        asyncLib.waterfall([
-            (callback1) => {
-                callback1(null, validationResults.error(req, res))
-            },
-            (errorResult, callback2) => {
-                if (!errorResult) {
-                    let version = 1;
-                    //return res.json(req.body)
-                    const { description, quoi, quand, comment } = req.body
-                    models.Koori.create({
-                        description,
-                        quoi,
-                        quand,
-                        comment,
-                        version
-                    }).then((ficheResult) => {
-                        callback2(null, ficheResult)
-                    }).catch((err) => {
-                        return res.status(500).json({ 'error': 'Erreur dajout: ' + err })
-                    })
-                }
-            },
-        ], (err, result) => {
-            res.json(result);
+        //return res.json(req.body)
+        const { description, quoi, quand, comment, version } = req.body
+        models.Koori.create({
+            description: description,
+            quoi: quoi,
+            quand: quand,
+            comment: comment,
+            version: version
+        }).then((ficheResult) => {
+            console.log(ficheResult)
+            return res.status(200).json(ficheResult)
+        }).catch((err) => {
+            return res.status(500).json({ 'error': 'Erreur dajout: ' + err })
         })
     },
     updateKoori: (req, res) => {

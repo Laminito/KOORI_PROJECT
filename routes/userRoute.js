@@ -3,6 +3,8 @@
  const multer = require('../multer-config')
  const validator = require('../validationsCheck/validationFilesRequire')
  const router = express.Router();
+ //  const verifyToken = require('../accessControl/verifyToken')
+ const verifyToken = require('../accessControl/authToken')
 
 
 
@@ -14,6 +16,7 @@
  //  userRouter.post('/user/', multer, validator.user.validate('createUsers'), userCtrl.createUsers);
  userRouter.put('/user/:id', multer, validator.user.validate('updateUser'), userCtrl.updateUser);
  userRouter.get('/user/:id', userCtrl.getUserById);
+ //  userRouter.get('/user/email', userCtrl.getUserByEmail);
  userRouter.get('/user/profil/:id', userCtrl.getUserByProfil);
  userRouter.delete('/user/:id', userCtrl.deleteUser);
  userRouter.get('/demandes/user/:id/', userCtrl.getDemandesByUserId);

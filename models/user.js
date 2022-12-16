@@ -2,6 +2,8 @@
 const {
     Model
 } = require('sequelize');
+
+const passwordgenerator = require("../middleware/password_generator")
 module.exports = (sequelize, DataTypes) => {
     class User extends Model {
         static associate(models) {
@@ -14,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
                     onUpdate: 'RESTRICT'
                 }
             });
-            this.hasMany(models.Demande);
+            // this.hasMany(models.Demande);
             this.hasMany(models.Commentaire);
             this.belongsToMany(models.Demande, { as: 'UserDemande', through: models.Session, foreignKey: 'UserId' });
             this.belongsToMany(models.Rapport, { as: 'UserRapport', through: models.Telechargement, foreignKey: 'UserId' });
@@ -42,7 +44,9 @@ module.exports = (sequelize, DataTypes) => {
         },
         password: {
             type: DataTypes.STRING,
-            allowNull: false,
+            defaultValue: passwordgenerator.password,
+            allowNull: true,
+
         },
         profession: {
             type: DataTypes.STRING,
@@ -63,9 +67,16 @@ module.exports = (sequelize, DataTypes) => {
         avatar: {
             type: DataTypes.BLOB
         },
+        // role: {
+        //     type: DataTypes.ENUM,
+        //     enum: ["ADMIN", "USER"],
+        //     defaultValue: "USER",
+        // }
+
     }, {
         sequelize,
         modelName: 'User',
+
 
     });
 

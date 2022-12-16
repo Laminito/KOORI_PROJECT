@@ -4,12 +4,17 @@ const asyncLib = require("async");
 const validationResults = require("../validationResult");
 const { Op } = require("sequelize");
 
+
 module.exports = {
 
     getUsers: (req, res) => {
         var limit = parseInt(req.query.limit);
         var offset = parseInt(req.query.offset);
         models.User.findAll({
+
+                order: [
+                    ['id', 'ASC'],
+                ],
                 attributes: [
                     'id',
                     'nomComplet',
@@ -27,17 +32,17 @@ module.exports = {
                     model: models.Profil
                 }],
             }).then((users) => {
-                // users.forEach(u => {
-                //     if (u.avatar) {
-                //         let buff = new Buffer(u.avatar);
-                //         u.avatar = buff.toString('base64');
-                //     }
-                // })
-                // res.send('Vous etes bien dans la methode getUsers.')
-                return res.status(200).json(users, { 'succes': 'Toutes les données sont retourné' })
+                users.forEach(user => {
+
+                    if (user.avatar) {
+                        let buff = new Buffer(user.avatar);
+                        user.avatar = buff.toString('base64');
+                    }
+                })
+                return res.status(200).json(users)
             })
             .catch((err) => {
-                return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
+                return res.status(500).json({ 'error': 'Erreur de récupération' + err })
             })
 
     },
@@ -78,46 +83,30 @@ module.exports = {
     updateUser: (req, res) => {
         const { ProfilId, nomComplet, email, profession, service, departement, direction } = req.body
         const UserId = parseInt(req.params.id)
-        asyncLib.waterfall([
-            (callback) => {
-                models.User.findOne({
-                    where: { id: UserId }
-                }).then(
-                    (userFound) => {
-                        callback(null, userFound)
-                    }
-                ).catch((err) => {
-                    return res.status(500).json({ 'erreur serveur ': err });
-                });
-            },
-            (userFound, callback) => {
-                if (userFound) {
-                    callback(null, userFound, validationResults.error(req, res))
-                }
-            },
-            (userFound, validationResults, callback) => {
-                if (!validationResults) {
-                    userFound.update({
-                        ProfilId: ProfilId,
-                        nomComplet: nomComplet,
-                        email: email,
-                        profession: profession,
-                        service: service,
-                        departement: departement,
-                        direction: direction,
-                        avatar: req.file.buffer
+        models.User.findOne({
+            where: { id: UserId }
+        }).then((userFound) => {
+            if (userFound) {
+                userFound.update({
+                    ProfilId: ProfilId,
+                    nomComplet: nomComplet,
+                    email: email,
+                    profession: profession,
+                    service: service,
+                    departement: departement,
+                    direction: direction,
+                    avatar: req.file.buffer
 
-                    }).then((userResult) => {
-                        callback(null, userResult)
-                    }).catch((err) => {
-                        res.status(500).json({ 'impossible de  a jour ': err });
-                    })
-                }
+                }).then((userResult) => {
+                    console.log(userResult)
+                    res.status(200).json(userResult);
+                }).catch((err) => {
+                    res.status(500).json({ 'impossible de mise à jour ': err });
+                })
             }
-        ], (err, result) => {
-            return res.status(201).json(result);
-        })
-
+        }).catch((err) => {
+            return res.status(500).json({ 'erreur serveur ': err });
+        });
     },
     getUserById: (req, res) => {
         const id = parseInt(req.params.id);
@@ -129,8 +118,8 @@ module.exports = {
                 }],
             }).then((user) => {
                 if (user) {
-                    /*let buff = new Buffer(user?.avatar);
-                    user?.avatar = buff.toString('base64');*/
+                    let buff = new Buffer(user.avatar);
+                    user.avatar = buff.toString('base64')
                     res.status(200).json(user)
                 } else {
                     res.status(404).json({ "erreur": "L'utilisateur n'existe pas" })
@@ -140,6 +129,28 @@ module.exports = {
                 return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
             })
     },
+
+    //     const email = req.params.email;
+    //     console.log(email);
+    //     models.User.findOne({
+    //             //attributes: ['id', 'ProfilId', 'nomComplet', 'email', 'profession', 'service', 'departement', 'direction'],
+    //             where: { email: email },
+    //             include: [{
+    //                 model: models.Profil
+    //             }],
+    //         }).then((user) => {
+    //             if (user) {
+    //                 /*let buff = new Buffer(user?.avatar);
+    //                 user?.avatar = buff.toString('base64');*/
+    //                 res.status(200).json(user)
+    //             } else {
+    //                 res.status(404).json({ "erreur": "L'utilisateur n'existe pas" })
+    //             }
+    //         })
+    //         .catch((err) => {
+    //             return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
+    //         })
+    // },
     getUserByProfil: (req, res) => {
         const id = parseInt(req.params.id);
         models.User.findAll({

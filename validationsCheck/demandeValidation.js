@@ -23,7 +23,7 @@ module.exports.validate = (method) => {
                 .withMessage('Veuillez choisir une date')
                 .trim()
                 .custom(value => {
-                    return modelDemande.Demande.findOne({ where: { date_realisation: value } })
+                    return modelDemande.Demande.findOne({ where: { date_debut_souhaitee: value } })
                         .then((demande) => {
                             if (demande) {
                                 return Promise.reject('cette date est indisponible')

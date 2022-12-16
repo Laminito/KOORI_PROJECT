@@ -17,7 +17,11 @@ module.exports = (sequelize, DataTypes) => {
         quoi: DataTypes.TEXT,
         quand: DataTypes.TEXT,
         comment: DataTypes.TEXT,
-        version: DataTypes.FLOAT
+        version: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            unique: true
+        }
     }, {
         sequelize,
         modelName: 'Koori',
