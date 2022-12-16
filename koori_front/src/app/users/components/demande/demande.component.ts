@@ -51,11 +51,10 @@ export class DemandeComponent implements OnInit {
        //this.getService();
        this.getUser()
   this.demandeForm = this.formBuilder.group({
-    UserId: [this.authService.getIdUserConnected, Validators.required],
-    ServiceId: [this.router.snapshot.params['id'], Validators.required],
+    UserId: [this.authService.getIdUserConnected(), Validators.required],
+    ServiceId: [this.router.snapshot.params['id']],
     titre: ['', Validators.required],
     description: ['', Validators.required],
-    date_realisation: ["", Validators.required],
   });
   }
 
@@ -91,8 +90,10 @@ export class DemandeComponent implements OnInit {
  }
 
 //recuperer tous les service
-  getService(){this.allRequest.getAll("service").subscribe((data:any)=>{this.services=data})}
-  getUser(){this.userService.getUserById(2).subscribe((data)=>{this.user= data;})}
+  getService(){this.allRequest.getAll("service").subscribe((data:any)=>{this.services=data;
+  console.log(data);
+  })}
+  getUser(){this.userService.getUserById(this.authService.getIdUserConnected()).subscribe((data)=>{this.user= data;})}
 
   get f(){return this.demandeForm.controls}
   onsubmit(){
@@ -108,11 +109,15 @@ export class DemandeComponent implements OnInit {
           showConfirmButton: false,
           timer: 3000
         })
+        this.demandeForm.reset()
+        this.modalRef.hide()
       }
-    },
-    (error: { error: { errors: { msg: string; }; }; })=>{
-      this.message = error.error.errors.msg;
-      console.log(this.message);
+      (error: { error: { errors: { msg: string; }; }; })=>{
+        this.message = error.error.errors.msg;
+        console.log(this.message);
+      }
     })
+     
+   
    }
 }

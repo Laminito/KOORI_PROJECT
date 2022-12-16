@@ -44,7 +44,7 @@ export class AuthService {
   }
   
   getIdUserConnected(){
-    return localStorage.getItem('id_user')
+    return Number(localStorage.getItem('id_user'))
   }
 
   get isLoggedIn(): boolean {

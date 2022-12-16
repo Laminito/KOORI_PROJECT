@@ -5,8 +5,7 @@ export class Demande {
   ServiceId!: number
   titre!: string
   description!: string
-  date_realisation!: string
-  date_fin!: string
+  disponibilite!:boolean
   statut!: string
 
 }

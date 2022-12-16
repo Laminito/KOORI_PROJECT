@@ -24,7 +24,6 @@ import { RapportComponent } from './components/rapport/rapport.component';
 import { DetailServiceComponent } from './components/service-catalogue/detail-service/detail-service.component';
 import { NavLinkServiceComponent } from './components/service-catalogue/nav-link-service/nav-link-service.component';
 import { ServiceCatalogueComponent } from './components/service-catalogue/service-catalogue.component';
-import { SessionComponent } from './components/session/session.component';
 import { TopComponent } from './components/top/top.component';
 import { FilterPipe } from './_pipes/filter.pipe';
 import { SummarizePipe } from './_pipes/summarize.pipe';
@@ -75,7 +74,6 @@ import { CardDemandeComponent } from './components/user-profil/mes-demandes/card
     ServiceCatalogueComponent,
     SummarizePipe,
     FilterPipe,
-    SessionComponent,
     NodataComponent,
     FicheComponent,
     ListRapportsComponent,
@@ -131,7 +129,6 @@ import { CardDemandeComponent } from './components/user-profil/mes-demandes/card
     ServiceCatalogueComponent,
     SummarizePipe,
     FilterPipe,
-    SessionComponent,
     ItemRapportComponent,
     KooriiboxComponent,
     NodataComponent,

@@ -3,10 +3,9 @@
 
   <ng-template #template >
     <div class="modal-body">
-      <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+      <button type="button"class="btn-close close pull-right" data-bs-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
         <i class="fas fa-times"></i>
       </button>
-       <!-- <button type="button" class="btn-close close pull-right" aria-label="Close" ></button> -->
        <h5 class="modal-title" id="staticBackdropLabel" style="margin: auto"> Demander un service</h5> 
            <form [formGroup]="demandeForm" (ngSubmit)="onsubmit()" >
             <div class="row">
@@ -18,25 +17,6 @@
             </div>
             <label class="form-label">Description de la demande <label class="text-danger">*</label></label>
             <textarea [ngClass]="{ 'is-invalid': submitted }" [formControlName]="'description'" class="form-control input mb-2" ></textarea>
-           
-  
-            <div class="col">
-              <div class="form-group">
-                <label class="form-label">Service <label class="text-danger">*</label></label>
-                <select [ngClass]="{ 'is-invalid': submitted }" class="form-control input mb-2" name="ServiceId" id="ServiceId " [formControlName]="'ServiceId'">
-                  <option *ngFor="let s of services" value="{{s.id}}"> {{s.libelle}}</option>
-                </select>
-              </div>
-            </div>
-                <!-- calendar -->
-             <div class="col-12">
-              <label for="" class="form-label">Periode souhaité</label>
-                <input type="date"
-                  [ngClass]="{ 'is-invalid': submitted }" class="form-control input mb-2"
-                  [formControlName]="'date_realisation'"
-                  name="date_realisation"
-                  required>
-                </div>
             <div class="text-center">
               <button type="submit" data-bs-dismiss="modal" class="btn btn-evaluer mt-1">Enregistrer votre demande</button>
             </div>
@@ -46,54 +26,3 @@
 
 
 
-<!-- <button type="button" class="draw meet" data-bs-toggle="modal"
-        data-bs-target="#staticBackdrop">Faire une demande de service</button>
-
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel" style="margin: auto"> Demander un service</h5>
-        <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="demandeForm" (ngSubmit)="onsubmit()">
-          <div class="row">
-            <div class="col-12">
-              <label class="form-label">Challenge ou objet <label class="text-danger">*</label></label>
-            <input type="text" [ngClass]="{ 'is-invalid': submitted }" [formControlName]="'titre'" class="input mb-2">
-            
-            </div>
-          </div>
-          <label class="form-label">Description de la demande <label class="text-danger">*</label></label>
-          <textarea [ngClass]="{ 'is-invalid': submitted }" [formControlName]="'description'" class="form-control input mb-2" ></textarea>
-         
-
-          <div class="col">
-            <div class="form-group">
-              <label class="form-label">Service <label class="text-danger">*</label></label>
-              <select [ngClass]="{ 'is-invalid': submitted }" class="form-control input mb-2" name="ServiceId" id="ServiceId " [formControlName]="'ServiceId'">
-                <option *ngFor="let s of services" value="{{s.id}}"> {{s.libelle}}</option>
-              </select>
-            </div>
-          </div>
-              <!-- calendar -->
-          <!-- <div class="col-12">
-            <label for="" class="form-label">Periode souhaité</label>
-              <input type="date"
-                [ngClass]="{ 'is-invalid': submitted }" class="form-control input mb-2"
-                [formControlName]="'date_realisation'"
-                name="date_realisation"
-                required>
-              </div>
-          <div class="text-center">
-            <button type="submit" data-bs-dismiss="modal" class="btn btn-evaluer mt-1">Enregistrer votre demande</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
-</div> --> 
