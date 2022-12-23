@@ -97,9 +97,9 @@
                             <mat-icon>account_circle</mat-icon>
                             <div matListItemTitle routerLink="/home/profil">Mon Compte</div>
                         </mat-list-item>
-                        <mat-list-item >
+                        <mat-list-item (click)="logout()">
                             <span class="material-icons">logout</span> 
-                            <div matListItemTitle (click)="logout()">Se Déconnecter</div>
+                            <div matListItemTitle>Se Déconnecter</div>
                         </mat-list-item>
                     </mat-list>
                 </mat-expansion-panel>

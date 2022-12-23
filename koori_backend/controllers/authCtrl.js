@@ -75,7 +75,7 @@ const login = async(req, res) => {
         //find a user by their email
         const user = await db.User.findOne({
             where: {
-                email: req.body.email
+                email: email
             },
         });
 
@@ -91,7 +91,6 @@ const login = async(req, res) => {
                 models.User.findAll({
                     attributes: ['id', 'email']
                 }).then((users) => {
-
 
                     let userId
                     users.forEach(users => {

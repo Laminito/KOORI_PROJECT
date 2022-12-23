@@ -31,6 +31,7 @@ export class ProjetsComponent implements OnInit {
     this.allRequest.getAll('demande').subscribe(
       (data) => {
         data.forEach(demande => {
+          this.demandes.push(demande);
           if(demande.statut === 'Traitee'){
               this.demandes.push(demande);
           }

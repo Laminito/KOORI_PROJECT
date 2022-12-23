@@ -78,3 +78,6 @@
 	position: absolute;
 	top: 1.4vh;
   }
+  mat-list-item{
+	cursor: pointer;
+  }

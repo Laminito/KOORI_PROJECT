@@ -1,6 +1,7 @@
   <!-- btn faire une demande -->
   <button type="button" class="draw meet" data-bs-toggle="modal" (click) = "openModalDemande(template)">Faire une demande {{ libelleService }}</button>
 
+  
   <ng-template #template >
     <div class="modal-body">
        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef.hide()"></button>
@@ -14,22 +15,22 @@
              <input type="password" class="form-control" id="password" placeholder="Mot de passe" formControlName="password">
            </div>
            <div class="text-center"><button type="submit" class="btn btn-color px-5 mb-5 w-100" >Se connecter</button></div>
-           <div id="emailHelp" class="form-text text-center mb-5 text-dark">Pas de compte? <a  routerLink="/home/signup" class=" fw-bold" > Creer un compte des maintenant</a>
+           <div id="emailHelp" class="form-text text-center mb-5 text-dark">Pas de compte? <a  routerLink="/home/signup" class=" fw-bold" >Creer un compte des maintenant</a>
            </div>
            </form>
          </div>
   </ng-template>
+  
 
-
-
-<!-- <button type="button" class="draw meet" data-bs-toggle="modal"
+<!--
+<button type="button" class="draw meet" data-bs-toggle="modal"
         data-bs-target="#staticBackdrop">Faire une demande de service</button>
-
+-->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel" style="margin: auto"> Demander un service</h5>
+        <h5 class="modal-title" id="staticBackdropLabel" style="margin: auto">Demander un service</h5>
         <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
           <i class="fas fa-times"></i>
         </button>
@@ -46,7 +47,7 @@
           <label class="form-label">Description de la demande <label class="text-danger">*</label></label>
           <textarea [ngClass]="{ 'is-invalid': submitted }" [formControlName]="'description'" class="form-control input mb-2" ></textarea>
          
-
+          <!--
           <div class="col">
             <div class="form-group">
               <label class="form-label">Service <label class="text-danger">*</label></label>
@@ -55,8 +56,10 @@
               </select>
             </div>
           </div>
-              <!-- calendar -->
-          <!-- <div class="col-12">
+          -->
+          
+          <!-- calendar -->
+          <div class="col-12">
             <label for="" class="form-label">Periode souhaité</label>
               <input type="date"
                 [ngClass]="{ 'is-invalid': submitted }" class="form-control input mb-2"
@@ -72,4 +75,4 @@
     </div>
   </div>
 
-</div> --> 
+</div> 
