@@ -97,7 +97,7 @@ import { ForUserConnectedComponent } from './components/home/for-user-connected/
     CarouselComponent,
     KooriIboxComponent,
     ProjectFilterPipe,
-    ForUserConnectedComponent
+    ForUserConnectedComponent,
     
   ],
   imports: [

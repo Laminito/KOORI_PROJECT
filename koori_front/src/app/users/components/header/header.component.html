@@ -46,64 +46,61 @@
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	  </button>
-        <div class="navbar-collapse collapse" id="navbarNav">
+        <div class="navbar-collapse collapse justify-content-between" id="navbarNav">
             <ul class="navbar-nav justify-content-between">
-                <li class="nav-item dropdown" (click)="open()">
-                    <a routerLink="/home/kooriibox" routerLinkActive="active-link" class="nav-link scroll-link">Koori et Ibox</a>
+                <li class="nav-item dropdown">
+                    <a routerLink="/home/kooriibox" routerLinkActive="active-link" class="nav-link scroll-link fs-6">Koori et Ibox</a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/home/service" routerLinkActive="active-link" class="nav-link scroll-link">Catalogue de Services</a>
+                    <a routerLink="/home/service" routerLinkActive="active-link" class="nav-link scroll-link fs-6">Catalogue de Services</a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/home/apropos" routerLinkActive="active-link" class="nav-link scroll-link">A propos de nous</a>
+                    <a routerLink="/home/apropos" routerLinkActive="active-link" class="nav-link scroll-link fs-6">A propos de nous</a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/home/rapport" routerLinkActive="active-link" class="nav-link scroll-link" *ngIf="isConnect$ | async">Rapport</a>
+                    <a routerLink="/home/rapport" routerLinkActive="active-link" class="nav-link scroll-link fs-6" *ngIf="(currentUser$ | async) !== null">Rapport</a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/home/contact" routerLinkActive="active-link" class="nav-link scroll-link">Contactez-nous</a>
+                    <a routerLink="/home/contact" routerLinkActive="active-link" class="nav-link scroll-link fs-6">Contactez-nous</a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/home/communaute" routerLinkActive="active-link" class="nav-link scroll-link">Communauté</a>
+                    <a routerLink="/home/communaute" routerLinkActive="active-link" class="nav-link scroll-link fs-6">Communauté</a>
                 </li>
             </ul>
-            <ul class="navbar-nav-bas ms-auto">
-                <!-- <li class="nav-item mx-3">
-                    <a class="nav-link">
-                        <i class="fas fa-user-circle fa-lg"></i>
+            <ul class="navbar-nav-bas ms-auto" *ngIf="!((currentUser$ | async) !== null)">
+
+                <li class="nav-item mx-3 fs-6">
+                    <a class="nav-link" >
+                        <button type="button" (click)="openModalWithComponent()" routerLinkActive="active-link" class="btn btn-sm btn-outline-info">Se connecter</button>
                     </a>
                 </li>
-                <li class="nav-item mx-3">
-                    <a class="nav-link">
-                        <i class="fas fa-bell fa-lg"></i>
-                    </a>
-                </li> -->
-                <li class="nav-item mx-3" *ngIf="!(isConnect$ | async)">
-                    <a class="nav-link">
-                        <button type="button" mat-raised-button class="btn-color btn-sn" routerLink="home/signin">Se connecter</button>
+                <li class="nav-item mx-3 fs-6">
+                    <a class="nav-link" >
+                        <button type="button" routerLink="home/signup" routerLinkActive="active-link" class="btn btn-sm btn-outline-info">S'inscription</button>
                     </a>
                 </li>
+
             </ul>
-            <ul *ngIf="isConnect$ | async">
-                <mat-expansion-panel *ngIf="currentUser$ | async as user">
-                    <mat-expansion-panel-header>
-                      <mat-panel-description>
-                          
-                        {{ user.nomComplet }}
-                      </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <mat-list>
-                        <mat-list-item>
-                            <mat-icon>account_circle</mat-icon>
-                            <div matListItemTitle routerLink="/home/profil">Mon Compte</div>
-                        </mat-list-item>
-                        <mat-list-item (click)="logout()">
-                            <span class="material-icons">logout</span> 
-                            <div matListItemTitle>Se Déconnecter</div>
-                        </mat-list-item>
-                    </mat-list>
-                </mat-expansion-panel>
+
+            <ul class="navbar-nav justify-content-between" *ngIf="(currentUser$ | async) !== null">
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle fs-6" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-user fs-5"></i> &nbsp;{{ (currentUser$ | async)?.nomComplet }}
+                        </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-unique" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item py-3 fs-6" routerLink="/home/profil">
+                            <i class="fa-regular fa-address-card"></i>&nbsp; Profil
+                        </a>
+                        <a class="dropdown-item py-3 fs-6" routerLink="/home/profil/mesDemandes">
+                            <i class="fa-solid fa-list-ul"></i>&nbsp; Demandes
+                        </a>
+                        <a class="dropdown-item py-3 fs-6" routerLink="/home" (click)="logout()">
+                            <i class="fa-solid fa-power-off"></i>&nbsp; Deconnexion
+                        </a>
+                    </div>
+                </div>
             </ul>
         </div>
     </div>
 </nav>
+

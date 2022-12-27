@@ -4,6 +4,8 @@ import {ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/users/_models/user';
 import { AuthService } from 'src/app/users/_services/auth.service';
+import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
+import { SigninComponent } from '../signin/signin.component';
 
 @Component({
   selector: 'app-header',
@@ -12,32 +14,35 @@ import { AuthService } from 'src/app/users/_services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
- 
   menu = false;
   defaultRoute: string = "";
   isConnect$!: Observable<boolean>
-  currentUser$!: Observable<User>
+
+  bsModalRef?: BsModalRef;
+
+  currentUser$!: Observable<User | null>
 
   constructor(private route: Router, 
               private actRoute: ActivatedRoute,
-              private authService: AuthService) {}
+              private authService: AuthService,
+              private modalService: BsModalService) {}
 
   ngOnInit(): void {
-    this.isConnect$ = this.authService.isConnected
-    this.currentUser$ = this.authService.userLogged
+    this.currentUser$ = this.authService.userValue
   }
 
-  open(){
-      // @ts-ignore
-    this.defaultRoute = this.actRoute.snapshot['_routerState'].url
-    if (this.defaultRoute === "/kooriibox"){
-        this.menu = true;
-    }
-    $(document.getElementsByClassName('w-75')).hide()
-  }
 
   logout(){
-    this.authService.doLogout();
+    this.authService.logout();
   }
-  
+
+  openModalWithComponent() {
+
+    this.bsModalRef = this.modalService.show(SigninComponent, {
+      class: 'modal-dialog-centered',
+      ignoreBackdropClick: true
+    });
+    this.bsModalRef.content.closeBtnName = 'Close';
+  }
+
 }

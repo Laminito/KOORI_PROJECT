@@ -13,7 +13,7 @@ export class ForUserConnectedComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.isLoggedIn = this.authService.isLoggedIn
+    // this.isLoggedIn = this.authService.isLoggedIn
   }
 
 }

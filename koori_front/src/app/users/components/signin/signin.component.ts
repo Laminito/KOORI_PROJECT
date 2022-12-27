@@ -24,9 +24,8 @@ export class SigninComponent implements OnInit {
   constructor(public fb: FormBuilder, 
               public router: Router, 
               private authService: AuthService,
-              private _location: Location) {
-                
-              }
+              private _location: Location,
+              public bsModalRef: BsModalRef) {}
 
   ngOnInit(): void {
     this.signinForm = this.fb.group({
@@ -37,7 +36,7 @@ export class SigninComponent implements OnInit {
 
   onSubmitForm(){
     if (this.signinForm.valid) {
-      this.authService.signIn(this.signinForm.value)
+      this.authService.login(this.signinForm.value).subscribe();
     }
   }
     

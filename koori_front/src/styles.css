@@ -33,6 +33,10 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+*::-webkit-scrollbar {
+    width: 6px;
+}
+
 .bar-title {
     background-color: var(--vert);
     color: var(--orange);

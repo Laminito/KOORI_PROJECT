@@ -9,6 +9,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {CdkMenuModule} from '@angular/cdk/menu';
+
 
 @NgModule({
 	exports:[
@@ -21,7 +23,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 		MatInputModule,
 		MatSelectModule,
 		MatDialogModule,
-		MatExpansionModule
+		MatExpansionModule,
+		CdkMenuModule
 	]
 })
 

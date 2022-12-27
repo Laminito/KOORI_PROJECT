@@ -16,9 +16,9 @@ export class UserProfilComponent implements OnInit {
                 private authService: AuthService) { }
 
     ngOnInit(): void {
-      this.userService.getUserById(this.authService.getIdUserConnected()).subscribe(
-        user => this.user = user
-      )
+      // this.userService.getUserById(this.authService.getIdUserConnected()).subscribe(
+      //   user => this.user = user
+      // )
       var el = document.getElementById("wrapper");
       var toggleButton = document.getElementById("menu-toggle");
       // @ts-ignore

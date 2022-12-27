@@ -18,7 +18,7 @@ export class KooriIboxComponent implements OnInit {
     private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.isLoggedIn = this.authService.isLoggedIn
+    // this.isLoggedIn = this.authService.isLoggedIn
     this.getDescriptionKoori();
     this.getDescriptionIbox();
   }

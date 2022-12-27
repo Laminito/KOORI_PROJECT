@@ -47,7 +47,7 @@ export class DemandeComponent implements OnInit {
     private router: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.isLoggedIn = this.authService.isLoggedIn
+    // this.isLoggedIn = this.authService.isLoggedIn
        //this.getService();
        this.getUser()
   this.demandeForm = this.formBuilder.group({

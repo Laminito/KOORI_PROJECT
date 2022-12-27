@@ -1,11 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
-.main{
-	height: 90vh;
-	padding-top: 20vh;
-	background-image: url('https://i.pinimg.com/736x/32/0b/30/320b3074008b3959736c700fab2488dc.jpg');
-	background-repeat: no-repeat;
-	background-size: cover;
-}
 
 *{
 	margin: 0;
@@ -18,15 +11,17 @@ body{
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	min-height: 100vh;
+	/* min-height: 100vh; */
 	background: #eff0f4;
 }
 .container{
 	position: relative;
-	left: -80px;
+	left: -55px;
+	top: 70px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin-top: 18%;
 }
 .container .drop{
 	position: relative;
@@ -47,7 +42,7 @@ body{
 	content:'';
 	position: absolute;
 	top: 50px;
-	left: 85px;
+	left: 50px;
 	width: 35px;
 	height: 35px;
 	border-radius: 50%;
@@ -133,11 +128,11 @@ body{
 }
 .btn{
 	position: absolute;
-	right: 350px;
-	bottom: 0;
+	right: -50px;
+	bottom: -50px;
 	width: 120px;
 	height: 120px;
-	background: #00b4d8;
+	background: #26a58a;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -166,7 +161,7 @@ body{
 }
 .btn.signup{
 	bottom: 150px;
-	right: 380px;
+	right: -20px;
 	width: 80px;
 	height: 80px;
 	border-radius: 49% 51% 52% 48% / 63% 59% 41% 37%;
@@ -182,4 +177,13 @@ body{
 }
 .btn:hover{
 	border-radius: 50%;
+}
+.btn-close{
+	/* border: 1px solid red; */
+	padding: 15px;
+	border-radius: 50%;
+	background-color: #f77f00;
+}
+.modal-body{
+	height: 62vh;
 }
