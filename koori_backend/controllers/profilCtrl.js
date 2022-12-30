@@ -27,6 +27,7 @@ module.exports = {
             res.json(result);
         })
     },
+
     getProfils: (req, res) => {
         var limit = parseInt(req.query.limit);
         var offset = parseInt(req.query.offset);
@@ -41,6 +42,7 @@ module.exports = {
                 return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
             })
     },
+    
     getProfilById: (req, res) => {
         const id = parseInt(req.params.id);
         models.Profil.findOne({

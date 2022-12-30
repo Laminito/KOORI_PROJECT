@@ -6,6 +6,7 @@ import { User } from 'src/app/users/_models/user';
 import { AuthService } from 'src/app/users/_services/auth.service';
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { SigninComponent } from '../signin/signin.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-header',
@@ -17,32 +18,19 @@ export class HeaderComponent implements OnInit {
   menu = false;
   defaultRoute: string = "";
   isConnect$!: Observable<boolean>
-
-  bsModalRef?: BsModalRef;
-
   currentUser$!: Observable<User | null>
 
   constructor(private route: Router, 
               private actRoute: ActivatedRoute,
               private authService: AuthService,
-              private modalService: BsModalService) {}
+              public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.currentUser$ = this.authService.userValue
   }
 
-
   logout(){
     this.authService.logout();
-  }
-
-  openModalWithComponent() {
-
-    this.bsModalRef = this.modalService.show(SigninComponent, {
-      class: 'modal-dialog-centered',
-      ignoreBackdropClick: true
-    });
-    this.bsModalRef.content.closeBtnName = 'Close';
   }
 
 }

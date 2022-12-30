@@ -1,7 +1,4 @@
-<div class="modal-body">
-	<button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
-	  <span aria-hidden="true" class="visually-hidden">&times;</span>
-	</button>
+<div class="main">
 	<div class="container mx-auto" id="connexion">
 		<div class="drop">
 			<span>
@@ -26,21 +23,3 @@
 		<a routerLink="/home/signup" class='btn signup'>S'Inscrire</a>
 	</div>
 </div>
-
-
-<!-- <div>
-	<h2 class="text-center titre mt-5 pt-5">Connexion</h2>	 
-		<form class=" p-lg-5" [formGroup]="signinForm">
-			<div class="mb-3">
-				<input type="email" class="form-control"  formControlName="email" id="Username" aria-describedby="emailHelp"
-					 placeholder="Email">
-			</div>
-			<div class="mb-3">
-				<input type="password" class="form-control" id="password" placeholder="Mot de passe" formControlName="password">
-			</div>
-			<div class="text-center"><button type="submit" class="btn btn-color px-5 mb-5 w-100" (click)="onSubmitForm()">Se connecter</button></div>
-			<div id="emailHelp" class="form-text text-center mb-5 text-dark">Pas de compte? <a  routerLink="/home/signup" class=" fw-bold" > Creer un compte des maintenant</a>
-			</div>
-		</form>
-</div> -->
-

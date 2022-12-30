@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from '@angular/core';
-import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, map, throwError } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BehaviorSubject, Observable, catchError, delay, map, mapTo, of, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Profil } from '../_models/profil';
 import { User } from '../_models/user';
@@ -20,7 +20,9 @@ export class AuthService {
 
   constructor(private http: HttpClient, 
               private router: Router,
-              private userService: UserService){
+              private userService: UserService,
+              private _location: Location
+              ){
     this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user')!));
     this.user = this.userSubject.asObservable();
   }
@@ -29,18 +31,28 @@ export class AuthService {
     return this.userSubject.asObservable();
   }
 
-  login(user: {username: string, password: string}) {
-    return this.http.post<any>(`${environment.API}login/`, user)
-        .pipe(map(res => {
+  signup(user: User):Observable<boolean>{
+    return this.http.post(`${environment.API}register`, user).pipe(
+      mapTo(true),
+      delay(1000),
+      catchError(() => of(false).pipe(
+        delay(1000)
+      ))
+    )
+  }
+
+  login(user: {username: string, password: string}):Observable<any> {
+    return this.http.post<any>(`${environment.API}login/`, user).pipe(
+      map(res => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('access-token', JSON.stringify(res.token));
             this.getCurrentUser(res.userID).subscribe(user => {
               localStorage.setItem('user', JSON.stringify(user));
               this.userSubject.next(user);
-              this.router.navigate(['/home']);
+              this._location.back();
               return user;
             })
-        }));
+      }));
   }
 
   logout() {
@@ -56,3 +68,4 @@ export class AuthService {
   }
 
 }
+

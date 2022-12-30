@@ -15,6 +15,9 @@ module.exports = {
         models.Service.findAll({
 
                 where: { archive: false },
+                order: [
+                    ['id', 'ASC'],
+                ],
                 include: [{
                     model: models.Demande
                 }]

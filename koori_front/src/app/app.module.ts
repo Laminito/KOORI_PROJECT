@@ -22,7 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgxPaginationModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent],
   exports: [
   ]

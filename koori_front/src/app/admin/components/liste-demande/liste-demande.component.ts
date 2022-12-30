@@ -20,17 +20,22 @@ export class ListeDemandeComponent implements OnInit {
 
   
   demandes!:Demande[]
+  idService!: number
+
   constructor(private route: ActivatedRoute,
-          private demandeService:DemandeService ){
+          private demandeService:DemandeService,
+          private router: ActivatedRoute ){
   }
   
   ngOnInit(): void {
+  
+    this.idService = +this.router.snapshot.params['id']
    this.route.data.pipe(
     map(
       data =>  data['listeDemande'].sort((a: Demande, b: Demande) => b.id - a.id)
     )
    ).subscribe(data => {
-    this.demandes = data
+    this.demandes = data.filter((dmd: any) => dmd.Service.id)
     console.log(this.demandes)  
    })
 

@@ -55,6 +55,7 @@
     "@angular/cli": "~14.0.6",
     "@angular/compiler-cli": "^14.0.0",
     "@types/aos": "^3.0.4",
+    "@types/bootstrap": "^5.2.6",
     "@types/file-saver": "^2.0.5",
     "@types/jasmine": "~4.0.0",
     "@types/jquery": "^3.5.14",

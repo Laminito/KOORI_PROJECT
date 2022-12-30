@@ -123,15 +123,15 @@ module.exports = {
     getUserById: (req, res) => {
         const id = parseInt(req.params.id);
         models.User.findOne({
-                //attributes: ['id', 'ProfilId', 'nomComplet', 'email', 'profession', 'service', 'departement', 'direction'],
+                attributes: ['id', 'ProfilId', 'nomComplet', 'email', 'profession', 'service', 'departement', 'direction'],
                 where: { id: id },
                 include: [{
                     model: models.Profil
                 }],
             }).then((user) => {
                 if (user) {
-                    /*let buff = new Buffer(user?.avatar);
-                    user?.avatar = buff.toString('base64');*/
+                    // let buff = new Buffer(user.avatar);
+                    // user.avatar = buff.toString('base64');
                     res.status(200).json(user)
                 } else {
                     res.status(404).json({ "erreur": "L'utilisateur n'existe pas" })

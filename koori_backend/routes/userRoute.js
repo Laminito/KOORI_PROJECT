@@ -4,8 +4,6 @@
  const validator = require('../validationsCheck/validationFilesRequire')
  const router = express.Router();
 
-
-
  //User routes
 
  const userRouter = new express.Router();
@@ -18,3 +16,4 @@
  userRouter.delete('/user/:id', userCtrl.deleteUser);
  userRouter.get('/demandes/user/:id/', userCtrl.getDemandesByUserId);
  module.exports = userRouter
+

@@ -3,6 +3,7 @@ const _ = require('lodash')
 const models = require('../models');
 const dotenv = require('dotenv').config()
 const nodemailer = require("nodemailer");
+const send_mail = require("../middleware/sendMail")
 const smtpTransport = nodemailer.createTransport({
     service: "gmail",
     host: "smtp.gmail.com",
@@ -12,11 +13,10 @@ const smtpTransport = nodemailer.createTransport({
     }
 });
 
-
-
 module.exports = {
     createDemande: (req, res) => {
-
+        const expireDans = `Ce mot de pass expire dans : ${ms(2 * 60000, { long: true })}`;
+        const message = `Bonjour !<br> Vous avez une demande de service ! <br>`
         const { UserId, ServiceId, titre, description, date_debut_souhaitee, disponibilite } = req.body
         models.Demande.create({
             UserId: UserId,
@@ -27,6 +27,7 @@ module.exports = {
             description: description
         }).then((demandes) => {
             //callback2(null,demandResult)
+            send_mail.sendEmail("abmangane12@gmail.com", expireDans, message)
             return res.status(200).json({ 'sucess': demandes })
 
         }).catch((err) => {
@@ -68,13 +69,14 @@ module.exports = {
         const offset = parseInt(req.query.offset);
 
         models.Demande.findAll({
-                attributes: ['id', 'titre', 'description', 'date_debut_souhaitee', 'disponibilite', 'statut'],
-                limit: (!isNaN(limit)) ? limit : null,
-                offset: (!isNaN(offset)) ? offset : null,
+                attributes: ['id', 'UserId', 'ServiceId', 'titre', 'description', 'date_debut_souhaitee', 'disponibilite', 'statut'],
+                // limit: (!isNaN(limit)) ? limit : null,
+                // offset: (!isNaN(offset)) ? offset : null,
                 include: [{
                     model: models.Service,
                     attributes: ['id', 'libelle']
-                }],
+                }
+            ],
             }).then((demandes) => {
                 demandes.forEach(fama => {
                     

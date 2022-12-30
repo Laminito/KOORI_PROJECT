@@ -10,15 +10,15 @@ import { UserService } from '../../_services/user.service';
 })
 export class UserProfilComponent implements OnInit {
   
-    user!: User
+    user!: User | null
 
     constructor(private userService: UserService,
                 private authService: AuthService) { }
 
     ngOnInit(): void {
-      // this.userService.getUserById(this.authService.getIdUserConnected()).subscribe(
-      //   user => this.user = user
-      // )
+      this.authService.userValue.subscribe(
+        (userConnected) => this.user = userConnected
+      )
       var el = document.getElementById("wrapper");
       var toggleButton = document.getElementById("menu-toggle");
       // @ts-ignore

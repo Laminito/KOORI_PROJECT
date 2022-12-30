@@ -5,9 +5,11 @@ const multer = require('../multer-config')
 const User = require("../models/user");
 
 const profilRoute = new express.Router();
+
 profilRoute.post('/profil/', validator.profil.validate('createProfil'), profilCtrl.createProfil)
+profilRoute.get('/profil/', profilCtrl.getProfils);
 profilRoute.put('/profil/:id/', validator.profil.validate('updateProfil'), profilCtrl.updateProfil);
 profilRoute.get('/profil/:id/', profilCtrl.getProfilById);
 profilRoute.delete('/profil/:id/', profilCtrl.deleteProfil);
-profilRoute.get('/profil/', profilCtrl.getProfils);
+
 module.exports = profilRoute;

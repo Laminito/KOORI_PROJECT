@@ -10,7 +10,8 @@ import { DemandeService } from '../../_services/demande.service';
 import { UserService } from '../../_services/user.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AuthService } from '../../_services/auth.service';
-
+import * as bootstrap from "bootstrap";
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-demande',
@@ -19,22 +20,22 @@ import { AuthService } from '../../_services/auth.service';
 })
 export class DemandeComponent implements OnInit {
 
-  public demande: Demande = new Demande;
-  user: User= new User
+  public demande!: Demande;
+  user!: User | null
   demandeForm!: FormGroup;
+  idService!: number
   services: Service[]=[]
   message: string= "";
   tab: any;
   submitted= false;
-  @Input() libelleService!:String
+  @Input() libelleService!: String
   modalRef!: BsModalRef;
-  isLoggedIn!:Boolean;
+  isLoggedIn!: boolean;
   public errorsMessage ={
     titre:[
       {type: 'required', message:'ce champ est obligatoire'}
     ]
   } ;
-
 
   constructor(
     private demandService: DemandeService,
@@ -47,73 +48,86 @@ export class DemandeComponent implements OnInit {
     private router: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // this.isLoggedIn = this.authService.isLoggedIn
-       //this.getService();
-       this.getUser()
-  this.demandeForm = this.formBuilder.group({
-    UserId: [3, Validators.required],
-    ServiceId: [2, Validators.required],
-    titre: ['', Validators.required],
-    description: ['', Validators.required],
-    date_realisation: ["", Validators.required],
-  });
+      this.authService.userValue.subscribe(
+        (test) => {
+          this.isLoggedIn = test === null ? false : true;
+          if (this.isLoggedIn) {
+            this.user = test
+            console.log(this.user)
+          }
+        }
+      )
+      this.idService = +this.router.snapshot.params['id'];
+      this.getService();
+      this.getUser()
+      this.demandeForm = this.formBuilder.group({
+        UserId: [this.user?.id, Validators.required],
+        ServiceId: [this.idService, Validators.required],
+        titre: ['', Validators.required],
+        description: ['', Validators.required],
+        date_realisation: ["", Validators.required],
+      });
+
+      $('#btn-secondary').submit(function(e) {
+        e.preventDefault();
+        // Coding
+        $('#btn-secondary').modal('hide'); //or  $('#IDModal').modal('hide');
+        return false;
+    });
   }
 
   openModalDemande(template: TemplateRef<any>) {
-    
-   if(this.isLoggedIn){
-    this.modalRef = this.modalService.show(template,
-      {
-        class: 'modal-dialog-centered'
-      });
-   }
-
-   else{ Swal.fire({
-    position: 'center',
-    icon: 'info',
-    title: "<h4>Veuillez d'abord vous connecter please</h4>",
-    cancelButtonText:'Quitter',
-    confirmButtonText:'Se Connecter',
-    confirmButtonColor:'#338F8E',
-    showConfirmButton: true,
-    showCancelButton: true,
-    timer: 10000
-  }).then((result) => {
-    if (result.isConfirmed) {
-       this.route.navigate(['/home/signin'])
+    if(this.isLoggedIn){
+      this.modalRef = this.modalService.show(template,
+        {
+          class: 'modal-dialog-centered'
+        });
     }
-  })
-
-  
-       }
-   
-    
- }
+    else{ Swal.fire({
+          position: 'center',
+          icon: 'info',
+          title: "<h4>Veuillez d'abord vous connecter please</h4>",
+          cancelButtonText:'Quitter',
+          confirmButtonText:'Se Connecter',
+          confirmButtonColor:'#338F8E',
+          showConfirmButton: true,
+          showCancelButton: true,
+          timer: 10000
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.route.navigate(['/home/signin'])
+          }
+        })
+    } 
+  }
 
 //recuperer tous les service
   getService(){this.allRequest.getAll("service").subscribe((data:any)=>{this.services=data})}
+
   getUser(){this.userService.getUserById(2).subscribe((data)=>{this.user= data;})}
 
   get f(){return this.demandeForm.controls}
-  onsubmit(){
+  onsubmit(e: any){
     console.log(this.demandeForm.value);
-
-    this.demandService.create(this.demandeForm.value,).subscribe((data: any)=>{
-      if(data){
-        //this.route.navigate(['/service']);
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'MERCI BEAUCOUP !',
-          text: 'Votre evaluation a été enregistré avec succés',
-          showConfirmButton: false,
-          timer: 3000
-        })
-      }
-    },
-    (error: { error: { errors: { msg: string; }; }; })=>{
-      this.message = error.error.errors.msg;
-      console.log(this.message);
-    })
+    if (this.demandeForm.valid) {
+      this.route.navigateByUrl("/home/service/"+this.user?.id)
+      this.demandService.create(this.demandeForm.value).subscribe((data: any)=>{
+        if(data){
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'MERCI BEAUCOUP !',
+            text: 'Votre evaluation a été enregistré avec succés',
+            showConfirmButton: false,
+            timer: 3000
+          })
+        }
+      },
+      (error: { error: { errors: { msg: string; }; }; })=>{
+        this.message = error.error.errors.msg;
+      })
+    } else {
+      e.preventDefault();
+    }
    }
 }

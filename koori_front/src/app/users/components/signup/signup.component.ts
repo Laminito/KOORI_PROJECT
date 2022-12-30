@@ -35,9 +35,9 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmitForm() {
-    // this.auth.signUp(this.mainForm.value).subscribe();
+    this.auth.signup(this.mainForm.value).subscribe();
     this.mainForm.reset();
-    this.router.navigateByUrl('/home/signin');
+    this.router.navigateByUrl('/home');
   }
 
 }
