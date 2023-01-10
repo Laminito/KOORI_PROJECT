@@ -6,80 +6,133 @@ let asyncLib = require('async');
 const { Op } = require("sequelize");
 
 module.exports = {
-    createEvaluation_note: (req, res) => {
-        let sum = 0
-        let nbrElement = 0
-        asyncLib.waterfall([
-            (callback1) => {
-                callback1(null, validationResults.error(req, res))
-            },
-            (errorResult, callback2) => {
-                if (!errorResult) {
-                    const { UserId, RapportId, note, evaluation, statut } = req.body
-                    models.Evaluation_note.create({
-                        UserId,
-                        RapportId,
-                        note,
-                        evaluation,
-                        statut,
+    // createEvaluation_note: (req, res) => {
+    //     let sum = 0
+    //     let nbrElement = 0
+            
+    //                 const { UserId, RapportId, note, evaluation, statut } = req.body
+    //                 models.Evaluation_note.create({
+    //                     UserId,
+    //                     RapportId,
+    //                     note,
+    //                     evaluation,
+    //                     statut,
 
-                    }).then((evaluation_noteResult) => {
-                        callback2(null, evaluation_noteResult)
-                    }).catch((err) => {
-                        return res.status(500).json({ 'error': 'Erreuree dajout: ' + err })
-                    })
-                }
-            },
-            (evaluation_noteResult, callback3) => {
-                if (evaluation_noteResult) {
-                    models.Evaluation_note.findAll({
-                            include: [{
-                                model: models.Rapport,
-                                attributes: ['moyenne']
-                            }],
-                            where: { RapportId: req.params.id1 }
-                        })
-                        .then((evaluation_notes) => {
-                            callback3(null, evaluation_noteResult, evaluation_notes)
-                        }).catch((err) => {
-                            return res.status(500).json({ 'error': 'Erreur dajout: ' + err })
-                        })
-                }
-            },
-            (evaluation_noteResult, evaluation_notes, callback4) => {
-                if (evaluation_notes) {
-                    evaluation_notes.forEach(ev => {
-                        sum = sum + ev.note;
-                        nbrElement++
-                    })
-                    models.Rapport.findOne({
-                            attributes: ['id', 'moyenne'],
-                            where: { id: req.params.id1 }
-                        })
-                        .then((rapport) => {
-                            callback4(null, evaluation_noteResult, rapport)
-                        }).catch((err) => {
-                            return res.status(500).json({ 'error': 'Erreur dajout: ' + err })
-                        })
-                }
-            },
-            (evaluation_noteResult, rapportToUpdate, callback5) => {
-                if (rapportToUpdate) {
-                    rapportToUpdate.update({
-                            moyenne: (sum / nbrElement).toFixed(2),
-                        })
-                        .then(() => {
-                            callback5(null, evaluation_noteResult)
-                        }).catch((err) => {
-                            return res.status(500).json({ 'error': 'Erreur dajout: ' + err })
-                        })
-                }
-            }
+    //                 }).then((evaluation_noteResult) => {
+    //                     return res.status(201).json({
+    //                         success: true,
+    //                         message: "request create Evaluation_note successfully",
+    //                         results: evaluation_noteResult
+    //                 })
+    //                 }).catch((err) => {
+    //                     return res.status(500).json({
+    //                         success: true,
+    //                         message: "failed create Evaluation_note request",
+    //                         results: err
+    //                 })
+    //                 })
+    //                 models.Evaluation_note.findAll({
+    //                         include: [{
+    //                             model: models.Rapport,
+    //                             attributes: ['moyenne']
+    //                         }],
+    //                         where: { RapportId: req.params.id1 }
+    //                     }).then((evaluation_notes) => {
+    //                         return res.status(200).json({
+    //                             success: true,
+    //                             message: "request get All Evaluation_notes successfully",
+    //                             results: evaluation_notes
+    //                     })
+    //                     }).catch((err) => {
+    //                         return res.status(500).json({
+    //                             success: true,
+    //                             message: "failed get all Evaluation_notes request",
+    //                             results: err
+    //                     })
+    //                     })
+                
+    //         },
+    //             if (evaluation_notes) {
+    //                 evaluation_notes.forEach(ev => {
+    //                     sum = sum + ev.note;
+    //                     nbrElement++
+    //                 })
+    //                 models.Rapport.findOne({
+    //                         attributes: ['id', 'moyenne'],
+    //                         where: { id: req.params.id1 }
+    //                     })
+    //                     .then((rapport) => {
+    //                         // callback4(null, evaluation_noteResult, rapport)
+    //                         return res.status(200).json({
+    //                             success: true,
+    //                             message: "request findOne Rapport successfully",
+    //                             results: rapport
+    //                     })
+    //                     }).catch((err) => {
+    //                         return res.status(500).json({
+    //                             success: true,
+    //                             message: "failed findOne Rapport request",
+    //                             results: err
+    //                     })
+    //                     })
+                
+    //             if (rapportToUpdate) {
+    //                 rapportToUpdate.update({
+    //                         moyenne: (sum / nbrElement).toFixed(2),
+    //                     })
+    //                     .then(() => {
+    //                         callback5(null, evaluation_noteResult)
+    //                     }).catch((err) => {
+    //                         return res.status(500).json({ 'error': 'Erreur dajout: ' + err })
+    //                     })
+    //             }
 
-        ], (err, result) => {
-            res.json(result);
-        })
+    getAllEvaluationNote:(req,res)=>{
+        models.Evaluation_note.findAll({
+            attributes:['id','UserId','RapportId','note','evaluation']
+        }).then((evaluations) => {
+                return res.status(200).json({
+                    success: true,
+                    message: "request create Evaluation_notes successfully",
+                    results: evaluations
+            })
+            }).catch((err) => {
+                return res.status(500).json({
+                    success: true,
+                    message: "failed get All Evaluation_notes request",
+                    results: err
+            })
+            })
     },
+
+
+    createEvaluation_note: (req, res) => {
+        const idUser= parseInt(req.params.id)
+        const idRapport= parseInt(req.params.id1)
+                    const {note, evaluation, statut } = req.body
+                    models.Evaluation_note.create({
+                        UserId:idUser,
+                        RapportId:idRapport,
+                        note:note,
+                        evaluation:evaluation,
+                        statut:statut,
+
+                    }).then((evaluations) => {
+                        return res.status(201).json({
+                            success: true,
+                            message: "request create Evaluation_note successfully",
+                            results: evaluations
+                    })
+                    }).catch((err) => {
+                        return res.status(500).json({
+                            success: true,
+                            message: "failed create Evaluation_note request",
+                            results: err
+                    })
+                    })
+            },
+
+
     updateEvaluation_note: (req, res) => {
         const { statut } = req.body
         const idUser = parseInt(req.params.id);

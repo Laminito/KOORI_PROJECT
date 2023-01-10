@@ -1,5 +1,5 @@
 const db = require("../models");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken")
 const passwordgenerator = require("../middleware/password_generator");
 const jwtKey = "my_secret_key"

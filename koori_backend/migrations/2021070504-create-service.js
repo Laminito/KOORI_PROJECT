@@ -65,23 +65,28 @@ module.exports = {
                 allowNull: false,
                 type: Sequelize.TEXT
             },
-            createdAt: {
-                allowNull: false,
-                type: Sequelize.DATE
-            },
-            updatedAt: {
-                allowNull: false,
-                type: Sequelize.DATE
-            },
             archive: {
                 defaultValue: false,
                 allowNull: false,
                 type: Sequelize.BOOLEAN
+            },
+            createdAt: {
+                allowNull: false,
+                type: Sequelize.DATE,
+                defaultValue:new Date()
+
+            },
+            updatedAt: {
+                allowNull: false,
+                type: Sequelize.DATE,
+                defaultValue:new Date()
             }
+            
         }, {
             freezeTableName: true
         });
-        await queryInterface.bulkInsert('Services', [{
+        await queryInterface.bulkInsert('Services', [
+            {
                 libelle: "Boot'Camp",
                 avatar: "https://media.istockphoto.com/id/803702186/photo/determined-woman-climbing-a-net-during-obstacle-course.jpg?s=1024x1024&w=is&k=20&c=SR5HqWTU_CG2DGRNbC9WaXTXMdIiQK1SUpgFNsqaxLQ=",
                 nom_des_clients: 'Toutes les directions de la SONATEL',
@@ -115,9 +120,7 @@ module.exports = {
                     'deck innovation',
                 suivi_gestion_relation_client: 'Comite innovation: mensuel',
                 liste_des_applications_metiers_supporte: 'N/A',
-                tarifs_et_Facturation: 'N/A',
-                createdAt: new Date(),
-                updatedAt: new Date()
+                tarifs_et_Facturation: 'N/A'
             },
             {
                 libelle: "Raid Innovation",
@@ -149,9 +152,7 @@ module.exports = {
                 suivi_gestion_relation_client: 'Comite de pilotage du raid : hebdomadaire' +
                     'Comite innovation: mensuel',
                 liste_des_applications_metiers_supporte: 'N/A',
-                tarifs_et_Facturation: 'N/A',
-                createdAt: new Date(),
-                updatedAt: new Date()
+                tarifs_et_Facturation: 'N/A'
             },
             {
                 libelle: "Quick Design",
@@ -188,8 +189,6 @@ module.exports = {
                 suivi_gestion_relation_client: 'Comite innovation: mensuel',
                 liste_des_applications_metiers_supporte: 'N/A',
                 tarifs_et_Facturation: 'N/A',
-                createdAt: new Date(),
-                updatedAt: new Date()
             },
             {
                 libelle: "Post-Raid & MVP",
@@ -226,8 +225,6 @@ module.exports = {
                 suivi_gestion_relation_client: 'Comite innovation: mensuel',
                 liste_des_applications_metiers_supporte: 'N/A',
                 tarifs_et_Facturation: 'N/A',
-                createdAt: new Date(),
-                updatedAt: new Date()
             },
             {
                 libelle: "Day 4 Innovation",
@@ -264,14 +261,14 @@ module.exports = {
                 suivi_gestion_relation_client: 'Comite innovation: mensuel',
                 liste_des_applications_metiers_supporte: 'N/A',
                 tarifs_et_Facturation: 'N/A',
-                createdAt: new Date(),
-                updatedAt: new Date()
             }
-        ], {});
+        ]);
     },
 
     async down(queryInterface, Sequelize) {
-        return queryInterface.bulkDelete('Services', null, {});
+        await queryInterface.dropTable('Services');
+        // return queryInterface.bulkDelete('Services', null, {});
+
 
     }
 };

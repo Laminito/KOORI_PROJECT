@@ -1,5 +1,5 @@
 // Imports
-const validationResults = require('../validationResult')
+// const validationResults = require('../validationResult')
 const _ = require('lodash')
 const models = require('../models');
 let asyncLib = require('async');
@@ -19,37 +19,50 @@ module.exports = {
             offset: (!isNaN(offset)) ? offset : null,
             include: [{
                 model: models.User,
-                attributes: ['id']
+                attributes: ['id','email']
             }, {
                 model: models.Ibox,
                 attributes: ['id', 'description']
             }],
-        }).then((allEvaluationFiche => {
-            // console.log(allEvaluationFiche);
-            return res.status(200).json(allEvaluationFiche)
-
-        })).catch((err) => {
-            return res.status(500).json({ 'error': 'Erreur de récupération' + err })
+        }).then((evaluations) => {
+            return res.status(200).json({
+                success: true,
+                message: "request get All EvaluationIboxs successfully",
+                results: evaluations
+        })
+        }).catch((err) => {
+            return res.status(500).json({
+                success: false,
+                message: "failed get All EvaluationIboxs request",
+                results: err
+        })
         })
     },
     createEvaluation_ibox: (req, res) => {
-        // const idUser = parseInt(req.params.id);
-        // const idIbox = parseInt(req.params.id1);
+        const idUser = parseInt(req.params.id);
+        const idIbox = parseInt(req.params.id1);
         //return res.json({'ok': "ok"})
         // const limit = parseInt(req.query.limit);
         // const offset = parseInt(req.query.offset);
 
-        const { UserId, IboxId, evaluation, note } = req.body
+        const {evaluation, note } = req.body
         models.EvaluationIbox.create({
-            UserId: UserId,
-            IboxId: IboxId,
+            UserId: idUser,
+            IboxId: idIbox,
             evaluation: evaluation,
             note: note
-        }).then((evaluation_kooriResult) => {
-            console.log(evaluation_kooriResult)
-            return res.status(200).json(evaluation_kooriResult)
+        }).then((evaluations) => {
+            return res.status(201).json({
+                success: true,
+                message: "request create EvaluationIbox successfully",
+                results: evaluations
+        })
         }).catch((err) => {
-            return res.status(500).json({ 'error': 'Erreur dajout: ' + err })
+            return res.status(500).json({
+                success: false,
+                message: "failed create EvaluationIbox request",
+                results: err
+        })
         })
     },
     updateEvaluation_ibox: (req, res) => {

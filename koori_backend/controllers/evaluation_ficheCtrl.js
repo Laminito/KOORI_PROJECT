@@ -2,7 +2,6 @@
 const validationResults = require('../validationResult')
 const _ = require('lodash')
 const models = require('../models');
-let asyncLib = require('async');
 const { Op } = require("sequelize");
 
 module.exports = {
@@ -20,35 +19,47 @@ module.exports = {
             offset: (!isNaN(offset)) ? offset : null,
             include: [{
                 model: models.User,
-                attributes: ['id']
+                attributes: ['id','email']
             }, {
                 model: models.Fiche,
                 attributes: ['id', 'description']
             }],
-        }).then((allEvaluationFiche => {
-            // console.log(allEvaluationFiche);
-            return res.status(200).json(allEvaluationFiche)
-
-        })).catch((err) => {
-            return res.status(500).json({ 'error': 'Erreur de récupération' + err })
+        }).then((evaluations) => {
+            return res.status(200).json({
+                success: true,
+                message: "request get All EvaluationFiches successfully",
+                results: evaluations
+        })
+        }).catch((err) => {
+            return res.status(500).json({
+                success: false,
+                message: "failed get All EvaluationFiches request",
+                results: err
+        })
         })
     },
     createEvaluation_fiche: (req, res) => {
-        // const idUser = parseInt(req.params.id);
-        // const idFiche = parseInt(req.params.id1);
+        const idUser = parseInt(req.params.id);
+        const idFiche = parseInt(req.params.id1);
         //return res.json({'ok': "ok"})
-
-        const { UserId, FicheId, evaluation, note } = req.body
+        const { evaluation, note } = req.body
         models.EvaluationFiche.create({
-            UserId: UserId,
-            FicheId: FicheId,
+            UserId: idUser,
+            FicheId: idFiche,
             evaluation: evaluation,
             note: note
-        }).then((evaluation_kooriResult) => {
-            // console.log("evaluation_kooriResult : ", evaluation_kooriResult);
-            return res.status(200).json(evaluation_kooriResult)
+        }).then((evaluations) => {
+            return res.status(201).json({
+                success: true,
+                message: "request create EvaluationFiche successfully",
+                results: evaluations
+        })
         }).catch((err) => {
-            return res.status(500).json({ 'error': 'Erreur dajout: ' + err })
+            return res.status(500).json({
+                success: false,
+                message: "failed create EvaluationFiche request",
+                results: err
+        })
         })
     },
 

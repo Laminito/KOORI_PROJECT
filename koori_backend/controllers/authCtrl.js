@@ -1,6 +1,6 @@
 //importing modules
 
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const db = require("../models");
 const passwordgenerator = require("../middleware/password_generator");
 const jwt = require("jsonwebtoken");

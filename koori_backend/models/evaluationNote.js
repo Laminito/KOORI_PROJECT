@@ -19,9 +19,13 @@ module.exports = (sequelize, DataTypes) => {
     EvaluationNote.init({
         UserId: DataTypes.INTEGER,
         RapportId: DataTypes.INTEGER,
-        note: DataTypes.INTEGER,
         evaluation: DataTypes.TEXT,
         statut: DataTypes.BOOLEAN,
+        note: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            defaultValue: 0
+        }
     }, {
         sequelize,
         modelName: 'EvaluationNote',

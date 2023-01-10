@@ -15,20 +15,18 @@ module.exports = {
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE,
+                defaultValue: new Date()
             },
             updatedAt: {
                 allowNull: false,
                 type: Sequelize.DATE,
+                defaultValue: new Date()
             }
         });
         await queryInterface.bulkInsert('Profils', [{
-            libelle: 'Admin',
-            createdAt: new Date(),
-            updatedAt: new Date()
+            libelle: 'Admin'
         }, {
-            libelle: 'Client',
-            createdAt: new Date(),
-            updatedAt: new Date()
+            libelle: 'Client'
         }, ])
     },
     down: async(queryInterface, Sequelize) => {

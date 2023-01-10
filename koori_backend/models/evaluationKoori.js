@@ -19,7 +19,11 @@ module.exports = (sequelize, DataTypes) => {
         UserId: DataTypes.INTEGER,
         KooriId: DataTypes.INTEGER,
         evaluation: DataTypes.TEXT,
-        note: DataTypes.INTEGER
+        note: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            defaultValue: 0
+        }
     }, {
         sequelize,
         modelName: 'EvaluationKoori',

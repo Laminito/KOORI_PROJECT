@@ -1,5 +1,5 @@
 'use strict';
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcryptjs")
 const defaultpass = "pass"
 async function hash(password) {
     const passwprdHash = await bcrypt.hash(password, 10);

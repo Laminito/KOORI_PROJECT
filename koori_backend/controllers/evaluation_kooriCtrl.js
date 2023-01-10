@@ -19,37 +19,48 @@ module.exports = {
             offset: (!isNaN(offset)) ? offset : null,
             include: [{
                 model: models.User,
-                attributes: ['id']
+                attributes: ['id','email']
             }, {
                 model: models.Koori,
                 attributes: ['id', 'description']
             }],
-        }).then((allEvaluationKoori => {
-            // console.log(allEvaluationFiche);
-            return res.status(200).json(allEvaluationKoori)
-
-        })).catch((err) => {
-            return res.status(500).json({ 'error': 'Erreur de récupération' + err })
+        }).then((evaluations) => {
+            return res.status(201).json({
+                success: true,
+                message: "request get All EvaluationKoori successfully",
+                results: evaluations
+        })
+        }).catch((err) => {
+            return res.status(500).json({
+                success: false,
+                message: "failed get All EvaluationKoori request",
+                results: err
+        })
         })
     },
     createEvaluation_koori: (req, res) => {
-        // const idUser = parseInt(req.params.id);
-        // const idKoori = parseInt(req.params.id1);
+        const idUser = parseInt(req.params.id);
+        const idKoori = parseInt(req.params.id1);
         //return res.json({'ok': "ok"})
-
-
-        const { UserId, KooriId, evaluation, note } = req.body
+        const {evaluation, note } = req.body
         models.EvaluationKoori.create({
-            UserId: UserId,
-            KooriId: KooriId,
+            UserId: idUser,
+            KooriId: idKoori,
             evaluation: evaluation,
             note: note
-        }).then((evaluation_kooriResult) => {
-            console.log(evaluation_kooriResult)
-            return res.status(200).json(evaluation_kooriResult)
-        }).catch((err) => {
-            return res.status(500).json({ 'error': 'Erreur dajout: ' + err })
-        })
+        }).then((evaluations) => {
+                return res.status(201).json({
+                    success: true,
+                    message: "request create Evaluation_Koori successfully",
+                    results: evaluations
+            })
+            }).catch((err) => {
+                return res.status(500).json({
+                    success: true,
+                    message: "failed create Evaluation_note request",
+                    results: err
+            })
+            })
     },
     updateEvaluation_koori: (req, res) => {
         // const { statut } = req.body
@@ -61,12 +72,19 @@ module.exports = {
             where: {
                 [Op.and]: [{ UserId: idUser }, { KooriId: idKoori }]
             },
-        }).then((evaluation_kooriFound) => {
-            console.log(evaluation_kooriFound);
-            res.status(200).json(evaluation_kooriFound)
-        }).catch((err) => {
-            res.status(500).json({ 'impossible de mettre a jour ': err });
-        })
+        }).then((evaluation) => {
+                return res.status(201).json({
+                    success: true,
+                    message: "request create EvaluationFiche successfully",
+                    results: evaluation
+            })
+            }).catch((err) => {
+                return res.status(500).json({
+                    success: false,
+                    message: "failed to update EvaluationFiche request",
+                    results: err
+            })
+            })
 
 
     },

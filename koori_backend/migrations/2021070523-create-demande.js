@@ -57,11 +57,13 @@ module.exports = {
             },
             createdAt: {
                 allowNull: false,
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                defaultValue: new Date()
             },
             updatedAt: {
                 allowNull: false,
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                defaultValue: new Date()
             }
         });
         await queryInterface.bulkInsert('Demandes', [{
@@ -71,8 +73,7 @@ module.exports = {
                 description: 'Monsieur Ali est un homme maigre, solide comme sa barque, lent, lucide ; un des hommes qui semblent' +
                     'faits pour être toujours en contact avec leur monde préféré : la mer. Il a un gros nez, un gros front, de ' +
                     'gros yeux qui peuvent détecter les profonds secrets de la mer.',
-                createdAt: new Date(),
-                updatedAt: new Date()
+               
             },
             {
                 UserId: 2,
@@ -81,8 +82,7 @@ module.exports = {
                 description: 'Monsieur Ali est un homme maigre, solide comme sa barque, lent, lucide ; un des hommes qui semblent' +
                     'faits pour être toujours en contact avec leur monde préféré : la mer. Il a un gros nez, un gros front, de ' +
                     'gros yeux qui peuvent détecter les profonds secrets de la mer.',
-                createdAt: new Date(),
-                updatedAt: new Date()
+               
             },
             {
                 UserId: 3,
@@ -91,8 +91,7 @@ module.exports = {
                 description: 'Monsieur Ali est un homme maigre, solide comme sa barque, lent, lucide ; un des hommes qui semblent' +
                     'faits pour être toujours en contact avec leur monde préféré : la mer. Il a un gros nez, un gros front, de ' +
                     'gros yeux qui peuvent détecter les profonds secrets de la mer.',
-                createdAt: new Date(),
-                updatedAt: new Date()
+               
             }
         ])
     },

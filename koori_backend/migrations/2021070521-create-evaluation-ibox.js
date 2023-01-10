@@ -26,20 +26,27 @@ module.exports = {
             },
             evaluation: {
                 allowNull: true,
-                type: Sequelize.TEXT
+                type: Sequelize.TEXT,
+                defaultValue: ""
             },
             note: {
                 allowNull: true,
-                type: Sequelize.INTEGER
+                type: Sequelize.INTEGER,
+                defaultValue: 0
+
             },
 
             createdAt: {
                 allowNull: false,
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                defaultValue: new Date()
+
             },
             updatedAt: {
                 allowNull: false,
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                defaultValue: new Date()
+
             }
         }, {
             freezeTableName: true
@@ -50,9 +57,7 @@ module.exports = {
             evaluation: "L'ibox est un ensemble de fiches pratiques destines qux animateurs d'ateliers de design thinking." +
                 "Chaque exercice fait reference a une ou plusieurs etapes de la methode Koori. la couleur correspond au cauris utilisant le plus cette fiche." +
                 "Il n'est pas a exclure que des fiches soient utiles a d'autres cauris. Plusieurs exercices, de differentes fiches peuvent egalement etre combines afin d'atteindre un objectif de creativite particulier.",
-            note: 3,
-            createdAt: new Date(),
-            updatedAt: new Date()
+            note: 3
         }])
     },
     down: async(queryInterface, Sequelize) => {

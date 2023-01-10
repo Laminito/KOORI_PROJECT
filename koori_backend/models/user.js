@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
                     onUpdate: 'RESTRICT'
                 }
             });
-            // this.hasMany(models.Demande);
+            this.hasMany(models.Demande);
             this.hasMany(models.Commentaire);
             this.belongsToMany(models.Demande, { as: 'UserDemande', through: models.Session, foreignKey: 'UserId' });
             this.belongsToMany(models.Rapport, { as: 'UserRapport', through: models.Telechargement, foreignKey: 'UserId' });

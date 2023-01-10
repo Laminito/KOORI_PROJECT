@@ -103,6 +103,11 @@ module.exports = {
                     model: models.Service,
                     attributes: ['id', 'libelle']
 
+                },
+                {
+                    model: models.User,
+                    attributes: ['id']
+
                 }],
             }).then((demandes) => {
                 res.status(200).json(demandes)
