@@ -17,10 +17,10 @@ const signup = async(req, res) => {
        
         await db.User.create(data).then(user => {
             if (user) {
-                // let token = jwt.sign({ email: user.email }, process.env.secretKey, {
-                //     expiresIn: 1 * 24 * 60 * 60 * 1000,
-                // });
-                // res.cookie("jwt", token, { maxAge: 1 * 24 * 60 * 60, httpOnly: true });
+                let token = jwt.sign({ email: user.email }, process.env.secretKey, {
+                    expiresIn: 1 * 24 * 60 * 60 * 1000,
+                });
+                res.cookie("jwt", token, { maxAge: 1 * 24 * 60 * 60, httpOnly: true });
                 send_mail.sendEmail(req.body.email, expireDans, message)
                 return res.status(201).json(user);
             } else {

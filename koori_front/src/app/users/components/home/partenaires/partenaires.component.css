@@ -12,30 +12,16 @@
 	padding: 3%;
   }
   .slider {
-	background: white;
-	box-shadow: 0 10px 20px -5px rgba(0, 0, 0, .125);
-	height: 100px;
+	/* background: rgba(197, 102, 51, 0.511); */
 	margin: auto;
-	overflow: hidden;
+	display: flex;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+	border-radius: 8px;
+	/* border: 1px solid #338f8e; */
 	position: relative;
   }
-  .slider::before, .slider::after {
-	background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
-	content: "";
-	height: 100px;
-	position: absolute;
-	width: 200px;
-	z-index: 2;
-  }
-  .slider::after {
-	right: 0;
-	top: 0;
-	transform: rotateZ(180deg);
-  }
-  .slider::before {
-	left: 0;
-	top: 0;
-  }
+
   .slider .slide-track {
 	animation: scroll 60s linear 2s infinite ;
 	display: flex;
@@ -49,4 +35,17 @@
   .title{
 	font-size: 1.8em;
 	font-weight: 500;
+  }
+
+  .example-card {
+	max-width: 300px;
+	margin-bottom: 8px;
+	padding: 0;
+	display: flex;
+	justify-content: space-between;
+  }
+
+  .card-title{
+	font-size: 1.5em;
+	color: var(--orange);
   }

@@ -48,6 +48,7 @@ export class DemandeComponent implements OnInit {
     private router: ActivatedRoute) { }
 
   ngOnInit(): void {
+    
       this.authService.userValue.subscribe(
         (test) => {
           this.isLoggedIn = test === null ? false : true;
@@ -67,13 +68,6 @@ export class DemandeComponent implements OnInit {
         description: ['', Validators.required],
         date_realisation: ["", Validators.required],
       });
-
-      $('#btn-secondary').submit(function(e) {
-        e.preventDefault();
-        // Coding
-        $('#btn-secondary').modal('hide'); //or  $('#IDModal').modal('hide');
-        return false;
-    });
   }
 
   openModalDemande(template: TemplateRef<any>) {
@@ -107,8 +101,9 @@ export class DemandeComponent implements OnInit {
   getUser(){this.userService.getUserById(2).subscribe((data)=>{this.user= data;})}
 
   get f(){return this.demandeForm.controls}
-  onsubmit(e: any){
-    console.log(this.demandeForm.value);
+
+  onsubmit(){
+    
     if (this.demandeForm.valid) {
       this.route.navigateByUrl("/home/service/"+this.user?.id)
       this.demandService.create(this.demandeForm.value).subscribe((data: any)=>{
@@ -117,17 +112,17 @@ export class DemandeComponent implements OnInit {
             position: 'center',
             icon: 'success',
             title: 'MERCI BEAUCOUP !',
-            text: 'Votre evaluation a été enregistré avec succés',
+            text: 'Votre demande a été enregistrée avec succés !',
             showConfirmButton: false,
             timer: 3000
           })
         }
+        this.demandeForm.reset();
+        this.modalRef.hide();
       },
       (error: { error: { errors: { msg: string; }; }; })=>{
         this.message = error.error.errors.msg;
       })
-    } else {
-      e.preventDefault();
     }
    }
 }

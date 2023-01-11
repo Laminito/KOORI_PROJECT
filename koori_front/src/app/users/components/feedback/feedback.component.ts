@@ -30,6 +30,8 @@ export class FeedbackComponent implements OnInit {
   comment!:string;
   commentaire!:string;
 
+  userConnected!: User | null
+
   constructor(private evaluationsService: EvaluationsService, private formBuilder: FormBuilder,
     private feedbackService: FeedbackService, private authService: AuthService,
     private router:Router){
@@ -65,6 +67,9 @@ export class FeedbackComponent implements OnInit {
     }
     
 
+    this.authService.userValue.subscribe(
+      (user) => this.userConnected = user
+    )
     
   }
   
@@ -77,7 +82,7 @@ export class FeedbackComponent implements OnInit {
 
   onEvaluate(){
 
-    if(this.authService){
+    if(this.userConnected !== null){
       this.evaluation.note = this.rate
       this.evaluationsService.updateEvaluation(this.resources,this.evaluation).subscribe()
       this.isEvaluated = true 

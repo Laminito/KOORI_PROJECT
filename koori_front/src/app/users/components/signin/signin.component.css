@@ -2,9 +2,9 @@
 .main{
 	height: 90vh;
 	padding-top: 20vh;
-	background-image: url('https://i.pinimg.com/736x/32/0b/30/320b3074008b3959736c700fab2488dc.jpg');
+	background-image: url('src/assets/img/bglogin.png');
 	background-repeat: no-repeat;
-	background-size: cover;
+	background-size: 100% 100%;
 }
 
 *{

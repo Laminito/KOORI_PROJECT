@@ -120,14 +120,17 @@ module.exports = {
         })
 
     },
+
     getUserById: (req, res) => {
         const id = parseInt(req.params.id);
         models.User.findOne({
                 attributes: ['id', 'ProfilId', 'nomComplet', 'email', 'profession', 'service', 'departement', 'direction'],
                 where: { id: id },
-                include: [{
-                    model: models.Profil
-                }],
+                include: [
+                    {
+                        model: models.Profil
+                    }
+                ],
             }).then((user) => {
                 if (user) {
                     // let buff = new Buffer(user.avatar);

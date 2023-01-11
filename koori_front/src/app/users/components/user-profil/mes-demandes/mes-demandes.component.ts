@@ -14,8 +14,8 @@ import { forEachChild } from 'typescript';
 })
 export class MesDemandesComponent implements OnInit {
 
-  demandes!:Demande[]
-  services:String[] = []
+  demandes!: Demande[]
+  services: String[] = []
   user!: User | null
 
   constructor(private demandeService: DemandeService,
@@ -30,10 +30,8 @@ export class MesDemandesComponent implements OnInit {
 
     this.demandeService.getAllDemande().subscribe( //NE PAS OUBLIER DE PRENDRE LA METHODE GETDEMANDESBYUSERID
       data => {
-        console.log(data);
         this.demandes = data.filter((dmd: any) => dmd.UserId == this.user?.id)
         for (let demande of data){
-
           this.catalogueServiceService.getByIdService(demande.Service.id).subscribe(
             service => {
               this.services.push(service.libelle)

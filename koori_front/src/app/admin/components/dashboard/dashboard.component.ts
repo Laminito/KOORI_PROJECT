@@ -29,7 +29,6 @@ export class DashboardComponent implements OnInit {
 
     this.service.getAllServices().subscribe((data) =>{
       this.services =_.orderBy(data, ['id'], ['asc'])
-      console.log(this.services);
       
       while(this.nbrdemande.length > 0) {
         this.nbrdemande.pop();

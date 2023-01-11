@@ -35,11 +35,11 @@ const routes: Routes = [
       path: 'dashboard', component: DashboardComponent, data: {title: 'Dashboard'}, children: [
       {path: 'service/:id', component: DetailDashboardComponent, resolve: {detailService: DetailServiceResolverService}},
     ]},
-    {path: 'chartTest', component: DemandeAnnuelChartComponent},
+      {path: 'chartTest', component: DemandeAnnuelChartComponent},
       {path: 'ibox', component: IboxComponent},
       {path: 'koori', component: KooriComponent},
       {path: 'fiche/:id', component: FicheComponent, resolve: {fiche: FicheResolverService}},
-      {path: 'service/:id', component: DetailServiceComponent, resolve: {detailService: DetailServiceResolverService} },
+      {path: 'service/:id', component: DetailServiceComponent, resolve: {detailService: DetailServiceResolverService, listeDemande: ListeDemandeByServiceResolver} },
       {path: 'AddService', component: AddServiceComponent},
       {path: 'edit/:id', component: EditServiceComponent},
       {path: 'rapports/:id/details', component: DetailRapportComponent, resolve: {detailRapport: DetailRapportResolverService}},
@@ -49,7 +49,7 @@ const routes: Routes = [
       {path: 'session/:id', component: DetailSessionComponent , resolve: {session: DetailSessionResolverService} },
       {path: 'utilisateur', component: ListeUtilisateurComponent},
       {path: 'utilisateur-detail/:id', component: UtilisateurDetailComponent},
-      { path: 'not-found', component: NotFoundComponent },
+      {path: 'not-found', component: NotFoundComponent },
       {path: '**', redirectTo: '/not-found'}
   ]
 },

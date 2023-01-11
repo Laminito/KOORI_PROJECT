@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { Demande } from 'src/app/admin/_models/demande';
+import { Service } from 'src/app/admin/_models/service';
 import { ServiceService } from 'src/app/admin/_services/service.service';
 import Swal from 'sweetalert2';
 
@@ -13,7 +15,9 @@ import Swal from 'sweetalert2';
 export class AddServiceComponent implements OnInit {
   submitted = false;
   avatar!: File;
-  // id:any
+  id!: number
+  serve!: Service
+  demandes!: Demande[]
   // isAddService!:boolean;
   // loading = false;
 
@@ -24,14 +28,10 @@ export class AddServiceComponent implements OnInit {
      private route: ActivatedRoute) { }
 
   ngOnInit( ): void { 
-    // this.id = this.route.snapshot.params['id'];
+    
     // this.isAddService = !this.id;
 
-    // if (!this.isAddService) {
-    //   this.service.getServiceById(this.id)
-    //       .pipe(first())
-    //       .subscribe(x => this.addServiceform.patchValue(x));
-    // }
+      
 
   }
   addServiceform = this.formBuilder.group({

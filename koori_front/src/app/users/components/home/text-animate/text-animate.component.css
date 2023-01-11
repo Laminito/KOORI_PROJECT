@@ -1,4 +1,6 @@
 /* Base */
+@import url('https://fonts.googleapis.com/css2?family=Merienda&display=swap');
+
 body {
   padding: 0;
   margin: 0;
@@ -7,6 +9,20 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+}
+*{
+  font-family: 'Merienda', cursive;
+}
+.container{
+  text-align: center;
+  margin-top: 12vh;
+}
+.accroche, .slogant{
+  font-size: 1.8em;
+}
+.slogant{
+  font-weight: 100;
+  margin-top: 1em;
 }
 h1 {
   position: relative;
@@ -20,7 +36,7 @@ h1 {
   animation: typewriter 6s steps(44) 2s normal infinite both,
     blinkTextCursor 10s infinite;
   margin-left: 22%;
-  margin-top: 15vh;
+  /* margin-top: 3vh; */
 }
 
 @keyframes typewriter {

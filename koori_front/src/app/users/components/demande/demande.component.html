@@ -1,16 +1,22 @@
-  <!-- btn faire une demande 
+  
 
     <button type="button" class="draw meet" data-bs-toggle="modal" (click) = "openModalDemande(template)">Faire une demande {{ libelleService }}</button>
   
     <ng-template #template >
+
+      <div class="modal-header">
+        <h4 class="modal-title text-center fs-4 pt-3">Demande de Service</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true" class="visually-hidden bg-white"></span>
+        </button>
+      </div>
       
       <div class="modal-body">
         <form [formGroup]="demandeForm" (ngSubmit)="onsubmit()">
           <div class="row">
             <div class="col-12">
               <label class="form-label">Challenge ou objet <label class="text-danger">*</label></label>
-              <input type="text" [ngClass]="{ 'is-invalid': submitted }" [formControlName]="'titre'" class="input mb-2">
-  
+              <input type="text" [ngClass]="{ 'is-invalid': submitted }" [formControlName]="'titre'" class="form-control input mb-2">
             </div>
           </div>
           <label class="form-label">Description de la demande <label class="text-danger">*</label></label>
@@ -22,6 +28,7 @@
                 [ngClass]="{ 'is-invalid': submitted }" class="form-control input mb-2"
                 [formControlName]="'date_realisation'"
                 name="date_realisation"
+                min="2023-01-20"
                 required>
               </div>
           <div class="text-center">
@@ -31,11 +38,11 @@
       </div>
   
     </ng-template>
-  -->
 
+<!-- btn faire une demande 
   <button type="button" class="draw meet" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Faire une demande {{ libelleService }}</button>
 
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" #template aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header p-4">
@@ -65,8 +72,10 @@
           </form>
         </div>
         <div class="modal-footer d-flex justify-center">
-          <button type="submit" class="btn" id="btn-secondary" (click)="onsubmit($event)" style="background-color: var(--vert); color: white" data-dismiss="modal">Envoyer votre demande</button>
+          <button type="submit" class="btn" id="btn-secondary" (click)="onsubmit()" style="background-color: var(--vert); color: white" data-dismiss="modal">Envoyer votre demande</button>
         </div>
       </div>
     </div>
   </div>
+
+    -->

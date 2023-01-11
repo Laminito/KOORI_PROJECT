@@ -43,6 +43,13 @@ module.exports = {
                 createdAt: new Date(),
                 updatedAt: new Date()
             },
+            {
+                nomComplet: 'El Hadji Birahim GUEYE',
+                message: 'Ce livret est très utile, didactique et complet. Il va aider tous ceux qui cherchent un protocole pour trouver leur rêve.',
+                avatar: "https://media-exp1.licdn.com/dms/image/C5603AQFUmienqir7cw/profile-displayphoto-shrink_800_800/0/1646256680572?e=1672876800&v=beta&t=H27G90WBWI5jaAwl10eecKsFXZ0LpfeLjl38SXsyAtw",
+                createdAt: new Date(),
+                updatedAt: new Date()
+            },
         ])
     },
     down: async(queryInterface, Sequelize) => {

@@ -39,12 +39,12 @@ export class KooriComponent implements OnInit {
     this.getDescriptionKoori()
 
     this.evaluation_koori = new Evaluation_koori()
-    // this.kooriService.getLastKoori().subscribe((lastKoori:Koori)=>{
-    // this.evaluation_koori.KooriId =lastKoori.id
-    // console.log(lastKoori.id)
-    // this.evaluation_koori.UserId = 1  //ON DEVRA PRENDRE INCHALLAH L'ID DU USER QUI SE CONNECTE. CECI N'EST QU'UN TEST
-    // this.resources = `evaluation_koori/user/${this.evaluation_koori.UserId}/koori/${this.evaluation_koori.KooriId}`
-    // })
+    this.kooriService.getLastKoori().subscribe((lastKoori:Koori)=>{
+    this.evaluation_koori.KooriId =lastKoori.id
+    console.log(lastKoori.id)
+    this.evaluation_koori.UserId = 1  //ON DEVRA PRENDRE INCHALLAH L'ID DU USER QUI SE CONNECTE. CECI N'EST QU'UN TEST
+    this.resources = `evaluation_koori/user/${this.evaluation_koori.UserId}/koori/${this.evaluation_koori.KooriId}`
+    })
     this.evaluation_koori.KooriId = 1
     this.evaluation_koori.UserId = 3 //DOIT VENIR DU TOKEN 
     this.resources = `evaluation_koori/user/${this.evaluation_koori.UserId}/koori/${this.evaluation_koori.KooriId}`

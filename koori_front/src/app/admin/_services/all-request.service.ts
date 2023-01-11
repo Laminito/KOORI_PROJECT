@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable, Subject} from "rxjs";
 import {tap} from "rxjs/operators";
 import { environment } from 'src/environments/environment.prod';
+import { Service } from '../_models/service';
 
 
 @Injectable({
@@ -56,6 +57,10 @@ export class AllRequestService {
 
     return this.http.get(this.envApi+entity+id)
 
+  }
+
+  getServiceById(id: any): Observable<Service>{
+    return this.http.get<Service>(`${environment.API}service/${id}`)
   }
 
 

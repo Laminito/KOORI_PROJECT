@@ -25,10 +25,12 @@
     <div class="col-xl-8 col-sm-12 col-md-12 parti-caracteristiques-img">
       <div class="card ">
         <div class="card-body">
-          <!-- <img src="https://source.unsplash.com/1080x585/?computer" class="img-fluid rounded-start" alt="..."> -->
-          <img *ngIf="service.avatar;else other" class="card-img" src="data:image/jpeg;base64,{{service.avatar}}" alt="Card image">
+          <img src="https://source.unsplash.com/1080x585/?computer" class="img-fluid rounded-start" alt="...">
           <ng-template #other>
-            <img src="https://source.unsplash.com/1080x585/?computer" class="img-fluid rounded-start" alt="...">
+            <!-- 
+            
+              <img src="https://source.unsplash.com/1080x585/?computer" class="img-fluid rounded-start" alt="...">
+            -->
           </ng-template>
         </div>
       </div>
@@ -49,63 +51,18 @@
           </div>
                 <!-- btn lister les demande par service -->
           <!-- <app-demande (click)="libelleService()"></app-demande> -->
-          <!-- <div class="col"> -->
+          <!-- <div class="col"> 
+            
             <button  [routerLink]="['/admin/ListeDemande', service.id]" class="btn draw meet"><i class="fas fa-sliders-h"></i>  Voir la liste des demandes {{service.libelle}}</button>
+          -->
            <!-- </div> -->
         </div>
       </div>
     </div>
   </div>
 
-  <h3 class="text-color text-center mb-4">PROPRIETE DU SERVICE</h3>
-  <div class="container gallery mb-3 ">
-    <div class="row">
-      <div class=" col-sm-5">
-        <div class="row">
-          <div class="col-xl-12 col-md-12 col-sm-12  p-text ">
-            <h4 class="text-center title-proprety">Bénéfices client</h4>
-            <p class="p">{{service.benefices_client}}</p>
-
-          </div>
-          <div class="col-xl-12 col-md-12 col-sm-12  p-text">
-            <h4 class="text-center title-proprety">Liste des applications métiers supportées :</h4>
-            <p class="p"> {{service.liste_des_applications_metiers_supporte}} </p>
-           </div>
-          <div class="col-xl-12 col-md-12 col-sm-12 p-text">
-            <h4 class="text-center title-proprety">Description des éléments du service</h4>
-            <p class="p">{{service.description_elements_service}}</p>
-          </div>
-        </div>
-
-      </div>
-      <div class="col-sm-7 mb-3">
-        <div class="row">
-          <div class="col-xl-12 col-md-12 col-sm-12  p-text">
-           <h4 class="text-center title-proprety">Engagement/ Niveaux de service:</h4>
-           <p class="p">{{service.engagement_niveaux_service}}</p>
-          </div>
-          <div class="col-xl-12 col-md-12 col-sm-12  p-text">
-            <h4 class="text-center title-proprety">Plages d’horaires</h4>
-            <p class="p">{{service.plage_horaire}}</p>
-          </div>
-          <div class="col-xl-12 col-md-12 col-sm-12 p-text">
-            <h4 class="text-center title-proprety">Indicateurs de mesure & qualité</h4>
-            <p class="p" > {{service.indicateur_mesure_qualite}}</p>
-          </div>
-          <div class="col-xl-12 col-md-12 col-sm-12  p-text">
-           <h4 class="text-center title-proprety"> Livrables</h4>
-            <p class="p">{{service.livrables}}</p>
-          </div>
-          <div class="col-xl-12 col-md-12 col-sm-12  p-text">
-            <h4 class="text-center title-proprety">Suivi & gestion de la relation client</h4>
-            <p class="p">{{service.suivi_gestion_relation_client}}</p>
-          </div>
-          <div class="col-xl-12 col-md-12 col-sm-12  p-text">
-            <h4 class="text-center title-proprety">Tarifs & Facturation</h4>
-            <p class="p">{{service.tarifs_et_Facturation}}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="demande">
+    <h3 class="text-color text-center mb-4">LSITE DES DEMANDES DE {{ service.libelle }}</h3>
+    <app-liste-demande [demandes]="demandes"></app-liste-demande>
   </div>
 </div>

@@ -3,27 +3,23 @@
     <div class="row mb-4">
       <h2 class="text-color text-center title">NOS PARTENAIRES</h2>
     </div>
-    <div class="slider">
-      <div class="slide-track">
-        <div class="slide">
-          <img src="assets/img/orange.png" height="100" width="100" alt="" />
-        </div>
-        <div class="slide">
-          <img src="assets/img/sonatel.png" height="100" width="100" alt="" />
-        </div>
-        <div class="slide">
-          <img src="assets/img/ilab.png" height="100" width="100" alt="" />
-        </div>
-        <div class="slide">
-          <img src="assets/img/oss.jpeg" height="100" width="100" alt="" />
-        </div>
-        <div class="slide">
-          <img src="assets/img/SA.jpeg" height="100" width="100" alt="" />
-        </div>
-        <div class="slide">
-          <img src="assets/img/mect.png" height="100" width="100" alt="" />
+    <div class="slider mt-4 py-4">
+      
+      <div class="card my-4" *ngFor="let part of parteners" style="max-width: 500px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{{ part.image }}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title title"></h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted">Depuis plus de 2 ans</small></p>
+            </div>
+          </div>
         </div>
       </div>
+
     </div>
 
 </div>

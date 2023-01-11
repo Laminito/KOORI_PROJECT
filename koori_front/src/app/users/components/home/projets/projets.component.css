@@ -1,7 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Muli:400,700&display=swap");
 .section-projects{
 	height: 100vh;
-	background-color: #eee;
+	/* background-color: #eee; */
+  background-image: url('src/assets/img/bgproject1.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 	padding: 3% 0;
 	text-align: center;
 }

@@ -22,7 +22,7 @@ export class SignupComponent implements OnInit {
 
   initMainForm(): void{
     this.mainForm = this.formBuilder.group({
-      ProfilId: 1,
+      ProfilId: 2,
       nomComplet: ['', Validators.required],
       profession: ['', Validators.required],
       service: ['', Validators.required],

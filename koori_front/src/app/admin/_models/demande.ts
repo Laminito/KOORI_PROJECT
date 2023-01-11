@@ -9,7 +9,7 @@ export class Demande {
   public ServiceId?: number;
   public titre?: string
   public description: string=''
-  public date_realisation?: string
+  public date_debut_souhaitee?: string
   public statut: string = 'nouvelle'
   public DemandeUser:any
   public date_fin:any

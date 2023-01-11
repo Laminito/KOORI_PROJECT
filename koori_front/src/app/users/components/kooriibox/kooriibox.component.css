@@ -16,7 +16,7 @@
   border: none;
 }
 .shadow-haut{
-  box-shadow: 8px 4px 4px rgba(97, 97, 97, 0.17);
+  /* box-shadow: 8px 4px 4px rgba(97, 97, 97, 0.17); */
   border-radius: 0px 0px 12px 0px;
 }
 .shadow-bas{

@@ -42,6 +42,7 @@
     "ng2-charts": "^4.0.1",
     "ngx-bootstrap": "^9.0.0",
     "ngx-pagination": "^6.0.2",
+    "owl.carousel": "^2.3.4",
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.6.0",
     "tslib": "^2.3.0",

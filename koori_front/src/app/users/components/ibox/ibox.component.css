@@ -149,7 +149,7 @@
 }
 @media screen and (min-width: 768px) {
   .grid {
-    /*max-width: 1200px;*/
+    max-width: 1200px;
   }
 }
 .card {

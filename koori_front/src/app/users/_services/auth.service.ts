@@ -49,7 +49,11 @@ export class AuthService {
             this.getCurrentUser(res.userID).subscribe(user => {
               localStorage.setItem('user', JSON.stringify(user));
               this.userSubject.next(user);
-              this._location.back();
+              if (this.userSubject.value?.ProfilId == 1) {
+                this.router.navigateByUrl('/admin/dashboard')
+              } else {
+                this._location.back();
+              }
               return user;
             })
       }));

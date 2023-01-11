@@ -5,31 +5,26 @@
 	<div class="containe">
 
 		<div class="recents-projects">
+			
 			<div class="choices">
 				<mat-button-toggle-group #toggleBtnGroup="matButtonToggleGroup" [(value)]="toggleBtn">
 					<mat-button-toggle value="all" [ngClass]="{ btnActive: toggleBtnGroup.value == 'all' }" checked>
 						Tous les projets
 					</mat-button-toggle>
-					<mat-button-toggle *ngFor="let item of services" [ngClass]="{ btnActive: toggleBtnGroup.value == item.id }" value="{{item.id}}">
+					<mat-button-toggle *ngFor="let item of services" [ngClass]="{ btnActive: toggleBtnGroup.value == item.id }" value="{{item.id}}" (click)="getAllDemandes(+toggleBtn)">
 						{{ item.libelle }}
 					</mat-button-toggle>
 				</mat-button-toggle-group>
 			</div>
-			
+
 			<div class="container">
-				<div class="faders">
-				  <div class="left"></div>
-				  <div class="right"></div>
-				</div>
-			  
 				<div class="items">
-				  <div class="entry" *ngFor="let item of demandes">
-					<img src="http://dimelo-answers-production.s3-eu-west-1.amazonaws.com/268/357592665c67e9fc/sms_por_orange_original.png?e390ccc" alt="Smiling person" />
-					<p class="quote"> {{ item.description | summarize: 50 }} </p>
-				  </div>
+					<div class="entry" *ngFor="let item of demandes">
+						<img src="https://us.123rf.com/450wm/alphaspirit/alphaspirit1506/alphaspirit150600174/40918056-la-conception-de-groupe-de-travail-autour-d-une-table.jpg?ver=6" alt="Smiling person"/>
+						<p class="quote"> {{ item.description | summarize: 50 }} </p>
+					</div>
 				</div>
 			</div>
-
 
 		</div>
 	</div>

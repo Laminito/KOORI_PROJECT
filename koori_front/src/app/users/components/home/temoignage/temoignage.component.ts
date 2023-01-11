@@ -14,6 +14,9 @@ export class TemoignageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTemoignages();
+    
+    
+
   }
 
   getTemoignages() {
