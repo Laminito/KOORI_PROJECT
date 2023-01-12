@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Service } from '../../_models/service';
 import { AllRequestService } from '../../_services/all-request.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-accueil',
@@ -11,8 +12,8 @@ export class AccueilComponent implements OnInit {
 
   title= 'kooriAdmin'
   services: Service[]=[];
-
-  constructor(private allRequest: AllRequestService) { }
+  // showFiller = false;
+  constructor(private allRequest: AllRequestService, private router: Router) { }
 
   ngOnInit(): void {
     this.getService();
@@ -58,6 +59,10 @@ export class AccueilComponent implements OnInit {
     this.allRequest.getAll('service/').subscribe((data:any)=>{
       this.services=data;
     })
+  }
+
+  onShowDetailService(idService: number){
+    this.router.navigateByUrl("/admin/service/"+idService)
   }
 
 }

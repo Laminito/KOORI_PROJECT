@@ -27,19 +27,15 @@
         <div class="card-body">
           <img src="https://source.unsplash.com/1080x585/?computer" class="img-fluid rounded-start" alt="...">
           <ng-template #other>
-            <!-- 
             
-              <img src="https://source.unsplash.com/1080x585/?computer" class="img-fluid rounded-start" alt="...">
-            -->
           </ng-template>
         </div>
       </div>
     </div>
     <div class="col-xl-4 col-sm-12 col-md-12 parti-caracteristiques">
       <div class="card card-5">
+        <app-edit-service></app-edit-service>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-          <app-edit-service></app-edit-service>
-          <!-- <button class="btn me-md-2 btn-color" data-bs-dismiss="modal" type="submit" routerLink="edit/{{service.id }}"><i class="fas fa-pencil-alt text-warning"></i>  </button> -->
         </div>
         <div class="card-body ">
           <h3 class="card-title text-center">{{service.libelle | uppercase }}</h3>
@@ -49,13 +45,6 @@
           <div class="scroller">
             <p class="card-text">{{service.description }}  </p>
           </div>
-                <!-- btn lister les demande par service -->
-          <!-- <app-demande (click)="libelleService()"></app-demande> -->
-          <!-- <div class="col"> 
-            
-            <button  [routerLink]="['/admin/ListeDemande', service.id]" class="btn draw meet"><i class="fas fa-sliders-h"></i>  Voir la liste des demandes {{service.libelle}}</button>
-          -->
-           <!-- </div> -->
         </div>
       </div>
     </div>

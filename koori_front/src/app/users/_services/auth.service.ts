@@ -50,7 +50,7 @@ export class AuthService {
               localStorage.setItem('user', JSON.stringify(user));
               this.userSubject.next(user);
               if (this.userSubject.value?.ProfilId == 1) {
-                this.router.navigateByUrl('/admin/dashboard')
+                this.router.navigateByUrl('/admin/dashboard/service/1');
               } else {
                 this._location.back();
               }

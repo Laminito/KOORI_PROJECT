@@ -7,11 +7,11 @@
   <div class="ms-auto"></div>
   <img src="../../assets/img/{{title.toLowerCase()}}-icone.png" alt="">
 </nav>
-<div class="container p-3">
-  <div class="row pt-2 pb-2" style="background: var(--white);border-radius: 5px;">
-    <div class="col-3 mb-3 mt-1 d-flex justify-content-around"
-         *ngFor="let s of services | paginate: { itemsPerPage: 4, currentPage: p }; let i = index;" [attr.data-index]="i" (click)="navigate(s.id)"
-         style="cursor: pointer; width: 25%">
+<div class="container-fluid p-3">
+  <div class="row pt-4 pb-2 d-flex justify-content-evenly" style="background: var(--white);border-radius: 5px;">
+    <div class="col-2 mb-3 mt-1"
+         *ngFor="let s of services let i = index;" [attr.data-index]="i" (click)="navigate(s.id)"
+         style="cursor: pointer; width: 15%; ">
       <div class="row" [ngStyle]="{'border': '1px solid' + tabcolor[i+1],'box-shadow': '2px 2px 3px' + tabcolor[i+1],'box-sizing': 'border-box','border-radius': '10px'}">
         <div class="col-10 py-2">
           <p style="font-size: larger;" class="fw-bold">{{s.libelle}}</p>
@@ -24,6 +24,6 @@
     </div>
   </div>
 </div>
-<pagination-controls (pageChange)="p = $event" class="text-center float-right mt-3"></pagination-controls>
+
 
 <router-outlet></router-outlet>

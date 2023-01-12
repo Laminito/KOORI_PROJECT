@@ -25,6 +25,7 @@ import { DetailSessionResolverService } from './_resolvers/DetailSessionResolver
 import { FicheResolverService } from './_resolvers/FicheResolverService';
 import { ListeDemandeByServiceResolver } from './_resolvers/ListeDemandeByServiceResolver';
 import { SessionByServiceResolverService } from './_resolvers/SessionByServiceResolverService';
+import { UsersComponent } from './components/users/users.component';
 
 const routes: Routes = [
   {path: '', component: AccueilComponent, 
@@ -33,8 +34,9 @@ const routes: Routes = [
   [
     {
       path: 'dashboard', component: DashboardComponent, data: {title: 'Dashboard'}, children: [
-      {path: 'service/:id', component: DetailDashboardComponent, resolve: {detailService: DetailServiceResolverService}},
-    ]},
+        {path: 'service/:id', component: DetailDashboardComponent, resolve: {detailService: DetailServiceResolverService}},
+      ]},
+      {path: 'utilisateurs', component: UsersComponent},
       {path: 'chartTest', component: DemandeAnnuelChartComponent},
       {path: 'ibox', component: IboxComponent},
       {path: 'koori', component: KooriComponent},

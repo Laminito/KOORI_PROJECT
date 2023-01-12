@@ -21,6 +21,7 @@
   }
   .active-link {
 	background-color: var(--orange);
+	color: #fff;
 	border-radius: 3%;
   }
   .collapsed{

@@ -10,6 +10,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {CdkMenuModule} from '@angular/cdk/menu';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {CdkMenuModule} from '@angular/cdk/menu';
 		MatSelectModule,
 		MatDialogModule,
 		MatExpansionModule,
-		CdkMenuModule
+		CdkMenuModule,
+		MatSidenavModule
 	]
 })
 

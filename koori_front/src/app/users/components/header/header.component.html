@@ -51,9 +51,11 @@
                 <li class="nav-item dropdown">
                     <a routerLink="/home/kooriibox" routerLinkActive="active-link" class="nav-link scroll-link fs-6">Koori et Ibox</a>
                 </li>
-                <li class="nav-item">
-                    <a routerLink="/home/service" routerLinkActive="active-link" class="nav-link scroll-link fs-6">Catalogue de Services</a>
-                </li>
+                <!-- 
+                    <li class="nav-item">
+                        <a routerLink="/home/service" routerLinkActive="active-link" class="nav-link scroll-link fs-6">Catalogue de Services</a>
+                    </li>
+                -->
                 <li class="nav-item">
                     <a routerLink="/home/apropos" routerLinkActive="active-link" class="nav-link scroll-link fs-6">A propos de nous</a>
                 </li>
@@ -63,9 +65,11 @@
                 <li class="nav-item">
                     <a routerLink="/home/contact" routerLinkActive="active-link" class="nav-link scroll-link fs-6">Contactez-nous</a>
                 </li>
-                <li class="nav-item">
-                    <a routerLink="/home/communaute" routerLinkActive="active-link" class="nav-link scroll-link fs-6">Communauté</a>
-                </li>
+                <!-- 
+                    <li class="nav-item">
+                        <a routerLink="/home/communaute" routerLinkActive="active-link" class="nav-link scroll-link fs-6">Communauté</a>
+                    </li>
+                -->
             </ul>
             <ul class="navbar-nav-bas ms-auto" *ngIf="!((currentUser$ | async) !== null)">
 
@@ -91,11 +95,14 @@
                         <a class="dropdown-item py-3 fs-6" routerLink="/home/profil">
                             <i class="fa-regular fa-address-card"></i>&nbsp; Profil
                         </a>
-                        <a class="dropdown-item py-3 fs-6" routerLink="admin/dashboard" *ngIf="(currentUser$ | async)?.ProfilId === 1">
+                        <a class="dropdown-item py-3 fs-6" routerLink="admin/dashboard/service/1" *ngIf="(currentUser$ | async)?.ProfilId === 1">
                             <i class="fa-solid fa-gauge"></i>&nbsp; Dashborad
                         </a>
-                        <a class="dropdown-item py-3 fs-6" routerLink="/home/profil/mesDemandes">
-                            <i class="fa-solid fa-list-ul"></i>&nbsp; Demandes
+                        <a class="dropdown-item py-3 fs-6" routerLink="/home/profil/mesDemandes" *ngIf="(currentUser$ | async)?.ProfilId !== 1">
+                            <i class="fa-solid fa-list-ul"></i>&nbsp; Voir mes demandes
+                        </a>
+                        <a class="dropdown-item py-3 fs-6" routerLink="/admin/utilisateurs" *ngIf="(currentUser$ | async)?.ProfilId === 1">
+                            <i class="fa-solid fa-list-ul"></i>&nbsp; Liste des Utilisateurs
                         </a>
                         <a class="dropdown-item py-3 fs-6" routerLink="/home" (click)="logout()">
                             <i class="fa-solid fa-power-off"></i>&nbsp; Deconnexion

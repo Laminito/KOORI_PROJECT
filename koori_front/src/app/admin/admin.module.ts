@@ -36,6 +36,8 @@ import { DemandeAnnuelChartComponent } from './components/detail-deshboard-testi
 import { NosClientsMensuelComponent } from './components/detail-deshboard-testing/nos-clients-mensuel/nos-clients-mensuel.component';
 import { StatutDemandeComponent } from './components/detail-deshboard-testing/statut-demande/statut-demande.component';
 import { CardDemandeComponent } from './components/liste-demande/card-demande/card-demande.component';
+import { UsersComponent } from './components/users/users.component';
+import { CardUserComponent } from './components/users/card-user/card-user.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,9 @@ import { CardDemandeComponent } from './components/liste-demande/card-demande/ca
     DemandeAnnuelChartComponent,
     NosClientsMensuelComponent,
     StatutDemandeComponent,
-    CardDemandeComponent
+    CardDemandeComponent,
+    UsersComponent,
+    CardUserComponent
   ],
   imports: [
     CommonModule,

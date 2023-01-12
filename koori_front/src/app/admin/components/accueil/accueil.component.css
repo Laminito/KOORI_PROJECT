@@ -32,6 +32,7 @@
 	#page-content-wrapper {
 	  min-width: 0;
 	  width: 100%;
+	  min-height: 100vh;
 	}
   
 	#wrapper.toggled #sidebar-wrapper {
@@ -263,4 +264,22 @@
   }
   #span1{
 	font-size: 15px;
+  }
+
+  .tooglebutton{
+	color: var(--vert);
+  }
+
+  .accordion{
+	width: 15vw;
+  }
+
+  .accordion mat-list-item{
+	border-top: 1px solid #18181844;
+  }
+
+  mat-list-item:hover{
+	background: var(--vert);
+	color: #fff;
+	cursor: pointer;
   }
