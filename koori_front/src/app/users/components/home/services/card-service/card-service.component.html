@@ -2,13 +2,10 @@
 	<h2 class="title">NOS SERVICES</h2>
 	<div class="row-service container">
 	  <div data-aos="zoom-in" class="service" *ngFor="let serve of services let i = index" (click)="onGetService(serve.id)">
-		<div>
+		<div class="image-service">
 			<img src="{{ images[i] }}" alt="">
 		</div>
 		<h2>{{ serve.libelle }}</h2>
-		<p>
-		  {{ serve.description | summarize: 80}}
-		</p>
 	  </div>
 	</div>
 </div>

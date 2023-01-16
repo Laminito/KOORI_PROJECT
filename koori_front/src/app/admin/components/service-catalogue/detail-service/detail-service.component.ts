@@ -17,6 +17,13 @@ export class DetailServiceComponent implements OnInit {
   demandes!: Demande[]
   idService!: number
 
+  images: string[] = [
+    "https://static.vecteezy.com/system/resources/previews/007/983/691/non_2x/quick-tips-label-design-free-vector.jpg",
+    "https://img.freepik.com/free-vector/people-starting-business-project_23-2148866842.jpg?w=2000",
+    "https://localist-images.azureedge.net/photos/40808593573296/card/f2cd6ca2271ec2af793407accfc7ac7ec2ebd0d5.jpg",
+    
+  ]
+
   constructor(private route: ActivatedRoute, 
               private sendData: SenddataService,
               private serveService: AllRequestService,
