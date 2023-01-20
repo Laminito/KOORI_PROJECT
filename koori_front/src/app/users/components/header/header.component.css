@@ -107,3 +107,52 @@
 	cursor: pointer;
 }
 
+.separate{
+	color: var(--vert);
+}
+
+.btn-demande{
+	background-color: var(--vert);
+	color: #fff;
+	cursor: pointer;
+	transition: all 0.25s ease;
+}
+.btn-demande:hover{
+	transform: scale(1.05);
+}
+.navigation{
+	width: 70%;
+}
+.error-text{
+	color:red;
+}
+body.modal{
+	overflow: hidden;
+}
+input:focus{
+	outline: none !important;
+}
+.btn-send{
+	background-color: var(--vert);
+	color: #fff;
+}
+label{
+	color: var(--vert);
+}
+
+.modal-header{
+	background-color: var(--vert);
+	color: #fff;
+}
+.form-control-1{
+	width: 100%;
+	border: none;
+	color: var(--orange);
+}
+.form-control-1:focus{
+	outline: none;
+}
+.form-control:focus, .form-control-1:focus {
+	border-color: transparent !important;
+	/* box-shadow: 0 0 5px rgba(98, 101, 228, 1) !important; */
+  }

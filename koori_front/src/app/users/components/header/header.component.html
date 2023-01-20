@@ -41,13 +41,13 @@
     </div>
 </nav>
 <nav class="navbar navbar-dark sticky-top navbar-expand-lg bg-white menu">
-    <div class="container">
+    <div class="container-fluid">
         <a class="navbar-brand" [routerLink]="['home']"><img src="assets/img/logo.png" alt="" width="50" height="50"></a>
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	  </button>
         <div class="navbar-collapse collapse justify-content-between" id="navbarNav">
-            <ul class="navbar-nav justify-content-between">
+            <ul class="navbar-nav navigation">
                 <li class="nav-item dropdown">
                     <a routerLink="/home/kooriibox" routerLinkActive="active-link" class="nav-link scroll-link fs-6">Koori et Ibox</a>
                 </li>
@@ -71,8 +71,12 @@
                     </li>
                 -->
             </ul>
+            <button class="btn btn-outline-info mt-1 btn-demande" data-toggle="modal" data-target="#myModal" *ngIf="(currentUser$ | async) == null || (currentUser$ | async)?.ProfilId !== 1">Demander un service</button>
             <ul class="navbar-nav-bas ms-auto" *ngIf="!((currentUser$ | async) !== null)">
 
+                <li class="nav-item separate mx-3 fs-2 mt-1">
+                    |
+                </li>
                 <li class="nav-item mx-3 fs-6">
                     <a class="nav-link" >
                         <button type="button" routerLink="home/signin" routerLinkActive="active-link" class="btn btn-sm btn-outline-info">Se connecter</button>
@@ -83,8 +87,9 @@
                         <button type="button" routerLink="home/signup" routerLinkActive="active-link" class="btn btn-sm btn-outline-info">S'inscrire</button>
                     </a>
                 </li>
-
+                
             </ul>
+
 
             <ul class="navbar-nav justify-content-between" *ngIf="(currentUser$ | async) !== null">
                 <div class="nav-item dropdown">
@@ -110,7 +115,70 @@
                     </div>
                 </div>
             </ul>
+            
         </div>
     </div>
 </nav>
 
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title mt-3 fs-4 ms-3">Demande de service</h4>
+          <button type="button" #myModalClose class="btn-close fs-5 text-light" data-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="contact-form" [formGroup]="demandeForm"><!-----Form start-->
+            <div class="row"> 
+                    
+                    <div class="col-lg-12 col-md-12">
+                        <div class="form-group mx-3 fs-5 mt-3">
+                            <label>Service</label>
+                            <select name="service" id="service" class="form-control-1 mt-2 py-2" placeholder="Sélectionnez le service à demander">
+                                <option value="0" disabled selected>Sélectionnez le service à demander</option>
+                                <option  *ngFor="let service  of services" value="{{ service.id }}" >{{ service.libelle}}</option>
+                            </select>
+                        </div>
+                    </div>
+                
+                    <div class="col-lg-12 col-md-12">
+                        <div class="form-group mx-3 fs-5 mt-3">
+                            <label>Objet ou Challange</label>
+                            <input  class="form-control mt-2 fs-5" formControlName="objet"  required>
+                        </div>
+                        <div class="error-text" *ngIf="demandeForm.controls['objet'].hasError('required') && demandeForm.controls['objet'].touched">
+                            <p class="ms-3 mt-1">Please enter object</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-md-12">
+                        <div class="form-group mx-3 fs-5 mt-3">
+                            <label>Description</label>
+                            <textarea  class="form-control mt-2 fs-5" formControlName="description"  required></textarea>
+                        </div>
+                        <div class="error-text" *ngIf="demandeForm.controls['description'].hasError('required') && demandeForm.controls['description'].touched">
+                            <p class="ms-3 mt-1">Please enter description</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-md-12">
+                        <div class="form-group mx-3 fs-5 mt-3">
+                            <label>Date souhaitée</label>
+                            <input  class="form-control mt-2" formControlName="date"  type="date" required>
+                        </div>
+                        
+                    </div>     
+            </div>
+        </form>   
+        </div>
+        <div class="modal-footer mt-2">
+          <button type="button" class="btn btn-send mx-auto my-2" id="closeModal"  (click)="onSave()">Envoyer votre demande</button>
+         </div> 
+      </div>
+      
+    </div>
+  </div>

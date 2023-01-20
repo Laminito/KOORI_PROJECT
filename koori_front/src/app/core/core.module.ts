@@ -5,9 +5,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from "@angular/common/http";
 import { SharedModule } from '../shared/shared.module';
-import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { ModalModule } from 'ngx-bootstrap/modal';
-
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -19,7 +17,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     RouterModule,
     SharedModule,
     ModalModule.forRoot(),
-    AccordionModule.forRoot(),
   ],
   exports: [
     HeaderComponent,

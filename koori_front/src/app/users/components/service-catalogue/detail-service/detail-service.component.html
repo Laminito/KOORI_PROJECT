@@ -1,26 +1,26 @@
-<div class="container">
+<div class="containeur">
   <app-nav-link-service></app-nav-link-service>
 
-  <div class="row p-5 mb-3">
-    <div class="col-xl-8 col-sm-12 col-md-12">
+  <div class="row mb-3 service-desc w-75 mx-auto mt-5">
+    <div class="col-xl-6 col-sm-12 col-md-12">
         <div class="card">
-          <img class="img-thumbnail w-100 h-100" src="assets/img/bootcamp.png" alt="pp">
+          <img class="img-thumbnail w-100 h-100" src="https://img.freepik.com/free-vector/tiny-people-turning-bulb-into-socket-idea-lamp-electricity-flat-vector-illustration-brainstorming-creativity_74855-8630.jpg?w=2000" alt="pp">
           <ng-template #other>
             <img *ngIf="service.avatar;else other" class="card-img" src="data:image/jpeg;base64,{{service.avatar}}" alt="Card image">
           </ng-template>
       </div>
     </div>
-    <div class="col-xl-4 col-sm-12 col-md-12 parti-caracteristiques">
+    <div class="col-xl-6 col-sm-12 col-md-12 parti-caracteristiques">
       <div class="card card-5">
         <div class="card-body ">
-          <h3 class="card-title text-center">{{ service.libelle | uppercase }}</h3>
-          <h5 class="card-title text-center">{{service.nom_des_clients }}</h5>
-          <h6 class="card-title text-center">{{service.type_de_service }}</h6>
+          <h3 class="card-title title-service text-end"> {{ service.libelle | uppercase }} </h3>
+          <h5 class="card-title text-end"> {{service.nom_des_clients }} </h5>
 
-          <div class="scroller">
+          <div class="description text-end float-end">
             <p class="card-text">{{service.description }}  </p>
-          </div>            
-        <app-demande [libelleService] = "service.libelle"></app-demande>
+          </div>
+          
+          <app-demande [libelleService] = "service.libelle"></app-demande>
           
         </div>
       </div>
@@ -80,6 +80,7 @@
     </div>
   </div>
 
+  
     <!-- affichage des session -->
   <div class="row d-flex justify-content-md-center mt-4">
       <!--title-->

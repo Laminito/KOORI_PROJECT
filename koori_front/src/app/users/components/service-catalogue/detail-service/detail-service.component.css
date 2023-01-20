@@ -1,15 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Zen+Antique+Soft&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merienda&display=swap');
+
  .card {
   border-radius: 2px;
-  /* display: inline-block; */
-  /* background-color: #FFFFFF; */
-  /* height: 390px; */
+  border: none;
   width: 100%;
   height: 100%;
 }
-.card-5 {
-  box-shadow: 0 2px 8px rgba(75, 73, 73, 0.192);
-} 
 
 .scroller {
    height: 150px; 
@@ -34,7 +31,7 @@
 
 .p{
 	font-family: 'Zen Antique Soft', serif;
-  	color: #464646;
+  color: #464646;
 	font-size: 17px;
 	overflow-wrap: break-word;
 }
@@ -44,7 +41,6 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   background-color: #fff;
-  box-shadow: 2px 2px 5px 5px #00000041
 }
 .p-text{
   background: #fff;
@@ -175,9 +171,7 @@ button::before, button::after {
   font-size: 1rem;
   border-radius: .25rem;
   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-  box-shadow: inset 0 0 0 0;
 }
-
 
 .fa-close{
   color: red;
@@ -331,4 +325,30 @@ i[class^=icon-chevron]{
   float: left;
   width:15%;
   border-radius: 50%;
+}
+
+.containeur{
+  background-color: #fff;
+  width: 85%;
+  margin: auto;
+}
+
+.service-desc{
+  /* border: 2px solid red; */
+  min-height: 50vh;
+}
+.title-service{
+  font-family: 'Merienda', cursive;
+  font-size: 3em;
+  color: var(--orange);
+  padding-top: 1.6em;
+}
+.img-thumbnail{
+  border: none;
+}
+.description{
+  height: 50%;
+  margin-bottom: 2vh;
+  font-size: 1.3em;
+  line-height: 3vh;
 }
