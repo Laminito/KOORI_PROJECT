@@ -11,21 +11,24 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
+            this.hasMany(models.Evaluation);
             this.hasMany(models.Etape);
-            this.belongsToMany(models.Phase, { as: 'FichePhase', through: models.Phase_fiche, foreignKey: 'id_fiche' });
+            this.hasMany(models.Phase_fiche);
+
+            // this.belongsToMany(models.Phase, { as: 'FichePhase', through: models.Phase_fiche, foreignKey: 'id_fiche' });
             this.belongsTo(models.Ibox, {
                 foreignKey: {
                     name: "IboxId",
                     allowNull: false,
                     onDelete: 'RESTRICT',
-                    onUpdate: 'RESTRICT'
+                    onUpdate: 'CASCADE'
                 }
             });
+          
         }
     }
     Fiche.init({
         IboxId: DataTypes.INTEGER,
-        avatar: DataTypes.BLOB,
         titre: DataTypes.STRING,
         sous_titre: DataTypes.STRING,
         description: DataTypes.TEXT,
@@ -34,7 +37,18 @@ module.exports = (sequelize, DataTypes) => {
         dureeMax: DataTypes.INTEGER,
         equipeMin: DataTypes.INTEGER,
         equipeMax: DataTypes.INTEGER,
-        outils: DataTypes.TEXT
+        outils: DataTypes.TEXT,
+        avatar:{
+            type:DataTypes.BLOB,
+            get() {
+                return this.getDataValue('avatar').toString('utf8'); // or whatever encoding is right
+            },
+        },
+        etat: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue:true
+        },
     }, {
         sequelize,
         modelName: 'Fiche'

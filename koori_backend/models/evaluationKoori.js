@@ -11,13 +11,13 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-            this.belongsTo(models.User, { foreignKey: 'UserId', otherKey: 'KooriId' });
-            this.belongsTo(models.Koori, { foreignKey: 'KooriId', otherKey: 'UserId' });
+            // this.belongsTo(models.User, { foreignKey: 'UserId', otherKey: 'KooriId' });
+            // this.belongsTo(models.Koori, { foreignKey: 'KooriId', otherKey: 'UserId' });
         }
     }
     EvaluationKoori.init({
-        UserId: DataTypes.INTEGER,
-        KooriId: DataTypes.INTEGER,
+        // UserId: DataTypes.INTEGER,
+        // KooriId: DataTypes.INTEGER,
         evaluation: DataTypes.TEXT,
         note: {
             type: DataTypes.INTEGER,

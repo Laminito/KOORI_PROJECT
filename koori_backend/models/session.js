@@ -11,16 +11,22 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-            this.belongsTo(models.User, { foreignKey: 'UserId', otherKey: 'DemandeId' });
-            this.belongsTo(models.Demande, { foreignKey: 'DemandeId', otherKey: 'UserId' });
+            
+            this.hasMany(models.Evaluation)
+            this.hasMany(models.Session_demande)
+            
         }
     };
     Session.init({
-        DemandeId: DataTypes.INTEGER,
-        UserId: DataTypes.INTEGER,
-        evaluation: DataTypes.STRING,
-        note: DataTypes.INTEGER,
-        isNotified: DataTypes.BOOLEAN
+        date: DataTypes.DATE,
+        isNotified: {
+            type:DataTypes.BOOLEAN,
+        },
+        etat: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue:true
+        },
     }, {
         sequelize,
         modelName: 'Session',

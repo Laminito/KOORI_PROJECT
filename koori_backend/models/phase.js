@@ -19,14 +19,24 @@ module.exports = (sequelize, DataTypes) => {
                     onUpdate: 'RESTRICT'
                 }
             });
-            this.belongsToMany(models.Fiche, { as: 'PhaseFiche', through: models.Phase_fiche, foreignKey: 'id_phase' });
+            this.hasMany(models.Phase_fiche);
         }
     }
     Phase.init({
         KooriId: DataTypes.INTEGER,
-        avatar: DataTypes.BLOB,
         titre: DataTypes.STRING,
-        description: DataTypes.TEXT
+        description: DataTypes.TEXT,
+        avatar: {
+            type:DataTypes.BLOB,
+            get() {
+                return this.getDataValue('avatar').toString('utf8'); // or whatever encoding is right
+            },
+        },
+        etat: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue:true
+        },
     }, {
         sequelize,
         modelName: 'Phase',

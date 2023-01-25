@@ -569,7 +569,7 @@
         }
       }
     },
-    "/evaluation_fiche/user/{id}/fiche/{id1}": {
+    "/evaluation/user/{id}/fiche/{id1}": {
       "post": {
         "description": "",
         "parameters": [
@@ -676,7 +676,7 @@
         }
       }
     },
-    "/evaluation_fiche": {
+    "/evaluation": {
       "get": {
         "description": "",
         "parameters": [
@@ -692,8 +692,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Created"
           },
           "500": {
             "description": "Internal Server Error"
@@ -701,7 +701,7 @@
         }
       }
     },
-    "/evaluation_fiche/fiche/{id}": {
+    "/evaluation/fiche/{id}": {
       "get": {
         "description": "",
         "parameters": [
@@ -722,7 +722,7 @@
         }
       }
     },
-    "/evaluation_ibox/": {
+    "/evaluation/": {
       "get": {
         "description": "",
         "parameters": [
@@ -747,7 +747,7 @@
         }
       }
     },
-    "/evaluation_ibox/user/{id}/ibox/{id1}": {
+    "/evaluation/user/{id}/ibox/{id1}": {
       "post": {
         "description": "",
         "parameters": [
@@ -839,46 +839,7 @@
         }
       }
     },
-    "/evaluation_ibox": {
-      "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/evaluation_koori": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/evaluation_koori/user/{id}/koori/{id1}": {
+    "/evaluation/user/{id}/koori/{id1}": {
       "post": {
         "description": "",
         "parameters": [
@@ -970,7 +931,7 @@
         }
       }
     },
-    "/evaluation_koori/version/{id}": {
+    "/evaluation/version/{id}": {
       "get": {
         "description": "",
         "parameters": [
@@ -1101,166 +1062,12 @@
       }
     },
     "/fiche/": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "Etapes": {
-                  "example": "any"
-                },
-                "phase": {
-                  "example": "any"
-                },
-                "IboxId": {
-                  "example": "any"
-                },
-                "titre": {
-                  "example": "any"
-                },
-                "sous_titre": {
-                  "example": "any"
-                },
-                "description": {
-                  "example": "any"
-                },
-                "prerequis": {
-                  "example": "any"
-                },
-                "dureeMin": {
-                  "example": "any"
-                },
-                "dureeMax": {
-                  "example": "any"
-                },
-                "equipeMin": {
-                  "example": "any"
-                },
-                "equipeMax": {
-                  "example": "any"
-                },
-                "outils": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
       "get": {
         "description": "",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "type": "string"
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/fiche/{id}/": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "Etapes": {
-                  "example": "any"
-                },
-                "IboxId": {
-                  "example": "any"
-                },
-                "titre": {
-                  "example": "any"
-                },
-                "sous_titre": {
-                  "example": "any"
-                },
-                "description": {
-                  "example": "any"
-                },
-                "prerequis": {
-                  "example": "any"
-                },
-                "dureeMin": {
-                  "example": "any"
-                },
-                "dureeMax": {
-                  "example": "any"
-                },
-                "equipeMin": {
-                  "example": "any"
-                },
-                "equipeMax": {
-                  "example": "any"
-                },
-                "outils": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
           },
           "500": {
             "description": "Internal Server Error"
@@ -1533,52 +1340,10 @@
         }
       }
     },
-    "/phase-fiche/": {
+    "/phases/": {
       "get": {
         "description": "",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/phase-fiche/{id}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/all_fiches_by_phase/{id}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -1714,159 +1479,9 @@
       }
     },
     "/rapport/": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "titre": {
-                  "example": "any"
-                },
-                "description": {
-                  "example": "any"
-                },
-                "statut": {
-                  "example": "any"
-                },
-                "ServiceId": {
-                  "example": "any"
-                },
-                "idDemande": {
-                  "example": "any"
-                },
-                "participants": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "201": {
-            "description": "Created"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
       "get": {
         "description": "",
-        "parameters": [
-          {
-            "name": "filter",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/rapport/{id}/": {
-      "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "titre": {
-                  "example": "any"
-                },
-                "description": {
-                  "example": "any"
-                },
-                "statut": {
-                  "example": "any"
-                },
-                "idDemande": {
-                  "example": "any"
-                },
-                "participants": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "201": {
-            "description": "Created"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/user/{id}/rapport": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -1941,13 +1556,7 @@
       },
       "get": {
         "description": "",
-        "parameters": [
-          {
-            "name": "filter",
-            "in": "header",
-            "type": "string"
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -2201,18 +1810,7 @@
     "/session/": {
       "get": {
         "description": "",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "type": "string"
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -2511,23 +2109,6 @@
         }
       }
     },
-    "/client/": {
-      "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
     "/user/{id}": {
       "put": {
         "description": "",
@@ -2544,13 +2125,7 @@
             "schema": {
               "type": "object",
               "properties": {
-                "ProfilId": {
-                  "example": "any"
-                },
                 "nomComplet": {
-                  "example": "any"
-                },
-                "email": {
                   "example": "any"
                 },
                 "profession": {
@@ -2570,8 +2145,8 @@
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created"
+          "204": {
+            "description": "No Content"
           },
           "500": {
             "description": "Internal Server Error"
@@ -2599,33 +2174,14 @@
             "description": "Internal Server Error"
           }
         }
-      },
-      "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
       }
     },
-    "/user/profil/{id}": {
+    "/user/email/{email}": {
       "get": {
         "description": "",
         "parameters": [
           {
-            "name": "id",
+            "name": "email",
             "in": "path",
             "required": true,
             "type": "string"
@@ -2644,23 +2200,30 @@
         }
       }
     },
-    "/demandes/user/{id}/": {
+    "/user/profil/client": {
       "get": {
         "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
           },
-          "404": {
-            "description": "Not Found"
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/user/profil/admin": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -2680,12 +2243,36 @@
                 },
                 "email": {
                   "example": "any"
+                },
+                "ProfilId": {
+                  "example": "any"
+                },
+                "nomComplet": {
+                  "example": "any"
+                },
+                "profession": {
+                  "example": "any"
+                },
+                "service": {
+                  "example": "any"
+                },
+                "direction": {
+                  "example": "any"
+                },
+                "departement": {
+                  "example": "any"
+                },
+                "avatar": {
+                  "example": "any"
                 }
               }
             }
           }
         ],
         "responses": {
+          "201": {
+            "description": "Created"
+          },
           "409": {
             "description": "Conflict"
           }
@@ -2715,6 +2302,66 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/forgot-password": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/reset-password": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "token": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "401": {
             "description": "Unauthorized"

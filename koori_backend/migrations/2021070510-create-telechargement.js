@@ -8,45 +8,45 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            id_rapport: {
+            UserId: {
+                type: Sequelize.INTEGER,
+                references: {
+                    model: 'Users',
+                    key: 'id'
+                }
+            },
+            RapportId: {
                 type: Sequelize.INTEGER,
                 references: {
                     model: 'Rapports',
                     key: 'id'
                 }
             },
-            id_user: {
-                type: Sequelize.INTEGER,
-                references: {
-                    model: 'Users',
-                    key: 'id'
-                },
-                date: {
-                    type: Sequelize.DATEONLY,
-                    defaultValue: Sequelize.NOW,
-                    // get: function() { 
-                    // or use get(){ }
-                    //     return this.getDataValue('date')
-                    //         .toLocaleString('en-GB', { timeZone: 'UTC' });
-                    // }
-                }
+            date: {
+                type: Sequelize.DATEONLY,
+                defaultValue: Sequelize.NOW
             },
+            etat: {
+                type: Sequelize.BOOLEAN,
+                allowNull: false,
+                defaultValue:true
+            },
+            
             createdAt: {
                 allowNull: false,
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                defaultValue: new Date()
             },
             updatedAt: {
                 allowNull: false,
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                defaultValue: new Date()
             }
         });
         await queryInterface.bulkInsert('Telechargements', [{
-            id_rapport: 1,
-            id_user: 3,
-            // date: new Date(),
-            createdAt: new Date(),
-            updatedAt: new Date()
-
+            // ServiceId: 1,
+            UserId: 4,
+            RapportId: 1,
         }])
     },
     down: async(queryInterface, Sequelize) => {

@@ -8,85 +8,32 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      evaluation: {
-        type: Sequelize.TEXT,
-        allowNull: true
-      },
-      note: {
-        type: Sequelize.INTEGER,
-        allowNull:false,
-        defaultValue: 0
-      },
-      DemandeId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Demandes',
-          key: 'id'
-        }
-      },
-      UserId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Users',
-          key: 'id'
-        }
-      },
       isNotified: {
         allowNull: false,
         type: Sequelize.BOOLEAN,
-        defaultValue: false
       },
+      etat: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue:true
+    },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: new Date()
+
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: new Date()
+
       }
     });
-    await  queryInterface.bulkInsert('Sessions', [{
-      evaluation: 'Trés bien',
-      note: 18,
-      DemandeId: 1,
-      UserId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },
-    {
-      evaluation: 'Trés bien',
-      note: 16,
-      DemandeId: 1,
-      UserId: 2,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },
-    {
-      evaluation: 'Trés bien',
-      note: 14,
-      DemandeId: 1,
-      UserId: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },
-    {
-      evaluation: 'Trés bien',
-      note: 16,
-      DemandeId: 2,
-      UserId: 2,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },
-    {
-      evaluation: 'Trés bien',
-      note: 12,
-      DemandeId: 2,
-      UserId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    }
+    await  queryInterface.bulkInsert('Sessions', [
+      {
+      isNotified:false
+      }
     ])
   },
   down: async (queryInterface, Sequelize) => {

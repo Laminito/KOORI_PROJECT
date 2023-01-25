@@ -6,9 +6,10 @@ module.exports = (sequelize, DataTypes) => {
     class Koori extends Model {
         static associate(models) {
             // define association here
-            this.hasMany(models.Commentaire);
+            // this.hasMany(models.Commentaire);
             this.hasMany(models.Phase);
-            this.belongsToMany(models.User, { as: 'EvaluationKooriUser', through: models.EvaluationKoori, foreignKey: 'KooriId' });
+            // this.belongsToMany(models.User, { as: 'EvaluationKooriUser', through: models.EvaluationKoori, foreignKey: 'KooriId' });
+            this.hasMany(models.Evaluation)
 
         }
     }
@@ -21,7 +22,12 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
             unique: true
-        }
+        },
+        etat: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue:true
+        },
     }, {
         sequelize,
         modelName: 'Koori',

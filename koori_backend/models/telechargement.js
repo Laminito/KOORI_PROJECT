@@ -10,15 +10,38 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
+           
             // define association here
-            this.belongsTo(models.Rapport, { foreignKey: 'id_rapport', otherKey: 'id_user' });
-            this.belongsTo(models.User, { foreignKey: 'id_user', otherKey: 'id_rapport' });
+            this.belongsTo(models.Rapport, {
+                foreignKey: {
+                    name: "RapportId",
+                    allowNull: false,
+                    onDelete: 'RESTRICT',
+                    onUpdate: 'RESTRICT'
+                }
+            });
+            this.belongsTo(models.User, {
+                foreignKey: {
+                    name: "UserId",
+                    allowNull: false,
+                    onDelete: 'RESTRICT',
+                    onUpdate: 'RESTRICT'
+                }
+                });
         }
     }
     Telechargement.init({
-        id_rapport: DataTypes.INTEGER,
-        id_user: DataTypes.INTEGER,
-        date: DataTypes.DATE
+        UserId: DataTypes.INTEGER,
+        RapportId: DataTypes.INTEGER,
+        date: {
+            type:DataTypes.DATE,
+            allowNull:new Date()
+        },
+        etat: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue:true
+        },
     }, {
         sequelize,
         modelName: 'Telechargement',

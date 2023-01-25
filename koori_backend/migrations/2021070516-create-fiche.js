@@ -18,7 +18,10 @@ module.exports = {
             },
             avatar: {
                 allowNull: true,
-                type: Sequelize.BLOB
+                type: Sequelize.BLOB,
+                get() {
+                    return this.getDataValue('avatar').toString('utf8'); // or whatever encoding is right
+                },
             },
             titre: {
                 allowNull: false,
@@ -56,13 +59,21 @@ module.exports = {
                 allowNull: false,
                 type: Sequelize.TEXT
             },
+            etat: {
+                type: Sequelize.BOOLEAN,
+                allowNull: false,
+                defaultValue:true
+            },
             createdAt: {
                 allowNull: false,
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                defaultValue: new Date()
+
             },
             updatedAt: {
                 allowNull: false,
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                defaultValue: new Date()
             }
         });
         await queryInterface.bulkInsert('Fiches', [{
@@ -80,8 +91,6 @@ module.exports = {
                 equipeMin: 2,
                 equipeMax: 10,
                 outils: 'feutre, post-it(2 couleurs), tableau blanc',
-                createdAt: new Date(),
-                updatedAt: new Date()
             },
             {
                 IboxId: 1,
@@ -95,9 +104,7 @@ module.exports = {
                 dureeMax: 50,
                 equipeMin: 2,
                 equipeMax: 10,
-                outils: 'feutre, post-it, papiers, tableau',
-                createdAt: new Date(),
-                updatedAt: new Date()
+                outils: 'feutre, post-it, papiers, tableau'
             },
             {
                 IboxId: 1,
@@ -112,9 +119,7 @@ module.exports = {
                 dureeMax: 60,
                 equipeMin: 2,
                 equipeMax: 10,
-                outils: 'feutre, post-it, padex, tableau',
-                createdAt: new Date(),
-                updatedAt: new Date()
+                outils: 'feutre, post-it, padex, tableau'
             },
             {
                 IboxId: 1,
@@ -133,9 +138,7 @@ module.exports = {
                 dureeMax: 60,
                 equipeMin: 2,
                 equipeMax: 20,
-                outils: 'feutre, post-it, papiers, boites',
-                createdAt: new Date(),
-                updatedAt: new Date()
+                outils: 'feutre, post-it, papiers, boites'
             },
             {
                 IboxId: 1,
@@ -151,9 +154,7 @@ module.exports = {
                 dureeMax: 120,
                 equipeMin: 2,
                 equipeMax: 40,
-                outils: 'feutre, affiche en grand format, post-it',
-                createdAt: new Date(),
-                updatedAt: new Date()
+                outils: 'feutre, affiche en grand format, post-it'
             }
         ])
     },

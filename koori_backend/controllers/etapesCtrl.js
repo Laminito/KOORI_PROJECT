@@ -9,16 +9,22 @@ module.exports = {
         var limit = parseInt(req.query.limit);
         var offset = parseInt(req.query.offset);
         models.Etape.findAll({
-                attributes: ['id', 'FicheId', 'titre', 'description'],
+                attributes: ['id', 'titre', 'description','FicheId','etat'],
                 limit: (!isNaN(limit)) ? limit : null,
                 offset: (!isNaN(offset)) ? offset : null,
             }).then((etapes) => {
-                res.status(200).json(etapes)
+                return res.status(200).json({
+                    success: true,
+                    message: "request get All Etapes successfully",
+                    results: etapes
             })
-            .catch((err) => {
-                return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
+            }).catch((err) => {
+                return res.status(500).json({
+                    success: false,
+                    message: "failed get All Etapes request",
+                    results: err
             })
-
+            })
     },
 
     createEtape: (req, res) => {

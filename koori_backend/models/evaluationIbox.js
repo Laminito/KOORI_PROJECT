@@ -11,13 +11,13 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-            this.belongsTo(models.User, { foreignKey: 'UserId', otherKey: 'IboxId' });
-            this.belongsTo(models.Ibox, { foreignKey: 'IboxId', otherKey: 'UserId' });
+            // this.belongsTo(models.User, { foreignKey: 'UserId', otherKey: 'IboxId' });
+            // this.belongsTo(models.Ibox, { foreignKey: 'IboxId', otherKey: 'UserId' });
         }
     }
     EvaluationIbox.init({
-        UserId: DataTypes.INTEGER,
-        IboxId: DataTypes.INTEGER,
+        // UserId: DataTypes.INTEGER,
+        // IboxId: DataTypes.INTEGER,
         evaluation: DataTypes.TEXT,
         note: {
             type: DataTypes.INTEGER,

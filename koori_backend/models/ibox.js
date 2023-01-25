@@ -12,19 +12,27 @@ module.exports = (sequelize, DataTypes) => {
         static associate(models) {
             // define association here
             this.hasMany(models.Fiche);
+            this.hasMany(models.Evaluation)
+
         }
     }
     Ibox.init({
-        description: DataTypes.TEXT,
+        description: {
+            type:DataTypes.TEXT,
+        allowNull:false},
         version: {
             type: DataTypes.INTEGER,
             allowNull: false,
             unique: true
-        }
+        },
+        etat: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue:true
+        },
     }, {
         sequelize,
-        modelName: 'Ibox',
-        tableName: 'Iboxs'
+        modelName: 'Ibox'
     });
     return Ibox;
 };

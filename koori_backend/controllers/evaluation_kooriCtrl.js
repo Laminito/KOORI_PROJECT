@@ -17,13 +17,13 @@ module.exports = {
             ],
             limit: (!isNaN(limit)) ? limit : null,
             offset: (!isNaN(offset)) ? offset : null,
-            include: [{
-                model: models.User,
-                attributes: ['id','email']
-            }, {
-                model: models.Koori,
-                attributes: ['id', 'description']
-            }],
+            // include: [{
+            //     model: models.User,
+            //     attributes: ['id','email']
+            // }, {
+            //     model: models.Koori,
+            //     attributes: ['id', 'description','version']
+            // }],
         }).then((evaluations) => {
             return res.status(201).json({
                 success: true,
@@ -108,13 +108,19 @@ module.exports = {
                 },
             }).then((userEvaluation_koori) => {
                 console.log(userEvaluation_koori);
-                res.status(200).json(userEvaluation_koori)
-
+                return res.status(200).json({
+                    success: true,
+                    message: "request get One EvaluationFiche by Id successfully",
+                    results: userEvaluation_koori
             })
-            .catch((err) => {
-                return res.status(500).json({ 'error': 'Erreur de récupération ' + err.message })
-            })
-    },
+            }).catch((err) => {
+                return res.status(500).json({
+                    success: true,
+                    message: "failed to get One EvaluationFiche by Id request",
+                    results: userEvaluation_koori
+                })
+    })
+},
     getEvaluation_kooriByVersion: (req, res) => {
         const version = parseInt(req.params.id);
         models.Koori.findOne({
@@ -126,20 +132,20 @@ module.exports = {
                             attributes: ['id', 'nomComplet']
                         }],
                         where: { KooriId: koori.id },
-                    }).then((Evaluation_koori) => {
-                        if (Evaluation_koori) {
-                            return res.status(200).json(Evaluation_koori)
-                        } else {
-                            return null
-                        }
+                    }).then((userEvaluation_koori) => {
+                        return res.status(200).json({
+                            success: true,
+                            message: "request get One EvaluationFiche by Id successfully",
+                            results: userEvaluation_koori
                     })
-                    .catch((err) => {
-                        return res.status(500).json({ 'error': 'Erreur de récupération ' + err.message })
-                    })
+                    }).catch((err) => {
+                        return res.status(500).json({
+                            success: true,
+                            message: "failed to get One EvaluationFiche by Id request",
+                            results: userEvaluation_koori
+                        })
 
-            })
-            .catch((err) => {
-                return res.status(500).json({ 'error': 'Erreur ' + err.message })
+                    })
             })
     }
 }

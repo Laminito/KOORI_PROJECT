@@ -1,4 +1,4 @@
-FROM node:18
+FROM node:18-alpine3.16
 RUN mkdir kooriBackend
 COPY . ./kooriBackend
 WORKDIR /kooriBackend/.

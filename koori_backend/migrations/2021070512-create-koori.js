@@ -25,14 +25,22 @@ module.exports = {
                 type: Sequelize.FLOAT,
                 unique: true,
             },
+            etat: {
+                type: Sequelize.BOOLEAN,
+                allowNull: false,
+                defaultValue:true
+            },
             createdAt: {
                 allowNull: false,
+                type: Sequelize.DATE,
+                defaultValue: new Date()
 
-                type: Sequelize.DATE
             },
             updatedAt: {
                 allowNull: false,
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                defaultValue: new Date()
+
             }
         });
         await queryInterface.bulkInsert('Kooris', [{
@@ -50,9 +58,7 @@ module.exports = {
                 "\n" +
                 "Toutefois chaque cauri peut être utilisé indépendamment. Par exemple, face à une recherche de solutions à un concept bien défini, le cauri  orange (idéation) peut être aisément  utilisé pour co-imaginer des solutions innovantes et en rupture avec l’existant.\n" +
                 "Koori permet de penser autrement : sopi xalaat* (penser autrement en wolof)",
-            version: 1,
-            createdAt: new Date(),
-            updatedAt: new Date()
+            version: 1
         }])
     },
     down: async(queryInterface, Sequelize) => {

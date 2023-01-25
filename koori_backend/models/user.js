@@ -16,22 +16,22 @@ module.exports = (sequelize, DataTypes) => {
                     onUpdate: 'RESTRICT'
                 }
             });
+            this.hasMany(models.Evaluation)
             this.hasMany(models.Demande);
-            this.hasMany(models.Commentaire);
-            this.belongsToMany(models.Demande, { as: 'UserDemande', through: models.Session, foreignKey: 'UserId' });
-            this.belongsToMany(models.Rapport, { as: 'UserRapport', through: models.Telechargement, foreignKey: 'UserId' });
-            this.belongsToMany(models.Koori, { as: 'UserEvaluationKoori', through: models.EvaluationKoori, foreignKey: 'UserId' });
-            this.belongsToMany(models.Ibox, { as: 'UserEvaluationIbox', through: models.EvaluationIbox, foreignKey: 'UserId' });
-            this.belongsToMany(models.Fiche, { as: 'UserEvaluationFiche', through: models.EvaluationFiche, foreignKey: 'UserId' });
-            this.belongsToMany(models.Rapport, { as: 'UserEvaluation', through: models.EvaluationNote, foreignKey: 'UserId' });
+            this.hasMany(models.Telechargement);
+            // this.hasMany(models.Commentaire);
+            // this.belongsToMany(models.Demande, { as: 'UserDemande', through: models.Session, foreignKey: 'UserId' });
+            // this.belongsToMany(models.Rapport, { as: 'UserRapport', through: models.Telechargement, foreignKey: 'UserId' });
+            // this.belongsToMany(models.Koori, { as: 'UserEvaluationKoori', through: models.EvaluationKoori, foreignKey: 'UserId' });
+            // this.belongsToMany(models.Ibox, { as: 'UserEvaluationIbox', through: models.EvaluationIbox, foreignKey: 'UserId' });
+            // this.belongsToMany(models.Fiche, { as: 'UserEvaluationFiche', through: models.EvaluationFiche, foreignKey: 'UserId' });
+            // this.belongsToMany(models.Rapport, { as: 'UserEvaluation', through: models.EvaluationNote, foreignKey: 'UserId' });
 
 
         }
     }
     User.init({
         ProfilId: {
-            autoIncrement: true,
-            primaryKey: true,
             type: DataTypes.INTEGER
         },
         nomComplet: {
@@ -64,14 +64,21 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-        avatar: {
-            type: DataTypes.BLOB
+        resetLink: {
+            type: DataTypes.STRING,
+            defaultValue:''
         },
-        // role: {
-        //     type: DataTypes.ENUM,
-        //     enum: ["ADMIN", "USER"],
-        //     defaultValue: "USER",
-        // }
+        avatar: {
+            type: DataTypes.BLOB,
+            get() {
+                return this.getDataValue('avatar').toString('utf8'); // or whatever encoding is right
+            },
+        },
+        etat: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue:true
+        },
 
     }, {
         sequelize,

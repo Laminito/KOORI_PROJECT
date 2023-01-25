@@ -25,7 +25,12 @@ module.exports = (sequelize, DataTypes) => {
         avatar: DataTypes.BLOB,
         liste_des_applications_metiers_supporte: DataTypes.STRING,
         tarifs_et_Facturation: DataTypes.STRING,
-        archive: DataTypes.BOOLEAN
+        archive: DataTypes.BOOLEAN,
+        etat: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue:true
+        },
     }, {
         sequelize,
         modelName: 'Service',

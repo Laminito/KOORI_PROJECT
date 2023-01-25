@@ -23,16 +23,24 @@ module.exports = {
             attributes: [
                 'id',
                 'description',
-                'version'
+                'version',
+                'etat'
             ],
             limit: (!isNaN(limit)) ? limit : null,
             offset: (!isNaN(offset)) ? offset : null,
         }).then((AllIboxs => {
-            console.log(AllIboxs);
-            return res.status(200).json(AllIboxs)
+            return res.status(200).json({
+                success: true,
+                message: "request get All AllIboxs successfully",
+                results: AllIboxs
+                })
 
         })).catch((err) => {
-            return res.status(500).json({ 'error': 'Erreur de récupération' + err })
+            return res.status(500).json({
+                success: false,
+                message: "failed get All AllIboxs request",
+                results: err
+        })
         })
     },
     // getLastIbox: (req, res) => {

@@ -2,25 +2,23 @@
 const validationResults = require('../validationResult')
 const _ = require('lodash')
 const models = require('../models');
-let asyncLib = require('async');
-const { includes } = require("lodash/collection");
+
 module.exports = {
     getSessions: (req, res) => {
-        const limit = parseInt(req.query.limit);
-        const offset = parseInt(req.query.offset);
         models.Session.findAll({
-                attributes: ['id', 'evaluation', 'note'],
-                include: [{
-                    model: models.Demande,
-                    attributes: ['id', 'titre', 'description', 'date_realisation']
-                }],
-                limit: (!isNaN(limit)) ? limit : null,
-                offset: (!isNaN(offset)) ? offset : null,
+                attributes: ['id', 'evaluation', 'note','etat'],
             }).then((sessions) => {
-                res.status(200).json(sessions)
+                return res.status(200).json({
+                    success: true,
+                    message: "request get All Sessions successfully",
+                    results: sessions
+                    })
+            }).catch((err) => {
+                return res.status(500).json({
+                    success: false,
+                    message: "failed get All Sessions request",
+                    results: err
             })
-            .catch((err) => {
-                return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
             })
     },
 

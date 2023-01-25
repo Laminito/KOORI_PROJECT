@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
                     name: "FicheId",
                     allowNull: false,
                     onDelete: 'RESTRICT',
-                    onUpdate: 'RESTRICT'
+                    onUpdate: 'CASCADE'
                 }
             });
         }
@@ -19,7 +19,12 @@ module.exports = (sequelize, DataTypes) => {
     Etape.init({
         FicheId: DataTypes.INTEGER,
         titre: DataTypes.STRING,
-        description: DataTypes.TEXT
+        description: DataTypes.TEXT,
+        etat: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue:true
+        },
     }, {
         sequelize,
         modelName: 'Etape',

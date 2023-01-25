@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer')
+const url = process.env.ADMINURL
 
-
-function sendEmail(email, sujet = "", text = "", message = "", expiresIn = "") {
+function sendEmail(email, sujet = "", message = "", token = "", expiresIn = "",) {
     return new Promise((resolve, reject) => {
         const username = process.env.GMAIL_USER
         const password = process.env.GMAIL_PASSWORD
@@ -19,7 +19,8 @@ function sendEmail(email, sujet = "", text = "", message = "", expiresIn = "") {
             to: email,
             subject: `${sujet}`,
             text: `${message}`,
-            html: `<h1>${text}</h1>`,
+            // html: `<h1>${text}</h1>`,
+            html: `<h3>Please click the link below to reset your password</h3><p>${url}/reset-password/${token}</p>`,
             expiresIn: `${expiresIn}`
 
         }

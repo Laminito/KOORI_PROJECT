@@ -70,6 +70,11 @@ module.exports = {
                 allowNull: false,
                 type: Sequelize.BOOLEAN
             },
+            etat: {
+                type: Sequelize.BOOLEAN,
+                allowNull: false,
+                defaultValue:true
+            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE,

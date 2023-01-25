@@ -19,8 +19,13 @@ let sessionAllRoutes = require('../routes/sessionRoute')
 let sujetAllRoutes = require('../routes/sujetRoute')
 let temoignageAllRoutes = require('../routes/temoignageRoute')
 let userAllRoutes = require('../routes/userRoute')
-let AuthRoutes = require('../routes/authRoutes')
+let authRoutes = require('../routes/authRoutes')
 let handlersRoutes = require('../routes/handlersRoute')
+let evaluationAllRoutes = require('../routes/evaluationRoute')
+let telechargementAllRoutes = require('../routes/telechargementRoute')
+let phaseFicheAllRoutes = require('../routes/phase_ficheRoute')
+let sessionDemandeAllRoute = require('../routes/session_demandeRoute')
+
 
 
 module.exports = [
@@ -45,6 +50,10 @@ module.exports = [
     sujetAllRoutes,
     temoignageAllRoutes,
     userAllRoutes,
-    AuthRoutes,
-    handlersRoutes
+    authRoutes,
+    handlersRoutes,
+    evaluationAllRoutes,
+    telechargementAllRoutes,
+    phaseFicheAllRoutes,
+    sessionDemandeAllRoute
 ]

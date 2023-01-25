@@ -3,50 +3,13 @@ const _ = require('lodash')
 const models = require('../models');
 const dotenv = require('dotenv').config()
 const nodemailer = require("nodemailer");
-const send_mail = require('../middleware/sendMail')
-
-
-// function sendEmail() {
-//     return new Promise((resolve, reject) => {
-//         const username = process.env.GMAIL_USER
-//         const password = process.env.GMAIL_PASSWORD
-//         const transporter = nodemailer.createTransport({
-//             service: 'gmail',
-//             host: "smtp.gmail.com",
-//             port: 465,
-//             secure: true, // use TLS,
-//             requireTLS: true,
-//             auth: {
-//                 user: username,
-//                 pass: password
-//             }
-//         })
-
-//         const mail_option = {
-//             from: username,
-//             to: "mainashou@gmail.com",
-//             subject: "Message de test",
-//             text: "Si vous recevez ce message c'est parceque\nVous avez effectuez une demande de service\nSur KOORI/IBOX"
-//         }
-//         transporter.sendMail(mail_option, function(error, info) {
-//             if (error) {
-//                 console.log(error);
-//                 return reject({ message: `une erreur est survenue` })
-//             }
-//             return resolve({
-//                 message: "Le mail a été envoyé avec succes "
-//             })
-//         })
-
-//     })
-// }
-
-
+const send_mail = require('../middleware/sendMail');
 
 module.exports = {
     createDemande: (req, res) => {
-
-        const { UserId, ServiceId, titre, description, date_debut_souhaitee, disponibilite } = req.body
+        const {titre, description, date_debut_souhaitee, disponibilite } = req.body
+        const UserId = parseInt(req.params.id);
+        const ServiceId = parseInt(req.params.id1);
         models.Demande.create({
             UserId: UserId,
             ServiceId: ServiceId,
@@ -55,102 +18,123 @@ module.exports = {
             titre: _.capitalize(titre),
             description: description
         }).then((demandes) => {
-            send_mail.sendEmail('abmangane14@gmail.com', "message de test")
-                .then(demandes => res.status(200).json({ 'sucess': demandes }))
-                .catch(error => res.status(500).send(error))
-
+            // send_mail.sendEmail('abmangane14@gmail.com', "message de test")
+            return res.status(201).json({
+                success: true,
+                message: "request create Demande successfully",
+                results: demandes
+            })
         }).catch((err) => {
-            return res.status(500).json({ 'error': 'Erreur dajout ' + err })
+            return res.status(500).json({
+                success: false,
+                message: "failed create Demande request",
+                results: err
         })
+    })
     },
 
-
-    // addParticipantsToSession: (req, res) => {
-    //     let usersSession = req.body
-    //     if (usersSession) {
-    //         usersSession.forEach(user => {
-    //             const { nomComplet, email, profession, service, departement, direction } = user
-    //             models.User.create({
-    //                     ProfilId: 2,
-    //                     nomComplet: nomComplet,
-    //                     email: email,
-    //                     profession: profession,
-    //                     service: service,
-    //                     departement: departement,
-    //                     direction: direction,
-    //                 }).then((user) => {
-    //                     models.Session.create({
-    //                         UserId: user.id,
-    //                         DemandeId: demandeResult.id,
-    //                     })
-
-    //                 })
-    //                 .catch((err) => {
-    //                     return res.status(500).json({ 'error': 'Erreur d\'ajout' + err })
-    //                 })
-    //         })
-    //     }
-    // },
     getDemande: (req, res) => {
         const limit = parseInt(req.query.limit);
         const offset = parseInt(req.query.offset);
 
         models.Demande.findAll({
-                attributes: ['id', 'titre', 'description', 'date_debut_souhaitee', 'disponibilite', 'statut'],
+                attributes: ['id', 'titre', 'description', 'date_debut_souhaitee', 'disponibilite', 'statut','etat'],
                 limit: (!isNaN(limit)) ? limit : null,
                 offset: (!isNaN(offset)) ? offset : null,
-                include: [{
-                    model: models.Service,
-                    attributes: ['id', 'libelle']
-
-                },
-                {
-                    model: models.User,
-                    attributes: ['id']
-
-                }],
-            }).then((demandes) => {
-                res.status(200).json(demandes)
-            })
-            .catch((err) => {
-                return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
-            })
-    },
-    getDemandeByService: (req, res) => {
-        const id = parseInt(req.params.id);
-        models.Demande.findAll({
-                attributes: ['id', 'titre', 'description', 'date_debut_souhaitee', 'disponibilite', 'statut'],
                 include: [{
                         model: models.Service,
                         attributes: ['id', 'libelle']
                     },
                     {
                         model: models.User,
-                        attributes: ['id', 'nomComplet', 'email']
-                    }
-                ],
-
-                where: { ServiceId: id }
-            }).then((demandes_service) => {
-                if (demandes_service) {
-                    res.status(200).json(demandes_service)
-                } else {
-                    res.status(500).json({ 'demandes': "ce service n'a pas de demandes" })
-                }
-
-            })
-            .catch((err) => {
-                return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
+                        attributes: ['id','nomComplet','email']
+                    }],
+            }).then((demandes) => {
+                return res.status(200).json({
+                    success: true,
+                    message: "request get All Demandes successfully",
+                    results: demandes
+                })
+            }).catch((err) => {
+                return res.status(500).json({
+                    success: false,
+                    message: "failed get All Demandes request",
+                    results: err
+                })
             })
     },
+    getDemandeById: (req, res) => {
+        const id = parseInt(req.params.id);
+        models.Demande.findOne({
+            attributes: ['id', 'titre', 'description', 'date_debut_souhaitee', 'disponibilite', 'statut','etat'],
+            where: { id: id },
+            include: [
+                {
+                    model: models.User,
+                    attributes:['id']
+                },
+                {
+                    model: models.Service,
+                    attributes:['id']
+                }
+            ],
+            }).then((demandes) => {
+                return res.status(200).json({
+                    success: true,
+                    message: "request get DemandeById successfully",
+                    results: demandes
+                })
+            })
+            .catch((err) => {
+                return res.status(500).json({
+                    success: false,
+                    message: "failed get DemandeById request",
+                    results: err
+                })
+            })
+    },
+    // getDemandeByService: (req, res) => {
+    //     const ServiceId = parseInt(req.params.id);
+    //     models.Demande.findOne({
+    //         attributes:['id','titre'],
+    //         where: { id: ServiceId },
+    //             include: [{
+    //                 model: models.Service,
+    //                 attributes:['id','libelle'],
+    //                 include: [{
+    //                     model: models.User,
+    //                     attributes: ['id','nomComplet','email']
+    //                 }],
+    //             }]
+    //         }).then((service) => {
+    //             if (service) {
+    //                 if (service.avatar) {
+    //                     let buff = new Buffer(service.avatar);
+    //                     service.avatar = buff.toString('base64');
+    //                     return res.status(200).json({
+    //                         success: true,
+    //                         message: "request getServiceByDemande successfully",
+    //                         results: service
+    //                     })
+    //                 }
+    //             } else {
+    //                 return res.status(404).json({
+    //                     success: false,
+    //                     message: "failed this ressource does not existe!",
+    //                     results: err
+    //             })
+    //             }
+    //         }).catch((err) => {
+    //             return res.status(500).json({
+    //                 success: false,
+    //                 message: "failed getServiceByDemande request",
+    //                 results: err
+    //         })
+    //         })
+    // },
     updateDemande: (req, res) => {
         const id = req.params.id
-        const titre = req.body.titre;
-        const statut = req.body.statut;
-        const description = req.body.description;
-        const date_debut_souhaitee = req.body.date_debut_souhaitee;
-        const disponibilite = req.body.disponibilite
-        const text = req.body.text;
+        const {titre,statut,description,date_debut_souhaitee,disponibilite,text}=req.body
         models.Demande.findOne({
             include: [
                 { model: models.User, attributes: ["id", "email"] },
@@ -159,7 +143,6 @@ module.exports = {
             where: { id: id }
         }).then(
             (demandeFound) => {
-                // return res.json(demandeFound.id)
                 demandeFound.update({
                     statut: (statut ? _.capitalize(statut) : demandeFound.statut),
                     text: text,
@@ -169,28 +152,7 @@ module.exports = {
                     disponibilite: disponibilite
                 }).then(
                     (demandeResult) => {
-                        // return res.status(200).json(demandeResult.statut)
                         if (demandeResult.statut === 'Validee') {
-                            // return res.status(200).json(' validee')
-
-                            // models.Session.create({
-                            //         UserId: demandeResult.User.id,
-                            //         DemandeId: demandeResult.id,
-                            //     })
-                            // return res.status(200).json(' validee')
-                            // const mailOptions = {
-                            //     from: process.env.GMAIL_USER,
-                            //     to: demandeFound.User.email,
-                            //     subject: "retour votre demande " + demandeFound.Service.libelle,
-                            //     text: text //retour de la demande
-                            // }
-                            // smtpTransport.sendMail(mailOptions, function(error, response) {
-                            //     if (error) {
-                            //         return res.json(error);
-                            //     } else {
-                            //         return res.status(200).json(demandeResult);
-                            //     }
-                            // });
                             return res.status(200).json(' validee')
 
                         } else if (demandeResult.statut === 'Traitee') {
@@ -202,20 +164,6 @@ module.exports = {
 
                         } else {
                             return res.status(200).json('non validee')
-                                // const mailOptions = {
-                                //     from: process.env.GMAIL_USER,
-                                //     to: demandeFound.User.email,
-                                //     subject: "retour sur votre demande " + demandeFound.Service.libelle,
-                                //     text: text //retour de la demande 
-                                // }
-                                // smtpTransport.sendMail(mailOptions, function(error, response) {
-                                //     if (error) {
-                                //         return res.json(error);
-                                //     } else {
-                                //         return res.status(200).json(demandeResult);
-                                //     }
-                                // });
-                                // return res.status(200).json('non validee')
                         }
                     }).catch((err) => {
                     res.status(500).json({ 'impossible de mettre a jour ': err });

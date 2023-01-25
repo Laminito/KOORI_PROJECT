@@ -11,20 +11,20 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-            this.hasMany(models.Commentaire);
-            this.belongsTo(models.User, {
-                foreignKey: {
-                    name: "UserId",
-                    allowNull: false,
-                    onDelete: "RESTRICT",
-                    onUpdate: 'RESTRICT'
-                }
-            });
+            // this.hasMany(models.Commentaire);
+            // this.belongsTo(models.User, {
+            //     foreignKey: {
+            //         name: "UserId",
+            //         allowNull: false,
+            //         onDelete: "RESTRICT",
+            //         onUpdate: 'RESTRICT'
+            //     }
+            // });
         }
     }
     Sujet.init({
 
-        UserId: DataTypes.INTEGER,
+        // UserId: DataTypes.INTEGER,
         libelle: DataTypes.TEXT,
         nbrlike: DataTypes.INTEGER
     }, {

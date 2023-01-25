@@ -1,7 +1,5 @@
 //importcd
 const models = require("../models");
-const asyncLib = require("async");
-const validationResults = require("../validationResult");
 const { Op } = require("sequelize");
 
 
@@ -20,12 +18,170 @@ module.exports = {
                     'service',
                     'departement',
                     'direction',
-                    'avatar'
+                    'avatar',
+                    'etat'
                 ],
                 limit: (!isNaN(limit)) ? limit : null,
                 offset: (!isNaN(offset)) ? offset : null,
                 include: [{
-                    model: models.Profil
+                    model: models.Profil,
+                    attributes:['id','libelle']
+                }],
+            }).then((users) => {
+                // console.log("users : ",users);
+                users.forEach(user => {
+                    if (user.avatar) {
+                        let buff = new Buffer(user.avatar);
+                        user.avatar = buff.toString('base64');
+                    }
+                })
+                return res.status(200).json({
+                    success: true,
+                    message: "request get All Users successfully",
+                    results: users
+                })
+            }).catch((err) => {
+                return res.status(500).json({
+                    success: false,
+                    message: "failed get All Users request",
+                    results: err
+            })
+        })
+
+    },
+    updateUser: (req, res)=>{
+        const {nomComplet, profession, service, departement, direction }= req.body
+        const UserId = parseInt(req.params.id)
+                models.User.findOne({
+                    where: {id: UserId}
+                }).then((userFound)=>{
+                    console.log("userFound : ",userFound);
+                    userFound.update({
+                        nomComplet:nomComplet,
+                        profession:profession,
+                        service: service,
+                        departement: departement,
+                        direction:direction
+                    })
+                    return res.status(204).json({
+                        success: true,
+                        message: "request update User successfully",
+                        results: singleUser
+                    })
+                }).catch((err)=>{
+                    return res.status(500).json({
+                        success: false,
+                        message: "this user does not exist",
+                        results: err
+                    })
+                })
+    },
+    getUserById: (req, res) => {
+        const id = parseInt(req.params.id);
+        models.User.findOne({
+            attributes: [
+                'id',
+                'nomComplet',
+                'email',
+                'profession',
+                'service',
+                'departement',
+                'direction',
+                'avatar',
+                'etat'
+            ],
+            where: { id: id },
+            include: [{
+                model: models.Profil,
+                attributes:['id','libelle']
+            }],
+            }).then((singleUser) => {
+                if (singleUser) {
+                    let buff = new Buffer(singleUser.avatar);
+                    singleUser.avatar = buff.toString('base64');
+                    return res.status(200).json({
+                        success: true,
+                        message: "request get UserById successfully",
+                        results: singleUser
+                    })
+                } else {
+                    return res.status(500).json({
+                        success: false,
+                        message: "failed get UserById request",
+                        results: err
+                    })
+                }
+            }).catch((err) => {
+                return res.status(404).json({
+                    success: false,
+                    message: "this Id does not exist",
+                    results: err
+                })
+            })
+    },
+    getUserByEmail: (req, res) => {
+        const email = req.params.email;
+        models.User.findOne({
+            attributes: [
+                'id',
+                'nomComplet',
+                'email',
+                'profession',
+                'service',
+                'departement',
+                'direction',
+                'avatar',
+                'etat'
+            ],
+            where: { email: email },
+            include: [{
+                model: models.Profil,
+                attributes:['id','libelle']
+            }],
+            }).then((singleUser) => {
+                if (singleUser) {
+                    let buff = new Buffer(singleUser.avatar);
+                    singleUser.avatar = buff.toString('base64');
+                    return res.status(200).json({
+                        success: true,
+                        message: "request get User By Email successfully",
+                        results: singleUser
+                    })
+                } else {
+                    return res.status(500).json({
+                        success: false,
+                        message: "failed get User By Email request",
+                        results: err
+                })
+                }
+            }).catch((err) => {
+                return res.status(404).json({
+                    success: false,
+                    message: "This Email does not existe",
+                    results: err
+            })
+            })
+    },
+    getUserByProfilClient: (req, res) => {
+        models.User.findAll({
+                attributes: [
+                    'id',
+                    'nomComplet',
+                    'email',
+                    'password',
+                    'profession',
+                    'service',
+                    'departement',
+                    'direction',
+                    'avatar',
+                    'etat'
+                ],
+                where:{
+                    ProfilId: {[Op.ne]: 1}
+                 },
+                include: [{
+                    model: models.Profil,
+                    attributes:['id','libelle']
                 }],
             }).then((users) => {
                 users.forEach(user => {
@@ -34,216 +190,58 @@ module.exports = {
                         user.avatar = buff.toString('base64');
                     }
                 })
-                return res.status(200).json(users)
+                return res.status(200).json({
+                    success: true,
+                    message: "request get All Users Profil Client successfully",
+                    results: users
+                })
+            }).catch((err) => {
+                return res.status(500).json({
+                    success: false,
+                    message: "failed get All Users Profil Client request",
+                    results: err
             })
-            .catch((err) => {
-                return res.status(500).json({ 'error': 'Erreur de récupération' + err })
-            })
-
-    },
-    // createUsers: (req, res) => {
-    //     //return res.json({"ok": req.body})
-    //     asyncLib.waterfall([
-    //         (callback1) => {
-    //             callback1(null, validationResults.error(req, res))
-    //         },
-    //         (errorResult, callback2) => {
-    //             if (!errorResult) {
-
-    //                 const { ProfilId, nomComplet, email, password, profession, service, departement, direction } = req.body
-    //                 models.User.create({
-    //                     ProfilId: ProfilId,
-    //                     nomComplet: nomComplet,
-    //                     email: email,
-    //                     password: password,
-    //                     profession: profession,
-    //                     service: service,
-    //                     departement: departement,
-    //                     direction: direction,
-    //                     avatar: req.file.buffer
-
-    //                 }).then((userResult) => {
-
-    //                     callback2(null, userResult)
-    //                 }).catch((err) => {
-    //                     return res.status(500).json({ 'error': 'Erreur d ajout ' + err })
-    //                 })
-    //             }
-    //         },
-    //     ], (err, result) => {
-    //         res.json(result);
-    //     })
-    // },
-
-    updateUser: (req, res) => {
-        const { ProfilId, nomComplet, email, profession, service, departement, direction } = req.body
-        const UserId = parseInt(req.params.id)
-        asyncLib.waterfall([
-            (callback) => {
-                models.User.findOne({
-                    where: { id: UserId }
-                }).then(
-                    (userFound) => {
-                        callback(null, userFound)
-                    }
-                ).catch((err) => {
-                    return res.status(500).json({ 'erreur serveur ': err });
-                });
-            },
-            (userFound, callback) => {
-                if (userFound) {
-                    callback(null, userFound, validationResults.error(req, res))
-                }
-            },
-            (userFound, validationResults, callback) => {
-                if (!validationResults) {
-                    userFound.update({
-                        ProfilId: ProfilId,
-                        nomComplet: nomComplet,
-                        email: email,
-                        profession: profession,
-                        service: service,
-                        departement: departement,
-                        direction: direction,
-                        avatar: req.file.buffer
-
-                    }).then((userResult) => {
-                        callback(null, userResult)
-                    }).catch((err) => {
-                        res.status(500).json({ 'impossible de  a jour ': err });
-                    })
-                }
-            }
-        ], (err, result) => {
-            return res.status(201).json(result);
         })
-
     },
-    getUserById: (req, res) => {
-        const id = parseInt(req.params.id);
-        models.User.findOne({
-                //attributes: ['id', 'ProfilId', 'nomComplet', 'email', 'profession', 'service', 'departement', 'direction'],
-                where: { id: id },
-                include: [{
-                    model: models.Profil
-                }],
-            }).then((user) => {
-                if (user) {
-                    /*let buff = new Buffer(user?.avatar);
-                    user?.avatar = buff.toString('base64');*/
-                    res.status(200).json(user)
-                } else {
-                    res.status(404).json({ "erreur": "L'utilisateur n'existe pas" })
-                }
-            })
-            .catch((err) => {
-                return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
-            })
-    },
-
-    //     const email = req.params.email;
-    //     console.log(email);
-    //     models.User.findOne({
-    //             //attributes: ['id', 'ProfilId', 'nomComplet', 'email', 'profession', 'service', 'departement', 'direction'],
-    //             where: { email: email },
-    //             include: [{
-    //                 model: models.Profil
-    //             }],
-    //         }).then((user) => {
-    //             if (user) {
-    //                 /*let buff = new Buffer(user?.avatar);
-    //                 user?.avatar = buff.toString('base64');*/
-    //                 res.status(200).json(user)
-    //             } else {
-    //                 res.status(404).json({ "erreur": "L'utilisateur n'existe pas" })
-    //             }
-    //         })
-    //         .catch((err) => {
-    //             return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
-    //         })
-    // },
-    getUserByProfil: (req, res) => {
-        const id = parseInt(req.params.id);
+    getUserByProfilAdmin: (req, res) => {
         models.User.findAll({
-                where: { ProfilId: id },
+                attributes: [
+                    'id',
+                    'nomComplet',
+                    'email',
+                    'password',
+                    'profession',
+                    'service',
+                    'departement',
+                    'direction',
+                    'avatar',
+                    'etat'
+                ],
+                where:{
+                    ProfilId: {[Op.ne]: 2}
+                 },
                 include: [{
-                    model: models.Profil
+                    model: models.Profil,
+                    attributes:['id','libelle']
                 }],
-            }).then((user) => {
-                if (user) {
-                    user.forEach(u => {
-                        let buff = new Buffer(u.avatar);
-                        u.avatar = buff.toString('base64');
-                    })
-                    res.status(200).json(user)
-                } else {
-                    res.status(404).json({ "erreur": "L'utilisateur n'existe pas" })
-                }
+            }).then((users) => {
+                users.forEach(user => {
+                    if (user.avatar) {
+                        let buff = new Buffer(user.avatar);
+                        user.avatar = buff.toString('base64');
+                    }
+                })
+                return res.status(200).json({
+                    success: true,
+                    message: "request get All Users Profil Admin successfully",
+                    results: users
+                })
+            }).catch((err) => {
+                return res.status(500).json({
+                    success: false,
+                    message: "failed get All Users Profil Admin request",
+                    results: err
             })
-            .catch((err) => {
-                return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
-            })
-    },
-    getClients: (req, res) => {
-        /*const id = parseInt(req.params.id);*/
-        models.User.findAll({
-                include: [{
-                    model: models.Profil
-                }],
-            }).then((user) => {
-                if (user) {
-                    let tab = []
-                    user.forEach(u => {
-                        if (u.Profil['libelle'] === 'Client') {
-                            if (u.avatar) {
-                                let buff = new Buffer(u.avatar);
-                                u.avatar = buff.toString('base64');
-                            }
-                            tab.push(u)
-                        }
-                    })
-                    res.status(200).json(tab)
-                } else {
-                    res.status(404).json({ "erreur": "L'utilisateur n'existe pas" })
-                }
-            })
-            .catch((err) => {
-                return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
-            })
-    },
-    deleteUser: (req, res) => {
-        const userId = parseInt(req.params.id);
-        models.User.destroy({
-                where: { id: userId }
-            })
-            .then((num) => {
-                if (num === 1) {
-                    return res.json({ 'Message': 'Suppression réussie' })
-                } else {
-                    return res.json({ 'Message': `Le profil dont l'id = ${userId} n'existe pas` })
-                }
-            })
-            .catch((err) => {
-                res.status(500).send({
-                    message: `Erreur de suppression: ${err}`
-                });
-            })
-    },
-    getDemandesByUserId: (req, res) => {
-        const id = parseInt(req.params.id);
-        //return res.json({"id ba: " : id})
-        models.Demande.findAll({
-                include: [{
-                    model: models.Service,
-                }],
-                where: { UserId: id },
-            }).then((userDemandes) => {
-                if (userDemandes) {
-                    res.status(200).json(userDemandes)
-                } else {
-                    res.status(404).json({ "erreur": "Cette utilisateur n'a participé à aucune session" })
-                }
-            })
-            .catch((err) => { return res.json({ 'ok': err.message }) })
-    },
+        })
+    }
 }

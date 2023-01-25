@@ -1,69 +1,68 @@
 'use strict';
 module.exports = {
     up: async(queryInterface, Sequelize) => {
-        await queryInterface.createTable('PhaseFiches', {
+        await queryInterface.createTable('Phase_fiches', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            id_phase: {
+            PhaseId: {
                 type: Sequelize.INTEGER,
                 references: {
                     model: 'Phases',
                     key: 'id'
                 }
             },
-            id_fiche: {
+            FicheId: {
                 type: Sequelize.INTEGER,
                 references: {
                     model: 'Fiches',
                     key: 'id'
                 }
             },
+            etat: {
+                type: Sequelize.BOOLEAN,
+                allowNull: false,
+                defaultValue:true
+            },
             createdAt: {
                 allowNull: false,
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                defaultValue: new Date()
             },
             updatedAt: {
                 allowNull: false,
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                defaultValue: new Date()
+
             }
         });
-        await queryInterface.bulkInsert('PhaseFiches', [{
-                id_phase: 1,
-                id_fiche: 1,
-                createdAt: new Date(),
-                updatedAt: new Date()
+        await queryInterface.bulkInsert('Phase_fiches', [
+            {
+                PhaseId: 1,
+                FicheId: 1,
             },
             {
-                id_phase: 2,
-                id_fiche: 2,
-                createdAt: new Date(),
-                updatedAt: new Date()
+                PhaseId: 2,
+                FicheId: 2,
             },
             {
-                id_phase: 3,
-                id_fiche: 3,
-                createdAt: new Date(),
-                updatedAt: new Date()
+                PhaseId: 3,
+                FicheId: 3,
             },
             {
-                id_phase: 4,
-                id_fiche: 4,
-                createdAt: new Date(),
-                updatedAt: new Date()
+                PhaseId: 4,
+                FicheId: 4,
             },
             {
-                id_phase: 5,
-                id_fiche: 5,
-                createdAt: new Date(),
-                updatedAt: new Date()
+                PhaseId: 5,
+                FicheId: 5,
             }
         ])
     },
     down: async(queryInterface, Sequelize) => {
-        await queryInterface.dropTable('PhaseFiches');
+        await queryInterface.dropTable('Phase_fiches');
     }
 };

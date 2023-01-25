@@ -18,7 +18,7 @@ const User = db.users;
 
 //signing a user up
 //hashing users password before its saved to the database with bcrypt
-const signup = async() => {
+const signup = async(req,res) => {
     // console.log('pasjfgveyrbcehjberhvfhvghev', passwordgenerator.password);
     // console.log(" expiredans :", ms(10 * 60000, { long: true }));
     const message = `Bonjour ${req.body.nomComplet} <br> Voici votre mot de passe par defaut <br> Utilisable une seule fois  <br> Via votre compte KOORI <br> Password : <a href="#">${passwordgenerator.password}</a>`
@@ -39,7 +39,6 @@ const signup = async() => {
             nomComplet,
             email,
             profession,
-            service,
             service,
             direction,
             departement,
@@ -63,7 +62,7 @@ const signup = async() => {
             console.log("user", JSON.stringify(user, null, 2));
             const expireDans = `Cet mot de passe expire dans : ${ms(10 * 60000, { long: true })} min`
 
-            send_mail.sendEmail(req.body.email, expireDans, message);
+            send_mail.sendEmail(req.body.email, '15mn', message);
 
             console.log(token);
             //send users details
@@ -115,7 +114,7 @@ const login = async(req, res) => {
                     })
                     currentUser = userId
                     console.log("userNow1", currentUser);
-                    let token = jwt.sign({ id: currentUser }, process.env.secretKey, {
+                    let token = jwt.sign({ id: currentUser }, process.env.SECRETKEY, {
                         algorithm: "HS256",
                         expiresIn: process.env.jwtExpirySeconds,
                     });
@@ -133,17 +132,95 @@ const login = async(req, res) => {
 
 
             } else {
-                return res.status(401).send("Connexion refusée");
+                return res.status(401).json("Connexion refusée");
             }
         } else {
-            return res.status(401).send("Authentication failed");
+            return res.status(401).json("Authentication failed");
         }
     } catch (error) {
         console.log(error);
     }
 };
 
+const forgotPassword=async(req,res)=>{
+    const { email } = req.body;
+
+    //find a user by their email
+    const user = await db.User.findOne({
+        where: {
+            email: req.body.email
+        },
+    });
+    if(!user){
+        return res.status(400).json({error:"User with this email already exists"})
+    }else {
+        let currentUser
+        models.User.findAll({
+            attributes: ['id', 'email']
+        }).then((users) => {
+            let userId
+            users.forEach(users => {
+                if (users.email === user.email) {
+                    userId = users.dataValues.id;
+                    // console.log("userId", userId, "\n", "email", user.email);
+                }
+                return userId
+            })
+            currentUser = userId
+            // console.log("userNow1", currentUser);
+            let token = jwt.sign({ id: currentUser }, process.env.RESETSECRETKEY, {
+                algorithm: "HS256",
+                expiresIn: process.env.jwtExpirySeconds,
+                
+            });
+            console.log("token: "+token);
+            send_mail.sendxEmail(req.body.email,process.env.SUBJECTRESETPASSWORD,token);
+            return user.update({resetLink:token}),(err)=>{
+                if(err){
+                    return res.status(400).json({error:'reset password lonk error'})
+                }else {
+                    return res.status(200).json({message:'Email has been sent,please follow the instructions'})
+                }
+            }
+          
+        })
+
+
+    }
+} ;
+
+const updatePassword=async(req,res)=>{
+    const{token,password}=req.body
+    if(token){
+        jwt.verify(token,process.env.RESETSECRETKEY, function(error,decodedData){
+            if(error){
+                return res.status(400).json({error:'Incorrect Token or it is expired'})
+            }
+
+            models.User.findOne({resetLink:token},(err,user)=>{
+                if(err || !user){
+                    return res.status(400).json({error:'User with this token does not exist'})
+                }
+                user.password=password
+                user.save((err,result)=>{
+                    if(err){
+                        return res.status(400).json({error:'Reset Password Error'})
+                    }else{
+                        return res.status(200).json({message:'Your Password has been changed'})
+                    }
+                })
+            })
+        })
+    }else{
+        return res.status(401).json({error:'Authentication Error'})
+
+    }
+
+};
+
 module.exports = {
     signup,
     login,
+    forgotPassword,
+    updatePassword
 };

@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
+
+            this.hasMany(models.Session_demande);
+
             this.belongsTo(models.User, {
                 foreignKey: {
                     name: "UserId",
@@ -27,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
                     onUpdate: 'RESTRICT'
                 }
             });
-            this.belongsToMany(models.User, { as: 'DemandeUser', through: models.Session, foreignKey: 'DemandeId' });
+            // this.belongsToMany(models.User, { as: 'DemandeUser', through: models.Session, foreignKey: 'DemandeId' });
             // this.belongsTo(models.Rapport, {
             //     foreignKey: {
             //         name: "RapportId",
@@ -46,6 +49,11 @@ module.exports = (sequelize, DataTypes) => {
         date_debut_souhaitee: DataTypes.DATE,
         disponibilite: DataTypes.BOOLEAN,
         statut: DataTypes.STRING,
+        etat: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue:true
+        },
 
     }, {
         sequelize,

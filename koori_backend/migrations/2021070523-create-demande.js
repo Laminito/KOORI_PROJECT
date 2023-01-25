@@ -24,15 +24,6 @@ module.exports = {
                     key: 'id'
                 }
             },
-            // RapportId: {
-            //     allowNull: true,
-            //     type: Sequelize.INTEGER,
-            //     defaultValue: null,
-            //     references: {
-            //         model: 'Rapports',
-            //         key: 'id'
-            //     }
-            // },
             titre: {
                 allowNull: false,
                 type: Sequelize.STRING
@@ -55,6 +46,11 @@ module.exports = {
                 type: Sequelize.STRING,
                 defaultValue: 'Nouvelle'
             },
+            etat: {
+                type: Sequelize.BOOLEAN,
+                allowNull: false,
+                defaultValue:true
+            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE,
@@ -74,10 +70,11 @@ module.exports = {
                     'faits pour être toujours en contact avec leur monde préféré : la mer. Il a un gros nez, un gros front, de ' +
                     'gros yeux qui peuvent détecter les profonds secrets de la mer.',
                
-            },
+            }
+            ,
             {
                 UserId: 2,
-                ServiceId: 3,
+                ServiceId: 2,
                 titre: 'NEW CHALLENGE',
                 description: 'Monsieur Ali est un homme maigre, solide comme sa barque, lent, lucide ; un des hommes qui semblent' +
                     'faits pour être toujours en contact avec leur monde préféré : la mer. Il a un gros nez, un gros front, de ' +
@@ -86,12 +83,11 @@ module.exports = {
             },
             {
                 UserId: 3,
-                ServiceId: 1,
+                ServiceId: 3,
                 titre: 'BAISSE DES FRAIS OM',
                 description: 'Monsieur Ali est un homme maigre, solide comme sa barque, lent, lucide ; un des hommes qui semblent' +
                     'faits pour être toujours en contact avec leur monde préféré : la mer. Il a un gros nez, un gros front, de ' +
-                    'gros yeux qui peuvent détecter les profonds secrets de la mer.',
-               
+                    'gros yeux qui peuvent détecter les profonds secrets de la mer.',   
             }
         ])
     },
