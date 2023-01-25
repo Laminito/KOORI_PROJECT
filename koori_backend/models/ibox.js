@@ -19,11 +19,13 @@ module.exports = (sequelize, DataTypes) => {
     Ibox.init({
         description: {
             type:DataTypes.TEXT,
-        allowNull:false},
-        version: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            unique: true
+        allowNull:false
+        },
+        avatar: {
+            type: DataTypes.BLOB,
+            get() {
+                return this.getDataValue('avatar').toString('utf8'); // or whatever encoding is right
+            },
         },
         etat: {
             type: DataTypes.BOOLEAN,

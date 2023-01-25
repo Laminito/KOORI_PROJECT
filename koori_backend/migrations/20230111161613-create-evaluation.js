@@ -37,7 +37,7 @@ module.exports = {
         defaultValue:null,
         type: Sequelize.INTEGER,
         references: {
-            model: 'Iboxs',
+            model: 'Iboxes',
             key: 'id'
         }
       },

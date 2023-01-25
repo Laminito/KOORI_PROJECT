@@ -34,6 +34,7 @@ const signup = async(req,res) => {
             avatar,
             password = passwordgenerator.password
         } = req.body;
+        console.log("passwordgenerator",password);
         const data = {
             ProfilId,
             nomComplet,
@@ -52,7 +53,7 @@ const signup = async(req,res) => {
         //generate token with the user's id and the secretKey in the env file
         //set cookie with the token generated
         if (user) {
-            let token = jwt.sign({ email: user.email }, process.env.secretKey, {
+            let token = jwt.sign({ email: user.email }, process.env.SECRETKEY, {
                 expiresIn: process.env.jwtExpirySeconds,
                 // expiresIn: 1 * 24 * 60 * 60 * 1000,
             });

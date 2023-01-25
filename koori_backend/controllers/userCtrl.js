@@ -6,8 +6,6 @@ const { Op } = require("sequelize");
 module.exports = {
 
     getUsers: (req, res) => {
-        var limit = parseInt(req.query.limit);
-        var offset = parseInt(req.query.offset);
         models.User.findAll({
                 attributes: [
                     'id',
@@ -21,8 +19,8 @@ module.exports = {
                     'avatar',
                     'etat'
                 ],
-                limit: (!isNaN(limit)) ? limit : null,
-                offset: (!isNaN(offset)) ? offset : null,
+                // where:{ etat:true},
+                order:[['id','ASC']],
                 include: [{
                     model: models.Profil,
                     attributes:['id','libelle']
@@ -49,24 +47,108 @@ module.exports = {
         })
 
     },
+    getUsersActif: (req, res) => {
+        models.User.findAll({
+                attributes: [
+                    'id',
+                    'nomComplet',
+                    'email',
+                    'password',
+                    'profession',
+                    'service',
+                    'departement',
+                    'direction',
+                    'avatar',
+                    'etat'
+                ],
+                 where:{ etat:true},
+                order:[['id','ASC']],
+                include: [{
+                    model: models.Profil,
+                    attributes:['id','libelle']
+                }],
+            }).then((users) => {
+                // console.log("users : ",users);
+                users.forEach(user => {
+                    if (user.avatar) {
+                        let buff = new Buffer(user.avatar);
+                        user.avatar = buff.toString('base64');
+                    }
+                })
+                return res.status(200).json({
+                    success: true,
+                    message: "request get All Users Actif successfully",
+                    results: users
+                })
+            }).catch((err) => {
+                return res.status(500).json({
+                    success: false,
+                    message: "failed get All Users Actif request",
+                    results: err
+            })
+        })
+
+    },
+    getUsersInactif: (req, res) => {
+        models.User.findAll({
+                attributes: [
+                    'id',
+                    'nomComplet',
+                    'email',
+                    'password',
+                    'profession',
+                    'service',
+                    'departement',
+                    'direction',
+                    'avatar',
+                    'etat'
+                ],
+                 where:{ etat:false},
+                order:[['id','ASC']],
+                include: [{
+                    model: models.Profil,
+                    attributes:['id','libelle']
+                }],
+            }).then((users) => {
+                users.forEach(user => {
+                    if (user.avatar) {
+                        let buff = new Buffer(user.avatar);
+                        user.avatar = buff.toString('base64');
+                    }
+                })
+                return res.status(200).json({
+                    success: true,
+                    message: "request get All Users Inactif successfully",
+                    results: users
+                })
+            }).catch((err) => {
+                return res.status(500).json({
+                    success: false,
+                    message: "failed get All Users Inactif request",
+                    results: err
+            })
+        })
+
+    },
     updateUser: (req, res)=>{
-        const {nomComplet, profession, service, departement, direction }= req.body
+        const {nomComplet, profession, service, departement, direction ,etat}= req.body
         const UserId = parseInt(req.params.id)
                 models.User.findOne({
                     where: {id: UserId}
                 }).then((userFound)=>{
-                    console.log("userFound : ",userFound);
+                    // console.log("userFound : ",userFound);
                     userFound.update({
                         nomComplet:nomComplet,
                         profession:profession,
                         service: service,
                         departement: departement,
-                        direction:direction
+                        direction:direction,
+                        etat:etat
                     })
                     return res.status(204).json({
                         success: true,
                         message: "request update User successfully",
-                        results: singleUser
+                        results: userFound
                     })
                 }).catch((err)=>{
                     return res.status(500).json({

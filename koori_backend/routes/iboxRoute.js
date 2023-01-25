@@ -9,11 +9,11 @@ const User = require("../models/user");
 
 const iboxRoute = new express.Router();
 
-iboxRoute.post('/ibox/', iboxCtrl.createIbox);
-iboxRoute.put('/ibox/:id/', validator.koori.validate('updateIbox'), iboxCtrl.updateIbox);
-iboxRoute.get('/lastibox/', iboxCtrl.getIbox);
-// iboxRoute.get('/ibox/last', iboxCtrl.getLastIbox);
-iboxRoute.get('/ibox/', iboxCtrl.getAllIbox);
+    iboxRoute.get('/ibox/', iboxCtrl.getAllIbox);
+    iboxRoute.get('/ibox/last', iboxCtrl.getLastIbox);
+    iboxRoute.get('/ibox/:id', iboxCtrl.getIboxById);
+    iboxRoute.post('/ibox/', iboxCtrl.createIbox);
+    iboxRoute.put('/ibox/:id/', iboxCtrl.updateIbox);
 
 
 module.exports = iboxRoute

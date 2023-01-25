@@ -160,7 +160,6 @@ module.exports = {
                             let buff = new Buffer(serviceResult.avatar);
                             serviceResult.avatar = buff.toString('base64');
                         }
-                        console.log("serviceResult : ",serviceResult);
                         return res.status(200).json({
                             success: true,
                             message: "request update Service successfully",

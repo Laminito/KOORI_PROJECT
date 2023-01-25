@@ -25,6 +25,12 @@ module.exports = {
                 type: Sequelize.FLOAT,
                 unique: true,
             },
+            avatar: {
+                type: Sequelize.BLOB,
+                get() {
+                    return this.getDataValue('avatar').toString('utf8'); // or whatever encoding is right
+                }
+            },
             etat: {
                 type: Sequelize.BOOLEAN,
                 allowNull: false,

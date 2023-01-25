@@ -23,6 +23,12 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             unique: true
         },
+        avatar: {
+            type: DataTypes.BLOB,
+            get() {
+                return this.getDataValue('avatar').toString('utf8'); // or whatever encoding is right
+            },
+        },
         etat: {
             type: DataTypes.BOOLEAN,
             allowNull: false,

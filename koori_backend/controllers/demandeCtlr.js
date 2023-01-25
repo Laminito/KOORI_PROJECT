@@ -18,7 +18,7 @@ module.exports = {
             titre: _.capitalize(titre),
             description: description
         }).then((demandes) => {
-            // send_mail.sendEmail('abmangane14@gmail.com', "message de test")
+            send_mail.sendEmail('abmangane14@gmail.com', "message de test")
             return res.status(201).json({
                 success: true,
                 message: "request create Demande successfully",

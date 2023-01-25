@@ -7,7 +7,7 @@ const password = generator.generate({
 });
 
 // 'uEyMTw32v9'
-console.log(password);
+// console.log(password);
 
 module.exports = {
     password

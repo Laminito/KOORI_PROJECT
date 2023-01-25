@@ -1,5 +1,6 @@
 'use strict';
 const bcrypt = require("bcryptjs")
+const passwordgenerator = require("../middleware/password_generator")
 const defaultpass = "pass"
 async function hash(password) {
     const passwprdHash = await bcrypt.hash(password, 10);
@@ -35,7 +36,8 @@ module.exports = {
             },
             password: {
                 type: Sequelize.STRING,
-                allowNull: false
+                allowNull: false,
+                defaultValue: passwordgenerator.password
             },
             profession: {
                 type: Sequelize.STRING,
@@ -59,10 +61,9 @@ module.exports = {
             },
             avatar: {
                 type: Sequelize.BLOB,
-                allowNull: false,
                 get() {
                     return this.getDataValue('avatar').toString('utf8'); // or whatever encoding is right
-                },
+                }
             },
             etat: {
                 type: Sequelize.BOOLEAN,
