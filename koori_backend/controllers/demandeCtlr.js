@@ -32,7 +32,6 @@ module.exports = {
         })
     })
     },
-
     getDemande: (req, res) => {
         const limit = parseInt(req.query.limit);
         const offset = parseInt(req.query.offset);
@@ -93,45 +92,6 @@ module.exports = {
                 })
             })
     },
-    // getDemandeByService: (req, res) => {
-    //     const ServiceId = parseInt(req.params.id);
-    //     models.Demande.findOne({
-    //         attributes:['id','titre'],
-    //         where: { id: ServiceId },
-    //             include: [{
-    //                 model: models.Service,
-    //                 attributes:['id','libelle'],
-    //                 include: [{
-    //                     model: models.User,
-    //                     attributes: ['id','nomComplet','email']
-    //                 }],
-    //             }]
-    //         }).then((service) => {
-    //             if (service) {
-    //                 if (service.avatar) {
-    //                     let buff = new Buffer(service.avatar);
-    //                     service.avatar = buff.toString('base64');
-    //                     return res.status(200).json({
-    //                         success: true,
-    //                         message: "request getServiceByDemande successfully",
-    //                         results: service
-    //                     })
-    //                 }
-    //             } else {
-    //                 return res.status(404).json({
-    //                     success: false,
-    //                     message: "failed this ressource does not existe!",
-    //                     results: err
-    //             })
-    //             }
-    //         }).catch((err) => {
-    //             return res.status(500).json({
-    //                 success: false,
-    //                 message: "failed getServiceByDemande request",
-    //                 results: err
-    //         })
-    //         })
-    // },
     updateDemande: (req, res) => {
         const id = req.params.id
         const {titre,statut,description,date_debut_souhaitee,disponibilite,text}=req.body
@@ -172,7 +132,45 @@ module.exports = {
             return res.status(500).json({ 'erreur serveur ': err.message });
         })
     },
-
+    // getDemandeByService: (req, res) => {
+    //     const ServiceId = parseInt(req.params.id);
+    //     models.Demande.findOne({
+    //         attributes:['id','titre'],
+    //         where: { id: ServiceId },
+    //             include: [{
+    //                 model: models.Service,
+    //                 attributes:['id','libelle'],
+    //                 include: [{
+    //                     model: models.User,
+    //                     attributes: ['id','nomComplet','email']
+    //                 }],
+    //             }]
+    //         }).then((service) => {
+    //             if (service) {
+    //                 if (service.avatar) {
+    //                     let buff = new Buffer(service.avatar);
+    //                     service.avatar = buff.toString('base64');
+    //                     return res.status(200).json({
+    //                         success: true,
+    //                         message: "request getServiceByDemande successfully",
+    //                         results: service
+    //                     })
+    //                 }
+    //             } else {
+    //                 return res.status(404).json({
+    //                     success: false,
+    //                     message: "failed this ressource does not existe!",
+    //                     results: err
+    //             })
+    //             }
+    //         }).catch((err) => {
+    //             return res.status(500).json({
+    //                 success: false,
+    //                 message: "failed getServiceByDemande request",
+    //                 results: err
+    //         })
+    //         })
+    // },
     // updateStatutDemande: (req, res) => {
     //     const statut = req.body.statut;
     //     const text = req.body.text

@@ -1,13 +1,11 @@
 const express = require('express')
 const profilCtrl = require('../controllers/profilCtrl');
-const validator = require('../validationsCheck/validationFilesRequire')
-const multer = require('../multer-config')
-const User = require("../models/user");
+
 
 const profilRoute = new express.Router();
-profilRoute.post('/profil/', validator.profil.validate('createProfil'), profilCtrl.createProfil)
-profilRoute.put('/profil/:id/', validator.profil.validate('updateProfil'), profilCtrl.updateProfil);
+profilRoute.post('/profil/', profilCtrl.createProfil)
+profilRoute.get('/profil/', profilCtrl.getAllProfils);
 profilRoute.get('/profil/:id/', profilCtrl.getProfilById);
+profilRoute.put('/profil/:id/', profilCtrl.updateProfil);
 profilRoute.delete('/profil/:id/', profilCtrl.deleteProfil);
-profilRoute.get('/profil/', profilCtrl.getProfils);
 module.exports = profilRoute;
