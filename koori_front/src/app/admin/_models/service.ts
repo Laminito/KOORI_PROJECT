@@ -16,7 +16,7 @@ import { Demande } from "./demande";
   public suivi_gestion_relation_client!:string;
   public avatar!:any;
   public liste_des_applications_metiers_supporte!:string;
-
+  public nom_des_clients!: string
   public tarifs_et_Facturation!:string;
   public Demandes!:Demande[];
   public id!:number;

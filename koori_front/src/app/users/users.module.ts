@@ -6,7 +6,6 @@ import { HomeComponent } from './components/home/home.component';
 import { AproposComponent } from './components/apropos/apropos.component';
 import { CommunauteComponent } from './components/communaute/communaute.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { DemandeComponent } from './components/demande/demande.component';
 import { EvaluationNoteComponent } from './components/evaluation-note/evaluation-note.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { FicheComponent } from './components/fiche/fiche.component';
@@ -65,7 +64,6 @@ import { ForUserConnectedComponent } from './components/home/for-user-connected/
     RapportComponent,
     IboxComponent,
     MenuVerticalComponent,
-    DemandeComponent,
     DetailServiceComponent,
     ItemRapportComponent,
     LoadingComponent,
@@ -120,7 +118,6 @@ import { ForUserConnectedComponent } from './components/home/for-user-connected/
     IboxComponent,
     MenuVerticalComponent,
     KooriiboxMenuComponent,
-    DemandeComponent,
     DetailServiceComponent,
     ItemRapportComponent,
     NodataComponent,

@@ -2,16 +2,15 @@ import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2'
 import { ActivatedRoute, Router } from '@angular/router';
-import { Demande } from '../../_models/demande';
-import { Service } from '../../_models/Service';
-import { User } from '../../_models/user';
-import { AllRequestService } from '../../_services/all-request.service';
-import { DemandeService } from '../../_services/demande.service';
-import { UserService } from '../../_services/user.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { AuthService } from '../../_services/auth.service';
 import * as bootstrap from "bootstrap";
 import * as $ from 'jquery';
+import { Demande } from '../../_models/demande';
+import { User } from 'src/app/users/_models/user';
+import { Service } from 'src/app/users/_models/Service';
+import { AllRequestService } from 'src/app/users/_services/all-request.service';
+import { AuthService } from 'src/app/users/_services/auth.service';
+import { DemandeService } from 'src/app/users/_services/demande.service';
 
 @Component({
   selector: 'app-demande',
@@ -24,43 +23,47 @@ export class DemandeComponent implements OnInit {
   user!: User | null
   demandeForm!: FormGroup;
   idService!: number
-  services: Service[]=[]
+  @Input() services: Service[]=[]
   message: string= "";
   tab: any;
   submitted= false;
   @Input() libelleService!: String
   modalRef!: BsModalRef;
+  config = {
+    backdrop: true,
+    ignoreBackdropClick: true,
+    class: 'modal-dialog-centered',
+  };
   isLoggedIn!: boolean;
+  selectedValue = "";
   public errorsMessage ={
     titre:[
       {type: 'required', message:'ce champ est obligatoire'}
     ]
-  } ;
+  };
 
   constructor(
     private demandService: DemandeService,
     private allRequest: AllRequestService,
-    private userService: UserService,
     private formBuilder: FormBuilder,
     private route: Router,
     private modalService: BsModalService,
     private authService: AuthService,
-    private router: ActivatedRoute) { }
+    private router: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
     
       this.authService.userValue.subscribe(
-        (test) => {
-          this.isLoggedIn = test === null ? false : true;
+        (data) => {
+          this.isLoggedIn = data === null ? false : true;
           if (this.isLoggedIn) {
-            this.user = test
-            console.log(this.user)
+            this.user = data
           }
-        }
-      )
+      })
+      
       this.idService = +this.router.snapshot.params['id'];
       this.getService();
-      this.getUser()
       this.demandeForm = this.formBuilder.group({
         UserId: [this.user?.id, Validators.required],
         ServiceId: [this.idService, Validators.required],
@@ -68,14 +71,12 @@ export class DemandeComponent implements OnInit {
         description: ['', Validators.required],
         date_realisation: ["", Validators.required],
       });
+
   }
 
   openModalDemande(template: TemplateRef<any>) {
     if(this.isLoggedIn){
-      this.modalRef = this.modalService.show(template,
-        {
-          class: 'modal-dialog-centered'
-        });
+      this.modalRef = this.modalService.show(template,this.config);
     }
     else{ Swal.fire({
           position: 'center',
@@ -95,16 +96,19 @@ export class DemandeComponent implements OnInit {
     } 
   }
 
-//recuperer tous les service
-  getService(){this.allRequest.getAll("service").subscribe((data:any)=>{this.services=data})}
+  //recuperer tous les service
+  getService(){this.allRequest.getAll("service").subscribe((data:any)=>{
+    this.services=data
+  })}
 
-  getUser(){this.userService.getUserById(2).subscribe((data)=>{this.user= data;})}
-
-  get f(){return this.demandeForm.controls}
+  get f(){
+    return this.demandeForm.controls
+  }
 
   onsubmit(){
-    
+
     if (this.demandeForm.valid) {
+      console.log(this.demandeForm.controls);
       this.route.navigateByUrl("/home/service/"+this.user?.id)
       this.demandService.create(this.demandeForm.value).subscribe((data: any)=>{
         if(data){
@@ -124,5 +128,7 @@ export class DemandeComponent implements OnInit {
         this.message = error.error.errors.msg;
       })
     }
-   }
+  }
+
 }
+

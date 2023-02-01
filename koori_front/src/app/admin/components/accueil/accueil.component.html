@@ -1,44 +1,5 @@
 <div class="d-flex" id="wrapper">
-  <!-- Sidebar -->
-  <mat-drawer-container class="example-container" autosize>
-    <mat-drawer #drawer class="example-sidenav" mode="side">
-      
-      <div class="sidebar-heading text-center py-4 fs-4 fw-bold border-bottom">
-        <!--<img src="assets/img/logo_pnp.png" width="50" height="50" alt="">-->
-        <a href="http://localhost:4201" target="_blank" title="Lisons notre livret !">
-          <span style="color: black; font-size: xx-large; font-family: 'Impact, fantasy',serif">Ko</span>
-            <img src="./assets/img/ideation.png" width="25" height="25" alt="">
-          <span style="color: black; font-size: xx-large; font-family: 'Impact, fantasy',serif">ri</span>
-        </a>
-      </div>
-
-        <div class="accordion" id="accordionExample">
-          
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne">
-              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                Les Services
-              </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <mat-list role="list">
-                  <mat-list-item *ngFor="let service of services; let i = index" role="listitem" (click)="onShowDetailService(service.id)"> {{ service.libelle }} </mat-list-item>
-                </mat-list>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-    </mat-drawer>
-  </mat-drawer-container>
-
   <div id="page-content-wrapper">
-    <div class="example-sidenav-content">
-      <button type="button" mat-button (click)="drawer.toggle()">
-        <i class="fa-solid fa-bars fs-2 tooglebutton"></i>
-      </button>
-    </div>
     <div class="container-fluid pt-2 ">
       <router-outlet></router-outlet>
     </div>

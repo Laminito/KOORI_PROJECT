@@ -5,10 +5,13 @@ import {CdkStepperModule} from '@angular/cdk/stepper';
 import { NgStepperModule } from 'angular-ng-stepper';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MaterialModule } from './material.module';
+import { DemandeComponent } from './components/demande/demande.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    DemandeComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -23,7 +26,8 @@ import { MaterialModule } from './material.module';
     CdkStepperModule,
     NgStepperModule,
     NgxPaginationModule,
-    MaterialModule
+    MaterialModule,
+    DemandeComponent
   ]
 })
 

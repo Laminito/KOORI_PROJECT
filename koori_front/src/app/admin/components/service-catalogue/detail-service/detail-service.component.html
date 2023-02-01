@@ -1,13 +1,36 @@
-<div class="bg-bar p-4">
-  <div class="row">
-    <div class="col"><h3>Services</h3></div>
-    <div class="col d-flex justify-content-end">
-      <i class="fas fa-cogs fa-3x"></i>
+
+<app-details-service-bar [service]="service"></app-details-service-bar>
+<div class="container-fluid pt-5">
+    <div class="row mt-2 mx-5">
+      <div class="col-4 pt-0">
+        <div class="row">
+          <div class="col-12">
+            <div class="card shadow w-100 h-100 mt-2">
+              <div class="card-body">
+                <img src="https://source.unsplash.com/1080x585/?computer" class="img-fluid rounded-start" alt="...">
+                <div>
+                  <h3 class="card-title text-center">{{service.libelle | uppercase }}</h3>
+                  <h5 class="card-title text-center">{{service.nom_des_clients }}</h5>
+                  <h6 class="card-title text-center">{{service.type_de_service }}</h6>
+                  <div>
+                    <p class="card-text">{{service.description }}  </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-8">
+        <div class="demande">
+          <h3 class="text-color text-start pt-4 mb-4">Des Demandes sur {{ service.libelle }}</h3>
+          <app-liste-demande [demandes]="demandes"></app-liste-demande>
+        </div>
+      </div>
     </div>
-  </div>
- <p>service > <span class="font-weight-bold" style="color: #FF7713;">{{service.libelle}}</span></p>
 </div>
 
+<!--
 <div class="container mt-3">
   <div class="row">
     <div class="col">
@@ -54,3 +77,4 @@
     <app-liste-demande [demandes]="demandes"></app-liste-demande>
   </div>
 </div>
+-->

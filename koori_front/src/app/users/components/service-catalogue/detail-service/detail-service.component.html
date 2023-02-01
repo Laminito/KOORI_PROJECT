@@ -16,11 +16,11 @@
           <h3 class="card-title title-service text-end"> {{ service.libelle | uppercase }} </h3>
           <h5 class="card-title text-end"> {{service.nom_des_clients }} </h5>
 
-          <div class="description text-end float-end">
+          <div class="description text-end mb-5 float-end">
             <p class="card-text">{{service.description }}  </p>
           </div>
           
-          <app-demande [libelleService] = "service.libelle"></app-demande>
+          <app-demande [services]="services" [libelleService] = "service.libelle"></app-demande>
           
         </div>
       </div>

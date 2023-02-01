@@ -1,0 +1,14 @@
+<div class="bg-bar">
+	<div class="row p-2">
+	  <div class="col d-flex justify-content-start align-items-center">
+		<p class="titre fs-2 pt-2 ps-2"><span class="titre font-weight-bold">{{service.libelle}}</span></p>
+		<i></i>
+	  </div>
+	</div>
+	<div class="row">
+	  <mat-button-toggle-group class="d-flex justify-content-end" #toggleBtnGroup="matButtonToggleGroup" name="favoriteColor" aria-label="Favorite Color">
+		<mat-button-toggle class="mx-1"  *ngFor="let item of allServices" value="{{item.id}}" (click)="onSwitchService(item.id)"> {{item.libelle}} </mat-button-toggle>
+	  </mat-button-toggle-group>
+	</div>
+</div>
+

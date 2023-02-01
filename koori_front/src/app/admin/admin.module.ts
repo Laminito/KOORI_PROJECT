@@ -38,6 +38,7 @@ import { StatutDemandeComponent } from './components/detail-deshboard-testing/st
 import { CardDemandeComponent } from './components/liste-demande/card-demande/card-demande.component';
 import { UsersComponent } from './components/users/users.component';
 import { CardUserComponent } from './components/users/card-user/card-user.component';
+import { DetailsServiceBarComponent } from './components/service-catalogue/detail-service/details-service-bar/details-service-bar.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { CardUserComponent } from './components/users/card-user/card-user.compon
     StatutDemandeComponent,
     CardDemandeComponent,
     UsersComponent,
-    CardUserComponent
+    CardUserComponent,
+    DetailsServiceBarComponent
   ],
   imports: [
     CommonModule,

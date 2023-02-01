@@ -41,7 +41,7 @@
     </div>
 </nav>
 <nav class="navbar navbar-dark sticky-top navbar-expand-lg bg-white menu">
-    <div class="container-fluid">
+    <div class="container-fluid mx-3">
         <a class="navbar-brand" [routerLink]="['home']"><img src="assets/img/logo.png" alt="" width="50" height="50"></a>
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
@@ -71,7 +71,9 @@
                     </li>
                 -->
             </ul>
-            <button class="btn btn-outline-info mt-1 btn-demande" data-toggle="modal" data-target="#myModal" *ngIf="(currentUser$ | async) == null || (currentUser$ | async)?.ProfilId !== 1">Demander un service</button>
+            
+                <app-demande [services]="services" *ngIf="(currentUser$ | async) == null || (currentUser$ | async)?.ProfilId !== 1"></app-demande>
+           
             <ul class="navbar-nav-bas ms-auto" *ngIf="!((currentUser$ | async) !== null)">
 
                 <li class="nav-item separate mx-3 fs-2 mt-1">
@@ -105,6 +107,9 @@
                         </a>
                         <a class="dropdown-item py-3 fs-6" routerLink="/home/profil/mesDemandes" *ngIf="(currentUser$ | async)?.ProfilId !== 1">
                             <i class="fa-solid fa-list-ul"></i>&nbsp; Voir mes demandes
+                        </a>
+                        <a class="dropdown-item py-3 fs-6" routerLink="/admin/service/1" *ngIf="(currentUser$ | async)?.ProfilId === 1">
+                            <i class="fa-solid fa-list-ul"></i>&nbsp; Détails services
                         </a>
                         <a class="dropdown-item py-3 fs-6" routerLink="/admin/utilisateurs" *ngIf="(currentUser$ | async)?.ProfilId === 1">
                             <i class="fa-solid fa-list-ul"></i>&nbsp; Liste des Utilisateurs

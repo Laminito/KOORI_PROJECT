@@ -1,14 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Zen+Antique+Soft&display=swap');
-.bg-bar{
-  background: var(--vert);
-  color :white;
-}
+
+
 //caracteristique d'un service
 .card {
   border-radius: 2px;
   display: inline-block;
   background-color: #FFFFFF;
   height: 430px;
+  border-radius: 0 0 8px 8px;
 }
 .card-5 {
   box-shadow: 0 2px 8px rgba(75, 73, 73, 0.192);
@@ -36,12 +35,7 @@
 .scroller .card-text {
   scroll-snap-align: start;
 }
-.text-color{
-  color: var(--vert);
-  font-family: 'Zen Antique Soft', serif;
-  text-align: center;
-  font-weight: bolder;
-}
+
 .title-proprety{
   color: #000000bd;
 }
@@ -94,7 +88,7 @@ button {
   background: none;
   border: 0;
   box-sizing: border-box;
-  margin: 1em;
+  // margin: 1em;
   padding: 1em;
   box-shadow: inset 0 0 0 1px var(--vert);
   color: var(--orange);
@@ -160,5 +154,11 @@ button::before, button::after {
   transition: height 0.25s ease-out, width 0.25s ease-out 0.25s;
 }
 .demande{
-  margin: 4vh auto;
+  margin: 0 auto;
+}
+.demande > h3{
+  border-top: 1px solid var(--vert);
+  color: var(--orange);
+  font-size: 1.5em;
+  font-weight: 400;
 }

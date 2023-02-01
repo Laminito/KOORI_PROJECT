@@ -1,0 +1,134 @@
+<button type="button" class="draw meet float-end" data-bs-toggle="modal" (click)="openModalDemande(template)">Faire une demande</button>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left w-75 mt-3 fs-4">Demande de Service</h4>
+    <i class="fa-solid fa-circle-xmark fs-4" (click)="modalRef.hide()"></i>
+  </div>
+  <div class="modal-body">
+    
+    <form id="contact-form" [formGroup]="demandeForm">
+      <div class="row"> 
+              
+              <div class="col-lg-12 col-md-12">
+                  <div class="form-group mx-3 fs-5 mt-3">
+                      <label>Service</label>
+                      <select name="service" id="service" [(ngModel)]="selectedValue" class="form-control-1 mt-2 py-2" placeholder="Sélectionnez le service à demander">
+                          <option value="0" disabled selected>Sélectionnez le service à demander</option>
+                          <option  *ngFor="let service  of services" value="{{ service.id }}" >{{ service.libelle}}</option>
+                      </select>
+                  </div>
+              </div>
+          
+              <div class="col-lg-12 col-md-12">
+                  <div class="form-group mx-3 fs-5 mt-3">
+                      <label>Objet ou Challange</label>
+                      <input  class="form-control mt-2 fs-5" formControlName="objet"  required>
+                  </div>
+                  <div class="error-text" *ngIf="demandeForm.controls['objet'].hasError('required') && demandeForm.controls['objet'].touched">
+                      <p class="ms-3 mt-1">Please enter object</p>
+                  </div>
+              </div>
+
+              <div class="col-lg-12 col-md-12">
+                  <div class="form-group mx-3 fs-5 mt-3">
+                      <label>Description</label>
+                      <textarea  class="form-control mt-2 fs-5" formControlName="description"  required></textarea>
+                  </div>
+                  <div class="error-text" *ngIf="demandeForm.controls['description'].hasError('required') && demandeForm.controls['description'].touched">
+                      <p class="ms-3 mt-1">Please enter description</p>
+                  </div>
+              </div>
+
+              <div class="col-lg-12 col-md-12">
+                  <div class="form-group mx-3 fs-5 mt-3">
+                      <label>Date souhaitée</label>
+                      <input  class="form-control mt-2" formControlName="date"  type="date" required>
+                  </div>
+                  
+              </div>     
+
+              <div class="col-lg-12 col-md-12">
+                <div class="form-group d-flex justify-content-center fs-5 mt-3">
+                    <button type="button" class="btn btn-lg envoyer">Envoyer votre demande</button>
+                </div>
+                
+            </div>
+      </div>
+    </form>   
+
+  </div>
+</ng-template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<ng-template #template >
+  <div class="modal-header">
+    <h4 class="modal-title text-center fs-4 pt-3">Demande de Service</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true" class="visually-hidden bg-white"></span>
+    </button>
+  </div>
+  
+  <div class="modal-body">
+    <form [formGroup]="demandeForm" (ngSubmit)="onsubmit()">
+      <div class="row">
+        <div class="col-12">
+          <label class="form-label">Challenge ou objet <label class="text-danger">*</label></label>
+          <input type="text" [ngClass]="{ 'is-invalid': submitted }" [formControlName]="'titre'" class="form-control input mb-2">
+        </div>
+      </div>
+      <label class="form-label">Description de la demande <label class="text-danger">*</label></label>
+      <textarea [ngClass]="{ 'is-invalid': submitted }" [formControlName]="'description'" class="form-control input mb-2" ></textarea>
+      
+      <div class="col-12">
+        <label for="" class="form-label">Periode souhaité</label>
+          <input type="date"
+            [ngClass]="{ 'is-invalid': submitted }" class="form-control input mb-2"
+            [formControlName]="'date_realisation'"
+            name="date_realisation"
+            min="2023-01-20"
+            required>
+          </div>
+      <div class="text-center">
+        <button type="submit" data-bs-dismiss="modal" class="btn btn-evaluer mt-1">Enregistrer votre demande</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+-->

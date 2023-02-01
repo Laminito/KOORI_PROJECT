@@ -10,7 +10,7 @@
         {{ demande.titre }}
       </div>
       <div class="col-sm-2 col-lg-2 m-auto text-center">
-        {{ demande.date_debut_souhaitee | date: "dd - mm - yyyy" }}
+        {{ demande.date_debut_souhaitee | date: "dd - MM - yyyy" }}
       </div>
       <div class="col-sm-2 col-lg-2 m-auto text-center"  *ngIf="!isClicked">
         <i class="fa fa-circle circle{{demande.id}}" [style.color]="colors[statuts.indexOf(demande.statut)]"></i>

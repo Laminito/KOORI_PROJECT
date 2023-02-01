@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { map } from 'rxjs';
 import { Demande } from 'src/app/admin/_models/demande';
-import { AllRequestService } from 'src/app/admin/_services/all-request.service';
+import { Service } from 'src/app/admin/_models/service';
 import { SenddataService } from 'src/app/admin/_services/senddata.service';
 
 @Component({
@@ -12,10 +12,11 @@ import { SenddataService } from 'src/app/admin/_services/senddata.service';
 })
 export class DetailServiceComponent implements OnInit {
   
-  public service: any=[]
   id!: number
-  demandes!: Demande[]
   idService!: number
+
+  service!: Service
+  demandes!: Demande[]
 
   images: string[] = [
     "https://static.vecteezy.com/system/resources/previews/007/983/691/non_2x/quick-tips-label-design-free-vector.jpg",
@@ -26,37 +27,20 @@ export class DetailServiceComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, 
               private sendData: SenddataService,
-              private serveService: AllRequestService,
               private router: Router) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
-    console.log(this.id)
-    this.getservicebyId();
-    // this.sendDemandeServices();
-    // this.sendTitle(serviceLibelle)
     let url = this.router.routerState.snapshot.url.split('/');
-
     this.idService = Number(url[(url.length - 1)]);
 
-   this.route.data.pipe(
-    map(
-      data =>  {
-        this.demandes = data['listeDemande'].filter((dmd: any)=> dmd.ServiceId == this.service.id)  
-        console.log(this.demandes)      
-      }
-    )
-   ).subscribe()
-  }
-  getservicebyId(){
-    this.route.data.subscribe((data: Data) => {
+   this.route.data.subscribe((data: Data) => {
       this.service = data['detailService'];
-      this.demandes = data['detailService'].Demande
-      console.log(this.demandes)
+      console.log(this.service)
+      this.demandes = data['detailService'].Demandes
     });
-  }
 
- 
+  }
 
   sendDemandeServices() {
     this.sendData.sendData(this.service)

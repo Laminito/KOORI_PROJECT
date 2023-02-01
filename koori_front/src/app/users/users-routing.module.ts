@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AproposComponent } from './components/apropos/apropos.component';
 import { CommunauteComponent } from './components/communaute/communaute.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { DemandeComponent } from './components/demande/demande.component';
 import { EvaluationNoteComponent } from './components/evaluation-note/evaluation-note.component';
 import { FicheComponent } from './components/fiche/fiche.component';
 import { HomeComponent } from './components/home/home.component';
@@ -52,7 +51,6 @@ const routes: Routes = [
   {path: 'apropos', component: AproposComponent},
   {path: 'communaute', component: CommunauteComponent},
   {path: 'menu-vertical', component: MenuVerticalComponent},
-  {path: 'demande', component: DemandeComponent},
   {path: 'service/:id', component: DetailServiceComponent, resolve: {service: ServiceResolverService}},
   {path: 'not-found', component: NotFoundComponent },
   {

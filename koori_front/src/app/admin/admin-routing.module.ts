@@ -32,27 +32,28 @@ const routes: Routes = [
 
   children: 
   [
-    {
-      path: 'dashboard', component: DashboardComponent, data: {title: 'Dashboard'}, children: [
+    {path: 'dashboard', component: DashboardComponent, data: {title: 'Dashboard'}, children: 
+      [
         {path: 'service/:id', component: DetailDashboardComponent, resolve: {detailService: DetailServiceResolverService}},
-      ]},
-      {path: 'utilisateurs', component: UsersComponent},
-      {path: 'chartTest', component: DemandeAnnuelChartComponent},
-      {path: 'ibox', component: IboxComponent},
-      {path: 'koori', component: KooriComponent},
-      {path: 'fiche/:id', component: FicheComponent, resolve: {fiche: FicheResolverService}},
-      {path: 'service/:id', component: DetailServiceComponent, resolve: {detailService: DetailServiceResolverService, listeDemande: ListeDemandeByServiceResolver} },
-      {path: 'AddService', component: AddServiceComponent},
-      {path: 'edit/:id', component: EditServiceComponent},
-      {path: 'rapports/:id/details', component: DetailRapportComponent, resolve: {detailRapport: DetailRapportResolverService}},
-      {path: 'rapports', component: RapportComponent},
-      {path: 'ListeDemande/:serviceId', component: ListeDemandeComponent, resolve: {listeDemande: ListeDemandeByServiceResolver} },
-      {path: 'service/:id/sessions', component: SessionComponent , resolve: {sessionService: SessionByServiceResolverService}},
-      {path: 'session/:id', component: DetailSessionComponent , resolve: {session: DetailSessionResolverService} },
-      {path: 'utilisateur', component: ListeUtilisateurComponent},
-      {path: 'utilisateur-detail/:id', component: UtilisateurDetailComponent},
-      {path: 'not-found', component: NotFoundComponent },
-      {path: '**', redirectTo: '/not-found'}
+      ]
+    },
+    {path: 'utilisateurs', component: UsersComponent},
+    {path: 'chartTest', component: DemandeAnnuelChartComponent},
+    {path: 'ibox', component: IboxComponent},
+    {path: 'koori', component: KooriComponent},
+    {path: 'rapports', component: RapportComponent},
+    {path: 'AddService', component: AddServiceComponent},
+    {path: 'utilisateur', component: ListeUtilisateurComponent},
+    {path: 'fiche/:id', component: FicheComponent, resolve: {fiche: FicheResolverService}},
+    {path: 'service/:id', component: DetailServiceComponent, resolve: {detailService: DetailServiceResolverService, listeDemande: ListeDemandeByServiceResolver} },
+    {path: 'edit/:id', component: EditServiceComponent},
+    {path: 'session/:id', component: DetailSessionComponent , resolve: {session: DetailSessionResolverService} },
+    {path: 'utilisateur-detail/:id', component: UtilisateurDetailComponent},
+    {path: 'ListeDemande/:serviceId', component: ListeDemandeComponent, resolve: {listeDemande: ListeDemandeByServiceResolver} },
+    {path: 'rapports/:id/details', component: DetailRapportComponent, resolve: {detailRapport: DetailRapportResolverService}},
+    {path: 'service/:id/sessions', component: SessionComponent , resolve: {sessionService: SessionByServiceResolverService}},
+    {path: 'not-found', component: NotFoundComponent },
+    {path: '**', redirectTo: '/not-found'}
   ]
 },
 

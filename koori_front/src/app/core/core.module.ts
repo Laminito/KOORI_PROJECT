@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from "@angular/common/http";
 import { SharedModule } from '../shared/shared.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { UsersModule } from '../users/users.module';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -16,6 +17,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     HttpClientModule,
     RouterModule,
     SharedModule,
+    UsersModule,
     ModalModule.forRoot(),
   ],
   exports: [

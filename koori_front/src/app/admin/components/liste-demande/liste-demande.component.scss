@@ -3,10 +3,9 @@
   background: var(--vert);
   color :white;
 }
-
-
-
-
+.container-fluid{
+  border-radius: 0 0 8px 8px;
+}
 .row-container:hover {
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
@@ -20,3 +19,8 @@ button {
   }
 }
 
+strong{
+  color: var(--vert);
+  font-size: 1.3em;
+  font-weight: 400;
+}
