@@ -15,7 +15,6 @@ const colors: any = {
   yellow: { primary: '#e3bc08', secondary: '#FDF1BA'},
 };
 
-
 @Component({
   selector: 'app-detail-service',
   templateUrl: './detail-service.component.html',
@@ -41,7 +40,9 @@ export class DetailServiceComponent implements OnInit {
               private modalService: BsModalService) { }
 
   ngOnInit(): void {
-    this.route.data.subscribe((data: Data) => { this.service = data['service']});
+    this.route.data.subscribe((data: Data) => { 
+      this.service = data['service']
+    });
 
     this.demandeForm = this.formBuilder.group({
       UserId: [3, Validators.required],
@@ -51,7 +52,6 @@ export class DetailServiceComponent implements OnInit {
       date_realisation: ["", Validators.required],
     });
 
-
   }
 
 // partie ajouter une demande
@@ -59,7 +59,6 @@ export class DetailServiceComponent implements OnInit {
   get f(){return this.demandeForm.controls}
   
   onsubmit(){
-    console.log(this.demandeForm.value);
     this.submitted = true;
 
     this.demandService.create(this.demandeForm.value).subscribe(
@@ -84,7 +83,6 @@ export class DetailServiceComponent implements OnInit {
     (error: { error: { errors: { msg: string; param: string; }; }; })=>{
       this.message=error.error.errors.msg;
       this.titre= error.error.errors.param
-      console.log(error);
 
     })
    }
@@ -93,9 +91,6 @@ export class DetailServiceComponent implements OnInit {
     this.bsModalRef = this.modalService.show(SigninComponent);
     this.bsModalRef.content.closeBtnName = 'Close';
    }
-  //  reset() {
-  //   this.demandeForm.reset();
-  // }
 
 
 }

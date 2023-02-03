@@ -1,10 +1,10 @@
 <div class="container-fluid p-3">
   <div class="row pt-3 pb-3">
-    <div class="col-8 my-auto">
+    <div class="col-7 my-auto">
       <div class="mt-2 text-center" style="border: 1px solid #000000;box-sizing: border-box;border-radius: 5px;">
         <p class="mt-2" style="color: var(--orange); font-weight: 500;font-size: large;">Courbe representative du nombre de demandes annuel</p>
         <div style="display: block;">
-          <canvas baseChart width="500" height="250"
+          <canvas baseChart
                   [data]="lineChartDatas"
                   [options]="lineChartOptions"
                   [legend]="lineChartLegend"
@@ -14,13 +14,13 @@
         </div>
       </div>
     </div>
-    <div class="col-4 my-auto" style="background: var(--fond)">
+    <div class="col-5 my-auto" style="background: var(--fond)">
       <div class="row">
         <div class="col-12 text-center" style="background: #FFFFFF;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
           <p class="mt-2" style="color: var(--orange); font-weight: 500;font-size: large;">Nos Clients</p>
           <div class="chart-wrapper">
-            <canvas baseChart
+            <canvas baseChart 
                     [data]="pieChartDatas"
                     [labels]="pieChartLabels"
                     [type]="'pie'"

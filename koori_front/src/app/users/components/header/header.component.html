@@ -72,7 +72,7 @@
                 -->
             </ul>
             
-                <app-demande [services]="services" *ngIf="(currentUser$ | async) == null || (currentUser$ | async)?.ProfilId !== 1"></app-demande>
+                <app-demande *ngIf="(currentUser$ | async) == null || (currentUser$ | async)?.ProfilId !== 1"></app-demande>
            
             <ul class="navbar-nav-bas ms-auto" *ngIf="!((currentUser$ | async) !== null)">
 
@@ -81,12 +81,12 @@
                 </li>
                 <li class="nav-item mx-3 fs-6">
                     <a class="nav-link" >
-                        <button type="button" routerLink="home/signin" routerLinkActive="active-link" class="btn btn-sm btn-outline-info">Se connecter</button>
+                        <button type="button" routerLink="home/signin" routerLinkActive="active-link" class="btn btn-outline-info">Se connecter</button>
                     </a>
                 </li>
                 <li class="nav-item mx-3 fs-6">
                     <a class="nav-link" >
-                        <button type="button" routerLink="home/signup" routerLinkActive="active-link" class="btn btn-sm btn-outline-info">S'inscrire</button>
+                        <button type="button" routerLink="home/signup" routerLinkActive="active-link" class="btn btn-outline-info">S'inscrire</button>
                     </a>
                 </li>
                 

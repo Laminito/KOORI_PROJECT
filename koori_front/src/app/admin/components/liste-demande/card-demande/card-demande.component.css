@@ -1,6 +1,5 @@
 label {
-    background-color: var(--vert);
-    color: white;
+    color: var(--vert);
     padding: 0.5rem;
     font-family: sans-serif;
     border-radius: 0.3rem;
@@ -15,5 +14,17 @@ label {
 .sujet{
     width: 25%;
 }
-
-  
+.modal-header{
+  background-color: var(--vert);
+  color: #fff;
+}
+.fa-circle-xmark{
+  cursor: pointer;
+}
+.envoyer{
+  background-color: var(--vert);
+  color: #fff;
+}
+#service{
+  height: 40px;
+}

@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.data.subscribe((data: Data) => {
-      this.title = data['title'];
+      this.title = data['title']; 
     });
 
     this.service.getAllServices().subscribe((data) =>{

@@ -7,7 +7,7 @@
 	</div>
 	<div class="row">
 	  <mat-button-toggle-group class="d-flex justify-content-end" #toggleBtnGroup="matButtonToggleGroup" name="favoriteColor" aria-label="Favorite Color">
-		<mat-button-toggle class="mx-1"  *ngFor="let item of allServices" value="{{item.id}}" (click)="onSwitchService(item.id)"> {{item.libelle}} </mat-button-toggle>
+		<mat-button-toggle class="mx-1" *ngFor="let item of allServices" value="{{item.id}}" (click)="onSwitchService(item.id)"> {{item.libelle}} </mat-button-toggle>
 	  </mat-button-toggle-group>
 	</div>
 </div>

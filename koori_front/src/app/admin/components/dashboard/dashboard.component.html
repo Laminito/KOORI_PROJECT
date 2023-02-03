@@ -15,7 +15,7 @@
       <div class="row" [ngStyle]="{'border': '1px solid' + tabcolor[i+1],'box-shadow': '2px 2px 3px' + tabcolor[i+1],'box-sizing': 'border-box','border-radius': '10px'}">
         <div class="col-10 py-2">
           <p style="font-size: larger;" class="fw-bold">{{s.libelle}}</p>
-          <p style="font-size: unset;" class="text-center"><span class="fw-bold" style="color: var(--orange)">{{nbrdemande[i].valeur}}</span> nouvelles demandes</p>
+          <p style="font-size: larger;" class="text-start"><span class="fw-bold fs-4 pr-4" style="color: var(--orange); ">{{ s.Demandes.length }}</span> &nbsp; demandes</p>
         </div>
         <div class="col-2 my-auto">
           <i class="fa fa-chart-line" style="font-size: x-large" [style.color]="tabcolor[i]"></i>

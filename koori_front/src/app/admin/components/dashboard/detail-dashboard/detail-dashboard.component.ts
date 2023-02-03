@@ -110,7 +110,7 @@ export class DetailDashboardComponent implements OnInit {
   pieChartDatas= {
     datasets: [
       {
-        data: [0,0,0,0,0,0,0,0,0,0,0,0],
+        data: [11,30,0,0,32,0,0,0,0,0,0,0],
         fill: 'origin'
       }
     ],

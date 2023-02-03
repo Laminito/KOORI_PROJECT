@@ -19,7 +19,7 @@ module.exports = {
         const { UserId, ServiceId, titre, description, date_debut_souhaitee, disponibilite } = req.body
         models.Demande.create({
             UserId: UserId,
-            ServiceId: ServiceId,
+            ServiceId: Number(ServiceId),
             date_debut_souhaitee: date_debut_souhaitee,
             disponibilite: disponibilite,
             titre: _.capitalize(titre),

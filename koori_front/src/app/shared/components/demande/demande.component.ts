@@ -7,10 +7,9 @@ import * as bootstrap from "bootstrap";
 import * as $ from 'jquery';
 import { Demande } from '../../_models/demande';
 import { User } from 'src/app/users/_models/user';
-import { Service } from 'src/app/users/_models/Service';
-import { AllRequestService } from 'src/app/users/_services/all-request.service';
 import { AuthService } from 'src/app/users/_services/auth.service';
-import { DemandeService } from 'src/app/users/_services/demande.service';
+import { Service } from '../../_models/service';
+import { DemandeService } from '../../_services/demande.service';
 
 @Component({
   selector: 'app-demande',
@@ -23,7 +22,7 @@ export class DemandeComponent implements OnInit {
   user!: User | null
   demandeForm!: FormGroup;
   idService!: number
-  @Input() services: Service[]=[]
+  services!: Service[]
   message: string= "";
   tab: any;
   submitted= false;
@@ -44,13 +43,12 @@ export class DemandeComponent implements OnInit {
 
   constructor(
     private demandService: DemandeService,
-    private allRequest: AllRequestService,
     private formBuilder: FormBuilder,
     private route: Router,
     private modalService: BsModalService,
     private authService: AuthService,
     private router: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     
@@ -63,14 +61,18 @@ export class DemandeComponent implements OnInit {
       })
       
       this.idService = +this.router.snapshot.params['id'];
-      this.getService();
+
       this.demandeForm = this.formBuilder.group({
         UserId: [this.user?.id, Validators.required],
-        ServiceId: [this.idService, Validators.required],
+        ServiceId: [null, Validators.required],
         titre: ['', Validators.required],
         description: ['', Validators.required],
         date_realisation: ["", Validators.required],
       });
+
+      this.demandService.getAllService().subscribe(data => {
+        this.services = data
+      })
 
   }
 
@@ -96,19 +98,10 @@ export class DemandeComponent implements OnInit {
     } 
   }
 
-  //recuperer tous les service
-  getService(){this.allRequest.getAll("service").subscribe((data:any)=>{
-    this.services=data
-  })}
-
-  get f(){
-    return this.demandeForm.controls
-  }
-
   onsubmit(){
 
     if (this.demandeForm.valid) {
-      console.log(this.demandeForm.controls);
+      console.log(this.demandeForm.value);
       this.route.navigateByUrl("/home/service/"+this.user?.id)
       this.demandService.create(this.demandeForm.value).subscribe((data: any)=>{
         if(data){
@@ -124,10 +117,16 @@ export class DemandeComponent implements OnInit {
         this.demandeForm.reset();
         this.modalRef.hide();
       },
-      (error: { error: { errors: { msg: string; }; }; })=>{
+      (error: { error: { errors: { msg: string; }; }; }) => 
+      {
         this.message = error.error.errors.msg;
       })
     }
+  }
+
+  onCancel(){
+    this.demandeForm.reset();
+    this.modalRef.hide();
   }
 
 }
