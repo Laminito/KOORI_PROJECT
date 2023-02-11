@@ -18,7 +18,7 @@ export class DemandeService {
     return this.http.put(`${environment.API}statutdemande/${id}`, data)
   }
 
-  getDemandesByServiceId(id?: number){
+  getDemandesByServiceId(id: Number){
     return this.http.get<Demande[]>(`${environment.API}service/${id}/demande`)
   }
 

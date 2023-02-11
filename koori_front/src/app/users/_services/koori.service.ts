@@ -14,4 +14,6 @@ export class KooriService {
   getLastKoori(){
     return this.http.get<Koori>(`${environment.API}koori/last/`)
   }
+
 }
+

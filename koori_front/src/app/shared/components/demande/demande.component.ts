@@ -51,7 +51,7 @@ export class DemandeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    
+      // console.log(this.router);
       this.authService.userValue.subscribe(
         (data) => {
           this.isLoggedIn = data === null ? false : true;

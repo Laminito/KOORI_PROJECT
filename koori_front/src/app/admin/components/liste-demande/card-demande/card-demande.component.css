@@ -6,11 +6,6 @@ label {
     cursor: pointer;
     margin-top: 1rem;
   }
-  textarea{
-    background: #ECECEC; 
-    box-shadow: 0 0 0 0.1rem var(--vert);
-    border-radius: 2px; border: solid 1px var(--vert); 
-  }
 .sujet{
     width: 25%;
 }
@@ -27,4 +22,9 @@ label {
 }
 #service{
   height: 40px;
+  background-color: #fff;
+  outline: none;
+}
+#service:focus{
+  border: 1px solid var(--vert);
 }

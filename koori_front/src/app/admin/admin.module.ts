@@ -39,6 +39,7 @@ import { CardDemandeComponent } from './components/liste-demande/card-demande/ca
 import { UsersComponent } from './components/users/users.component';
 import { CardUserComponent } from './components/users/card-user/card-user.component';
 import { DetailsServiceBarComponent } from './components/service-catalogue/detail-service/details-service-bar/details-service-bar.component';
+import { LineChartComponent } from './components/dashboard/detail-dashboard/line-chart/line-chart.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { DetailsServiceBarComponent } from './components/service-catalogue/detai
     CardDemandeComponent,
     UsersComponent,
     CardUserComponent,
-    DetailsServiceBarComponent
+    DetailsServiceBarComponent,
+    LineChartComponent,
   ],
   imports: [
     CommonModule,

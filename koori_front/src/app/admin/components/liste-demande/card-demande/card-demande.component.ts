@@ -17,17 +17,15 @@ export class CardDemandeComponent implements OnInit {
   @Input() demande!:Demande
 
   user!:User
-  colors:string[] = ['#344DA8','#258F49','#256F49','#CA8654','#FF7713','#FF0000'] 
-  statuts:string[]= [  'Nouvelle', 'Traitee', 'Validee','Rejetee','En attente', 'Annulee']
+  colors: string[] = ['#344DA8','#258F49','#256F49','#CA8654','#FF7713','#FF0000'] 
+  statuts: string[]= ['Nouvelle', 'Traitee', 'Validee','Rejetee','En attente', 'Annulee']
 
   isClicked!:Boolean;
   isValidated!:Boolean;
   isFinished:string = 'false';
   demandeForm!: FormGroup
 
-  etatsDemande: String[] = [
-    "Nouvelle", "Rejetée", "Validée", "Annulée", "Traitée"
-  ]
+  etatsDemande: String[] = []
   config = {
     backdrop: true,
     ignoreBackdropClick: true,
@@ -41,6 +39,7 @@ export class CardDemandeComponent implements OnInit {
               private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.etatsDemande = ["Nouvelle", "Rejetée", "Validée", "Annulée", "Traitée"]
     this.userService.getUserById(this.demande.UserId).subscribe(
       data => this.user = data
     )
@@ -52,23 +51,29 @@ export class CardDemandeComponent implements OnInit {
     if(this.demande.statut === 'Traitee'){
       this.isFinished = 'true true'
     }
+
+
   }
 
-  onUpdateDemandeState(template: TemplateRef<any>, demande: Demande){
-    this.modalRef = this.modalService.show(template, this.config);
-    this.formBuilder.group({
-        UserId: [this.user?.id, Validators.required],
-        ServiceId: [demande.id, Validators.required],
-        titre: [demande.titre, Validators.required],
+  onUpdateDemandeState(demande: Demande){
+    this.demandeForm = this.formBuilder.group({
+        status: [demande.statut, Validators.required],
         description: [demande.description, Validators.required],
         date_realisation: [demande.date_debut_souhaitee, Validators.required],
     })
+  }
+
+  showModal(template: TemplateRef<any>){
+    this.modalRef = this.modalService.show(template, this.config);
   }
 
   onCancel(){
     this.modalRef?.hide()
   }
 
+  onSubmit(){
+    console.log(this.demandeForm.value)
+  }
 
 
 

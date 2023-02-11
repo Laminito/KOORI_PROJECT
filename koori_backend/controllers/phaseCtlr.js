@@ -5,6 +5,7 @@ const models = require('../models');
 let asyncLib = require('async');
 
 module.exports = {
+    
     createPhase: (req, res) => {
         asyncLib.waterfall([
             (callback1) => {
@@ -32,6 +33,7 @@ module.exports = {
             return res.status(400).json(result)
         })
     },
+
     getPhases: (req, res) => {
         models.Phase.findAll({}).then((phases) => {
                 res.status(200).json(phases)
@@ -40,6 +42,7 @@ module.exports = {
                 return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
             })
     },
+
     updatePhase: (req, res) => {
         const { titre, description } = req.body;
         const id = req.params.id
@@ -97,6 +100,7 @@ module.exports = {
         })
 
     },
+
     getFiches: (req, res) => {
         const PhaseId = parseInt(req.params.id)
         models.Phase_fiche.findAll({
@@ -116,6 +120,7 @@ module.exports = {
                 return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
             })
     },
+
     getPhasesFiches: (req, res) => {
         const PhaseId = parseInt(req.params.id)
         models.Phase_fiche.findAll({
@@ -142,6 +147,7 @@ module.exports = {
                 return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
             })
     },
+
     getFichesByPhase: (req, res) => {
         const Phase = parseInt(req.params.id)
         models.Phase_fiche.findAll({
