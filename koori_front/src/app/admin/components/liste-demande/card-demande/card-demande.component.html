@@ -39,7 +39,9 @@
                   <div class="form-group mx-3 fs-5 mt-3">
                       <label>Status de la demande</label>
                       <select name="status" id="service" formControlName="status" class="form-group col-lg-12 col-md-12 fs-4">
-                          <option *ngFor="let item of etatsDemande; let i = index" value="{{ item }}"> {{item}} </option>
+                          <option *ngIf="demande.statut == 'Nouvelle'" value="validee">Validée</option>
+                          <option *ngIf="demande.statut == 'validee'" value="traitee">Traitée</option>
+                          <option value="annulee">Annulée</option>
                       </select>
                   </div>
               </div>
