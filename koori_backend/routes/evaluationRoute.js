@@ -1,11 +1,10 @@
 const express = require('express')
 const evaluationCtrl = require('../controllers/evaluationCtrl');
 
-//Evaluation_note routes
+//Evaluation Routes
 const evaluationRoute = new express.Router()
 
-// evaluationRoute.post('/evaluation/user/:id/demande/:id1',evaluation_noteCtrl.createEvaluation_note);
-// evaluationRoute.put('/evaluation/user/:id/demande/:id1', evaluation_noteCtrl.updateEvaluation_note)
+//GET
 evaluationRoute.get('/evaluations', evaluationCtrl.getAllEvaluations);
 evaluationRoute.get('/evaluations/koori', evaluationCtrl.getAllEvaluationsKoori);
 evaluationRoute.get('/evaluations/ibox', evaluationCtrl.getAllEvaluationsIbox);
@@ -13,6 +12,13 @@ evaluationRoute.get('/evaluations/rapport', evaluationCtrl.getAllEvaluationsRapp
 evaluationRoute.get('/evaluations/session', evaluationCtrl.getAllEvaluationsSession);
 evaluationRoute.get('/evaluations/fiche', evaluationCtrl.getAllEvaluationsFiche);
 
+//POST
+evaluationRoute.post('/evaluations/note/user/:id/rapport/:id1',evaluationCtrl.createEvaluationRapport);
+evaluationRoute.post('/evaluations/note/user/:id/fiche/:id1', evaluationCtrl.createEvaluationFiche);
+evaluationRoute.post('/evaluations/note/user/:id/koori/:id1', evaluationCtrl.createEvaluationKoori);
+evaluationRoute.post('/evaluations/note/user/:id/ibox/:id1', evaluationCtrl.createEvaluationIbox);
+// evaluationRoute.get('/evaluation_note/user/:id/:idR?', evaluation_noteCtrl.getEvaluation_noteByUserId);
 
-// evaluationRoute.post('/evaluations/user/:id/{}/:id', evaluationCtrl.getAllEvaluations);
+
+
 module.exports = evaluationRoute

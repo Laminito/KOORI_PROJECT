@@ -6,5 +6,6 @@ const phaseFicheCtrl = require('../controllers/phase_ficheCtrl');
 
 const PhaseFicheRoute = new express.Router();
 PhaseFicheRoute.get('/phasefiche/', phaseFicheCtrl.getAllPhase_fiche)
+PhaseFicheRoute.get('/phasefiche/:id', phaseFicheCtrl.getPhaseFicheById)
 
 module.exports = PhaseFicheRoute

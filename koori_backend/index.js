@@ -128,7 +128,8 @@ server.use(function(req, res, next) {
 });
 
 
-server.listen(PORT, () => console.log(`Server is connected on ${PORT}`))
+server.listen(PORT, () => console.log(`Server is connected on ${PORT}`
+))
 model.sequelize.sync({ force: false }).then(() => {
     console.log("model has been re sync")
 })

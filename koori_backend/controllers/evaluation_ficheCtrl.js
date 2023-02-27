@@ -1,153 +1,153 @@
-// Imports
-const validationResults = require('../validationResult')
-const _ = require('lodash')
-const models = require('../models');
-const { Op } = require("sequelize");
+// // Imports
+// const validationResults = require('../validationResult')
+// const _ = require('lodash')
+// const models = require('../models');
+// const { Op } = require("sequelize");
 
-module.exports = {
+// module.exports = {
 
-    getAllEvaluation_fiche: (req, res) => {
-        var limit = parseInt(req.query.limit);
-        var offset = parseInt(req.query.offset);
-        models.EvaluationFiche.findAll({
-            attributes: [
-                'id',
-                'evaluation',
-                'note'
-            ],
-            limit: (!isNaN(limit)) ? limit : null,
-            offset: (!isNaN(offset)) ? offset : null,
-            include: [{
-                model: models.User,
-                attributes: ['id','email']
-            }, {
-                model: models.Fiche,
-                attributes: ['id', 'description']
-            }],
-        }).then((evaluations) => {
-            return res.status(200).json({
-                success: true,
-                message: "request get All EvaluationFiches successfully",
-                results: evaluations
-        })
-        }).catch((err) => {
-            return res.status(500).json({
-                success: false,
-                message: "failed get All EvaluationFiches request",
-                results: err
-        })
-        })
-    },
-    createEvaluation_fiche: (req, res) => {
-        const idUser = parseInt(req.params.id);
-        const idFiche = parseInt(req.params.id1);
-        //return res.json({'ok': "ok"})
-        const { evaluation, note } = req.body
-        models.EvaluationFiche.create({
-            UserId: idUser,
-            FicheId: idFiche,
-            evaluation: evaluation,
-            note: note
-        }).then((evaluations) => {
-            return res.status(201).json({
-                success: true,
-                message: "request create EvaluationFiche successfully",
-                results: evaluations
-        })
-        }).catch((err) => {
-            return res.status(500).json({
-                success: false,
-                message: "failed create EvaluationFiche request",
-                results: err
-        })
-        })
-    },
+//     getAllEvaluation_fiche: (req, res) => {
+//         var limit = parseInt(req.query.limit);
+//         var offset = parseInt(req.query.offset);
+//         models.EvaluationFiche.findAll({
+//             attributes: [
+//                 'id',
+//                 'evaluation',
+//                 'note'
+//             ],
+//             limit: (!isNaN(limit)) ? limit : null,
+//             offset: (!isNaN(offset)) ? offset : null,
+//             include: [{
+//                 model: models.User,
+//                 attributes: ['id','email']
+//             }, {
+//                 model: models.Fiche,
+//                 attributes: ['id', 'description']
+//             }],
+//         }).then((evaluations) => {
+//             return res.status(200).json({
+//                 success: true,
+//                 message: "request get All EvaluationFiches successfully",
+//                 results: evaluations
+//         })
+//         }).catch((err) => {
+//             return res.status(500).json({
+//                 success: false,
+//                 message: "failed get All EvaluationFiches request",
+//                 results: err
+//         })
+//         })
+//     },
+//     createEvaluation_fiche: (req, res) => {
+//         const idUser = parseInt(req.params.id);
+//         const idFiche = parseInt(req.params.id1);
+//         //return res.json({'ok': "ok"})
+//         const { evaluation, note } = req.body
+//         models.EvaluationFiche.create({
+//             UserId: idUser,
+//             FicheId: idFiche,
+//             evaluation: evaluation,
+//             note: note
+//         }).then((evaluations) => {
+//             return res.status(201).json({
+//                 success: true,
+//                 message: "request create EvaluationFiche successfully",
+//                 results: evaluations
+//         })
+//         }).catch((err) => {
+//             return res.status(500).json({
+//                 success: false,
+//                 message: "failed create EvaluationFiche request",
+//                 results: err
+//         })
+//         })
+//     },
 
-    updateEvaluation_fiche: (req, res) => {
-        const { evaluation, note } = req.body
-        const idUser = parseInt(req.params.id);
-        const idFiche = parseInt(req.params.id1);
-        // return res.json(FicheId)
+//     updateEvaluation_fiche: (req, res) => {
+//         const { evaluation, note } = req.body
+//         const idUser = parseInt(req.params.id);
+//         const idFiche = parseInt(req.params.id1);
+//         // return res.json(FicheId)
 
-        models.EvaluationFiche.findOne({
-            attributes: ['id', 'evaluation', 'note', 'UserId', 'FicheId'],
-            where: {
-                [Op.and]: [{ UserId: idUser }, { FicheId: idFiche }]
-            },
-        }).then((evaluation_kooriFound) => {
-            console.log("evaluation_kooriFound :", evaluation_kooriFound)
-            if (evaluation_kooriFound) {
-                evaluation_kooriFound.update({
-                    evaluation: evaluation,
-                    note: note
-                }).then((ficheResult) => {
-                    // console.log("ficheResult :", ficheResult)
-                    return res.status(200).json(ficheResult)
-                }).catch((err) => {
-                    res.status(500).json({ 'impossible de mettre a jour ': err });
-                })
-            }
-            return res.status(200).json(evaluation_kooriFound)
-        }).catch((err) => {
-            return res.status(500).json({ 'erreur serveur ': err });
-        });
+//         models.EvaluationFiche.findOne({
+//             attributes: ['id', 'evaluation', 'note', 'UserId', 'FicheId'],
+//             where: {
+//                 [Op.and]: [{ UserId: idUser }, { FicheId: idFiche }]
+//             },
+//         }).then((evaluation_kooriFound) => {
+//             console.log("evaluation_kooriFound :", evaluation_kooriFound)
+//             if (evaluation_kooriFound) {
+//                 evaluation_kooriFound.update({
+//                     evaluation: evaluation,
+//                     note: note
+//                 }).then((ficheResult) => {
+//                     // console.log("ficheResult :", ficheResult)
+//                     return res.status(200).json(ficheResult)
+//                 }).catch((err) => {
+//                     res.status(500).json({ 'impossible de mettre a jour ': err });
+//                 })
+//             }
+//             return res.status(200).json(evaluation_kooriFound)
+//         }).catch((err) => {
+//             return res.status(500).json({ 'erreur serveur ': err });
+//         });
 
 
-    },
-    getEvaluation_ficheByUserId: (req, res) => {
-        //return res.json({'ids': req.params.id1})
-        const idUser = parseInt(req.params.id);
-        const idFiche = parseInt(req.params.id1);
-        models.EvaluationFiche.findOne({
-                attributes: ['id', 'UserId', 'note', 'FicheId', 'evaluation'],
-                include: [{
-                        model: models.Fiche,
-                        attributes: ['id', 'description']
-                    },
-                    {
-                        model: models.User,
-                        attributes: ['id', 'nomComplet', 'email']
-                    }
-                ],
-                where: {
-                    [Op.and]: [{ UserId: idUser }, { FicheId: idFiche }]
-                },
-            }).then((userEvaluation_koori) => {
-                if (userEvaluation_koori) {
-                    res.status(200).json(userEvaluation_koori)
-                } else {
-                    return null
-                }
-            })
-            .catch((err) => {
-                return res.status(500).json({ 'error': 'Erreur de récupération ' + err.message })
-            })
-    },
-    getEvaluation_fiche: (req, res) => {
-        const idFiche = parseInt(req.params.id);
-        models.Fiche.findOne({
-                where: { id: idFiche },
-            }).then((fiche) => {
-                models.EvaluationFiche.findAll({
-                        include: [{
-                            model: models.User,
-                            attributes: ['id', 'nomComplet']
-                        }],
-                        where: { FicheId: fiche.id },
-                    }).then((Evaluation_fiche) => {
-                        if (Evaluation_fiche) {
-                            return res.status(200).json(Evaluation_fiche)
-                        } else {
-                            return null
-                        }
-                    })
-                    .catch((err) => {
-                        return res.status(500).json({ 'error': 'Erreur de récupération ' + err.message })
-                    })
-                    //return res.status(200).json(Evaluation_koori)
-            })
-            .catch((err) => {
-                return res.status(500).json({ 'error': 'Erreur ' + err.message })
-            })
-    }
-}
+//     },
+//     getEvaluation_ficheByUserId: (req, res) => {
+//         //return res.json({'ids': req.params.id1})
+//         const idUser = parseInt(req.params.id);
+//         const idFiche = parseInt(req.params.id1);
+//         models.EvaluationFiche.findOne({
+//                 attributes: ['id', 'UserId', 'note', 'FicheId', 'evaluation'],
+//                 include: [{
+//                         model: models.Fiche,
+//                         attributes: ['id', 'description']
+//                     },
+//                     {
+//                         model: models.User,
+//                         attributes: ['id', 'nomComplet', 'email']
+//                     }
+//                 ],
+//                 where: {
+//                     [Op.and]: [{ UserId: idUser }, { FicheId: idFiche }]
+//                 },
+//             }).then((userEvaluation_koori) => {
+//                 if (userEvaluation_koori) {
+//                     res.status(200).json(userEvaluation_koori)
+//                 } else {
+//                     return null
+//                 }
+//             })
+//             .catch((err) => {
+//                 return res.status(500).json({ 'error': 'Erreur de récupération ' + err.message })
+//             })
+//     },
+//     getEvaluation_fiche: (req, res) => {
+//         const idFiche = parseInt(req.params.id);
+//         models.Fiche.findOne({
+//                 where: { id: idFiche },
+//             }).then((fiche) => {
+//                 models.EvaluationFiche.findAll({
+//                         include: [{
+//                             model: models.User,
+//                             attributes: ['id', 'nomComplet']
+//                         }],
+//                         where: { FicheId: fiche.id },
+//                     }).then((Evaluation_fiche) => {
+//                         if (Evaluation_fiche) {
+//                             return res.status(200).json(Evaluation_fiche)
+//                         } else {
+//                             return null
+//                         }
+//                     })
+//                     .catch((err) => {
+//                         return res.status(500).json({ 'error': 'Erreur de récupération ' + err.message })
+//                     })
+//                     //return res.status(200).json(Evaluation_koori)
+//             })
+//             .catch((err) => {
+//                 return res.status(500).json({ 'error': 'Erreur ' + err.message })
+//             })
+//     }
+// }

@@ -1,7 +1,6 @@
 version: '3.9'
 services:
   koori_admin:
-    # container_name: petaaw_frontend
     build:
       context: ./koori_front
     volumes:
@@ -12,7 +11,6 @@ services:
 
   # application node_app
   koori_backend:
-    # container_name: koori_backend
     build:
       context: ./koori_backend
     volumes:
@@ -23,8 +21,6 @@ services:
       - postgres_db
 
   postgres_db:
-      # container_name: petaaw_postgres_db
-      # hostname: postgres_db
       extra_hosts:
         - "host.docker.internal:host-gateway"
       image: postgres:15
@@ -32,7 +28,6 @@ services:
         POSTGRES_USER: root
         POSTGRES_PASSWORD: root
         POSTGRES_DB: petaaw
-        # DATABASE_URL: postgres://root:root@db:5432/petaaw
       ports:
         - "5432:5432"
       restart: always
@@ -42,19 +37,14 @@ services:
         koori_net:
           ipv4_address: 192.168.0.2
   pgadmin:
-      # container_name: pgadmin_container
       hostname: pgAdmin
       image: dpage/pgadmin4:6
       environment:
         PGADMIN_DEFAULT_EMAIL: root@pgadmin.com
         PGADMIN_DEFAULT_PASSWORD: root
-        # PGADMIN_CONFIG_SERVER_MODE: 'True'
-
       restart: always
       volumes:
         - ./Data/pgadmin:/var/lib/pgadmin4/storage
-
-
       ports:
         - "9090:80"
       depends_on:
@@ -62,26 +52,6 @@ services:
       networks:
         koori_net:
           ipv4_address: 192.168.0.3
-
-
-
-      #KeyCloack
-  # keycloak:
-  #     image: jboss/keycloak
-  #     environment:
-  #       DB_VENDOR: POSTGRES
-  #       DB_ADDR: postgres_db
-  #       DB_DATABASE: root
-  #       DB_USER: root
-  #       DB_SCHEMA: public
-  #       DB_PASSWORD: root
-  #       KEYCLOAK_USER: admin
-  #       KEYCLOAK_PASSWORD: admin
-  #     ports:
-  #       - 8080:8080
-  #     depends_on:
-  #       - postgres_db
-
 
 volumes:
   postgresDB:

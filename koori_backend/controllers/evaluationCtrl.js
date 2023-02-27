@@ -6,6 +6,7 @@ const Op = require('sequelize').Op;
 
 
 module.exports = {
+    //GET ALL 
     getAllEvaluations: (req, res) => {
     models.Evaluation.findAll({
             attributes:['id','commentaire','note','UserId','KooriId','IboxId','RapportId','SessionId','FicheId','etat'], 
@@ -179,16 +180,20 @@ module.exports = {
             })
             })
     },
-    createEvaluation: (req, res) => {
-        const idUser= parseInt(req.params.id)
-        const idDemande= parseInt(req.params.id1)
-        const { note, evaluation } = req.body
-        models.Evaluation_note.create({
-            UserId:idUser,
-            RapportId:idDemande,
-            note:note,
-            evaluation:evaluation,
 
+    //GET BY ID 
+
+
+    //POST
+    createEvaluationKoori: (req, res) => {
+        const UserId= parseInt(req.params.id)
+        const KooriId= parseInt(req.params.id1)
+        const { note, commentaire } = req.body
+        models.Evaluation.create({
+            UserId:UserId,
+            KooriId:KooriId,
+            note:note,
+            commentaire:commentaire
         }).then((evaluations) => {
             return res.status(201).json({
                 success: true,
@@ -203,7 +208,76 @@ module.exports = {
         })
         })
     },
-    
+    createEvaluationRapport: (req, res) => {
+        const { commentaire, note } = req.body
+        const UserId = parseInt(req.params.id);
+        const RapportId = parseInt(req.params.id1);
+        models.Evaluation.create({
+            UserId:UserId,
+            RapportId:RapportId,
+            note:note,
+            commentaire:commentaire
+        }).then((evaluation_note_result) => {
+            return res.status(201).json({
+                success: true,
+                message: "request create Evaluation Rapport successfully",
+                results: evaluation_note_result
+        })
+        }).catch((err) => {
+            return res.status(500).json({
+                success: true,
+                message: "failed create Evaluation Rapport request",
+                results: err
+        })
+        })
+    } ,
+    createEvaluationFiche: (req, res) => {
+        const UserId = parseInt(req.params.id);
+        const FicheId = parseInt(req.params.id1);
+        const { commentaire, note } = req.body
+        models.Evaluation.create({
+            UserId: UserId,
+            FicheId: FicheId,
+            commentaire: commentaire,
+            note: note
+        }).then((evaluations) => {
+            return res.status(201).json({
+                success: true,
+                message: "request create EvaluationFiche successfully",
+                results: evaluations
+        })
+        }).catch((err) => {
+            return res.status(500).json({
+                success: false,
+                message: "failed create EvaluationFiche request",
+                results: err
+        })
+        })
+    },
+    createEvaluationIbox: (req, res) => {
+        const UserId = parseInt(req.params.id);
+        const FicheId = parseInt(req.params.id1);
+        const { commentaire, note } = req.body
+        models.Evaluation.create({
+            UserId: UserId,
+            FicheId: FicheId,
+            commentaire: commentaire,
+            note: note
+        }).then((evaluations) => {
+            return res.status(201).json({
+                success: true,
+                message: "request create EvaluationFiche successfully",
+                results: evaluations
+        })
+        }).catch((err) => {
+            return res.status(500).json({
+                success: false,
+                message: "failed create EvaluationFiche request",
+                results: err
+        })
+        })
+    }     
+                
 }
     
     
