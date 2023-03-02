@@ -7,7 +7,7 @@
 // //Evaluation_Fiche routes
 // const evaluation_ficheRoute = new express.Router()
 
-// // evaluation_ficheRoute.post('/evaluation_fiche/user/:id/fiche/:id1', validator.evaluation_fiche.validate('createEvaluation_fiche'), evaluation_ficheCtrl.createEvaluation_fiche);
+// evaluation_ficheRoute.post('/evaluation_fiche/user/:id/fiche/:id1', validator.evaluation_fiche.validate('createEvaluation_fiche'), evaluation_ficheCtrl.createEvaluation_fiche);
 // evaluation_ficheRoute.post('/evaluation/user/:id/fiche/:id1', evaluation_ficheCtrl.createEvaluation_fiche);
 // evaluation_ficheRoute.get('/evaluation', evaluation_ficheCtrl.getAllEvaluation_fiche);
 // evaluation_ficheRoute.get('/evaluation/fiche/:id', evaluation_ficheCtrl.getEvaluation_fiche);

@@ -182,6 +182,55 @@ module.exports = {
     },
 
     //GET BY ID 
+    getEvaluationById: (req, res) => {
+        const id = parseInt(req.params.id);
+        models.Evaluation.findOne({
+                attributes:['id','commentaire','note','UserId','KooriId','IboxId','RapportId','SessionId','FicheId','etat'], 
+                where: { id: id }
+            }).then((evaluation) => {
+                return res.status(200).json({
+                    success: true,
+                    message: "request get All Evaluations successfully",
+                    results: evaluation      
+            })
+            }).catch((err) => {
+                return res.status(500).json({
+                    success: false,
+                    message: "failed get All Evaluations request",
+                    results: err
+            })
+            })
+    },
+    getEvaluationFicheByUserId: (req, res) => {
+        const id = parseInt(req.params.id);
+        const UserId = parseInt(req.params.id1);
+        // const FicheId = parseInt(req.params.id1);
+        models.Evaluation.findOne({
+                attributes: ['id', 'UserId', 'FicheId', 'note','commentaire'],
+                where:{id:id,UserId:UserId}
+                // include: [{
+                //         model: models.Fiche,
+                //         attributes: ['id', 'description']
+                //     },
+                //     {
+                //         model: models.User,
+                //         attributes: ['id', 'nomComplet', 'email']
+                //     }
+                // ],
+                // where: {
+                //     [Op.and]: [{ UserId: UserId }, { FicheId: FicheId }]
+                // },
+            }).then((UserEvaluationFiche) => {
+                if (UserEvaluationFiche) {
+                    return res.status(200).json(UserEvaluationFiche)
+                } else {
+                    return null
+                }
+            })
+            .catch((err) => {
+                return res.status(500).json({ 'error': 'Erreur de récupération ' + err.message })
+            })
+    },
 
 
     //POST

@@ -12,6 +12,16 @@ evaluationRoute.get('/evaluations/rapport', evaluationCtrl.getAllEvaluationsRapp
 evaluationRoute.get('/evaluations/session', evaluationCtrl.getAllEvaluationsSession);
 evaluationRoute.get('/evaluations/fiche', evaluationCtrl.getAllEvaluationsFiche);
 
+//GET BY ID
+evaluationRoute.get('/evaluations/:id', evaluationCtrl.getEvaluationById);
+// evaluationRoute.get('/evaluations/ibox/:id', evaluationCtrl.getEvaluationIboxById);
+// evaluationRoute.get('/evaluations/koori/:id', evaluationCtrl.getEvaluationKooriById);
+// evaluationRoute.get('/evaluations/fiche/:id', evaluationCtrl.getEvaluationFicheById);
+evaluationRoute.get('/evaluations/:id/user/:id1', evaluationCtrl.getEvaluationFicheByUserId);
+
+// evaluationRoute.get('/evaluations/rapport/:id', evaluationCtrl.getEvaluationRapportById);
+
+
 //POST
 evaluationRoute.post('/evaluations/note/user/:id/rapport/:id1',evaluationCtrl.createEvaluationRapport);
 evaluationRoute.post('/evaluations/note/user/:id/fiche/:id1', evaluationCtrl.createEvaluationFiche);
