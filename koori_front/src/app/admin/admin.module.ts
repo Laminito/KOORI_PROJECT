@@ -22,7 +22,6 @@ import { ListeUtilisateurComponent } from './components/liste-utilisateur/liste-
 import { AddRapportComponent } from './components/add-rapport/add-rapport.component';
 import { UtilisateurDetailComponent } from './components/liste-utilisateur/utilisateur-detail/utilisateur-detail.component';
 import { ItemSessionComponent } from './components/session/item-session/item-session.component';
-import { AuthComponent } from './components/auth/auth.component';
 import { DetailDashboardComponent } from './components/dashboard/detail-dashboard/detail-dashboard.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { EditServiceComponent } from './components/service-catalogue/edit-service/edit-service.component';
@@ -49,7 +48,6 @@ import { LineChartComponent } from './components/dashboard/detail-dashboard/line
     ServiceCatalogueComponent,
     DetailSessionComponent,
     FooterComponent,
-    AuthComponent,
     NotFoundComponent,
     FilterPipe,
     FicheComponent,
@@ -94,7 +92,6 @@ import { LineChartComponent } from './components/dashboard/detail-dashboard/line
     FooterComponent,
     DetailSessionComponent,
     FooterComponent,
-    AuthComponent,
     NotFoundComponent,
     FilterPipe,
     FicheComponent,

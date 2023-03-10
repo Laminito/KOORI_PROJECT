@@ -15,30 +15,30 @@ export class SenddataService {
 
   constructor() {}
 
-  sendData(data: any){
-    this.subject.next(data);
-  }
-  receiveData():Observable<any>{
-    return this.subject.asObservable();
-  }
-  setData(data:Fiche[]){
-    this.data = data;
-  }
-  getdata(){
-    return this.data;
-  }
+  // sendData(data: any){
+  //   this.subject.next(data);
+  // }
+  // receiveData():Observable<any>{
+  //   return this.subject.asObservable();
+  // }
+  // setData(data:Fiche[]){
+  //   this.data = data;
+  // }
+  // getdata(){
+  //   return this.data;
+  // }
 
-  setId(id: number | undefined){
-    this.id = id;
-  }
-  getId(){
-    return this.id;
-  }
+  // setId(id: number | undefined){
+  //   this.id = id;
+  // }
+  // getId(){
+  //   return this.id;
+  // }
 
-  send(data:any){
-    this.dataToSend = data;
-  }
-  receive(){
-    return this.dataToSend;
-  }
+  // send(data:any){
+  //   this.dataToSend = data;
+  // }
+  // receive(){
+  //   return this.dataToSend;
+  // }
 }

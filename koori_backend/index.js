@@ -24,7 +24,6 @@ const limiter = rateLimit({
     max: 100,
 })
 
-
 const server = express();
 const PORT = process.env.PORT || 3001
 
@@ -63,48 +62,7 @@ server.use(bodyParser.json());
 //Entrypoint de mon swagger
 server.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
-// const memoryStore = new session.MemoryStore();
-// server.use(session({
-//     secret: 'KWhjV<T=-*VW<;cC5Y6U-{F.ppK+])Ub',
-//     resave: false,
-//     saveUninitialized: true,
-//     store: memoryStore
-// }));
-
-//EndPoint
 server.use('/api', apiRouter);
-// server.use('/', index);
-
-// Info GET endpoint
-// server.use('/test', (req, res, next) => {
-//     res.send('This is a proxy service which proxies to Billing and Account APIs.');
-// });
-
-// Authorization
-// server.use('', (req, res, next) => {
-//     if (req.headers.authorization) {
-//         next();
-//     } else {
-//         res.sendStatus(403);
-//     }
-// });
-
-// Proxy endpoints
-// server.use('/proxy', createProxyMiddleware({
-//     target: API_SERVICE_URL,
-//     changeOrigin: true,
-//     pathRewrite: {
-//         [`^/proxy`]: '',
-//     },
-// }));
-
-// Start the Proxy
-// server.listen(PORT, HOST, () => {
-//     console.log(`Starting Proxy at ${HOST}:${PORT}`);
-//     model.sequelize.sync({ force: false }).then(() => {
-//         console.log("model has been re sync")
-//     })
-// });
 
 
 server.use(expressCspHeader({
@@ -131,6 +89,7 @@ server.use(function(req, res, next) {
 
 
 server.listen(PORT, () => console.log(`Server is connected on ${PORT}`))
+
 model.sequelize.sync({ force: false }).then(() => {
     console.log("model has been re sync")
 })

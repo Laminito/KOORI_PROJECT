@@ -36,32 +36,32 @@ export class AddRapportComponent implements OnInit {
     });
 
     // get Users sessions
-    this.getData.receiveData().subscribe((data:Demande)=>{
-      console.log(data)
-      if (data){
-        this.notifiedUser=[]
-        this.unNotifiedUser=[]
-        data.DemandeUser.forEach((d:any)=>{
-          if (d.Session.isNotified==true){
-           this.notifiedUser.push(d)
-          }else{
-            this.unNotifiedUser.push(d)
-          }
-        })
-        this.usersSession = data
-        this.addForm.controls['titre'].setValue(this.usersSession?.titre);
-        this.addForm.controls['description'].setValue(this.usersSession?.description);
-        this.addForm.controls['ServiceId'].setValue(this.usersSession?.ServiceId);
-        this.addForm.controls['idDemande'].setValue(this.usersSession?.id);
+    // this.getData.receiveData().subscribe((data:Demande)=>{
+    //   console.log(data)
+    //   if (data){
+    //     this.notifiedUser=[]
+    //     this.unNotifiedUser=[]
+    //     data.DemandeUser.forEach((d:any)=>{
+    //       if (d.Session.isNotified==true){
+    //        this.notifiedUser.push(d)
+    //       }else{
+    //         this.unNotifiedUser.push(d)
+    //       }
+    //     })
+    //     this.usersSession = data
+    //     this.addForm.controls['titre'].setValue(this.usersSession?.titre);
+    //     this.addForm.controls['description'].setValue(this.usersSession?.description);
+    //     this.addForm.controls['ServiceId'].setValue(this.usersSession?.ServiceId);
+    //     this.addForm.controls['idDemande'].setValue(this.usersSession?.id);
 
-        if (data.RapportId){
-          this.addForm.controls['file'].clearValidators()
-          this.addForm.controls['file'].updateValueAndValidity()
-          this.addForm.controls['participants'].clearValidators()
-          this.addForm.controls['participants'].updateValueAndValidity()
-        }
-      }
-    })
+    //     if (data.RapportId){
+    //       this.addForm.controls['file'].clearValidators()
+    //       this.addForm.controls['file'].updateValueAndValidity()
+    //       this.addForm.controls['participants'].clearValidators()
+    //       this.addForm.controls['participants'].updateValueAndValidity()
+    //     }
+    //   }
+    // })
 
 
     $(function () {

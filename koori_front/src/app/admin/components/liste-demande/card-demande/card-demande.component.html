@@ -16,9 +16,12 @@
         <i class="fa fa-circle circle{{demande.id}}" [style.color]="colors[statuts.indexOf(demande.statut)]"></i>
         <span class="span{{demande.id}}" style="margin-left: 3%">{{demande.statut}}</span>
       </div>
-      <div class="col-sm-2 col-lg-2 m-auto  text-center"  *ngIf="!isClicked && !isValidated && isFinished == 'false'">
-        <button class="btn btn-sm " (click)="onUpdateDemandeState(demande)" (click)="showModal(template)">
-        <i class="fas fa-pencil-alt"  style="color: var(--orange)"></i>
+      <div class="col-sm-2 col-lg-2 m-auto  text-center">
+        <button class="btn btn-sm" *ngIf="demande.statut == 'Traitee'">
+          <i class="fa-sharp fa-solid fa-check-double"></i>
+        </button>
+        <button class="btn btn-sm " (click)="onUpdateDemandeState(demande)" *ngIf="demande.statut != 'Traitee'" (click)="showModal(template)">
+          <i class="fas fa-pencil-alt"  style="color: var(--orange)"></i>
         </button>
       </div>
 </div>
@@ -38,9 +41,10 @@
               <div class="col-lg-12 col-md-12">
                   <div class="form-group mx-3 fs-5 mt-3">
                       <label>Status de la demande</label>
-                      <select name="status" id="service" formControlName="status" class="form-group col-lg-12 col-md-12 fs-4">
+                      <select name="statut" id="service" formControlName="statut" class="form-group col-lg-12 col-md-12 fs-4">
+                          <option value="{{demande.statut}}" selected> {{demande.statut}} </option>
                           <option *ngIf="demande.statut == 'Nouvelle'" value="validee">Validée</option>
-                          <option *ngIf="demande.statut == 'validee'" value="traitee">Traitée</option>
+                          <option *ngIf="demande.statut == 'Validee'" value="traitee">Traitée</option>
                           <option value="annulee">Annulée</option>
                       </select>
                   </div>
@@ -55,7 +59,7 @@
 
               <div class="col-lg-12 col-md-12">
                 <div class="form-group d-flex justify-content-center fs-5 mt-3">
-                    <button type="button" class="btn btn-lg envoyer" (click)="onSubmit()">Enregistrer</button>
+                    <button type="button" class="btn btn-lg envoyer" (click)="onSubmit(demande)">Enregistrer</button>
                 </div>
             </div>
       </div>

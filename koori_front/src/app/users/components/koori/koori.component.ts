@@ -16,37 +16,29 @@ import { SenddataService } from '../../_services/senddata.service';
 export class KooriComponent implements OnInit {
 
   koori: Koori = new Koori()
-  title: string = ""
-  suite: string = ""
   evaluation_koori!: Evaluation_koori
   resources!:string
-  constructor(private allRequest: AllRequestService, private route:ActivatedRoute,
+  
+  constructor(private allRequest: AllRequestService,
               public loading: LoadingService,
-              private senddata: SenddataService,
-              private kooriService: KooriService) 
+              private senddata: SenddataService) 
               {
-    this.title = route.snapshot.data['title']
-    this.suite = route.snapshot.data['suite']
   }
   ngOnInit(): void {
-    this.route.data.subscribe(
-      // tslint:disable-next-line:no-shadowed-variable
-      (data: Data) => {
-        this.title = data['title'];
-        this.suite = data['suite'];
-      }
-    );
+
     this.getDescriptionKoori()
 
     this.evaluation_koori = new Evaluation_koori()
-    this.kooriService.getLastKoori().subscribe((lastKoori:Koori)=>{
-    this.evaluation_koori.KooriId =lastKoori.id
-    console.log(lastKoori.id)
-    this.evaluation_koori.UserId = 1  //ON DEVRA PRENDRE INCHALLAH L'ID DU USER QUI SE CONNECTE. CECI N'EST QU'UN TEST
-    this.resources = `evaluation_koori/user/${this.evaluation_koori.UserId}/koori/${this.evaluation_koori.KooriId}`
-    })
+
+    // this.kooriService.getLastKoori().subscribe((lastKoori:Koori)=>{
+    //   this.evaluation_koori.KooriId =lastKoori.id
+    //   console.log(lastKoori.id)
+    //   this.evaluation_koori.UserId = 1  
+    //   this.resources = `evaluation_koori/user/${this.evaluation_koori.UserId}/koori/${this.evaluation_koori.KooriId}`
+    // })
+
     this.evaluation_koori.KooriId = 1
-    this.evaluation_koori.UserId = 3 //DOIT VENIR DU TOKEN 
+    this.evaluation_koori.UserId = 3 
     this.resources = `evaluation_koori/user/${this.evaluation_koori.UserId}/koori/${this.evaluation_koori.KooriId}`
     
     

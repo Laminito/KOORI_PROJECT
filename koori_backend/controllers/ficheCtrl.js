@@ -125,7 +125,6 @@ module.exports = {
     },
     getFicheById: (req, res) => {
         const id = parseInt(req.params.id);
-        //return res.json({"id ba: " : id})
         models.Fiche.findOne({
                 attributes: ['id', 'IboxId', 'titre', 'sous_titre', 'description', 'prerequis', 'dureeMin', 'dureeMax', 'equipeMin', 'equipeMax', 'outils', 'avatar'],
                 include: [{
@@ -148,13 +147,21 @@ module.exports = {
             })
     },
     getFiches: (req, res) => {
-        const limit = parseInt(req.query.limit);
-        const offset = parseInt(req.query.offset);
         models.Fiche.findAll({
-                limit: (!isNaN(limit)) ? limit : null,
-                offset: (!isNaN(offset)) ? offset : null,
+                attributes: ['id', 'IboxId', 'titre', 'sous_titre', 'description', 'prerequis', 'dureeMin', 'dureeMax', 'equipeMin', 'equipeMax', 'outils', 'avatar'],
+                include: [{
+                    model: models.Etape
+                }]
             }).then((fiches) => {
-                res.status(200).json(fiches)
+                if (fiches) {
+                    fiches.forEach(fiche => {
+                        if (fiche.avatar) {
+                            let buff = new Buffer(fiche.avatar);
+                            fiche.avatar = buff.toString('base64');
+                        }
+                    });
+                    return res.status(200).json(fiches)
+                }
             })
             .catch((err) => {
                 return res.status(500).json({ 'error': 'Erreur de récupération ' + err })

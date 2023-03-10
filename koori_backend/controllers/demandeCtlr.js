@@ -14,6 +14,7 @@ const smtpTransport = nodemailer.createTransport({
 
 
 module.exports = {
+
     createDemande: (req, res) => {
 
         const { UserId, ServiceId, titre, description, date_debut_souhaitee, disponibilite } = req.body
@@ -25,66 +26,29 @@ module.exports = {
             titre: _.capitalize(titre),
             description: description
         }).then((demandes) => {
-            //callback2(null,demandResult)
-            return res.status(200).json({ 'sucess': demandes })
-
+            return res.status(201).json({ data: demandes })
         }).catch((err) => {
             return res.status(500).json({ 'error': 'Erreur dajout ' + err })
         })
     },
-
-
-    // addParticipantsToSession: (req, res) => {
-    //     let usersSession = req.body
-    //     if (usersSession) {
-    //         usersSession.forEach(user => {
-    //             const { nomComplet, email, profession, service, departement, direction } = user
-    //             models.User.create({
-    //                     ProfilId: 2,
-    //                     nomComplet: nomComplet,
-    //                     email: email,
-    //                     profession: profession,
-    //                     service: service,
-    //                     departement: departement,
-    //                     direction: direction,
-    //                 }).then((user) => {
-    //                     models.Session.create({
-    //                         UserId: user.id,
-    //                         DemandeId: demandeResult.id,
-    //                     })
-
-    //                 })
-    //                 .catch((err) => {
-    //                     return res.status(500).json({ 'error': 'Erreur d\'ajout' + err })
-    //                 })
-    //         })
-    //     }
-    // },
-
 
     getDemande: (req, res) => {
         const limit = parseInt(req.query.limit);
         const offset = parseInt(req.query.offset);
 
         models.Demande.findAll({
-                attributes: ['id', 'UserId', 'ServiceId', 'titre', 'description', 'date_debut_souhaitee', 'disponibilite', 'statut'],
-                // limit: (!isNaN(limit)) ? limit : null,
-                // offset: (!isNaN(offset)) ? offset : null,
-                include: [{
-                    model: models.Service,
-                    attributes: ['id', 'libelle']
-                }
-            ],
-            }).then((demandes) => {
-                demandes.forEach(fama => {
-                    
-                   // console.log(fama)
-                });
-                res.status(200).json(demandes)
-            })
-            .catch((err) => {
-                return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
-            })
+            attributes: ['id', 'UserId', 'ServiceId', 'titre', 'description', 'date_debut_souhaitee', 'disponibilite', 'statut'],
+            include: [{
+                model: models.Service,
+                attributes: ['id', 'libelle']
+            }
+        ],
+        }).then((demandes) => {
+            res.status(200).json(demandes)
+        })
+        .catch((err) => {
+            return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
+        })
     },
 
 
@@ -116,91 +80,43 @@ module.exports = {
             })
     },
 
-    
+    // update 
     updateDemande: (req, res) => {
-        const id = req.params.id
-        const titre = req.body.titre;
-        const statut = req.body.statut;
-        const description = req.body.description;
-        const date_debut_souhaitee = req.body.date_debut_souhaitee;
-        const disponibilite = req.body.disponibilite
-        const text = req.body.text;
+        const demande = req.body
         models.Demande.findOne({
             include: [
                 { model: models.User, attributes: ["id", "email"] },
                 { model: models.Service, attributes: ["id", "libelle"] }
             ],
-            where: { id: id }
-        }).then(
-            (demandeFound) => {
-                // return res.json(demandeFound.id)
-                demandeFound.update({
-                    statut: (statut ? _.capitalize(statut) : demandeFound.statut),
-                    text: text,
-                    titre: titre,
-                    description: description,
-                    date_debut_souhaitee: date_debut_souhaitee,
-                    disponibilite: disponibilite
-                }).then(
-                    (demandeResult) => {
-                        // return res.status(200).json(demandeResult.statut)
-                        if (demandeResult.statut === 'Validee') {
-                            // return res.status(200).json(' validee')
-                            // models.Session.create({
-                            //         UserId: demandeResult.User.id,
-                            //         DemandeId: demandeResult.id,
-                            //     })
-                            // return res.status(200).json(' validee')
-                            // const mailOptions = {
-                            //     from: process.env.GMAIL_USER,
-                            //     to: demandeFound.User.email,
-                            //     subject: "retour votre demande " + demandeFound.Service.libelle,
-                            //     text: text //retour de la demande
-                            // }
-                            // smtpTransport.sendMail(mailOptions, function(error, response) {
-                            //     if (error) {
-                            //         return res.json(error);
-                            //     } else {
-                            //         return res.status(200).json(demandeResult);
-                            //     }
-                            // });
-                            return res.status(200).json({message: 'validee'})
-
-                        } else if (demandeResult.statut === 'Traitee') {
-                            demandeResult.update({
-                                date_debut_souhaitee: new Date()
-
-                            })
-                            return res.status(200).json('traitee validee')
-
-                        } else {
-                            return res.status(200).json('non validee')
-                                // const mailOptions = {
-                                //     from: process.env.GMAIL_USER,
-                                //     to: demandeFound.User.email,
-                                //     subject: "retour sur votre demande " + demandeFound.Service.libelle,
-                                //     text: text //retour de la demande 
-                                // }
-                                // smtpTransport.sendMail(mailOptions, function(error, response) {
-                                //     if (error) {
-                                //         return res.json(error);
-                                //     } else {
-                                //         return res.status(200).json(demandeResult);
-                                //     }
-                                // });
-                                // return res.status(200).json('non validee')
-                        }
-                    }).catch((err) => {
-                    res.status(500).json({ 'impossible de mettre a jour ': err });
+            where: { id: demande.id }
+        }).then((demandeFound) => {
+            if (demandeFound) {
+                req.body.titre = _.capitalize(req.body.titre)
+                models.Demande.update(
+                    { ...req.body },
+                    {
+                        where: { id: req.body.id }
+                    }
+                ).then(result => {
+                    if (result) {
+                        res.status(200).json({ message: "demande updated successfully !" })
+                    } else {
+                        res.status(500).json({ message: "demande not modify !"})
+                    }
+                }).catch(err => {
+                    res.status(500).json({ err })
                 })
-            }).catch((err) => {
-            return res.status(500).json({ 'erreur serveur ': err.message });
+            } else {
+                res.status(500).json({message: "Cette objet demande n'existe pas dans la base de donnée !"})
+            }
+        }).catch( (err) => {
+            res.status(500).json({ err })
         })
     },
 
     updateStatutDemande: (req, res) => {
         const statut = req.body.statut;
-        const id = req.params.id
+        const id = Number(req.params.id)
         models.Demande.findOne({
             attributes: ['id', 'statut'],
             include: [{
@@ -237,6 +153,5 @@ module.exports = {
             return res.status(500).json({ 'erreur serveur ': err });
         })
     },
-
 
 }

@@ -51,6 +51,7 @@ import { DemandesResolver } from './_resolvers/demandes.resolver';
 import { ProjectFilterPipe } from './_pipes/project-filter.pipe';
 import { CardDemandeComponent } from './components/user-profil/mes-demandes/card-demande/card-demande.component';
 import { ForUserConnectedComponent } from './components/home/for-user-connected/for-user-connected.component';
+import { DetailKooriiboxComponent } from './components/kooriibox/detail-kooriibox/detail-kooriibox.component';
 
 @NgModule({
   declarations: [
@@ -96,6 +97,7 @@ import { ForUserConnectedComponent } from './components/home/for-user-connected/
     KooriIboxComponent,
     ProjectFilterPipe,
     ForUserConnectedComponent,
+    DetailKooriiboxComponent,
     
   ],
   imports: [

@@ -1,0 +1,331 @@
+@import url('https://fonts.googleapis.com/css2?family=Merienda&display=swap');
+.containe{
+	width: 90%;
+	margin: auto;
+}
+.row{
+	box-sizing: border-box;
+	padding: 10% 0%;
+	background-color: #fff;
+}
+.row-koori{
+	background-color: #338f8e80;
+}
+.row-ibox{
+	background-color: #ff751380;
+}
+.row h1{
+	font-family: 'Merienda', cursive;
+	color: var(--vert);
+	font-size: 3em;
+	text-align: center;
+}
+.row p, .card-body span{
+	font-family: 'Montserrat', sans-serif;
+	text-align: justify;
+	line-height: 3vh;
+	font-size: 1.3em;
+	font-weight: 400;
+	margin-top: 4%;
+}
+.koori-desc, .ibox-desc{
+	font-size: 1.3em;
+	display: flex;
+	flex-direction: column;
+	justify-content: end;
+	align-items: center;
+}
+.image{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+.image img{
+	height: 90%;
+	border-radius: 6%;
+	border: 6px solid #fff;
+	cursor: pointer;
+	transition: all 0.4s ease;
+}
+.koori-desc, .ibox-desc{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	margin-top: 2%;
+	color: #fff;
+}
+.image img:hover{
+	transform: scale(1.05);
+}
+
+.rounded-circle{
+	border-color: var(--vert);
+	border-width: 3px;
+	width: 40%;
+	height: 40%;
+}
+.carousel-control-prev-icon, .carousel-control-next-icon{
+	margin-top: 20%;
+}
+.text-contributeurs{
+	background-color: #eee;
+	font-family: 'Merienda', cursive;
+	border-radius: 10px;
+}
+.card-header{
+	color: var(--vert);
+	font-weight: bold;
+	font-size: 2em;
+	border: none;
+	background-color: var(--white);
+  }
+  
+  .card{
+	border: none;
+  }
+  .shadow-haut{
+	/* box-shadow: 8px 4px 4px rgba(97, 97, 97, 0.17); */
+	border-radius: 0px 0px 12px 0px;
+  }
+  .shadow-bas{
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 10px;
+  }
+  .row-haut{
+	background-color: var(--white);
+  }
+  #button {
+	/*width: 17%;*/
+	height: 100%;
+	transition: .5s all;
+	background-color: var(--orange);
+  }
+  #button1 {
+	/*width: 20%;*/
+	height: 100%;
+	transition: .5s all;
+	background-color: var(--orange);
+  }
+  #button:hover i {
+	animation: call;
+	animation-duration: 1s;
+  }
+  #button1:hover i {
+	animation: call;
+	animation-duration: 1s;
+  }
+  @keyframes call {
+	0% {
+	  transform: scale(1);
+	}
+	50% {
+	  transform: scale(1.2);
+	}
+	100% {
+	  transform: scale(1);
+	}
+  }
+  #call, #call1{
+	transform: rotate(-19.27deg);
+  }
+  .fa-download, .fa-book-open{
+	color: var(--white);
+  }
+  .Koori{
+	width: 1%;
+	height: 40%;
+  }
+  .petaaw{
+	color: var(--orange);
+  }
+  .custom-line{
+	min-height: 5rem;
+	margin-bottom: 1rem;
+  }
+  .div-vert-livret{
+	height: 100%;
+	box-sizing: border-box;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 10px;
+  }
+  .div-vert-livret img{
+	width: 100%;
+	height: 100%;
+  }
+  .titre{
+	color: var(--orange);
+  }
+  .fa-location-arrow{
+	transform: rotate(45deg) scale(1.2);
+  }
+  .font-italic{
+	color: var(--orange);
+  }
+  
+  .card-body-tete p{
+	font-size: 1.5em;
+	line-height: 3vh;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 300;
+	width: 80%;
+  }
+  .carousel{
+	background-color: var(--vert);
+	padding: 2% 0;
+	border-radius: 10px;
+  }
+  .nom{
+	color: #fff;
+  }
+  /*Projets recents caroussels*/
+  @media (max-width: 767px) {
+	.partner .carousel-inner .carousel-item > div {
+	  display: none;
+	}
+	.partner .carousel-inner .carousel-item > div:first-child {
+	  display: block;
+	}
+  }
+  
+  .partner .carousel-inner .carousel-item.active,
+  .partner .carousel-inner .carousel-item-next,
+  .partner .carousel-inner .carousel-item-prev {
+	display: flex;
+  }
+  
+  /* medium and up screens */
+  @media (min-width: 768px) {
+  
+	.partner .carousel-inner .carousel-item-end.active,
+	.partner .carousel-inner .carousel-item-next {
+	  transform: translateX(33.34%);
+	}
+  
+	.partner .carousel-inner .carousel-item-start.active,
+	.partner .carousel-inner .carousel-item-prev {
+	  transform: translateX(-33.34%);
+	}
+  }
+  
+  .partner .carousel-inner .carousel-item-end,
+  .partner .carousel-inner .carousel-item-start {
+	transform: translateX(0);
+  }
+  
+  .col-4:focus{
+	border: var(--orange) var(--border-size);
+	box-shadow: 0 0 0 0.1rem var(--orange);
+  }
+  
+  .grid {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	max-width: 340px;
+	margin: 0 auto;
+  }
+  @media screen and (min-width: 768px) {
+	.grid {
+	  max-width: 1200px;
+	}
+  }
+  .card {
+	position: relative;
+	flex: 1 1 100%;
+	background: var(--white);
+  }
+  @media screen and (min-width: 768px) {
+	.card {
+	  flex-basis: calc(33.33% - (62px + 40px));
+	  /*margin: 0 31px;*/
+	}
+  }
+  .card__thumb {
+	overflow: hidden;
+  }
+  .card__img {
+	margin: -20px -20px 0;
+  }
+  .card__img img {
+	max-width: 100%;
+	height: auto;
+	border: 0;
+	vertical-align: middle;
+	box-sizing: border-box;
+  }
+  .card__desc {
+	margin-top: 20px;
+  }
+  .card__three::before, .card__three::after {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	transform: scale3d(0, 0, 1);
+	transition: transform 0.3s ease-out 0s;
+	background: rgba(255, 119, 19, 0.42);
+	content: '';
+	pointer-events: none;
+  }
+  .card__three::before {
+	transform-origin: left top;
+  }
+  .card__three::after {
+	transform-origin: right bottom;
+  }
+  .card__three:hover::before, .card__three:focus::before, .card__three:hover::after, .card__three:focus::after {
+	transform: scale3d(1, 1, 1);
+  }
+  
+  
+  
+  
+  .example-small-box, .example-large-box {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 16px;
+	padding: 16px;
+	border-radius: 8px;
+  }
+  
+  .example-small-box {
+	height: 100px;
+	width: 100px;
+  }
+  
+  .example-large-box {
+	height: 300px;
+	width: 300px;
+  }
+.card-body{
+	background-color: #eee;
+	border-radius: 10px;
+	font-size: 1.2em;
+}
+.card-body span{
+	font-size: 1.1em;
+	line-height: 3vh;
+	color: var(--vert);
+}
+.title-contributuer{
+	color: var(--orange);
+	font-family: 'Montserrat', sans-serif;
+	
+	font-weight: bold;
+}
+.koori-desc p{
+	width: 65%;
+	
+}
+.koori-desc h1{
+	color: var(--orange);
+}
+.ibox-desc p{
+	width: 60%;
+}
+.containe{
+	display: flex;
+}

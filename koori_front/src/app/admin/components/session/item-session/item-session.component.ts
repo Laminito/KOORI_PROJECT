@@ -26,6 +26,6 @@ export class ItemSessionComponent implements OnInit, AfterViewInit {
     }
   }
   sendUsersSession(sendUsersSession:Demande) {
-    this.sendData.sendData(sendUsersSession)
+    // this.sendData.sendData(sendUsersSession)
   }
 }

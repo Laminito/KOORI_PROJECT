@@ -14,6 +14,7 @@ export class DemandeService {
   updateDemande(id: any, body: object): Observable<any>{
     return this.http.put(`${environment.API}demande/${id}`, body)
   }
+
   updateStatutDemande(id: any, data: object): Observable<any>{
     return this.http.put(`${environment.API}statutdemande/${id}`, data)
   }
@@ -21,5 +22,6 @@ export class DemandeService {
   getDemandesByServiceId(id: Number){
     return this.http.get<Demande[]>(`${environment.API}service/${id}/demande`)
   }
+
 
 }

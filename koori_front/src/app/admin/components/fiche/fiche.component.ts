@@ -65,10 +65,10 @@ export class FicheComponent implements OnInit {
   }
 
 ngOnInit(): void {
-    this.fiches = this.senddata.getdata()
+    // this.fiches = this.senddata.getdata()
   }
   navigate(id?:number,tab?:any){
-    this.senddata.setData(tab)
+    // this.senddata.setData(tab)
     this._route.navigate([`/fiche/${id}`], tab)
   }
   downloadPdf() {

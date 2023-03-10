@@ -14,7 +14,7 @@ export class DemandeService {
   constructor(private http: HttpClient) { }
 
   getAllService(): Observable<Service[]>{
-    return this.http.get<Service[]>(environment.API+"/service");
+    return this.http.get<Service[]>(environment.API+"service");
   }
 
   create(body: {}): any{

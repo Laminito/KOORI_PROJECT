@@ -19,7 +19,7 @@ import { map } from 'rxjs';
 export class ListeDemandeComponent implements OnInit {
 
   
-  @Input() demandes!:Demande[]
+  @Input() demandes!: Demande[]
   idService!: number
 
   constructor(private route: ActivatedRoute,
@@ -33,13 +33,13 @@ export class ListeDemandeComponent implements OnInit {
 
     this.idService = Number(url[(url.length - 1)]);
 
-   this.route.data.pipe(
-    map(
-      data =>  {
-        this.demandes = data['listeDemande'].filter((dmd: any)=> dmd.ServiceId == this.idService)        
-      }
-    )
-   ).subscribe()
+  //  this.route.data.pipe(
+  //   map(
+  //     data =>  {
+  //       this.demandes = data['listeDemande'].filter((dmd: any)=> dmd.ServiceId == this.idService)        
+  //     }
+  //   )
+  //  ).subscribe()
 
    
 

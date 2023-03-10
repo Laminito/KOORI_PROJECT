@@ -11,9 +11,10 @@ export class DetailServiceResolverService implements Resolve<Service>{
 
   constructor(private serviceServe: ServiceService) {}
 
-  resolve(route: ActivatedRouteSnapshot,
-          state: RouterStateSnapshot):
-    Observable<Service> | Promise<Service> | Service {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Service> {
+
     return this.serviceServe.getServiceById(+route.params['id'])
+
   }
+  
 }

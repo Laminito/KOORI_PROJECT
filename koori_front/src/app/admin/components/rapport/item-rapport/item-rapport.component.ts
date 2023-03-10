@@ -72,7 +72,7 @@ export class ItemRapportComponent implements OnInit {
   getSessionByRapport(id:any) {
    this.allRquest.getById(`session/rapport/`,id).subscribe(data=>{
        console.log(data)
-       this.sendData.sendData(data)
+      //  this.sendData.sendData(data)
    },
      error => {
        console.log(error.message)

@@ -4,65 +4,64 @@ services:
     build:
       context: ./koori_front
     volumes:
-      - koori_front:/usr/src/koori_front
+      - ./koori_front:/usr/src/koori_front
     ports:
       - "4200:4200"
 
+
+  # application node_app
   koori_backend:
     build:
       context: ./koori_backend
     volumes:
-      - koori_backend:/usr/src/koori_backend
+      - ./koori_backend:/usr/src/koori_backend
     ports:
       - "8001:3001"
     depends_on:
       - postgres_db
 
   postgres_db:
+      extra_hosts:
+        - "host.docker.internal:host-gateway"
       image: postgres:15
-      container_name: petaaw_postgres
-      restart: always
-      ports:
-        - "5432:5432"
       environment:
         POSTGRES_USER: root
         POSTGRES_PASSWORD: root
         POSTGRES_DB: petaaw
-      volumes:
-        - local-postgres:/var/lib/postgresql/data
-
-  pgadmin:
-      image: dpage/pgadmin4:6
-      container_name: petaaw_pgadmin
+      ports:
+        - "5432:5432"
       restart: always
+      volumes:
+      - ./Data/postgresDB:/var/lib/postgresql/storage
+      networks:
+        koori_net:
+          ipv4_address: 192.168.0.2
+  pgadmin:
+      hostname: pgAdmin
+      image: dpage/pgadmin4:6
       environment:
         PGADMIN_DEFAULT_EMAIL: root@pgadmin.com
         PGADMIN_DEFAULT_PASSWORD: root
+      restart: always
       volumes:
-        - local-pgadmin:/var/lib/pgadmin4/storage
+        - ./Data/pgadmin:/var/lib/pgadmin4/storage
       ports:
-        - "5050:80"
+        - "9090:80"
       depends_on:
         - postgres_db
-
-  # keycloak:
-  #     image: jboss/keycloak
-  #     environment:
-  #       DB_VENDOR: POSTGRES
-  #       DB_ADDR: postgres_db
-  #       DB_DATABASE: root
-  #       DB_USER: root
-  #       DB_SCHEMA: public
-  #       DB_PASSWORD: root
-  #       KEYCLOAK_USER: admin
-  #       KEYCLOAK_PASSWORD: admin
-  #     ports:
-  #       - 8080:8080
-  #     depends_on:
-  #       - postgres_db
+      networks:
+        koori_net:
+          ipv4_address: 192.168.0.3
 
 volumes:
-  local-postgres:
-  local-pgadmin:
+  postgresDB:
+  pgadmin-data:
   koori_backend:
 
+networks:
+  koori_net:
+    ipam:
+      driver: default
+      config:
+      - subnet: "192.168.0.0/24"
+        gateway: 192.168.0.1

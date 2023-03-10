@@ -31,9 +31,9 @@ export class IboxService {
   getPhasesFiches(): any{
     return this.http.get(`${environment.API}phase-fiche/`)
   }
-  getFichesByPhase(id: any): any{
-    return this.http.get(`${environment.API}phase/fiche/${id}`)
-  }
+  // getFichesByPhase(id: any): any{
+  //   return this.http.get(`${environment.API}phase/fiche/${id}`)
+  // }
   updateIbox(id: any, data: object): any{
     return this.http.put(`${environment.API}ibox/${id}`, data)
   }

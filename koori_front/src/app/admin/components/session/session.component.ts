@@ -17,7 +17,7 @@ export class SessionComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private _refreshNeeded: AllRequestService, private getData: SenddataService ) { }
   ngOnInit(): void {
-  this.serviceLibelle=this.getData.receive()
+  // this.serviceLibelle=this.getData.receive()
     this._refreshNeeded.getRefresh.subscribe(()=>{
       this.sessions=[]
       this._refreshNeeded.getAll(`service/${+this.route.snapshot.params['id']}/sessions`).subscribe(data=>{

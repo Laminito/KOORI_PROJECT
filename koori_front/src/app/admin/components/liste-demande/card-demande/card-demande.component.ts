@@ -39,6 +39,7 @@ export class CardDemandeComponent implements OnInit {
               private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+
     this.etatsDemande = ["Nouvelle", "Rejetée", "Validée", "Annulée", "Traitée"]
     this.userService.getUserById(this.demande.UserId).subscribe(
       data => this.user = data
@@ -52,14 +53,12 @@ export class CardDemandeComponent implements OnInit {
       this.isFinished = 'true true'
     }
 
-
   }
 
   onUpdateDemandeState(demande: Demande){
     this.demandeForm = this.formBuilder.group({
-        status: [demande.statut, Validators.required],
-        description: [demande.description, Validators.required],
-        date_realisation: [demande.date_debut_souhaitee, Validators.required],
+        statut: [demande.statut, Validators.required],
+        titre: ['', Validators.required],
     })
   }
 
@@ -71,80 +70,30 @@ export class CardDemandeComponent implements OnInit {
     this.modalRef?.hide()
   }
 
-  onSubmit(){
-    console.log(this.demandeForm.value)
+  onSubmit(demande: Demande){
+    this.demandeService.updateStatutDemande(demande.id, this.demandeForm.value).subscribe(dmd => {
+        demande = dmd
+    });
+    window.location.reload();
+    this.modalRef?.hide();
+    this.sendMailReponseDemande()
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  // this.sendMailReponseDemande()
 
   changeStatut() {
     this.isClicked = true
   }
   
-  saveChangeStatut(event:any){
-    let id = event.target.getAttribute('id')
-    let input1 = $(`#statut${this.demande.id}`)
-    let input2 = $(`#sujet${this.demande.id} textarea`)
-    this.isClicked = false
-    this.demande.statut = String(input1.val()).charAt(0).toUpperCase() + String(input1.val()).slice(1)
-    let obj = {
-      statut: String(input1.val()).charAt(0).toUpperCase() + String(input1.val()).slice(1),
-      text: String(input2.val()).charAt(0).toUpperCase() + String(input2.val()).slice(1)
-    }
-    if(obj.statut === 'Validee'){
-      this.isValidated = true
-    }
-    
-    this.demandeService.updateStatutDemande(id, obj).subscribe()
-    this.sendMailReponseDemande()
+  sendMailReponseDemande(){
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'MERCI BEAUCOUP !',
+      text: 'Vous avez tres reponse a la demande a ete bien envoyee',
+      showConfirmButton: false,
+      timer: 3000
+    })
   }
-
-  
-onClickForFinish(){
-  this.isFinished = 'true'
-
-}
-
-onFinishSession(){
-  this.isClicked = false
-  this.isFinished = 'true true'
-  this.demande.statut = 'Traitee'
-  let input = $(`#Aurevoir${this.demande.id} textarea`)
-  let obj = {
-    statut: 'Traitee',
-    text: String(input.val()).charAt(0).toUpperCase() + String(input.val()).slice(1)
-  }
-  let id = this.demande.id
-  this.demandeService.updateStatutDemande(id, obj).subscribe()
-}
-
-sendMailReponseDemande(){
-  Swal.fire({
-    position: 'center',
-    icon: 'success',
-    title: 'MERCI BEAUCOUP !',
-    text: 'Vous avez tres reponse a la demande a ete bien envoyee',
-    showConfirmButton: false,
-    timer: 3000
-  })
-  
-}
-
- 
 
 
 }

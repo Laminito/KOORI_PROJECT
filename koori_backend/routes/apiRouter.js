@@ -12,6 +12,7 @@ let iboxAllRoutes = require('../routes/iboxRoute')
 let kooriAllRoutes = require('../routes/kooriRoute')
 let mailAllRoutes = require('../routes/mailRoute')
 let phaseAllRoutes = require('../routes/phaseRoute')
+let phaseFicheAllRoutes = require('../routes/phaseFicheRouter')
 let profilAllRoutes = require('../routes/profilRoute')
 let rapportAllRoutes = require('../routes/rapportRoute')
 let serviceAllRoutes = require('../routes/serviceRoute')
@@ -44,5 +45,6 @@ module.exports = [
     sujetAllRoutes,
     temoignageAllRoutes,
     userAllRoutes,
-    AuthRoutes
+    AuthRoutes,
+    phaseFicheAllRoutes
 ]

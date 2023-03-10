@@ -11,9 +11,9 @@ export class KooriService {
 
   constructor(private http: HttpClient) { }
 
-  getLastKoori(){
-    return this.http.get<Koori>(`${environment.API}koori/last/`)
-  }
+  // getLastKoori(){
+  //   return this.http.get<Koori>(`${environment.API}koori/last/`)
+  // }
 
 }
 

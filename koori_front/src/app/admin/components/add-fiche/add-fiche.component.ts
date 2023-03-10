@@ -28,7 +28,7 @@ export class AddFicheComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getPhases()
+    // this.getPhases()
     this.addForm = this.formBuilder.group({
       IboxId: [0, Validators.required],
       phase: [0],
@@ -85,7 +85,7 @@ export class AddFicheComponent implements OnInit {
   onSubmit(){
     this.submitted = true;
     if(this.addForm.valid){
-    this.addForm.get('IboxId')?.setValue(this.senddata.getId())
+    // this.addForm.get('IboxId')?.setValue(this.senddata.getId())
       this.addForm.get('phase')?.setValue(this.selectedDevice)
     const {IboxId, titre, sous_titre, description, prerequis, outils,
       dureeMin, dureeMax, equipeMin, equipeMax, phase} = this.addForm.value;

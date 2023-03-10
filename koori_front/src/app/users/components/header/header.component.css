@@ -1,5 +1,4 @@
 .menu a{
-	color: var(--vert) ;
 	font-weight: 500;
   }
   .menu1 a{
@@ -12,6 +11,10 @@
   }
   .icononmenu i{
 	color: var(--vert);
+  }
+  .nav-link{
+	color: var(--vert);
+	margin: 0 0.3vw;
   }
   .navbar-nav .nav-link:hover {
 	color: var(--orange);
@@ -154,5 +157,12 @@ label{
 }
 .form-control:focus, .form-control-1:focus {
 	border-color: transparent !important;
-	/* box-shadow: 0 0 5px rgba(98, 101, 228, 1) !important; */
+  }
+  .nav-link-user{
+	text-decoration: none;
+	color: var(--vert);
+  }
+  .focus{
+	background-color: var(--vert);
+	color: #fff;
   }

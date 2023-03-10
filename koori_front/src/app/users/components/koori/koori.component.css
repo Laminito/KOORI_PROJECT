@@ -18,3 +18,21 @@
 .titre{
   color: var(--orange);
 }
+.row .title{
+  width: 69%;
+  margin: auto;
+  font-size: 2em;
+  color: var(--vert);
+}
+.koori-desc{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.4em;
+  line-height: 1.5em;
+  padding: 2%;
+  background-color: var(--vert);
+  color: #fff;
+  text-align: center;
+}
+mat-tab-label{
+  background-color: var(--orange);
+}

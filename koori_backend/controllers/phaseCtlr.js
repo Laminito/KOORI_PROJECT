@@ -33,16 +33,29 @@ module.exports = {
             return res.status(400).json(result)
         })
     },
-
     getPhases: (req, res) => {
-        models.Phase.findAll({}).then((phases) => {
-                res.status(200).json(phases)
+        models.Phase.findAll({
+            attributes:['id','titre','description']
+        }).then((phases) => {
+                return res.status(200).json(phases)
             })
-            .catch((err) => {
-                return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
-            })
+        .catch((err) => {
+            return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
+        })
     },
-
+    getPhaseById: (req, res) => {
+        const PhaseId=parseInt(req.params.id)
+        models.Phase.findOne({
+            attributes:['id','titre','description','KooriId'],
+            where:{id:PhaseId}
+        }).then((phase) => {
+            console.log(phase);
+                return res.status(200).json(phase)
+            })
+        .catch((err) => {
+            return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
+        })
+    },
     updatePhase: (req, res) => {
         const { titre, description } = req.body;
         const id = req.params.id
@@ -100,70 +113,5 @@ module.exports = {
         })
 
     },
-
-    getFiches: (req, res) => {
-        const PhaseId = parseInt(req.params.id)
-        models.Phase_fiche.findAll({
-                where: { id_phase: PhaseId },
-                include: [{
-                        model: models.Fiche
-                    },
-                    {
-                        model: models.Phase
-                    }
-                ],
-            }).then((phases) => {
-                //return res.status(200).json(phases)
-                res.status(200).json(phases)
-            })
-            .catch((err) => {
-                return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
-            })
-    },
-
-    getPhasesFiches: (req, res) => {
-        const PhaseId = parseInt(req.params.id)
-        models.Phase_fiche.findAll({
-                include: [{
-                        model: models.Fiche,
-                        include: [{
-                            model: models.Etape,
-                        }],
-                    },
-                    {
-                        model: models.Phase
-                    }
-                ],
-            }).then((phases) => {
-                phases.forEach(p => {
-                    if (p.Fiche.avatar) {
-                        let buff = new Buffer(p.Fiche.avatar);
-                        p.Fiche.avatar = buff.toString('base64');
-                    }
-                })
-                res.status(200).json(phases)
-            })
-            .catch((err) => {
-                return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
-            })
-    },
-
-    getFichesByPhase: (req, res) => {
-        const Phase = parseInt(req.params.id)
-        models.Phase_fiche.findAll({
-                where: { id_phase: Phase },
-                include: [{
-                        model: models.Fiche
-                    },
-                    {
-                        model: models.Phase
-                    }
-                ],
-            }).then((phasesfiche) => {
-                res.status(200).json(phasesfiche)
-            })
-            .catch((err) => {
-                return res.status(500).json({ 'error': 'Erreur de récupération ' + err })
-            })
-    }
+    
 }

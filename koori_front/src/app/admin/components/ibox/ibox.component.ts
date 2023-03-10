@@ -99,7 +99,7 @@ export class IboxComponent implements OnInit {
   getIbox(){
     this.allRequest.getAll("ibox/last").subscribe((data:any)=>{
       this.ibox = new Ibox().deserialize(data)
-      this.senddata.setId(this.ibox.id)
+      // this.senddata.setId(this.ibox.id)
       this.addForm = {
         description: this.ibox.description,
       }
@@ -396,7 +396,7 @@ export class IboxComponent implements OnInit {
     return tab2
   }
   navigate(id?:number,tab?:any){
-    this.senddata.setData(tab)
+    // this.senddata.setData(tab)
     this._route.navigate([`/fiche/${id}`], tab)
   }
   updatePhase(event:any){

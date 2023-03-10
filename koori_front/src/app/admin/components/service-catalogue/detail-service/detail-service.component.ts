@@ -36,18 +36,17 @@ export class DetailServiceComponent implements OnInit {
 
    this.route.data.subscribe((data: Data) => {
       this.service = data['detailService'];
-      console.log(this.service)
       this.demandes = data['detailService'].Demandes
     });
 
   }
 
   sendDemandeServices() {
-    this.sendData.sendData(this.service)
+    // this.sendData.sendData(this.service)
   }
 
   sendLibelleService() {
-    this.sendData.send(this.service.libelle)
+    // this.sendData.send(this.service.libelle)
   }
 }
 

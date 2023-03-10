@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import * as bootstrap from "bootstrap";
@@ -51,7 +51,7 @@ export class DemandeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-      // console.log(this.router);
+      
       this.authService.userValue.subscribe(
         (data) => {
           this.isLoggedIn = data === null ? false : true;
@@ -79,6 +79,7 @@ export class DemandeComponent implements OnInit {
   openModalDemande(template: TemplateRef<any>) {
     if(this.isLoggedIn){
       this.modalRef = this.modalService.show(template,this.config);
+      this.demandeForm.reset();
     }
     else{ Swal.fire({
           position: 'center',
@@ -98,11 +99,9 @@ export class DemandeComponent implements OnInit {
     } 
   }
 
-  onsubmit(){
 
-    if (this.demandeForm.valid) {
-      console.log(this.demandeForm.value);
-      this.route.navigateByUrl("/home/service/"+this.user?.id)
+  onsubmit(){
+    this.demandeForm.value.UserId = this.user?.id 
       this.demandService.create(this.demandeForm.value).subscribe((data: any)=>{
         if(data){
           Swal.fire({
@@ -114,14 +113,14 @@ export class DemandeComponent implements OnInit {
             timer: 3000
           })
         }
-        this.demandeForm.reset();
         this.modalRef.hide();
       },
       (error: { error: { errors: { msg: string; }; }; }) => 
       {
         this.message = error.error.errors.msg;
       })
-    }
+    
+
   }
 
   onCancel(){

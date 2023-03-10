@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
                     onUpdate: 'RESTRICT'
                 }
             });
-            this.belongsToMany(models.Fiche, { as: 'PhaseFiche', through: models.Phase_fiche, foreignKey: 'id_phase' });
+            // this.belongsToMany(models.Fiche, { as: 'PhaseFiche', through: models.Phase_fiche, foreignKey: 'id_phase' });
+            this.hasMany(models.Phase_fiche);
         }
     }
     Phase.init({

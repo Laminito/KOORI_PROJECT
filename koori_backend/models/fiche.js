@@ -12,7 +12,9 @@ module.exports = (sequelize, DataTypes) => {
         static associate(models) {
             // define association here
             this.hasMany(models.Etape);
-            this.belongsToMany(models.Phase, { as: 'FichePhase', through: models.Phase_fiche, foreignKey: 'id_fiche' });
+            this.hasMany(models.Phase_fiche);
+
+            // this.belongsToMany(models.Phase, { as: 'FichePhase', through: models.Phase_fiche, foreignKey: 'id_fiche' });
             this.belongsTo(models.Ibox, {
                 foreignKey: {
                     name: "IboxId",

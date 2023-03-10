@@ -11,13 +11,15 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-            this.belongsTo(models.Phase, { foreignKey: 'id_phase', otherKey: 'id_fiche' });
-            this.belongsTo(models.Fiche, { foreignKey: 'id_fiche', otherKey: 'id_phase' });
+            // this.belongsTo(models.Phase, { foreignKey: 'id_phase', otherKey: 'id_fiche' });
+            // this.belongsTo(models.Fiche, { foreignKey: 'id_fiche', otherKey: 'id_phase' });
+            this.belongsTo(models.Phase, { foreignKey: 'PhaseId' });
+            this.belongsTo(models.Fiche, { foreignKey: 'FicheId' });
         }
     }
     Phase_fiche.init({
-        id_phase: DataTypes.INTEGER,
-        id_fiche: DataTypes.INTEGER
+        PhaseId: DataTypes.INTEGER,
+        FicheId: DataTypes.INTEGER
     }, {
         sequelize,
         modelName: 'Phase_fiche',

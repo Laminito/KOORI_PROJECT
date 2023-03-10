@@ -28,3 +28,6 @@ label {
 #service:focus{
   border: 1px solid var(--vert);
 }
+.fa-sharp{
+  color: green;
+}

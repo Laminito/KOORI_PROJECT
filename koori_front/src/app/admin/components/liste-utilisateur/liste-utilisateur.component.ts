@@ -77,7 +77,7 @@ export class ListeUtilisateurComponent implements OnInit {
     }
   }
   navigate(id: number){
-    this.senddata.setId(id)
+    // this.senddata.setId(id)
     // @ts-ignore
     this._route.navigate([`/admin/utilisateur-detail/${id}`], id)
   }

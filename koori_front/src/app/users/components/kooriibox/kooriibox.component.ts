@@ -49,7 +49,6 @@ export class KooriiboxComponent implements OnInit {
   getDescriptionIbox(){
     this.allRequest.getAll("ibox/last","description").subscribe((data:any)=>{
       this.ibox = new Ibox().deserialize(data)
-      //console.log(this.ibox)
     })
   }
   downloadPdf() {

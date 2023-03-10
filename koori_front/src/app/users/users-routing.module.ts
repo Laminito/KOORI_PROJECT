@@ -24,6 +24,7 @@ import { AllServicesResolver } from './_resolvers/all-services.resolver';
 import { DemandesResolver } from './_resolvers/demandes.resolver';
 import { FicheResolverService } from './_resolvers/FicheResolverService';
 import { ServiceResolverService } from './_resolvers/ServiceResolverService';
+import { DetailKooriiboxComponent } from './components/kooriibox/detail-kooriibox/detail-kooriibox.component';
 
 
 const routes: Routes = [
@@ -38,14 +39,16 @@ const routes: Routes = [
   },
   {path: 'signup', component: SignupComponent},
   {path: 'signin', component: SigninComponent},
-  {path: 'kooriibox/ibox', component: IboxComponent, data: {title: 'Ibox', suite: ' ,les activités à faire'}},
-  {path: 'kooriibox/koori', component: KooriComponent, data: {title: 'Koori', suite: ' ,les processus à dérouler'}},
   {path: 'service', component: ServiceCatalogueComponent, resolve: { 
     services: AllServicesResolver, 
   }},
   {path: 'rapport',canActivate: [AuthGuard], component: RapportComponent},
   {path: 'contact', component: ContactComponent},
-  {path: 'kooriibox', component: KooriiboxComponent},
+  {path: 'kooriibox', component: KooriiboxComponent, children: [
+    {path: '', component: DetailKooriiboxComponent},
+    {path: 'ibox', component: IboxComponent},
+    {path: 'koori', component: KooriComponent},
+  ]},
   {path: 'evaluation-note', component: EvaluationNoteComponent},
   {path: 'fiche/:id', component: FicheComponent, resolve: {fiche: FicheResolverService}},
   {path: 'apropos', component: AproposComponent},
